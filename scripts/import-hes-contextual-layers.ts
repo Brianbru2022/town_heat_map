@@ -2,7 +2,12 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { booleanIntersects, booleanPointInPolygon, point as turfPoint } from '@turf/turf';
 import type { Feature, Geometry, Point, Polygon, MultiPolygon } from 'geojson';
-import type { DataSourceDefinition, HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
+import type {
+  DataSourceDefinition,
+  HeritageFeature,
+  ProjectPackage,
+  SourceRecord,
+} from '../src/domain/models';
 import { validateFeatures } from '../src/domain/validation';
 import { localHesDatasetFiles, type LocalHesDataset } from './lib/reference-data';
 
@@ -67,7 +72,10 @@ function stringValue(value: unknown): string | undefined {
   return typeof value === 'string' && value.trim() ? value.trim() : undefined;
 }
 
-function intersectsProject(feature: Feature<Geometry, Record<string, unknown>>, pkg: ProjectPackage): boolean {
+function intersectsProject(
+  feature: Feature<Geometry, Record<string, unknown>>,
+  pkg: ProjectPackage,
+): boolean {
   if (feature.geometry.type === 'Point')
     return booleanPointInPolygon(turfPoint(feature.geometry.coordinates), pkg.project.boundary);
   if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon')
@@ -97,7 +105,10 @@ async function recordsFor(
 }
 
 function normalise(value: string): string {
-  return value.toLocaleLowerCase().replaceAll(/[^a-z0-9]+/g, ' ').trim();
+  return value
+    .toLocaleLowerCase()
+    .replaceAll(/[^a-z0-9]+/g, ' ')
+    .trim();
 }
 
 function existingMatch(
@@ -133,7 +144,8 @@ function sourceRecord(
     sourceRecordId: reference,
     sourceUrl: stringValue(properties.LINK),
     accessedAt,
-    licence: 'Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.',
+    licence:
+      'Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.',
     notes: `Location precision: ${stringValue(properties.PRECISION) ?? 'not stated'}; ${stringValue(properties.ACCURACY) ?? 'accuracy not stated'}.`,
     reliability: 'official_non_statutory',
   };
@@ -149,7 +161,8 @@ for (const layer of layers) {
   for (const record of records) {
     const reference = layer.sourceId(record.properties);
     const name = layer.name(record.properties);
-    if (!reference || !name) throw new Error(`HES ${layer.dataset} feature is missing its reference or name.`);
+    if (!reference || !name)
+      throw new Error(`HES ${layer.dataset} feature is missing its reference or name.`);
     const source = sourceRecord(layer, record.properties, reference);
     const existing = existingMatch(pkg, reference, name);
     if (existing) {
@@ -202,7 +215,8 @@ const source: DataSourceDefinition = {
   coverage: `Exact project-boundary scan of local battlefields, Properties in Care, World Heritage Sites and Historic Marine Protected Areas for ${pkg.project.locality}.`,
   accessMethod: 'Developer-supplied local HES Shapefiles; exact project-boundary intersection',
   sourceUrl: 'https://portal.historicenvironment.scot/downloads',
-  licence: 'Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.',
+  licence:
+    'Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.',
   reliability: 'official_non_statutory',
   limitations:
     'A contextual designation or managed-property record is not construction-date evidence. Datasets with no intersecting records are retained as a completed scan, not shown as empty map layers.',

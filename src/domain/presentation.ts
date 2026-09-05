@@ -10,5 +10,7 @@ export function isPublicTownFeature(feature: HeritageFeature): boolean {
 }
 
 export function isArchaeologyEvidenceFeature(feature: HeritageFeature): boolean {
-  return feature.tags.includes('archaeology-evidence') || feature.tags.includes('scheduled_monument');
+  return (
+    feature.tags.includes('archaeology-evidence') || feature.tags.includes('scheduled_monument')
+  );
 }

@@ -9,7 +9,8 @@ const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
 const reportPath = resolve(process.argv[3] ?? 'data/review/alloa-town-locality-scope-review.json');
 const pkg = JSON.parse(await readFile(projectPath, 'utf8')) as ProjectPackage;
 const locality = pkg.project.townStudyArea?.localityBoundary;
-if (!locality) throw new Error('Alloa needs an NRS town-locality boundary before scope review can run.');
+if (!locality)
+  throw new Error('Alloa needs an NRS town-locality boundary before scope review can run.');
 
 const accessedAt = new Date().toISOString();
 const managedTag = 'outside-alloa-town-locality';
@@ -52,7 +53,11 @@ for (const feature of pkg.features) {
   feature.updatedAt = accessedAt;
   if (!feature.reviewNotes?.includes(scopeNote))
     feature.reviewNotes = `${feature.reviewNotes ? `${feature.reviewNotes} ` : ''}${scopeNote}`;
-  decisions.push({ id: feature.id, name: feature.name, ...(target ? { targetLocality: target } : {}) });
+  decisions.push({
+    id: feature.id,
+    name: feature.name,
+    ...(target ? { targetLocality: target } : {}),
+  });
 }
 
 pkg.validation = validateFeatures(pkg.project, pkg.features);
@@ -80,4 +85,6 @@ await writeFile(
   'utf8',
 );
 await writeFile(projectPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
-console.log(`Excluded ${decisions.length} feature(s) outside the NRS Alloa locality from public Alloa presentation.`);
+console.log(
+  `Excluded ${decisions.length} feature(s) outside the NRS Alloa locality from public Alloa presentation.`,
+);

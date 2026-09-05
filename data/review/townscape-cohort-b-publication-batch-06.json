@@ -1,0 +1,169 @@
+{
+  "registerType": "Cohort B controlled mapped-context publication batch",
+  "batch": 6,
+  "projectId": "kincardine-on-forth-scotland",
+  "changed": 8,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-984839901",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-5634740951",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-12954215161",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-13158013116",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-6838044639",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-9970231922",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-9970231927",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-9970231943",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    }
+  ],
+  "afterState": [
+    {
+      "recordId": "osm-community:node-984839901",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-5634740951",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-12954215161",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-13158013116",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-6838044639",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-9970231922",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-9970231927",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-9970231943",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "allApprovedRecordsDelivered": true,
+    "tierFoeSuppression": true,
+    "osmAttributionPresent": true
+  }
+}

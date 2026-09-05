@@ -15,8 +15,10 @@ function requiredFeature(id: string): HeritageFeature {
 
 const marStreet = requiredFeature('curated:context-mar-street-1785');
 const westEndPark = requiredFeature('curated:context-west-end-park');
-if (marStreet.geometry?.type !== 'LineString') throw new Error('Mar Street needs reviewed current centre-line geometry.');
-if (westEndPark.geometry?.type !== 'Polygon') throw new Error('West End Park needs reviewed current boundary geometry.');
+if (marStreet.geometry?.type !== 'LineString')
+  throw new Error('Mar Street needs reviewed current centre-line geometry.');
+if (westEndPark.geometry?.type !== 'Polygon')
+  throw new Error('West End Park needs reviewed current boundary geometry.');
 
 const marStreetCorridor = buffer(lineString((marStreet.geometry as LineString).coordinates), 20, {
   units: 'meters',

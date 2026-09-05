@@ -5,12 +5,16 @@ import type { HeritageFeature, ProjectPackage, SourceRecord } from '../src/domai
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
 
 function currentOsmSource(feature: HeritageFeature): SourceRecord | undefined {
-  return feature.sourceRecords.find((source) => source.sourceName === 'OpenStreetMap current community places');
+  return feature.sourceRecords.find(
+    (source) => source.sourceName === 'OpenStreetMap current community places',
+  );
 }
 
 function osmValue(source: SourceRecord | undefined, key: string): string {
   const notes = source?.notes ?? '';
-  return new RegExp(`(?:^|[:;]\\s*)${key}=([^;]+)`).exec(notes)?.[1]?.replace(/\\.$/, '').trim() ?? '';
+  return (
+    new RegExp(`(?:^|[:;]\\s*)${key}=([^;]+)`).exec(notes)?.[1]?.replace(/\\.$/, '').trim() ?? ''
+  );
 }
 
 function csvCell(value: string | undefined): string {

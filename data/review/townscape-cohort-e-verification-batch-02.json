@@ -1,0 +1,126 @@
+{
+  "projectId": "alva-scotland",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "recordResults": [
+    {
+      "recordId": "osm-park:way-166100727",
+      "currentName": "Cochrane Park",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Johnstone and Cochrane Parks",
+        "url": "https://www.clacks.gov.uk/culture/johnstonecochraneparks/",
+        "reliability": "local_authority",
+        "finding": "Current council page identifies Cochrane Park, Alva as a public park."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F public-park access only; no facilities, accessibility or recommendation claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "166100727",
+        "version": 4,
+        "lastEditedAt": "2016-06-07T14:28:58Z",
+        "changesetId": 39862728,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/166100727"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        },
+        {
+          "claim": "public_access",
+          "tier": "corroborated_facility",
+          "sourceRecordRefs": [
+            "townscape-cohort-e-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z",
+          "expiresAt": "2027-03-03T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-423424487",
+      "currentName": "Johnstone Park",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Johnstone and Cochrane Parks",
+        "url": "https://www.clacks.gov.uk/culture/johnstonecochraneparks/",
+        "reliability": "local_authority",
+        "finding": "Current council page identifies Johnstone Park, Alva as a public park."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F public-park access only; no facilities, accessibility or recommendation claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "423424487",
+        "version": 2,
+        "lastEditedAt": "2019-09-02T21:08:27Z",
+        "changesetId": 74013401,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/423424487"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        },
+        {
+          "claim": "public_access",
+          "tier": "corroborated_facility",
+          "sourceRecordRefs": [
+            "townscape-cohort-e-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z",
+          "expiresAt": "2027-03-03T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-5061863243",
+      "currentName": "Viewpoint",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Core Paths Plan",
+        "url": "https://www.clacks.gov.uk/document/2345.pdf",
+        "reliability": "local_authority",
+        "finding": "Authority mapping provides area context but does not establish access to this exact viewpoint point."
+      },
+      "claim": null,
+      "claimNote": "Live mapped viewpoint context only; no route, safety or access claim.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "5061863243",
+        "version": 1,
+        "lastEditedAt": "2017-08-27T10:54:05Z",
+        "changesetId": 51478789,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/5061863243"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    }
+  ]
+}

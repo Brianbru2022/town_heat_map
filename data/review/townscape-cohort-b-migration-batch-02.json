@@ -1,0 +1,140 @@
+{
+  "registerType": "Cohort B controlled claim-evidence migration batch",
+  "batch": 2,
+  "projectId": "alva-scotland",
+  "records": 2,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-4439552255",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-5061863242",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "osm-community:node-4439552255",
+      "projectId": "alva-scotland",
+      "locality": "Alva",
+      "existingName": "War Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/4439552255",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=celtic_cross."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-4439552255",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=celtic_cross; memorial:conflict=WW1;WW2; name=War Memorial; ref:canmore=339168; ref:iwm=6029; start_date=1923; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/4439552255.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=celtic_cross; memorial:conflict=WW1;WW2; name=War Memorial; ref:canmore=339168; ref:iwm=6029; start_date=1923; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "4439552255",
+        "version": 5,
+        "lastEditedAt": "2025-10-10T15:05:58Z",
+        "changesetId": 173099656,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/4439552255/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "firstEditedAt": "2016-10-09T19:10:35Z",
+        "lastEditedAt": "2025-10-10T15:05:58Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-5061863242",
+      "projectId": "alva-scotland",
+      "locality": "Alva",
+      "existingName": "Tubular Bells",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/5061863242",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: artwork_type=sculpture; tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-5061863242",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): artwork_type=sculpture; name=Tubular Bells; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/5061863242.json",
+      "osmStatus": "current",
+      "osmTags": "artwork_type=sculpture; name=Tubular Bells; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "5061863242",
+        "version": 1,
+        "lastEditedAt": "2017-08-27T10:54:05Z",
+        "changesetId": 51478789,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/5061863242/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2017-08-27T10:54:05Z",
+        "lastEditedAt": "2017-08-27T10:54:05Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "publicTierFoeSuppression": true,
+    "sourceHistoryPreserved": true
+  }
+}

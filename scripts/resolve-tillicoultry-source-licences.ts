@@ -4,7 +4,9 @@ import type { ProjectPackage, SourceRecord } from '../src/domain/models';
 import { validateFeatures } from '../src/domain/validation';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/tillicoultry.json');
-const reportPath = resolve(process.argv[3] ?? 'data/review/tillicoultry-source-licence-review.json');
+const reportPath = resolve(
+  process.argv[3] ?? 'data/review/tillicoultry-source-licence-review.json',
+);
 const pkg = JSON.parse(await readFile(projectPath, 'utf8')) as ProjectPackage;
 const reviewedAt = new Date().toISOString();
 
@@ -15,7 +17,8 @@ const iwmRestriction =
 
 function licenceFor(source: SourceRecord): string | undefined {
   if (source.sourceOrganisation === 'Clackmannanshire Council') return councilLicence;
-  if (source.sourceOrganisation === 'Imperial War Museums — War Memorials Register') return iwmRestriction;
+  if (source.sourceOrganisation === 'Imperial War Museums — War Memorials Register')
+    return iwmRestriction;
   return undefined;
 }
 
@@ -37,7 +40,10 @@ for (const feature of pkg.features) {
   });
   feature.licence = citationOnly ? iwmRestriction : councilLicence;
   feature.tags = [
-    ...new Set([...feature.tags, ...(citationOnly ? ['source-use-restricted'] : ['source-licence-reviewed'])]),
+    ...new Set([
+      ...feature.tags,
+      ...(citationOnly ? ['source-use-restricted'] : ['source-licence-reviewed']),
+    ]),
   ];
   feature.reviewed = true;
   feature.updatedAt = reviewedAt;
@@ -46,7 +52,11 @@ for (const feature of pkg.features) {
     : 'Licence review complete: Council-held textual information is reusable under the Council reuse policy with attribution; third-party material is excluded.';
   if (!feature.reviewNotes?.includes(note))
     feature.reviewNotes = [feature.reviewNotes, note].filter(Boolean).join(' ');
-  decisions.push({ id: feature.id, name: feature.name, policy: citationOnly ? 'citation_only' : 'ogl' });
+  decisions.push({
+    id: feature.id,
+    name: feature.name,
+    policy: citationOnly ? 'citation_only' : 'ogl',
+  });
 }
 
 pkg.validation = validateFeatures(pkg.project, pkg.features);
@@ -60,7 +70,8 @@ await writeFile(
       projectId: pkg.project.id,
       reviewedAt,
       councilReusePolicy: 'https://www.clacks.gov.uk/regulation/reuseofpublicsectorinfo/',
-      iwmTerms: 'https://www.iwm.org.uk/sites/default/files/files/2023-01/IWM%20Terms%20and%20Conditions%202023.CQ%20%28002%29.pdf',
+      iwmTerms:
+        'https://www.iwm.org.uk/sites/default/files/files/2023-01/IWM%20Terms%20and%20Conditions%202023.CQ%20%28002%29.pdf',
       decisions: decisions.sort((left, right) => left.name.localeCompare(right.name)),
     },
     null,

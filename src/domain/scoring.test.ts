@@ -26,9 +26,9 @@ const feature = {
 describe('scoring', () => {
   it('uses normalised factors with stronger weight for older evidence', () => {
     expect(historicCharacterScore(feature)).toBeCloseTo(0.8 ** 1.5);
-    expect(
-      historicCharacterScore({ ...feature, latestPossibleYear: 1600 }),
-    ).toBeGreaterThan(historicCharacterScore({ ...feature, latestPossibleYear: 1900 }));
+    expect(historicCharacterScore({ ...feature, latestPossibleYear: 1600 })).toBeGreaterThan(
+      historicCharacterScore({ ...feature, latestPossibleYear: 1900 }),
+    );
   });
   it('handles unknown dates', () => expect(ageBand()).toBe('unknown'));
   it('excludes related context from parish heat scoring', () =>

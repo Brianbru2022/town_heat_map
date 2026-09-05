@@ -1,0 +1,2179 @@
+{
+  "reviewedAt": "2026-09-03T21:05:22.213Z",
+  "precedent": "Townscape HES/NRHE exception-review milestone",
+  "baselineCounts": {
+    "partialOverlap": 7,
+    "bufferOnly": 57,
+    "provenanceExceptions": 8,
+    "unsupportedWording": 4
+  },
+  "crossBoundaryRule": "Keep authoritative geometry unchanged. A feature that crosses a locality boundary may be published only as related context where an authoritative designation or record identity explicitly names the Townscape locality or establishes the feature as a named component of it. Label it locality-spanning; do not count it as wholly in-boundary or use it in locality scoring. Otherwise retain it as provisional or withhold it. Geometric overlap and buffer distance alone never establish the relationship.",
+  "totals": {
+    "before": {
+      "totalRecords": 2349,
+      "publishable": 1297,
+      "provisional": 760,
+      "verified": 0,
+      "requiresReview": 23,
+      "withheld": 269,
+      "blockerCount": 23,
+      "advisoryCount": 12
+    },
+    "after": {
+      "totalRecords": 2349,
+      "publishable": 1346,
+      "provisional": 684,
+      "verified": 0,
+      "requiresReview": 23,
+      "withheld": 296,
+      "blockerCount": 23,
+      "advisoryCount": 12
+    },
+    "beforeByProject": [
+      {
+        "projectId": "alloa-scotland",
+        "totalRecords": 516,
+        "publishable": 221,
+        "provisional": 122,
+        "verified": 0,
+        "requiresReview": 7,
+        "withheld": 166,
+        "blockerCount": 7,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "alva-scotland",
+        "totalRecords": 186,
+        "publishable": 158,
+        "provisional": 25,
+        "verified": 0,
+        "requiresReview": 3,
+        "withheld": 0,
+        "blockerCount": 3,
+        "advisoryCount": 4
+      },
+      {
+        "projectId": "culross-scotland",
+        "totalRecords": 503,
+        "publishable": 231,
+        "provisional": 262,
+        "verified": 0,
+        "requiresReview": 1,
+        "withheld": 9,
+        "blockerCount": 1,
+        "advisoryCount": 1
+      },
+      {
+        "projectId": "kincardine-on-forth-scotland",
+        "totalRecords": 374,
+        "publishable": 241,
+        "provisional": 88,
+        "verified": 0,
+        "requiresReview": 2,
+        "withheld": 43,
+        "blockerCount": 2,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "totalRecords": 276,
+        "publishable": 74,
+        "provisional": 145,
+        "verified": 0,
+        "requiresReview": 10,
+        "withheld": 47,
+        "blockerCount": 10,
+        "advisoryCount": 7
+      },
+      {
+        "projectId": "quarriers-village-scotland",
+        "totalRecords": 53,
+        "publishable": 41,
+        "provisional": 8,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 4,
+        "blockerCount": 0,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "biggar-scotland",
+        "totalRecords": 341,
+        "publishable": 273,
+        "provisional": 68,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 0,
+        "blockerCount": 0,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "killin-scotland",
+        "totalRecords": 100,
+        "publishable": 58,
+        "provisional": 42,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 0,
+        "blockerCount": 0,
+        "advisoryCount": 0
+      }
+    ],
+    "afterByProject": [
+      {
+        "projectId": "alloa-scotland",
+        "totalRecords": 516,
+        "publishable": 221,
+        "provisional": 122,
+        "verified": 0,
+        "requiresReview": 7,
+        "withheld": 166,
+        "blockerCount": 7,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "alva-scotland",
+        "totalRecords": 186,
+        "publishable": 159,
+        "provisional": 24,
+        "verified": 0,
+        "requiresReview": 3,
+        "withheld": 0,
+        "blockerCount": 3,
+        "advisoryCount": 4
+      },
+      {
+        "projectId": "culross-scotland",
+        "totalRecords": 503,
+        "publishable": 246,
+        "provisional": 246,
+        "verified": 0,
+        "requiresReview": 1,
+        "withheld": 10,
+        "blockerCount": 1,
+        "advisoryCount": 1
+      },
+      {
+        "projectId": "kincardine-on-forth-scotland",
+        "totalRecords": 374,
+        "publishable": 258,
+        "provisional": 57,
+        "verified": 0,
+        "requiresReview": 2,
+        "withheld": 57,
+        "blockerCount": 2,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "totalRecords": 276,
+        "publishable": 85,
+        "provisional": 122,
+        "verified": 0,
+        "requiresReview": 10,
+        "withheld": 59,
+        "blockerCount": 10,
+        "advisoryCount": 7
+      },
+      {
+        "projectId": "quarriers-village-scotland",
+        "totalRecords": 53,
+        "publishable": 41,
+        "provisional": 8,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 4,
+        "blockerCount": 0,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "biggar-scotland",
+        "totalRecords": 341,
+        "publishable": 275,
+        "provisional": 66,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 0,
+        "blockerCount": 0,
+        "advisoryCount": 0
+      },
+      {
+        "projectId": "killin-scotland",
+        "totalRecords": 100,
+        "publishable": 61,
+        "provisional": 39,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 0,
+        "blockerCount": 0,
+        "advisoryCount": 0
+      }
+    ]
+  },
+  "summary": {
+    "partialOverlapReviewed": 7,
+    "partialOverlapPublishedAsRelatedContext": 7,
+    "bufferOnlyReviewed": 57,
+    "bufferOnlyPublishedAsRelatedContext": 30,
+    "bufferOnlyWithheldOutOfScope": 27,
+    "unresolved": 0,
+    "provenanceResolved": 8,
+    "provenanceUnresolved": 0,
+    "wordingCorrected": 4,
+    "remainingHesNrheNonPublishable": 144
+  },
+  "decisions": [
+    {
+      "projectId": "culross-scotland",
+      "id": "hes-conservation-area:CA143",
+      "kind": "partial_overlap_context",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The statutory Culross Conservation Area is explicitly the Culross designation. Its authoritative polygon legitimately extends beyond the NRS locality edge, so it is published only as locality-spanning statutory context and not as evidence that every part lies within the locality.",
+      "name": "CULROSS",
+      "sourceRecordIds": [
+        "CA143"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "hes-conservation-area:CA153",
+      "kind": "partial_overlap_context",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The statutory Kincardine Conservation Area is explicitly the Kincardine designation. Its authoritative polygon legitimately extends beyond the NRS locality edge, so it is published only as locality-spanning statutory context and not as evidence that every part lies within the locality.",
+      "name": "KINCARDINE",
+      "sourceRecordIds": [
+        "CA153"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "hes-conservation-area:CA512",
+      "kind": "partial_overlap_context",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The statutory Tillicoultry Conservation Area is explicitly the Tillicoultry designation. Its authoritative polygon legitimately extends beyond the NRS locality edge, so it is published only as locality-spanning statutory context and not as evidence that every part lies within the locality.",
+      "name": "TILLICOULTRY",
+      "sourceRecordIds": [
+        "CA512"
+      ]
+    },
+    {
+      "projectId": "biggar-scotland",
+      "id": "hes-conservation-area:CA391",
+      "kind": "partial_overlap_context",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The statutory Biggar Conservation Area is explicitly the Biggar designation. Its authoritative polygon legitimately extends beyond the NRS locality edge, so it is published only as locality-spanning statutory context and not as evidence that every part lies within the locality.",
+      "name": "BIGGAR",
+      "sourceRecordIds": [
+        "CA391",
+        "PIC113"
+      ]
+    },
+    {
+      "projectId": "biggar-scotland",
+      "id": "hes-scheduled-monument:SM5492",
+      "kind": "partial_overlap_context",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The statutory monument is explicitly described by HES as a prehistoric settlement and enclosure at Colliehill Road, Biggar. The designation polygon crosses the locality boundary but the feature identity gives a direct Biggar relationship; publish it only as locality-spanning statutory context.",
+      "name": "Prehistoric settlement and enclosure, 65m ENE of 21 Colliehill Road, Biggar",
+      "sourceRecordIds": [
+        "SM5492"
+      ]
+    },
+    {
+      "projectId": "killin-scotland",
+      "id": "hes-conservation-area:CA544",
+      "kind": "partial_overlap_context",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The statutory Killin Conservation Area is explicitly the Killin designation. Its authoritative polygon legitimately extends beyond the NRS locality edge, so it is published only as locality-spanning statutory context and not as evidence that every part lies within the locality.",
+      "name": "KILLIN",
+      "sourceRecordIds": [
+        "CA544"
+      ]
+    },
+    {
+      "projectId": "killin-scotland",
+      "id": "hes-scheduled-monument:SM4675",
+      "kind": "partial_overlap_context",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The scheduled monument is the Finlarig Castle, earthworks and mausoleum complex, a named historic component of Killin. Its designation polygon crosses the locality boundary; publish it only as locality-spanning statutory context.",
+      "name": "Finlarig Castle,castle,earthworks & mausoleum",
+      "sourceRecordIds": [
+        "SM4675"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:48031",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record is explicitly named Culross; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "CULROSS",
+      "sourceRecordIds": [
+        "48031"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:48064",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies the Culross Moat coal shaft; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "CULROSS, THE MOAT, COAL SHAFT",
+      "sourceRecordIds": [
+        "48064",
+        "SM13797"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:86468",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Culross Low Causeway; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "CULROSS, LOW CAUSEWAY",
+      "sourceRecordIds": [
+        "86468"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:92392",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Culross Harbour; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "CULROSS HARBOUR",
+      "sourceRecordIds": [
+        "92392",
+        "node/13396052330"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:280709",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record is explicitly named Culross and classifies a pier; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "CULROSS",
+      "sourceRecordIds": [
+        "280709"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:280710",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record is explicitly named Culross and classifies a pier; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "CULROSS",
+      "sourceRecordIds": [
+        "280710"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:48072",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Kincardine-on-Forth, Kincardine House; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE HOUSE",
+      "sourceRecordIds": [
+        "48072",
+        "48072"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:93179",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Kincardine-on-Forth, Kellywood Crescent; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KELLYWOOD CRESCENT",
+      "sourceRecordIds": [
+        "93179"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:93180",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Kincardine-on-Forth, Kellywood Works; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KELLYWOOD CRESCENT, KELLYWOOD WORKINGS",
+      "sourceRecordIds": [
+        "93180"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:123074",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies the Kincardine-on-Forth power-station jetty; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, JETTY",
+      "sourceRecordIds": [
+        "123074"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:68086",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Kincardine-on-Forth Power Station; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION",
+      "sourceRecordIds": [
+        "68086",
+        "68086"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:259537",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies a Kincardine-on-Forth Power Station component; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, ADMINISTRATION, ABLUTIONS AND WORKSHOP BUILDING",
+      "sourceRecordIds": [
+        "259537",
+        "259537"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:268843",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies the Kincardine Eastern Link Road; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE EASTERN LINK ROAD",
+      "sourceRecordIds": [
+        "268843"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:277533",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies a Kincardine-on-Forth Power Station component; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, WATER TREATMENT PLANT HOUSE",
+      "sourceRecordIds": [
+        "277533",
+        "277533"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:277534",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies a Kincardine-on-Forth Power Station component; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, FIRE FIGHTING PUMPHOUSE",
+      "sourceRecordIds": [
+        "277534"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:277095",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies a Kincardine-on-Forth Power Station component; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, ASH SLURRY HOUSE",
+      "sourceRecordIds": [
+        "277095"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:277101",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies a Kincardine-on-Forth Power Station component; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, CHIMNEYS",
+      "sourceRecordIds": [
+        "277101"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:277102",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies a Kincardine-on-Forth Power Station component; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, WATER HOUSE",
+      "sourceRecordIds": [
+        "277102",
+        "277102"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:277103",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies a Kincardine-on-Forth Power Station component; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, COOLING WATER PUMPHOUSE",
+      "sourceRecordIds": [
+        "277103"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:276991",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies the Kincardine-on-Forth Power Station turbine hall; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "KINCARDINE ON FORTH, KINCARDINE POWER STATION, TURBINE HALL",
+      "sourceRecordIds": [
+        "276991",
+        "276991"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48260",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record is explicitly named Tillicoultry; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY",
+      "sourceRecordIds": [
+        "48260"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48282",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies the Tillicoultry water-power system; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY, WATER POWER SYSTEM",
+      "sourceRecordIds": [
+        "48282"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48286",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies the Tillicoultry railway viaduct; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY, RAILWAY VIADUCT",
+      "sourceRecordIds": [
+        "48286"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48288",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record is explicitly named Tillicoultry (East); retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY (EAST)",
+      "sourceRecordIds": [
+        "48288"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48295",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record is explicitly named Tillicoultry; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY",
+      "sourceRecordIds": [
+        "48295"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48296",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record is explicitly named Tillicoultry; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY",
+      "sourceRecordIds": [
+        "48296"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:243538",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Tillicoultry, Devonside and Alexandra Street; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY, DEVONSIDE, ALEXANDRA STREET, DEVONPARK KNITWEAR FACTORY",
+      "sourceRecordIds": [
+        "243538"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:308562",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Tillicoultry Golf Course on Alva Road; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY, ALVA ROAD, TILLICOULTRY GOLF COURSE",
+      "sourceRecordIds": [
+        "308562"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:378491",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies the Tillicoultry weaving mill; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY, WEAVING MILL",
+      "sourceRecordIds": [
+        "378491"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:350879",
+      "kind": "buffer_related_publishable",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "The NRHE record explicitly identifies Tillicoultry allotments on Chapelle Street; retain it as limited related historic context, not as a boundary-based visitor inclusion.",
+      "name": "TILLICOULTRY, CHAPELLE STREET, TILLICOULTRY ALLOTMENTS",
+      "sourceRecordIds": [
+        "350879"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:153472",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is named Dunimarle Castle and classifies a fish trap. It has no explicit Culross locality relationship in the locally held record; buffer distance is insufficient.",
+      "name": "DUNIMARLE CASTLE",
+      "sourceRecordIds": [
+        "153472"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:48108",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Inch House, a distinct named locality/estate rather than Kincardine.",
+      "name": "INCH HOUSE",
+      "sourceRecordIds": [
+        "48108"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:48109",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Old Tulliallan Castle, a distinct named locality/estate rather than Kincardine.",
+      "name": "OLD TULLIALLAN CASTLE",
+      "sourceRecordIds": [
+        "48109",
+        "48109"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:48113",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Tulliallan, a distinct named locality/parish rather than Kincardine.",
+      "name": "TULLIALLAN",
+      "sourceRecordIds": [
+        "48113"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:48114",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Tulliallan, a distinct named locality/parish rather than Kincardine.",
+      "name": "TULLIALLAN",
+      "sourceRecordIds": [
+        "48114"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:48116",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for the Tulliallan Castle ice house, a distinct named estate rather than Kincardine.",
+      "name": "TULLIALLAN CASTLE, ICE HOUSE",
+      "sourceRecordIds": [
+        "48116"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:48124",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is explicitly for Tulliallan Parish, not the Kincardine locality.",
+      "name": "TULLIALLAN PARISH",
+      "sourceRecordIds": [
+        "48124"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:351570",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for the Tulliallan Castle laundry house, a distinct named estate rather than Kincardine.",
+      "name": "TULLIALLAN CASTLE, LAUNDRY HOUSE",
+      "sourceRecordIds": [
+        "351570",
+        "351570"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:162415",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Inch Farm, a distinct named locality/estate rather than Kincardine.",
+      "name": "INCH FARM",
+      "sourceRecordIds": [
+        "162415"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:174313",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Tulliallan Castle and Moorloch Cottage, a distinct named estate rather than Kincardine.",
+      "name": "TULLIALLAN CASTLE, TULLIALLAN WOOD, MOORLOCH COTTAGE",
+      "sourceRecordIds": [
+        "174313"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:174316",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Inch Farm Cottages, a distinct named locality/estate rather than Kincardine.",
+      "name": "INCH FARM COTTAGES",
+      "sourceRecordIds": [
+        "174316"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:214067",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for the Tulliallan Estate Office, a distinct named estate rather than Kincardine.",
+      "name": "TULLIALLAN ESTATE OFFICE, PROPOSED HUTS",
+      "sourceRecordIds": [
+        "214067"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:250320",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Inch Farm, a distinct named locality/estate rather than Kincardine.",
+      "name": "INCH FARM",
+      "sourceRecordIds": [
+        "250320"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:94462",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Tulliallan Castle, a distinct named estate rather than Kincardine.",
+      "name": "TULLIALLAN CASTLE",
+      "sourceRecordIds": [
+        "94462",
+        "94462"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:174310",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for the Tulliallan Castle walled garden, a distinct named estate rather than Kincardine.",
+      "name": "TULLIALLAN CASTLE, WALLED GARDEN, GLASSHOUSES AND SUNDIAL",
+      "sourceRecordIds": [
+        "174310",
+        "174310"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48256",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Harviestoun, a distinct named locality/estate rather than Tillicoultry.",
+      "name": "HARVIESTOUN",
+      "sourceRecordIds": [
+        "48256"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48258",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Eastertown, a distinct named settlement rather than Tillicoultry.",
+      "name": "EASTERTOWN",
+      "sourceRecordIds": [
+        "48258"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48290",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Glenfoot Bridge, a distinct named settlement context rather than Tillicoultry.",
+      "name": "GLENFOOT BRIDGE",
+      "sourceRecordIds": [
+        "48290"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48291",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Lady Ann’s Well and gives no explicit Tillicoultry locality relationship.",
+      "name": "LADY ANN'S WELL",
+      "sourceRecordIds": [
+        "48291"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48292",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record explicitly identifies Alva Glen, not Tillicoultry.",
+      "name": "ALVA GLEN, LADY'S WELL",
+      "sourceRecordIds": [
+        "48292"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:48294",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Castle Craig and gives no explicit Tillicoultry locality relationship.",
+      "name": "CASTLE CRAIG",
+      "sourceRecordIds": [
+        "48294"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:106444",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record explicitly identifies Devonside, a distinct named settlement rather than Tillicoultry.",
+      "name": "DEVONSIDE",
+      "sourceRecordIds": [
+        "106444"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:111925",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Castle Craig and gives no explicit Tillicoultry locality relationship.",
+      "name": "CASTLE CRAIG",
+      "sourceRecordIds": [
+        "111925"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:111935",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record is for Mellochfoot, a distinct named locality rather than Tillicoultry.",
+      "name": "MELLOCHFOOT, CURLING POND",
+      "sourceRecordIds": [
+        "111935"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:111937",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record explicitly identifies Devonside, a distinct named settlement rather than Tillicoultry.",
+      "name": "DEVONSIDE",
+      "sourceRecordIds": [
+        "111937"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:111940",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record explicitly identifies Coalsnaughton, a distinct named settlement rather than Tillicoultry.",
+      "name": "COALSNAUGHTON",
+      "sourceRecordIds": [
+        "111940"
+      ]
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "id": "nrhe:111942",
+      "kind": "buffer_out_of_scope",
+      "classification": "out_of_scope",
+      "publication": "withheld",
+      "rationale": "The NRHE record explicitly identifies Glenfoot, a distinct named settlement rather than Tillicoultry.",
+      "name": "GLENFOOT",
+      "sourceRecordIds": [
+        "111942"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:48021",
+      "kind": "provenance_resolved",
+      "classification": "within_town_locality",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "CULROSS PALACE",
+      "sourceRecordIds": [
+        "48021",
+        "way/491834059",
+        "relation/16266379"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:48055",
+      "kind": "provenance_resolved",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "CULROSS",
+      "sourceRecordIds": [
+        "48055"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:92389",
+      "kind": "provenance_resolved",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "CULROSS, BURNETT'S HOUSE",
+      "sourceRecordIds": [
+        "92389"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:124579",
+      "kind": "provenance_resolved",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "CAVERNS",
+      "sourceRecordIds": [
+        "124579"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:124581",
+      "kind": "provenance_resolved",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "CAVERNS",
+      "sourceRecordIds": [
+        "124581"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:165396",
+      "kind": "provenance_resolved",
+      "classification": "related_context",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "MOORLOCH COTTAGE",
+      "sourceRecordIds": [
+        "165396"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:319300",
+      "kind": "provenance_resolved",
+      "classification": "within_town_locality",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "CULROSS ABBEY",
+      "sourceRecordIds": [
+        "319300",
+        "node/4995290450"
+      ]
+    },
+    {
+      "projectId": "killin-scotland",
+      "id": "nrhe:24194",
+      "kind": "provenance_resolved",
+      "classification": "within_town_locality",
+      "publication": "publishable",
+      "rationale": "Existing locally held HES/NRHE evidence contains a licensed Historic Environment Scotland record matching this feature. Supplementary OSM or earlier HES source-history entries remain preserved, but do not displace the authoritative HES/NRHE provenance.",
+      "name": "FINLARIG CASTLE",
+      "sourceRecordIds": [
+        "24194",
+        "way/30489383",
+        "24194"
+      ]
+    },
+    {
+      "projectId": "alva-scotland",
+      "id": "nrhe:220554",
+      "kind": "wording_corrected",
+      "classification": "within_town_locality",
+      "publication": "publishable",
+      "rationale": "The NRHE identity/classification is valid after removing any implication about present status.",
+      "wording": "This record is limited to the NRHE classification of bus shelter and public convenience(s). It does not establish present status.",
+      "name": "ALVA, EAST STIRLING STREET, PUBLIC CONVENIENCES AND BUS SHELTER",
+      "sourceRecordIds": [
+        "220554"
+      ]
+    },
+    {
+      "projectId": "culross-scotland",
+      "id": "nrhe:104336",
+      "kind": "wording_corrected",
+      "classification": "within_town_locality",
+      "publication": "publishable",
+      "rationale": "The NRHE identity/classification is valid after removing any implication about present status.",
+      "wording": "This record is limited to the NRHE classification of public convenience. It does not establish present status.",
+      "name": "CULROSS, PUBLIC LAVATORIES",
+      "sourceRecordIds": [
+        "104336"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:93075",
+      "kind": "wording_corrected",
+      "classification": "within_town_locality",
+      "publication": "publishable",
+      "rationale": "The NRHE identity/classification is valid after removing any implication about present operation.",
+      "wording": "This record is limited to the NRHE classification of public house. It does not establish present operation.",
+      "name": "KINCARDINE ON FORTH, BRIDGE INN",
+      "sourceRecordIds": [
+        "93075"
+      ]
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "id": "nrhe:93096",
+      "kind": "wording_corrected",
+      "classification": "within_town_locality",
+      "publication": "publishable",
+      "rationale": "The NRHE identity/classification is valid after removing any implication about present status.",
+      "wording": "This record is limited to the NRHE classifications of terraced house and public convenience. It does not establish present status.",
+      "name": "KINCARDINE ON FORTH, 19 EXCISE STREET",
+      "sourceRecordIds": [
+        "93096",
+        "93096"
+      ]
+    }
+  ],
+  "remainingHesNrheCohorts": [
+    {
+      "state": "provisional",
+      "reason": "No individual publication determination is recorded.",
+      "count": 144,
+      "records": [
+        {
+          "projectId": "alloa-scotland",
+          "id": "curated:area-old-alloa-conservation",
+          "name": "Old Alloa Conservation Area",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "alloa-scotland",
+          "id": "curated:area-alloa-glebe-conservation",
+          "name": "Alloa Glebe Conservation Area",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "alloa-scotland",
+          "id": "curated:context-alloa-house",
+          "name": "Site of Alloa House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "alloa-scotland",
+          "id": "curated:context-alloa-glassworks-site",
+          "name": "Alloa Glassworks historic site",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24043",
+          "name": "1C–4C Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24047",
+          "name": "3 Tanhouse",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24050",
+          "name": "Coachman's Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24062",
+          "name": "Balgownie House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23979",
+          "name": "Bessie Bar Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23981",
+          "name": "January House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23982",
+          "name": "16 Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23991",
+          "name": "Pottery Gallery and Tron Shop",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23996",
+          "name": "Ferguson's House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23998",
+          "name": "9 Back Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24002",
+          "name": "6 and 7 The Cross",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24007",
+          "name": "9 Mid Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24033",
+          "name": "18C Low Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3360",
+          "name": "West Entrance, Valleyfield Policies",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3347",
+          "name": "West End Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3357",
+          "name": "West Bath House, Bogside",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48807",
+          "name": "Little Causeway Building",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24037",
+          "name": "Ailie House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24060",
+          "name": "Walls to Back Causeway, Mid Causeway, Low Causeway and Newgate",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24067",
+          "name": "Culross Park boundary walls",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23968",
+          "name": "Geddes House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23974",
+          "name": "Weavers Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23992",
+          "name": "Mint Lea",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23999",
+          "name": "Chamberlayne House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24008",
+          "name": "11 Mid Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24011",
+          "name": "The Ark B",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24013",
+          "name": "Wee Causeway House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24019",
+          "name": "17 Low Causeway, The Neuk and adjoining house",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24022",
+          "name": "St Kentigern",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24023",
+          "name": "House, Low Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24026",
+          "name": "Whitbank",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24027",
+          "name": "St Serf's",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3358",
+          "name": "Lucknow Villas, Low Valleyfield",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3345",
+          "name": "Blairburn Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3352",
+          "name": "Bordie Castle",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3355",
+          "name": "West Grange House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48796",
+          "name": "Ashes Farm",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48798",
+          "name": "Rowan Bank",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48815",
+          "name": "7 Mid Causeway, Bishop Leighton's House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48830",
+          "name": "Undercliff",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24038",
+          "name": "Abbey View and former Post Office",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24039",
+          "name": "Red Lion Inn",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24041",
+          "name": "Pear Tree Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24046",
+          "name": "2 Tanhouse",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24059",
+          "name": "Newgate and Cat's Close walls",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24064",
+          "name": "Balgownie garden building",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23970",
+          "name": "Caldervale",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23989",
+          "name": "Tron House / Mrs Porteous's House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23993",
+          "name": "Myrtle Bank",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24003",
+          "name": "Dundonald Arms",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24016",
+          "name": "Stone Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24028",
+          "name": "St Mungo Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24032",
+          "name": "Orchard View",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24035",
+          "name": "Thistle Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3359",
+          "name": "Ness View, Low Valleyfield",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48797",
+          "name": "Hatta Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48804",
+          "name": "Culross Abbey House stables",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48831",
+          "name": "Wrights House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24048",
+          "name": "5 Tanhouse",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24053",
+          "name": "Forth View",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24063",
+          "name": "Balgownie walls",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24066",
+          "name": "Culross Park House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23980",
+          "name": "House at Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23986",
+          "name": "House at Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23988",
+          "name": "The Tron",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24009",
+          "name": "20 Mid Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24014",
+          "name": "Little Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24031",
+          "name": "The Endowment",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3346",
+          "name": "St Serf's Church, Dunimarle",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3348",
+          "name": "Old Dunimarle Castle",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3353",
+          "name": "Bordie Byre",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb46425",
+          "name": "Blair Castle",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48809",
+          "name": "The Haven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48829",
+          "name": "4 Tanhouse",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24036",
+          "name": "The Hollies",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24057",
+          "name": "Little Haven and The Cross",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23966",
+          "name": "Culross Abbey House West Lodge",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23977",
+          "name": "Honeysuckle Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23997",
+          "name": "Daisybank",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24006",
+          "name": "5 Mid Causeway, Bishop Leighton's House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24012",
+          "name": "The Nunnery",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24018",
+          "name": "Bandar Abbas",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24025",
+          "name": "Rose Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3362",
+          "name": "Brankstone Grange",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3350",
+          "name": "Blairhall House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3356",
+          "name": "West Grange Doocot",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48814",
+          "name": "Pond Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24040",
+          "name": "Beechwood House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24051",
+          "name": "Snuff Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24056",
+          "name": "Tanbrae House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23971",
+          "name": "Westerlea",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23985",
+          "name": "Garage north of Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23987",
+          "name": "House north of Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24004",
+          "name": "8 Mid Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb6618",
+          "name": "Blair Castle stables",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3363",
+          "name": "Brankstone Lodge",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3351",
+          "name": "East Grange Doocot",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48832",
+          "name": "West Kirk, Dalgleish Mausoleum",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24042",
+          "name": "House at Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24054",
+          "name": "Old Shoemaker's House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24058",
+          "name": "Kirk Street east wall",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24065",
+          "name": "Balgownie Boathouse",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23972",
+          "name": "Old School House, West Green",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23975",
+          "name": "House at West Green",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23978",
+          "name": "Westerly Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23984",
+          "name": "House at Sandhaven",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23995",
+          "name": "Tron House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24010",
+          "name": "The Ark",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24020",
+          "name": "Eley House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24024",
+          "name": "Newgate House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24034",
+          "name": "An Cala",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48805",
+          "name": "Culross Park Lodge",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48819",
+          "name": "Electricity substation, Mid Causeway",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24049",
+          "name": "Tanhouse",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24052",
+          "name": "Preston View",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23967",
+          "name": "Parleyhill House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb23976",
+          "name": "House at West Green",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24017",
+          "name": "Algoa Bay House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb24021",
+          "name": "Williamton House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3361",
+          "name": "Woodhead Farm",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb3354",
+          "name": "Bordie Doocot",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48799",
+          "name": "Stephen Memorial Hall",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48800",
+          "name": "Culross Abbey House East Lodge",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48806",
+          "name": "Culross Park Lodge Cottage",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48808",
+          "name": "Cunninghame House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-lb48824",
+          "name": "House at West Green",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "culross-scotland",
+          "id": "curated:hes-gdl00155",
+          "name": "Dunimarle Castle designed landscape",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42051",
+          "name": "99 High Street, Former Municipal Buildings and Library",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42053",
+          "name": "Tillicoultry House Stable Block",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42049",
+          "name": "Tillicoultry Manse",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb50034",
+          "name": "Devonvale Hall, including Gatepiers",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42054",
+          "name": "Clock Mill, Upper Mill Street",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42057",
+          "name": "Beechwood, Dollar Road",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42058",
+          "name": "Former J & D Paton's Woollen Mill, Weavers Way",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42048",
+          "name": "Parish Church of St Serf, Dollar Road",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42052",
+          "name": "Former West Church",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42056",
+          "name": "Old Churchyard, Tillicoultry House",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb15165",
+          "name": "Tillicoultry Mains Steading",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-lb42055",
+          "name": "Bridge over Tillicoultry Burn at Clock Mill",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        },
+        {
+          "projectId": "tillicoultry-scotland",
+          "id": "curated:hes-sm2328",
+          "name": "Hogback or Coped Grave Cover in Tillicoultry Old Churchyard",
+          "state": "provisional",
+          "reason": "No individual publication determination is recorded."
+        }
+      ]
+    }
+  ]
+}

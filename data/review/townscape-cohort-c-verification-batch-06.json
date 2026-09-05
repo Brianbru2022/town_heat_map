@@ -1,0 +1,65 @@
+{
+  "projectId": "kincardine-on-forth-scotland",
+  "checkedAt": "2026-09-04T00:55:58.115Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-10990017763",
+      "currentName": "Marco's Kitchen",
+      "outcome": "operating",
+      "source": "https://restaurantguru.com/Marcos-Kitchen-Kincardine-Scotland",
+      "note": "Current 2026 listing identifies Marco’s Kitchen as open in Kincardine.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-11104464562",
+      "currentName": "The Puttery",
+      "outcome": "operating",
+      "source": "https://tulliallangolf.co.uk/the-club/the-puttery/",
+      "note": "Current golf-club operator page identifies The Puttery near Kincardine and welcomes non-members.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-12513969929",
+      "currentName": "Bayne's",
+      "outcome": "operating",
+      "source": "https://baynes.co.uk/our-shops/",
+      "note": "Current operator shop directory lists Kincardine High Street.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    }
+  ]
+}

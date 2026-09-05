@@ -1,29 +1,33 @@
-# Published Towns — Final Audit
+# Published Towns — Publication and Provenance Audit
 
-Generated: 2026-07-31T16:15:09.816Z
+Generated: 2026-09-04T01:32:32.068Z
 
-Read-only final publication audit. It distinguishes public town records from retained out-of-scope audit records and does not alter curated evidence.
+Read-only publication audit. Source records remain in their packages; public delivery includes only records whose effective state is publishable.
 
-| Town                | Status                       | Public / total records | Dated | Undated review | Pending geometry | Licence gaps | Selectable historic maps |
-| ------------------- | ---------------------------- | ---------------------: | ----: | -------------: | ---------------: | -----------: | -----------------------: |
-| Alloa               | ready with known limitations |              350 / 516 |   173 |            177 |                8 |            0 |                        0 |
-| Alva                | ready with known limitations |              186 / 186 |   101 |             85 |                9 |            0 |                        0 |
-| Culross             | ready with known limitations |              503 / 503 |   223 |            280 |                2 |            0 |                        0 |
-| Kincardine-on-Forth | ready with known limitations |              374 / 374 |   218 |            156 |                4 |            0 |                        0 |
-| Tillicoultry        | ready with known limitations |              276 / 276 |   114 |            162 |               14 |            0 |                        0 |
-| Quarrier's Village  | ready with known limitations |                53 / 53 |    23 |             30 |                0 |            0 |                        0 |
-| Biggar              | ready with known limitations |              341 / 341 |   210 |            131 |                0 |            0 |                        0 |
-| Killin              | ready with known limitations |              100 / 100 |    19 |             81 |                0 |            0 |                        0 |
+A record is public only when its package is explicitly publishable, the record is verified or explicitly publishable, and no material provenance, licence, validation or geometry blocker remains.
 
-## Remaining publication limitations
+| Town | Package | Effective status | Publishable | Provisional | Verified | Requires review | Withheld | Blockers | Advisories |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Alloa | publishable | partially publishable requires remediation | 337 | 4 | 0 | 9 | 0 | 9 | 0 |
+| Alva | publishable | partially publishable requires remediation | 183 | 0 | 0 | 3 | 0 | 3 | 4 |
+| Culross | publishable | partially publishable requires remediation | 471 | 6 | 0 | 1 | 0 | 1 | 1 |
+| Kincardine-on-Forth | publishable | partially publishable requires remediation | 315 | 0 | 0 | 2 | 0 | 2 | 0 |
+| Tillicoultry | publishable | partially publishable requires remediation | 203 | 3 | 0 | 10 | 1 | 10 | 7 |
+| Quarrier's Village | publishable | publishable | 49 | 0 | 0 | 0 | 4 | 0 | 0 |
+| Biggar | publishable | publishable | 341 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Killin | publishable | publishable | 100 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-- **Alloa:** 177 public record(s) still need historic-date review. 8 public record(s) have intentionally pending geometry.
-- **Alva:** 85 public record(s) still need historic-date review. 9 public record(s) have intentionally pending geometry.
-- **Culross:** 280 public record(s) still need historic-date review. 2 public record(s) have intentionally pending geometry.
-- **Kincardine-on-Forth:** 156 public record(s) still need historic-date review. 4 public record(s) have intentionally pending geometry.
-- **Tillicoultry:** 162 public record(s) still need historic-date review. 14 public record(s) have intentionally pending geometry. 7 public record(s) are citation-only and do not redistribute source media or text.
-- **Quarrier's Village:** 30 public record(s) still need historic-date review.
-- **Biggar:** 131 public record(s) still need historic-date review.
-- **Killin:** 81 public record(s) still need historic-date review.
+Catalogue total: 1999 publishable; 13 provisional; 0 verified but not package-approved; 25 requiring review; 5 explicitly withheld.
 
-The JSON companion lists validation messages, duplicate official-reference checks, map-layer checks and the IDs of context records awaiting geometry.
+## Remediation summary
+
+- **Alloa:** 4 provisional record(s) need evidence review and 9 record(s) have material blockers (geometry.pending: 7, osm.element_not_current: 2). Full record IDs and blocker reasons are in the JSON companion.
+- **Alva:** 0 provisional record(s) need evidence review and 3 record(s) have material blockers (geometry.pending: 3). Full record IDs and blocker reasons are in the JSON companion.
+- **Culross:** 6 provisional record(s) need evidence review and 1 record(s) have material blockers (geometry.pending: 1). Full record IDs and blocker reasons are in the JSON companion.
+- **Kincardine-on-Forth:** 0 provisional record(s) need evidence review and 2 record(s) have material blockers (geometry.pending: 2). Full record IDs and blocker reasons are in the JSON companion.
+- **Tillicoultry:** 3 provisional record(s) need evidence review and 10 record(s) have material blockers (geometry.pending: 10). Full record IDs and blocker reasons are in the JSON companion.
+- **Quarrier's Village:** 0 provisional record(s) need evidence review and 0 record(s) have material blockers. Full record IDs and blocker reasons are in the JSON companion.
+- **Biggar:** 0 provisional record(s) need evidence review and 0 record(s) have material blockers. Full record IDs and blocker reasons are in the JSON companion.
+- **Killin:** 0 provisional record(s) need evidence review and 0 record(s) have material blockers. Full record IDs and blocker reasons are in the JSON companion.
+
+Advisories remain visible in the audit but do not prevent publication. No source record or withheld candidate is removed from the repository package.

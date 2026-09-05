@@ -1,0 +1,315 @@
+{
+  "projectId": "culross-scotland",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "recordResults": [
+    {
+      "recordId": "osm-park:way-94351879",
+      "currentName": "Playing Field",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "No current access authority evidence was found for this exact Playing Field polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped context only; playing-field access rights are not inferred.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "94351879",
+        "version": 6,
+        "lastEditedAt": "2026-08-12T15:14:20Z",
+        "changesetId": 187346100,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/94351879"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-94516038",
+      "currentName": "Abbey Mansion House",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "National Trust for Scotland Culross planning",
+        "url": "https://www.nts.org.uk/visit/places/culross/planning-your-visit",
+        "reliability": "official_non_statutory",
+        "finding": "Current visitor information does not identify this exact Abbey Mansion House garden polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped garden context only; no public-access claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "94516038",
+        "version": 11,
+        "lastEditedAt": "2025-06-11T17:40:54Z",
+        "changesetId": 167502362,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/94516038"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-94710202",
+      "currentName": "Dunimarle Castle",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Dunimarle Castle visit information",
+        "url": "https://www.dunimarlecastle.co.uk/visit-us",
+        "reliability": "official_non_statutory",
+        "finding": "Current estate page says entrance is via Chapel Gate and access is limited to its advertised opening arrangements/guided tours."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F conditional visitor access only; no hours, accessibility, facilities or general-access claim is carried.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "94710202",
+        "version": 5,
+        "lastEditedAt": "2021-04-21T10:05:49Z",
+        "changesetId": 103330109,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/94710202"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        },
+        {
+          "claim": "public_access",
+          "tier": "corroborated_facility",
+          "sourceRecordRefs": [
+            "townscape-cohort-e-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z",
+          "expiresAt": "2027-03-03T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-94725851",
+      "currentName": "Blair Castle",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Dunimarle Castle visit information",
+        "url": "https://www.dunimarlecastle.co.uk/visit-us",
+        "reliability": "official_non_statutory",
+        "finding": "Current nearby estate information does not identify or authorise access to this separate Blair Castle garden polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped garden context only; no private-estate access inference.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "94725851",
+        "version": 9,
+        "lastEditedAt": "2025-12-22T21:07:49Z",
+        "changesetId": 176282383,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/94725851"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-932845024",
+      "currentName": "Culross Old School Yard",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "National Trust for Scotland Culross planning",
+        "url": "https://www.nts.org.uk/visit/places/culross/planning-your-visit",
+        "reliability": "official_non_statutory",
+        "finding": "Current visitor information does not identify this exact Old School Yard garden polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped garden context only; no public-access claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "932845024",
+        "version": 1,
+        "lastEditedAt": "2021-04-20T11:09:41Z",
+        "changesetId": 103265018,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/932845024"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-930975377",
+      "currentName": "Parkhouse",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body source establishes public access to this Parkhouse manor-house polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped identity/location only; private-estate access is not inferred.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "930975377",
+        "version": 1,
+        "lastEditedAt": "2021-04-15T10:44:20Z",
+        "changesetId": 102987971,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/930975377"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-11848606894",
+      "currentName": "The Fife Coastal Path | Welcome to Culross",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "Current tourism information confirms the Fife Coastal Path through Culross, but does not independently establish the present condition of this specific signboard."
+      },
+      "claim": null,
+      "claimNote": "Mapped signboard context only; no route-status claim is attached to the signboard.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "11848606894",
+        "version": 2,
+        "lastEditedAt": "2025-12-22T21:07:49Z",
+        "changesetId": 176282383,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/11848606894"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-12905986604",
+      "currentName": "Viewpoint",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body source establishes access to this exact viewpoint point."
+      },
+      "claim": null,
+      "claimNote": "Live mapped viewpoint context only; no public-access or safety claim.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "12905986604",
+        "version": 1,
+        "lastEditedAt": "2025-06-11T12:42:43Z",
+        "changesetId": 167490102,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/12905986604"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-12909451261",
+      "currentName": "Hanging Gardens Viewpoint",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "National Trust for Scotland Culross planning",
+        "url": "https://www.nts.org.uk/visit/places/culross/planning-your-visit",
+        "reliability": "official_non_statutory",
+        "finding": "The current page concerns National Trust visitor areas, but does not identify this exact Hanging Gardens viewpoint."
+      },
+      "claim": null,
+      "claimNote": "Live mapped viewpoint context only; no inferred access from nearby visitor information.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "12909451261",
+        "version": 1,
+        "lastEditedAt": "2025-06-12T13:23:31Z",
+        "changesetId": 167533822,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/12909451261"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    }
+  ]
+}

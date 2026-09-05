@@ -27,9 +27,6 @@ const layer: HistoricMapLayer = {
   georeferencingAccuracy: 'high',
 };
 
-pkg.historicMaps = [
-  ...pkg.historicMaps.filter((candidate) => candidate.id !== layer.id),
-  layer,
-];
+pkg.historicMaps = [...pkg.historicMaps.filter((candidate) => candidate.id !== layer.id), layer];
 await writeFile(projectPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
 console.log('Refreshed the HES designations overlay.');

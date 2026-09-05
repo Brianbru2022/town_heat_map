@@ -4,7 +4,9 @@ import type { HeritageFeature, ProjectPackage } from '../src/domain/models';
 import { validateFeatures } from '../src/domain/validation';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
-const reportPath = resolve(process.argv[3] ?? 'data/review/alloa-curation-queue-classification.json');
+const reportPath = resolve(
+  process.argv[3] ?? 'data/review/alloa-curation-queue-classification.json',
+);
 const pkg = JSON.parse(await readFile(projectPath, 'utf8')) as ProjectPackage;
 const accessedAt = new Date().toISOString();
 
@@ -70,7 +72,11 @@ for (const feature of pkg.features.filter(lacksDate)) {
       'catalogue-general-view',
       'Curation classification: catalogue/general-view record retained for provenance and Data Review, but hidden from the public map because it is not a discrete mapped heritage asset.',
     );
-    addTag(feature, 'map-hidden', 'Curation classification: catalogue/general-view record retained for provenance and Data Review, but hidden from the public map because it is not a discrete mapped heritage asset.');
+    addTag(
+      feature,
+      'map-hidden',
+      'Curation classification: catalogue/general-view record retained for provenance and Data Review, but hidden from the public map because it is not a discrete mapped heritage asset.',
+    );
     categories.catalogueGeneralView.push(feature.id);
   } else if (broadArchaeology.test(text)) {
     removeTag(feature, 'curation-priority-named-site');

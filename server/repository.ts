@@ -1,5 +1,6 @@
 import { Client } from 'pg';
 import type { ProjectPackage } from '../src/domain/models';
+import { validateProjectPackageSchema } from '../src/domain/packageSchema';
 import { publishedProjectPackages } from '../src/data/publishedProjects';
 
 export interface ProjectRepository {
@@ -17,17 +18,35 @@ export class StaticProjectRepository implements ProjectRepository {
 export class PostgisProjectRepository implements ProjectRepository {
   constructor(private readonly client: Client) {}
   async list() {
-    const result = await this.client.query<{ payload: ProjectPackage['project'] }>(
-      'SELECT payload FROM projects ORDER BY published_at DESC',
+    const result = await this.client.query<{ payload: unknown }>(
+      'SELECT payload FROM project_packages ORDER BY published_at DESC',
     );
-    return result.rows.map((row) => row.payload);
+    return result.rows.flatMap((row, index) => {
+      const validation = validateProjectPackageSchema(row.payload);
+      if (!validation.valid) {
+        console.error(
+          `Ignoring schema-invalid database project package at row ${index + 1}: ${validation.errors.join('; ')}`,
+        );
+        return [];
+      }
+      return [(row.payload as ProjectPackage).project];
+    });
   }
   async get(id: string) {
-    const result = await this.client.query<{ payload: ProjectPackage }>(
+    const result = await this.client.query<{ payload: unknown }>(
       'SELECT payload FROM project_packages WHERE id = $1',
       [id],
     );
-    return result.rows[0]?.payload;
+    const payload = result.rows[0]?.payload;
+    if (payload === undefined) return undefined;
+    const validation = validateProjectPackageSchema(payload);
+    if (!validation.valid) {
+      console.error(
+        `Ignoring schema-invalid database project package ${id}: ${validation.errors.join('; ')}`,
+      );
+      return undefined;
+    }
+    return payload as ProjectPackage;
   }
 }
 export async function createProjectRepository(): Promise<ProjectRepository> {

@@ -1,7 +1,7 @@
-import { useExplorerStore } from '../app/store';
+import { useExplorerStore, useLoadedProjectPackage } from '../app/store';
 
 export function Timeline() {
-  const pkg = useExplorerStore((state) => state.package);
+  const pkg = useLoadedProjectPackage();
   const year = useExplorerStore((state) => state.selectedYear);
   const setYear = useExplorerStore((state) => state.setYear);
   const start = pkg.project.timelineStart ?? 1700;

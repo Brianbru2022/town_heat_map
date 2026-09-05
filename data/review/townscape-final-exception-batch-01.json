@@ -1,0 +1,19 @@
+{
+  "projectId": "biggar-scotland",
+  "recordId": "osm-community:node-10550529710",
+  "checkedAt": "2026-09-04T01:32:31.201Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "publishedClaim": "Tier O current_operation",
+  "suppressed": [
+    "hours",
+    "fees",
+    "access",
+    "accessibility",
+    "facilities",
+    "booking",
+    "quality",
+    "recommendation"
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "projectId": "killin-scotland",
+  "checkedAt": "2026-09-04T00:55:58.115Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-335564591",
+      "currentName": "Capercaillie",
+      "outcome": "operating",
+      "source": "https://www.bigreddirectory.com/capercaillie-killin",
+      "note": "Current directory listing identifies Capercaillie restaurant on Main Street, Killin.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-1834676847",
+      "currentName": "Falls of Dochart Inn Tea Room",
+      "outcome": "operating",
+      "source": "https://www.fallsofdochart.co.uk/food-and-drink/our-cafe/",
+      "note": "Current operator page identifies its Killin tearoom/cafe.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-5459661392",
+      "currentName": "Escape in Killin",
+      "outcome": "operating",
+      "source": "https://www.bizseek.co.uk/escape-in-killin-01567-820212",
+      "note": "Current directory listing identifies Escape in Killin at Myrtle Grove, Main Street.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-5459670520",
+      "currentName": "Kula Coffee Shop",
+      "outcome": "operating",
+      "source": "https://ratings.food.gov.uk/business/1885889/kula-killin/online-ratings",
+      "note": "Authority record identifies Kula as a Killin cafe following a November 2025 inspection.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-5914517399",
+      "currentName": "Visitor information",
+      "outcome": "mapped_context",
+      "note": "No current responsible authority source establishes a staffed visitor-information operation at this mapped point.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/5914517399"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-89971785",
+      "currentName": "Tourist Information Centre",
+      "outcome": "mapped_context",
+      "note": "Historic tourist-information references are stale; no current official source establishes an operating information office.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/89971785"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z"
+        }
+      ]
+    }
+  ]
+}

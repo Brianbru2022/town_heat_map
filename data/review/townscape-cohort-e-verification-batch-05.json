@@ -1,0 +1,150 @@
+{
+  "projectId": "killin-scotland",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "recordResults": [
+    {
+      "recordId": "osm-park:way-543305423",
+      "currentName": "Breadalbane Park",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Killin Heritage Trail",
+        "url": "https://www.lochlomond-trossachs.org/discover-the-park/our-heritage-culture/heritage-walks/killin-heritage-trail/",
+        "reliability": "local_authority",
+        "finding": "Current trail guidance supplies locality context but no exact public-access evidence for Breadalbane Park."
+      },
+      "claim": null,
+      "claimNote": "Mapped park context only; no access, facility or suitability claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "543305423",
+        "version": 5,
+        "lastEditedAt": "2026-08-06T08:39:29Z",
+        "changesetId": 187018588,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/543305423"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-368979641",
+      "currentName": "Falls of Dochart",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Loch Lomond and The Trossachs National Park waterfalls",
+        "url": "https://www.lochlomond-trossachs.org/things-to-see/waterfalls/",
+        "reliability": "local_authority",
+        "finding": "Current National Park visitor guidance identifies the Falls of Dochart and describes access from the bridge."
+      },
+      "claim": "route_access",
+      "claimNote": "Tier O access-to-viewing claim only; no independent difficulty, accessibility, dog or visitor-recommendation claim.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "368979641",
+        "version": 12,
+        "lastEditedAt": "2024-04-16T19:41:49Z",
+        "changesetId": 150100819,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/368979641"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        },
+        {
+          "claim": "route_access",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-cohort-e-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z",
+          "expiresAt": "2027-03-03T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-5514420225",
+      "currentName": "Waterfall",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Killin Heritage Trail",
+        "url": "https://www.lochlomond-trossachs.org/discover-the-park/our-heritage-culture/heritage-walks/killin-heritage-trail/",
+        "reliability": "local_authority",
+        "finding": "Current route guidance does not identify this anonymous waterfall point."
+      },
+      "claim": null,
+      "claimNote": "Mapped waterfall context only; no public-access or passability claim.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "5514420225",
+        "version": 2,
+        "lastEditedAt": "2023-04-12T11:00:20Z",
+        "changesetId": 134811440,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/5514420225"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-6690804225",
+      "currentName": "Viewpoint",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Killin Heritage Trail",
+        "url": "https://www.lochlomond-trossachs.org/discover-the-park/our-heritage-culture/heritage-walks/killin-heritage-trail/",
+        "reliability": "local_authority",
+        "finding": "Current route guidance does not identify this exact viewpoint point."
+      },
+      "claim": null,
+      "claimNote": "Mapped viewpoint context only; no public-access or safety claim.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "6690804225",
+        "version": 4,
+        "lastEditedAt": "2024-09-29T09:53:31Z",
+        "changesetId": 157244305,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/6690804225"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    }
+  ]
+}

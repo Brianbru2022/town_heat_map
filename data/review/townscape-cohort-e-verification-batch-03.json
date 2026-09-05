@@ -1,0 +1,42 @@
+{
+  "projectId": "biggar-scotland",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-4411862438",
+      "currentName": "Viewpoint",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "South Lanarkshire Council parks information",
+        "url": "https://www.southlanarkshire.gov.uk/info/200168/parks_and_open_spaces",
+        "reliability": "local_authority",
+        "finding": "No current authority or route-operator evidence linked this exact Biggar viewpoint point to public access."
+      },
+      "claim": null,
+      "claimNote": "Live mapped viewpoint context only; no access or visitor claim.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "4411862438",
+        "version": 1,
+        "lastEditedAt": "2016-09-21T16:45:08Z",
+        "changesetId": 42328729,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/4411862438"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    }
+  ]
+}

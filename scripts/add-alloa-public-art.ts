@@ -40,7 +40,8 @@ const publicArt: HeritageFeature[] = [
         accessedAt,
         licence:
           'Council web content consulted as a local-authority reference; retain the source link and do not redistribute its text.',
-        notes: 'The Council records installation on Station Square before the May 2008 railway opening.',
+        notes:
+          'The Council records installation on Station Square before the May 2008 railway opening.',
         reliability: 'local_authority',
       },
       {
@@ -95,7 +96,8 @@ const publicArt: HeritageFeature[] = [
         accessedAt,
         licence:
           'Council document consulted as a local-authority reference; retain the source link and do not redistribute its text.',
-        notes: 'The trail identifies Lifeline at Shillinghill Roundabout, Alloa, installed April 2011.',
+        notes:
+          'The trail identifies Lifeline at Shillinghill Roundabout, Alloa, installed April 2011.',
         reliability: 'local_authority',
       },
       {
@@ -130,4 +132,6 @@ const errors = packageJson.validation.filter((result) => result.severity === 'er
 if (errors.length) throw new Error(`Refusing to write ${errors.length} validation error(s).`);
 
 await writeFile(projectPath, `${JSON.stringify(packageJson, null, 2)}\n`, 'utf8');
-console.log(`Added ${publicArt.filter((feature) => !existingIds.has(feature.id)).length} source-backed Alloa public-art feature(s).`);
+console.log(
+  `Added ${publicArt.filter((feature) => !existingIds.has(feature.id)).length} source-backed Alloa public-art feature(s).`,
+);

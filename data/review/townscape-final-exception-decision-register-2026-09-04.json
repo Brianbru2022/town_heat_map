@@ -1,0 +1,2035 @@
+{
+  "registerType": "controlled final Townscape non-public exception decision register",
+  "checkedAt": "2026-09-04T01:32:31.201Z",
+  "policy": [
+    "CLAIM_EVIDENCE_POLICY.md",
+    "current publication/provenance framework",
+    "geographic-scope rules"
+  ],
+  "frozenCohort": {
+    "exactRecords": 69,
+    "membershipSha256": "f1ecf3d5e9dcbd53480a72c219943bee67b66f863b698defd27895948722487d",
+    "recordIds": [
+      "curated:context-alloa-harbour-docks",
+      "curated:context-baronial-buildings",
+      "curated:context-bedford-place-expansion",
+      "curated:context-burgh",
+      "curated:context-burgh-of-barony-1663",
+      "curated:context-cloth-1560s",
+      "curated:context-first-mill",
+      "curated:context-flood-1883",
+      "curated:context-glebe-victorian-expansion",
+      "curated:context-high-street",
+      "curated:context-mar-street-1785",
+      "curated:context-mill-street-3-29",
+      "curated:context-nts-royal-burgh-portfolio",
+      "curated:context-oakleigh-house",
+      "curated:context-power-station",
+      "curated:context-railway",
+      "curated:context-railway-arrival",
+      "curated:context-three-villages",
+      "curated:context-water-mill",
+      "curated:context-west-end-park",
+      "curated:context-workers-grid",
+      "curated:hes-gdl00155",
+      "curated:hes-lb24059",
+      "curated:hes-lb24060",
+      "curated:hes-lb24067",
+      "curated:hes-lb3359",
+      "curated:hes-lb42057",
+      "curated:hes-lb48796",
+      "curated:mem-walker-fountain",
+      "curated:memorial-carrie-johnstone-fountain",
+      "curated:plaque-conn",
+      "curated:public-art-river-spirit",
+      "osm-community:node-10550529710",
+      "osm-community:node-10657179804",
+      "osm-community:node-11780574253",
+      "osm-community:node-11807355552",
+      "osm-community:node-11822229938",
+      "osm-community:node-11848606894",
+      "osm-community:node-12905986604",
+      "osm-community:node-12909451261",
+      "osm-community:node-13648474029",
+      "osm-community:node-1446890832",
+      "osm-community:node-1861230548",
+      "osm-community:node-368979641",
+      "osm-community:node-3883540476",
+      "osm-community:node-4411862438",
+      "osm-community:node-5061863243",
+      "osm-community:node-5514420225",
+      "osm-community:node-6690804225",
+      "osm-community:way-1271991625",
+      "osm-community:way-896307613",
+      "osm-community:way-896307614",
+      "osm-community:way-930975377",
+      "osm-community:way-989738553",
+      "osm-park:way-1269318858",
+      "osm-park:way-166100727",
+      "osm-park:way-166960629",
+      "osm-park:way-423424487",
+      "osm-park:way-543305423",
+      "osm-park:way-656830978",
+      "osm-park:way-81291580",
+      "osm-park:way-92352276",
+      "osm-park:way-92352291",
+      "osm-park:way-932845024",
+      "osm-park:way-94132373",
+      "osm-park:way-94351879",
+      "osm-park:way-94516038",
+      "osm-park:way-94710202",
+      "osm-park:way-94725851"
+    ],
+    "basis": [
+      "current publication audit",
+      "Cohort C/D/E registers",
+      "HES/NRHE exception review",
+      "publication remediation register"
+    ],
+    "excludedFinalWithheld": "Deliberate out-of-scope exclusions and the previously final Butterfly closure decision were not re-opened."
+  },
+  "categories": [
+    {
+      "category": "historic_or_representational_geometry",
+      "records": 23
+    },
+    {
+      "category": "historic_context_geometry",
+      "records": 2
+    },
+    {
+      "category": "authoritative_geometry_discrepancy",
+      "records": 7
+    },
+    {
+      "category": "business_current_operation",
+      "records": 3
+    },
+    {
+      "category": "prior_controlled_workflow_persistence",
+      "records": 29
+    },
+    {
+      "category": "business_current_operation_conflict",
+      "records": 1
+    },
+    {
+      "category": "business_identity_current_operation",
+      "records": 1
+    },
+    {
+      "category": "deleted_osm_element",
+      "records": 2
+    },
+    {
+      "category": "business_current_operation_reconciled",
+      "records": 1
+    }
+  ],
+  "outcomes": {
+    "newlyPublished": 31,
+    "remainingProvisional": 13,
+    "remainingRequiresReview": 25,
+    "finallyWithheld": 0
+  },
+  "evidenceCases": {
+    "contradictory": [
+      {
+        "recordId": "osm-community:node-10657179804",
+        "projectId": "alloa-scotland",
+        "name": "Azad Tandoori Restaurant",
+        "featureType": "restaurant",
+        "category": "business_current_operation",
+        "finalOutcome": "provisional",
+        "reason": "The authority licensing record documents cessation in 2018; later directory-style references are insufficient to establish present trading at the exact premises.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "notes": "Historic licensing material is not current-operation evidence; no sufficiently current independent operator or authority source found."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": false
+      },
+      {
+        "recordId": "osm-community:node-13648474029",
+        "projectId": "alloa-scotland",
+        "name": "Orlandi's",
+        "featureType": "caf_",
+        "category": "business_current_operation_conflict",
+        "finalOutcome": "provisional",
+        "reason": "Current secondary references conflict with the archived food-hygiene evidence. Neither establishes a sufficiently current, exact operation chain.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "notes": "A current food-hygiene mirror marks the authority entry archived after a 2025 inspection; this is a material conflict but does not prove closure."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      }
+    ],
+    "geometry": [
+      {
+        "recordId": "curated:context-alloa-harbour-docks",
+        "projectId": "alloa-scotland",
+        "name": "Former Alloa Harbour and Docks",
+        "featureType": "harbour",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-baronial-buildings",
+        "projectId": "alloa-scotland",
+        "name": "Baronial Buildings",
+        "featureType": "positive_unlisted_building",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-bedford-place-expansion",
+        "projectId": "alloa-scotland",
+        "name": "Bedford Place Georgian expansion",
+        "featureType": "historic_area",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-burgh",
+        "projectId": "tillicoultry-scotland",
+        "name": "Tillicoultry police burgh",
+        "featureType": "civic_history",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-burgh-of-barony-1663",
+        "projectId": "kincardine-on-forth-scotland",
+        "name": "Kincardine burgh of barony and early town core",
+        "featureType": "historic_urban_area",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-cloth-1560s",
+        "projectId": "tillicoultry-scotland",
+        "name": "Early cloth manufacture",
+        "featureType": "industrial_development_phase",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-first-mill",
+        "projectId": "alva-scotland",
+        "name": "First modern woollen mill and beginning of industrial Alva",
+        "featureType": "industrial_development_phase",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "evidenceScope": "parish_evidence",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-flood-1883",
+        "projectId": "tillicoultry-scotland",
+        "name": "Tillicoultry flood",
+        "featureType": "historic_event",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-glebe-victorian-expansion",
+        "projectId": "alloa-scotland",
+        "name": "Glebe Fields Victorian expansion",
+        "featureType": "historic_area",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-high-street",
+        "projectId": "tillicoultry-scotland",
+        "name": "High Street and southward expansion",
+        "featureType": "urban_development_phase",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-mar-street-1785",
+        "projectId": "alloa-scotland",
+        "name": "Mar Street",
+        "featureType": "historic_street",
+        "category": "historic_context_geometry",
+        "finalOutcome": "provisional",
+        "reason": "A dated/georeferenced map or equivalent bounded historical evidence is needed; present-day geometry would overstate the historic claim.",
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-mill-street-3-29",
+        "projectId": "alloa-scotland",
+        "name": "3–29 Mill Street historic commercial group",
+        "featureType": "positive_unlisted_group",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-nts-royal-burgh-portfolio",
+        "projectId": "culross-scotland",
+        "name": "National Trust for Scotland Royal Burgh properties",
+        "featureType": "property_portfolio",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "evidenceScope": "parish_evidence",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-oakleigh-house",
+        "projectId": "alloa-scotland",
+        "name": "Oakleigh House, Church Street",
+        "featureType": "positive_unlisted_building",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-power-station",
+        "projectId": "kincardine-on-forth-scotland",
+        "name": "Former Kincardine Power Station and reclaimed industrial shore",
+        "featureType": "industrial_site",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-railway",
+        "projectId": "alva-scotland",
+        "name": "Tillicoultry railway station and Devon Valley line",
+        "featureType": "railway",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "publishable",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-railway-arrival",
+        "projectId": "alloa-scotland",
+        "name": "Alloa railway and harbour branch",
+        "featureType": "railway",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-three-villages",
+        "projectId": "tillicoultry-scotland",
+        "name": "Westertown, Eastertown and Coalsnaughton",
+        "featureType": "settlement_pattern",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-water-mill",
+        "projectId": "tillicoultry-scotland",
+        "name": "First water-powered textile mill",
+        "featureType": "industrial_site",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-west-end-park",
+        "projectId": "alloa-scotland",
+        "name": "West End Park",
+        "featureType": "park",
+        "category": "historic_context_geometry",
+        "finalOutcome": "provisional",
+        "reason": "A dated/georeferenced map or equivalent bounded historical evidence is needed; present-day geometry would overstate the historic claim.",
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:context-workers-grid",
+        "projectId": "tillicoultry-scotland",
+        "name": "Victorian workers' streets and planned grid",
+        "featureType": "urban_development_phase",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:hes-gdl00155",
+        "projectId": "culross-scotland",
+        "name": "Dunimarle Castle designed landscape",
+        "featureType": "designed_landscape",
+        "category": "authoritative_geometry_discrepancy",
+        "finalOutcome": "provisional",
+        "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+        "geographicScope": {
+          "classification": "ambiguous",
+          "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+          "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+          "verifiedAt": "2026-09-03T21:18:01.577Z",
+          "rationale": "The locally held HES geometry crosses the locality boundary; a designation-identity decision is required. No explicit authoritative locality-identity relationship supports cross-boundary publication."
+        },
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-03T21:18:01.577Z",
+          "notes": "The locally held HES geometry crosses the locality boundary; a designation-identity decision is required. No explicit authoritative locality-identity relationship supports cross-boundary publication."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:hes-lb24059",
+        "projectId": "culross-scotland",
+        "name": "Newgate and Cat's Close walls",
+        "featureType": "garden_structure",
+        "category": "authoritative_geometry_discrepancy",
+        "finalOutcome": "provisional",
+        "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+        "geographicScope": {
+          "classification": "out_of_scope",
+          "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+          "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+          "verifiedAt": "2026-09-03T21:18:01.577Z",
+          "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 38.71m apart."
+        },
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-03T21:18:01.577Z",
+          "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 38.71m apart."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:hes-lb24060",
+        "projectId": "culross-scotland",
+        "name": "Walls to Back Causeway, Mid Causeway, Low Causeway and Newgate",
+        "featureType": "garden_structure",
+        "category": "authoritative_geometry_discrepancy",
+        "finalOutcome": "provisional",
+        "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+        "geographicScope": {
+          "classification": "within_town_locality",
+          "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+          "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+          "verifiedAt": "2026-09-03T21:18:01.577Z",
+          "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 75.27m apart."
+        },
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-03T21:18:01.577Z",
+          "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 75.27m apart."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:hes-lb24067",
+        "projectId": "culross-scotland",
+        "name": "Culross Park boundary walls",
+        "featureType": "garden_structure",
+        "category": "authoritative_geometry_discrepancy",
+        "finalOutcome": "provisional",
+        "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+        "geographicScope": {
+          "classification": "within_town_locality",
+          "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+          "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+          "verifiedAt": "2026-09-03T21:18:01.577Z",
+          "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 272.28m apart."
+        },
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-03T21:18:01.577Z",
+          "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 272.28m apart."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:hes-lb3359",
+        "projectId": "culross-scotland",
+        "name": "Ness View, Low Valleyfield",
+        "featureType": "house",
+        "category": "authoritative_geometry_discrepancy",
+        "finalOutcome": "provisional",
+        "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+        "geographicScope": {
+          "classification": "within_town_locality",
+          "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+          "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+          "verifiedAt": "2026-09-03T21:18:01.577Z",
+          "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 20.16m apart."
+        },
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-03T21:18:01.577Z",
+          "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 20.16m apart."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:hes-lb42057",
+        "projectId": "tillicoultry-scotland",
+        "name": "Beechwood, Dollar Road",
+        "featureType": "listed_building",
+        "category": "authoritative_geometry_discrepancy",
+        "finalOutcome": "provisional",
+        "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+        "geographicScope": {
+          "classification": "within_town_locality",
+          "boundaryName": "Tillicoultry",
+          "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+          "verifiedAt": "2026-09-03T21:18:01.577Z",
+          "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 153.24m apart."
+        },
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-03T21:18:01.577Z",
+          "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 153.24m apart."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:hes-lb48796",
+        "projectId": "culross-scotland",
+        "name": "Ashes Farm",
+        "featureType": "farm_building",
+        "category": "authoritative_geometry_discrepancy",
+        "finalOutcome": "provisional",
+        "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+        "geographicScope": {
+          "classification": "out_of_scope",
+          "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+          "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+          "verifiedAt": "2026-09-03T21:18:01.577Z",
+          "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 30.38m apart."
+        },
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-03T21:18:01.577Z",
+          "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 30.38m apart."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:mem-walker-fountain",
+        "projectId": "tillicoultry-scotland",
+        "name": "Walker Fountain",
+        "featureType": "memorial_fountain",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:memorial-carrie-johnstone-fountain",
+        "projectId": "alva-scotland",
+        "name": "Carrie Johnstone Memorial Fountain",
+        "featureType": "memorial_fountain",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "evidenceScope": "parish_evidence",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:plaque-conn",
+        "projectId": "tillicoultry-scotland",
+        "name": "Captain J. F. C. Conn Memorial Plaque",
+        "featureType": "personal_memorial_plaque",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "curated:public-art-river-spirit",
+        "projectId": "alva-scotland",
+        "name": "River Spirit",
+        "featureType": "public_art_sculpture",
+        "category": "historic_or_representational_geometry",
+        "finalOutcome": "requires_review",
+        "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+        "evidenceScope": "related_context",
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      }
+    ],
+    "deletedOsm": [
+      {
+        "recordId": "osm-community:way-896307613",
+        "projectId": "alloa-scotland",
+        "name": "Playground",
+        "featureType": "playground",
+        "category": "deleted_osm_element",
+        "finalOutcome": "requires_review",
+        "reason": "The OSM way remains Gone; no defensible replacement object or exact current authority inventory was identified. OSM deletion does not establish real-world removal.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "profile": "mapped_context",
+          "reviewedAt": "2026-09-03T23:35:03.580Z",
+          "notes": "Controlled Cohort D migration: OSM element is Gone/deleted and requires review; this is not evidence that the real-world feature disappeared."
+        },
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "osm-community:way-896307614",
+        "projectId": "alloa-scotland",
+        "name": "Playground",
+        "featureType": "playground",
+        "category": "deleted_osm_element",
+        "finalOutcome": "requires_review",
+        "reason": "The OSM way remains Gone; no defensible replacement object or exact current authority inventory was identified. OSM deletion does not establish real-world removal.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "profile": "mapped_context",
+          "reviewedAt": "2026-09-03T23:35:03.580Z",
+          "notes": "Controlled Cohort D migration: OSM element is Gone/deleted and requires review; this is not evidence that the real-world feature disappeared."
+        },
+        "effectiveState": "requires_review",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      }
+    ],
+    "business": [
+      {
+        "recordId": "osm-community:node-10550529710",
+        "projectId": "biggar-scotland",
+        "name": "Merry + Bright",
+        "featureType": "gift_or_souvenir_shop",
+        "category": "business_current_operation",
+        "finalOutcome": "publishable",
+        "reason": "Official operator contact information confirms Merry + Bright at 33–35 High Street, Biggar.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "verified",
+          "profile": "verified_facility",
+          "reviewedAt": "2026-09-04T01:32:31.201Z",
+          "notes": "Final controlled exception review: current operation only; unrelated visitor claims are suppressed."
+        },
+        "effectiveState": "publishable",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": false
+      },
+      {
+        "recordId": "osm-community:node-10657179804",
+        "projectId": "alloa-scotland",
+        "name": "Azad Tandoori Restaurant",
+        "featureType": "restaurant",
+        "category": "business_current_operation",
+        "finalOutcome": "provisional",
+        "reason": "The authority licensing record documents cessation in 2018; later directory-style references are insufficient to establish present trading at the exact premises.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "notes": "Historic licensing material is not current-operation evidence; no sufficiently current independent operator or authority source found."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": false
+      },
+      {
+        "recordId": "osm-community:node-11780574253",
+        "projectId": "tillicoultry-scotland",
+        "name": "West End Bakes",
+        "featureType": "bakery",
+        "category": "business_current_operation",
+        "finalOutcome": "provisional",
+        "reason": "Current searches located only unrelated Australian business material and OSM-derived listings; operation at this Tillicoultry point remains unestablished.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "notes": "No sufficiently current operator, authority or reliable directory evidence found for West End Bakes."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": false
+      },
+      {
+        "recordId": "osm-community:node-13648474029",
+        "projectId": "alloa-scotland",
+        "name": "Orlandi's",
+        "featureType": "caf_",
+        "category": "business_current_operation_conflict",
+        "finalOutcome": "provisional",
+        "reason": "Current secondary references conflict with the archived food-hygiene evidence. Neither establishes a sufficiently current, exact operation chain.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "notes": "A current food-hygiene mirror marks the authority entry archived after a 2025 inspection; this is a material conflict but does not prove closure."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": true
+      },
+      {
+        "recordId": "osm-community:way-1271991625",
+        "projectId": "tillicoultry-scotland",
+        "name": "Lily House Chinese Restaurant",
+        "featureType": "restaurant",
+        "category": "business_identity_current_operation",
+        "finalOutcome": "provisional",
+        "reason": "Current search results name a nearby Lily House but do not establish this exact premises, identity or operator.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "provisional",
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "notes": "No sufficiently current independent source found for Lily House at this exact Tillicoultry location."
+        },
+        "effectiveState": "provisional",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": false
+      },
+      {
+        "recordId": "osm-community:way-989738553",
+        "projectId": "tillicoultry-scotland",
+        "name": "Good Year Chinese",
+        "featureType": "restaurant",
+        "category": "business_current_operation_reconciled",
+        "finalOutcome": "publishable",
+        "reason": "The operator ordering site names Tillicoultry but has a malformed address line; a current local directory independently supplies 157 High Street, Tillicoultry. Only operation/name/category are carried.",
+        "evidenceScope": "parish_evidence",
+        "publication": {
+          "state": "verified",
+          "profile": "verified_facility",
+          "reviewedAt": "2026-09-04T01:32:31.201Z",
+          "notes": "Final controlled exception review: current operation only; unrelated visitor claims are suppressed."
+        },
+        "effectiveState": "publishable",
+        "sourceHistoryRetained": true,
+        "humanOrExpertReviewNeeded": false
+      }
+    ]
+  },
+  "suppressedClaims": [
+    "access",
+    "hours",
+    "fees/prices",
+    "accessibility",
+    "facilities",
+    "dog policy",
+    "booking",
+    "quality",
+    "recommendation",
+    "editorial description"
+  ],
+  "publicationTotals": {
+    "before": {
+      "publishable": 1968,
+      "provisional": 44,
+      "requiresReview": 25,
+      "withheld": 5
+    },
+    "after": {
+      "publishable": 1999,
+      "provisional": 13,
+      "requiresReview": 25,
+      "withheld": 5
+    }
+  },
+  "validation": {
+    "changedBatches": [
+      {
+        "projectId": "biggar-scotland",
+        "recordId": "osm-community:node-10550529710",
+        "checkedAt": "2026-09-04T01:32:31.201Z",
+        "preflightValidationErrors": 0,
+        "postBatchValidationErrors": 0,
+        "publicProjection": "passed",
+        "publishedClaim": "Tier O current_operation",
+        "suppressed": [
+          "hours",
+          "fees",
+          "access",
+          "accessibility",
+          "facilities",
+          "booking",
+          "quality",
+          "recommendation"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "recordId": "osm-community:way-989738553",
+        "checkedAt": "2026-09-04T01:32:31.201Z",
+        "preflightValidationErrors": 0,
+        "postBatchValidationErrors": 0,
+        "publicProjection": "passed",
+        "publishedClaim": "Tier O current_operation",
+        "suppressed": [
+          "hours",
+          "fees",
+          "access",
+          "accessibility",
+          "facilities",
+          "booking",
+          "quality",
+          "recommendation"
+        ]
+      }
+    ],
+    "controls": [
+      "Cohort E re-projection was run in seven per-project validated/public-projection batches.",
+      "Two business promotions were written as separate validated/public-projection batches.",
+      "No authoritative geometry was moved.",
+      "No score/rating/methodology changed."
+    ]
+  },
+  "decisions": [
+    {
+      "recordId": "curated:context-alloa-harbour-docks",
+      "projectId": "alloa-scotland",
+      "name": "Former Alloa Harbour and Docks",
+      "featureType": "harbour",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-baronial-buildings",
+      "projectId": "alloa-scotland",
+      "name": "Baronial Buildings",
+      "featureType": "positive_unlisted_building",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-bedford-place-expansion",
+      "projectId": "alloa-scotland",
+      "name": "Bedford Place Georgian expansion",
+      "featureType": "historic_area",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-burgh",
+      "projectId": "tillicoultry-scotland",
+      "name": "Tillicoultry police burgh",
+      "featureType": "civic_history",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-burgh-of-barony-1663",
+      "projectId": "kincardine-on-forth-scotland",
+      "name": "Kincardine burgh of barony and early town core",
+      "featureType": "historic_urban_area",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-cloth-1560s",
+      "projectId": "tillicoultry-scotland",
+      "name": "Early cloth manufacture",
+      "featureType": "industrial_development_phase",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-first-mill",
+      "projectId": "alva-scotland",
+      "name": "First modern woollen mill and beginning of industrial Alva",
+      "featureType": "industrial_development_phase",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "evidenceScope": "parish_evidence",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-flood-1883",
+      "projectId": "tillicoultry-scotland",
+      "name": "Tillicoultry flood",
+      "featureType": "historic_event",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-glebe-victorian-expansion",
+      "projectId": "alloa-scotland",
+      "name": "Glebe Fields Victorian expansion",
+      "featureType": "historic_area",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-high-street",
+      "projectId": "tillicoultry-scotland",
+      "name": "High Street and southward expansion",
+      "featureType": "urban_development_phase",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-mar-street-1785",
+      "projectId": "alloa-scotland",
+      "name": "Mar Street",
+      "featureType": "historic_street",
+      "category": "historic_context_geometry",
+      "finalOutcome": "provisional",
+      "reason": "A dated/georeferenced map or equivalent bounded historical evidence is needed; present-day geometry would overstate the historic claim.",
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-mill-street-3-29",
+      "projectId": "alloa-scotland",
+      "name": "3–29 Mill Street historic commercial group",
+      "featureType": "positive_unlisted_group",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-nts-royal-burgh-portfolio",
+      "projectId": "culross-scotland",
+      "name": "National Trust for Scotland Royal Burgh properties",
+      "featureType": "property_portfolio",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "evidenceScope": "parish_evidence",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-oakleigh-house",
+      "projectId": "alloa-scotland",
+      "name": "Oakleigh House, Church Street",
+      "featureType": "positive_unlisted_building",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-power-station",
+      "projectId": "kincardine-on-forth-scotland",
+      "name": "Former Kincardine Power Station and reclaimed industrial shore",
+      "featureType": "industrial_site",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-railway",
+      "projectId": "alva-scotland",
+      "name": "Tillicoultry railway station and Devon Valley line",
+      "featureType": "railway",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-railway-arrival",
+      "projectId": "alloa-scotland",
+      "name": "Alloa railway and harbour branch",
+      "featureType": "railway",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-three-villages",
+      "projectId": "tillicoultry-scotland",
+      "name": "Westertown, Eastertown and Coalsnaughton",
+      "featureType": "settlement_pattern",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-water-mill",
+      "projectId": "tillicoultry-scotland",
+      "name": "First water-powered textile mill",
+      "featureType": "industrial_site",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-west-end-park",
+      "projectId": "alloa-scotland",
+      "name": "West End Park",
+      "featureType": "park",
+      "category": "historic_context_geometry",
+      "finalOutcome": "provisional",
+      "reason": "A dated/georeferenced map or equivalent bounded historical evidence is needed; present-day geometry would overstate the historic claim.",
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:context-workers-grid",
+      "projectId": "tillicoultry-scotland",
+      "name": "Victorian workers' streets and planned grid",
+      "featureType": "urban_development_phase",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:hes-gdl00155",
+      "projectId": "culross-scotland",
+      "name": "Dunimarle Castle designed landscape",
+      "featureType": "designed_landscape",
+      "category": "authoritative_geometry_discrepancy",
+      "finalOutcome": "provisional",
+      "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+      "geographicScope": {
+        "classification": "ambiguous",
+        "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+        "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+        "verifiedAt": "2026-09-03T21:18:01.577Z",
+        "rationale": "The locally held HES geometry crosses the locality boundary; a designation-identity decision is required. No explicit authoritative locality-identity relationship supports cross-boundary publication."
+      },
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-03T21:18:01.577Z",
+        "notes": "The locally held HES geometry crosses the locality boundary; a designation-identity decision is required. No explicit authoritative locality-identity relationship supports cross-boundary publication."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:hes-lb24059",
+      "projectId": "culross-scotland",
+      "name": "Newgate and Cat's Close walls",
+      "featureType": "garden_structure",
+      "category": "authoritative_geometry_discrepancy",
+      "finalOutcome": "provisional",
+      "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+      "geographicScope": {
+        "classification": "out_of_scope",
+        "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+        "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+        "verifiedAt": "2026-09-03T21:18:01.577Z",
+        "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 38.71m apart."
+      },
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-03T21:18:01.577Z",
+        "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 38.71m apart."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:hes-lb24060",
+      "projectId": "culross-scotland",
+      "name": "Walls to Back Causeway, Mid Causeway, Low Causeway and Newgate",
+      "featureType": "garden_structure",
+      "category": "authoritative_geometry_discrepancy",
+      "finalOutcome": "provisional",
+      "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+      "geographicScope": {
+        "classification": "within_town_locality",
+        "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+        "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+        "verifiedAt": "2026-09-03T21:18:01.577Z",
+        "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 75.27m apart."
+      },
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-03T21:18:01.577Z",
+        "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 75.27m apart."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:hes-lb24067",
+      "projectId": "culross-scotland",
+      "name": "Culross Park boundary walls",
+      "featureType": "garden_structure",
+      "category": "authoritative_geometry_discrepancy",
+      "finalOutcome": "provisional",
+      "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+      "geographicScope": {
+        "classification": "within_town_locality",
+        "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+        "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+        "verifiedAt": "2026-09-03T21:18:01.577Z",
+        "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 272.28m apart."
+      },
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-03T21:18:01.577Z",
+        "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 272.28m apart."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:hes-lb3359",
+      "projectId": "culross-scotland",
+      "name": "Ness View, Low Valleyfield",
+      "featureType": "house",
+      "category": "authoritative_geometry_discrepancy",
+      "finalOutcome": "provisional",
+      "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+      "geographicScope": {
+        "classification": "within_town_locality",
+        "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+        "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+        "verifiedAt": "2026-09-03T21:18:01.577Z",
+        "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 20.16m apart."
+      },
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-03T21:18:01.577Z",
+        "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 20.16m apart."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:hes-lb42057",
+      "projectId": "tillicoultry-scotland",
+      "name": "Beechwood, Dollar Road",
+      "featureType": "listed_building",
+      "category": "authoritative_geometry_discrepancy",
+      "finalOutcome": "provisional",
+      "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+      "geographicScope": {
+        "classification": "within_town_locality",
+        "boundaryName": "Tillicoultry",
+        "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+        "verifiedAt": "2026-09-03T21:18:01.577Z",
+        "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 153.24m apart."
+      },
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-03T21:18:01.577Z",
+        "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 153.24m apart."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:hes-lb48796",
+      "projectId": "culross-scotland",
+      "name": "Ashes Farm",
+      "featureType": "farm_building",
+      "category": "authoritative_geometry_discrepancy",
+      "finalOutcome": "provisional",
+      "reason": "Existing HES/NHRE review records an unresolved authoritative-point discrepancy or locality-spanning ambiguity. Authoritative geometry is unchanged.",
+      "geographicScope": {
+        "classification": "out_of_scope",
+        "boundaryName": "High Valleyfield, Low Valleyfield and Culross",
+        "boundarySource": "National Records of Scotland 2022 Census Locality Boundaries (2022 Census Geography Products)",
+        "verifiedAt": "2026-09-03T21:18:01.577Z",
+        "rationale": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 30.38m apart."
+      },
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-03T21:18:01.577Z",
+        "notes": "Escalated: authoritative identity is matched but geometry cannot be reconciled. Catalogue and locally held HES points are 30.38m apart."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:mem-walker-fountain",
+      "projectId": "tillicoultry-scotland",
+      "name": "Walker Fountain",
+      "featureType": "memorial_fountain",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:memorial-carrie-johnstone-fountain",
+      "projectId": "alva-scotland",
+      "name": "Carrie Johnstone Memorial Fountain",
+      "featureType": "memorial_fountain",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "evidenceScope": "parish_evidence",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:plaque-conn",
+      "projectId": "tillicoultry-scotland",
+      "name": "Captain J. F. C. Conn Memorial Plaque",
+      "featureType": "personal_memorial_plaque",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "curated:public-art-river-spirit",
+      "projectId": "alva-scotland",
+      "name": "River Spirit",
+      "featureType": "public_art_sculpture",
+      "category": "historic_or_representational_geometry",
+      "finalOutcome": "requires_review",
+      "reason": "Existing authoritative/local evidence establishes the historic claim but not reproducible geometry. No surrogate modern geometry is permitted.",
+      "evidenceScope": "related_context",
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "osm-community:node-10550529710",
+      "projectId": "biggar-scotland",
+      "name": "Merry + Bright",
+      "featureType": "gift_or_souvenir_shop",
+      "category": "business_current_operation",
+      "finalOutcome": "publishable",
+      "reason": "Official operator contact information confirms Merry + Bright at 33–35 High Street, Biggar.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "verified_facility",
+        "reviewedAt": "2026-09-04T01:32:31.201Z",
+        "notes": "Final controlled exception review: current operation only; unrelated visitor claims are suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-10657179804",
+      "projectId": "alloa-scotland",
+      "name": "Azad Tandoori Restaurant",
+      "featureType": "restaurant",
+      "category": "business_current_operation",
+      "finalOutcome": "provisional",
+      "reason": "The authority licensing record documents cessation in 2018; later directory-style references are insufficient to establish present trading at the exact premises.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-04T00:55:58.115Z",
+        "notes": "Historic licensing material is not current-operation evidence; no sufficiently current independent operator or authority source found."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-11780574253",
+      "projectId": "tillicoultry-scotland",
+      "name": "West End Bakes",
+      "featureType": "bakery",
+      "category": "business_current_operation",
+      "finalOutcome": "provisional",
+      "reason": "Current searches located only unrelated Australian business material and OSM-derived listings; operation at this Tillicoultry point remains unestablished.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-04T00:55:58.115Z",
+        "notes": "No sufficiently current operator, authority or reliable directory evidence found for West End Bakes."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-11807355552",
+      "projectId": "tillicoultry-scotland",
+      "name": "Waterfall",
+      "featureType": "waterfall",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-11822229938",
+      "projectId": "tillicoultry-scotland",
+      "name": "Waterfall",
+      "featureType": "waterfall",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-11848606894",
+      "projectId": "culross-scotland",
+      "name": "The Fife Coastal Path | Welcome to Culross",
+      "featureType": "map_or_model_board",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-12905986604",
+      "projectId": "culross-scotland",
+      "name": "Viewpoint",
+      "featureType": "viewpoint",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-12909451261",
+      "projectId": "culross-scotland",
+      "name": "Hanging Gardens Viewpoint",
+      "featureType": "viewpoint",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-13648474029",
+      "projectId": "alloa-scotland",
+      "name": "Orlandi's",
+      "featureType": "caf_",
+      "category": "business_current_operation_conflict",
+      "finalOutcome": "provisional",
+      "reason": "Current secondary references conflict with the archived food-hygiene evidence. Neither establishes a sufficiently current, exact operation chain.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-04T00:55:58.115Z",
+        "notes": "A current food-hygiene mirror marks the authority entry archived after a 2025 inspection; this is a material conflict but does not prove closure."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "osm-community:node-1446890832",
+      "projectId": "tillicoultry-scotland",
+      "name": "Waterfall",
+      "featureType": "waterfall",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-1861230548",
+      "projectId": "alloa-scotland",
+      "name": "Alloa Dock",
+      "featureType": "viewpoint",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-368979641",
+      "projectId": "killin-scotland",
+      "name": "Falls of Dochart",
+      "featureType": "waterfall",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "verified_facility",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: only the cited access claim is public."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-3883540476",
+      "projectId": "kincardine-on-forth-scotland",
+      "name": "Fife Coastal Path arch",
+      "featureType": "artwork",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-4411862438",
+      "projectId": "biggar-scotland",
+      "name": "Viewpoint",
+      "featureType": "viewpoint",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-5061863243",
+      "projectId": "alva-scotland",
+      "name": "Viewpoint",
+      "featureType": "viewpoint",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-5514420225",
+      "projectId": "killin-scotland",
+      "name": "Waterfall",
+      "featureType": "waterfall",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:node-6690804225",
+      "projectId": "killin-scotland",
+      "name": "Viewpoint",
+      "featureType": "viewpoint",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:way-1271991625",
+      "projectId": "tillicoultry-scotland",
+      "name": "Lily House Chinese Restaurant",
+      "featureType": "restaurant",
+      "category": "business_identity_current_operation",
+      "finalOutcome": "provisional",
+      "reason": "Current search results name a nearby Lily House but do not establish this exact premises, identity or operator.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "provisional",
+        "reviewedAt": "2026-09-04T00:55:58.115Z",
+        "notes": "No sufficiently current independent source found for Lily House at this exact Tillicoultry location."
+      },
+      "effectiveState": "provisional",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:way-896307613",
+      "projectId": "alloa-scotland",
+      "name": "Playground",
+      "featureType": "playground",
+      "category": "deleted_osm_element",
+      "finalOutcome": "requires_review",
+      "reason": "The OSM way remains Gone; no defensible replacement object or exact current authority inventory was identified. OSM deletion does not establish real-world removal.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:35:03.580Z",
+        "notes": "Controlled Cohort D migration: OSM element is Gone/deleted and requires review; this is not evidence that the real-world feature disappeared."
+      },
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "osm-community:way-896307614",
+      "projectId": "alloa-scotland",
+      "name": "Playground",
+      "featureType": "playground",
+      "category": "deleted_osm_element",
+      "finalOutcome": "requires_review",
+      "reason": "The OSM way remains Gone; no defensible replacement object or exact current authority inventory was identified. OSM deletion does not establish real-world removal.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:35:03.580Z",
+        "notes": "Controlled Cohort D migration: OSM element is Gone/deleted and requires review; this is not evidence that the real-world feature disappeared."
+      },
+      "effectiveState": "requires_review",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": true
+    },
+    {
+      "recordId": "osm-community:way-930975377",
+      "projectId": "culross-scotland",
+      "name": "Parkhouse",
+      "featureType": "manor_house",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-community:way-989738553",
+      "projectId": "tillicoultry-scotland",
+      "name": "Good Year Chinese",
+      "featureType": "restaurant",
+      "category": "business_current_operation_reconciled",
+      "finalOutcome": "publishable",
+      "reason": "The operator ordering site names Tillicoultry but has a malformed address line; a current local directory independently supplies 157 High Street, Tillicoultry. Only operation/name/category are carried.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "verified_facility",
+        "reviewedAt": "2026-09-04T01:32:31.201Z",
+        "notes": "Final controlled exception review: current operation only; unrelated visitor claims are suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-1269318858",
+      "projectId": "tillicoultry-scotland",
+      "name": "Tillicoultry Community Garden",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-166100727",
+      "projectId": "alva-scotland",
+      "name": "Cochrane Park",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "verified_facility",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: only the cited access claim is public."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-166960629",
+      "projectId": "tillicoultry-scotland",
+      "name": "Tillicoultry Public Park",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-423424487",
+      "projectId": "alva-scotland",
+      "name": "Johnstone Park",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "verified_facility",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: only the cited access claim is public."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-543305423",
+      "projectId": "killin-scotland",
+      "name": "Breadalbane Park",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-656830978",
+      "projectId": "tillicoultry-scotland",
+      "name": "Hepburn Park",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-81291580",
+      "projectId": "alloa-scotland",
+      "name": "Earlsfield",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-92352276",
+      "projectId": "alloa-scotland",
+      "name": "Greenfield leisure park",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "verified_facility",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: only the cited access claim is public."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-92352291",
+      "projectId": "alloa-scotland",
+      "name": "Alloa East End Bowling Club",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-932845024",
+      "projectId": "culross-scotland",
+      "name": "Culross Old School Yard",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-94132373",
+      "projectId": "alloa-scotland",
+      "name": "Clackmannan County Cricket Club",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-94351879",
+      "projectId": "culross-scotland",
+      "name": "Playing Field",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-94516038",
+      "projectId": "culross-scotland",
+      "name": "Abbey Mansion House",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-94710202",
+      "projectId": "culross-scotland",
+      "name": "Dunimarle Castle",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "verified_facility",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: only the cited access claim is public."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    },
+    {
+      "recordId": "osm-park:way-94725851",
+      "projectId": "culross-scotland",
+      "name": "Blair Castle",
+      "featureType": "park",
+      "category": "prior_controlled_workflow_persistence",
+      "finalOutcome": "publishable",
+      "reason": "Cohort E was independently verified and its decision register retained; the active package write-back was corrected without changing its evidence decision.",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T01:29:16.386Z",
+        "notes": "Controlled Cohort E verification: physical mapped identity/location only; all access and visitor claims suppressed."
+      },
+      "effectiveState": "publishable",
+      "sourceHistoryRetained": true,
+      "humanOrExpertReviewNeeded": false
+    }
+  ]
+}

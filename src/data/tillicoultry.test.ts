@@ -14,58 +14,93 @@ describe('Tillicoultry published package', () => {
     expect(
       historicFeatures.filter((feature) => feature.tags.includes('nrhe-period-extracted')),
     ).toHaveLength(62);
-    expect(historicFeatures.filter((feature) => !hasHistoricTimelineDate(feature))).toHaveLength(56);
+    expect(historicFeatures.filter((feature) => !hasHistoricTimelineDate(feature))).toHaveLength(
+      92,
+    );
     expect(
       tillicoultryPackage.features.filter((feature) => feature.tags.includes('osm-current-park')),
     ).toHaveLength(3);
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:220130')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:220130'),
+    ).toMatchObject({
       name: 'Murray Square Clock',
       earliestPossibleYear: 1928,
     });
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48275')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48275'),
+    ).toMatchObject({
       dateBasis: 'present_by',
       earliestPossibleYear: 1926,
     });
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'curated:westertown-historic-core')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find(
+        (feature) => feature.id === 'curated:westertown-historic-core',
+      ),
+    ).toMatchObject({
       earliestPossibleYear: 1560,
       locationType: 'approximate',
     });
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48274')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48274'),
+    ).toMatchObject({
       earliestPossibleYear: 1846,
       latestPossibleYear: 1869,
     });
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48283')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48283'),
+    ).toMatchObject({
       earliestPossibleYear: 1806,
       latestPossibleYear: 1806,
     });
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48279')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48279'),
+    ).toMatchObject({
       latestPossibleYear: 1806,
       dateBasis: 'present_by',
     });
     expect(
-      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48279')?.earliestPossibleYear,
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48279')
+        ?.earliestPossibleYear,
     ).toBeUndefined();
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'curated:hes-lb42050')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'curated:hes-lb42050'),
+    ).toMatchObject({
       earliestPossibleYear: 1879,
       latestPossibleYear: 1879,
       dateConfidence: 'high',
     });
-    expect(tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:310490')).toMatchObject({
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:310490'),
+    ).toMatchObject({
       earliestPossibleYear: 1892,
       latestPossibleYear: 1892,
     });
   });
 
-  it('keeps unsited supplied records out of map rendering and out-of-parish points as context', () => {
-    expect(tillicoultryPackage.features.filter((feature) => !feature.geometry)).toHaveLength(14);
-    expect(tillicoultryPackage.features.filter((feature) => feature.id.startsWith('nrhe:'))).toHaveLength(
-      120,
-    );
+  it('keeps unsited supplied records out of map rendering and withholds other-locality buffer records', () => {
+    expect(tillicoultryPackage.features.filter((feature) => !feature.geometry)).toHaveLength(10);
+    expect(
+      tillicoultryPackage.features.filter((feature) => feature.id.startsWith('nrhe:')),
+    ).toHaveLength(120);
     expect(
       tillicoultryPackage.features.filter(
-        (feature) => feature.evidenceScope === 'related_context' && !feature.tags.includes('osm-community-place'),
+        (feature) =>
+          feature.evidenceScope === 'related_context' &&
+          !feature.tags.includes('osm-community-place'),
       ),
-    ).toHaveLength(4);
+    ).toHaveLength(15);
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48260'),
+    ).toMatchObject({
+      evidenceScope: 'related_context',
+      publication: { state: 'publishable' },
+    });
+    expect(
+      tillicoultryPackage.features.find((feature) => feature.id === 'nrhe:48292'),
+    ).toMatchObject({
+      evidenceScope: 'out_of_scope',
+      publication: { state: 'withheld' },
+    });
   });
 
   it('records explicit source-use terms for every public feature', () => {
@@ -75,7 +110,9 @@ describe('Tillicoultry published package', () => {
         .every((feature) => Boolean(feature.licence)),
     ).toBe(true);
     expect(
-      tillicoultryPackage.features.filter((feature) => feature.tags.includes('source-use-restricted')),
+      tillicoultryPackage.features.filter((feature) =>
+        feature.tags.includes('source-use-restricted'),
+      ),
     ).toHaveLength(7);
   });
 

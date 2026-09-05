@@ -1,8 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import type { HeritageFeature, HistoricMapLayer, ProjectPackage } from '../src/domain/models';
+import { assessProjectPackage } from '../src/domain/publication';
 import { hasHistoricTimelineDate } from '../src/domain/timeline';
-import { validateFeatures } from '../src/domain/validation';
 
 const projectPaths = [
   'data/projects/alloa.json',
@@ -18,7 +18,7 @@ const jsonReportPath = resolve('data/review/published-project-final-audit.json')
 const markdownReportPath = resolve('data/review/published-project-final-audit.md');
 const hesCrossCheckLayerId = 'hes-listed-buildings-by-category';
 
-function isPublicFeature(feature: HeritageFeature): boolean {
+function inPublicScope(feature: HeritageFeature): boolean {
   return feature.evidenceScope !== 'out_of_scope';
 }
 
@@ -29,9 +29,7 @@ function isMapHidden(feature: HeritageFeature): boolean {
 function isRenderableMap(layer: HistoricMapLayer): boolean {
   return (
     Boolean(layer.tileUrl) &&
-    (layer.layerType === 'xyz' ||
-      layer.layerType === 'wms' ||
-      layer.layerType === 'georeferenced_raster_tiles')
+    ['xyz', 'wmts', 'wms', 'georeferenced_raster_tiles', 'cog'].includes(layer.layerType)
   );
 }
 
@@ -44,9 +42,8 @@ function duplicateOfficialReferences(features: HeritageFeature[]) {
       if (!id || !/^(?:LB|SM|GDL)\d+$/i.test(id)) continue;
       featureReferences.add(id);
     }
-    for (const id of featureReferences) {
+    for (const id of featureReferences)
       references.set(id, new Set([...(references.get(id) ?? []), feature.id]));
-    }
   }
   return [...references.entries()]
     .filter(([, ids]) => ids.size > 1)
@@ -54,8 +51,15 @@ function duplicateOfficialReferences(features: HeritageFeature[]) {
     .sort((left, right) => left.reference.localeCompare(right.reference));
 }
 
-function byTag(features: HeritageFeature[], tag: string): number {
-  return features.filter((feature) => feature.tags.includes(tag)).length;
+function countsByCode(records: ReturnType<typeof assessProjectPackage>['records']) {
+  const counts = new Map<string, number>();
+  for (const issue of records.flatMap((record) => record.blockers)) {
+    const code = issue.code ?? 'validation.unclassified';
+    counts.set(code, (counts.get(code) ?? 0) + 1);
+  }
+  return Object.fromEntries(
+    [...counts.entries()].sort(([left], [right]) => left.localeCompare(right)),
+  );
 }
 
 const packages = await Promise.all(
@@ -65,17 +69,17 @@ const packages = await Promise.all(
 );
 
 const projects = packages.map((pkg) => {
-  const validation = validateFeatures(pkg.project, pkg.features);
-  const publicFeatures = pkg.features.filter(isPublicFeature);
-  const publicUndated = publicFeatures.filter((feature) => !hasHistoricTimelineDate(feature));
-  const noGeometry = publicFeatures.filter((feature) => !feature.geometry);
-  const noLicence = publicFeatures.filter((feature) => !feature.licence);
-  const sourceUseRestricted = publicFeatures.filter((feature) =>
-    feature.tags.includes('source-use-restricted'),
+  const assessment = assessProjectPackage(pkg);
+  const inScope = pkg.features.filter(inPublicScope);
+  const recordById = new Map(pkg.features.map((feature) => [feature.id, feature]));
+  const inScopeAssessments = assessment.records.filter((record) =>
+    inPublicScope(recordById.get(record.recordId)!),
   );
-  const mapFeatures = publicFeatures.filter((feature) => feature.geometry && !isMapHidden(feature));
+  const publishable = inScopeAssessments.filter((record) => record.canPublish);
+  const needsRemediation = inScopeAssessments.filter(
+    (record) => record.effectiveState !== 'publishable' && record.effectiveState !== 'withheld',
+  );
   const historicMaps = pkg.historicMaps.filter((layer) => layer.id !== hesCrossCheckLayerId);
-  const selectableHistoricMaps = historicMaps.filter(isRenderableMap);
   const mapLayerIssues = historicMaps
     .filter((layer) => !isRenderableMap(layer) || !layer.licence || !layer.attribution)
     .map((layer) => ({
@@ -87,123 +91,145 @@ const projects = packages.map((pkg) => {
         ...(!layer.attribution ? ['attribution is not recorded'] : []),
       ],
     }));
-  const validationErrors = validation.filter((item) => item.severity === 'error');
-  const validationWarnings = validation.filter((item) => item.severity === 'warning');
-  const blockers = [
-    ...(validationErrors.length ? [`${validationErrors.length} validation error(s)`] : []),
-    ...(noLicence.length ? [`${noLicence.length} public record(s) without a licence`] : []),
-  ];
+  const stateCounts = {
+    publishable: publishable.length,
+    provisional: inScopeAssessments.filter((record) => record.effectiveState === 'provisional')
+      .length,
+    verified: inScopeAssessments.filter((record) => record.effectiveState === 'verified').length,
+    requiresReview: inScopeAssessments.filter(
+      (record) => record.effectiveState === 'requires_review',
+    ).length,
+    withheld: inScopeAssessments.filter((record) => record.effectiveState === 'withheld').length,
+  };
+  const status = !assessment.canPublishPackage
+    ? 'withheld'
+    : needsRemediation.length
+      ? publishable.length
+        ? 'partially_publishable_requires_remediation'
+        : 'requires_review'
+      : assessment.summary.advisoryCount
+        ? 'publishable_with_advisories'
+        : 'publishable';
 
   return {
     projectId: pkg.project.id,
     town: pkg.project.locality,
     region: pkg.project.region,
-    status: blockers.length ? 'needs_review' : 'ready_with_known_limitations',
-    blockers,
+    packageDeclaration: assessment.packageState,
+    packageUsedLegacyDefault: assessment.usedLegacyDefault,
+    status,
+    states: stateCounts,
     records: {
       total: pkg.features.length,
-      public: publicFeatures.length,
-      outOfScope: pkg.features.length - publicFeatures.length,
-      relatedContext: publicFeatures.filter(
-        (feature) => feature.evidenceScope === 'related_context',
-      ).length,
-      mapRenderable: mapFeatures.length,
-      hiddenCatalogue: publicFeatures.filter(isMapHidden).length,
-      historicDateEvidence: publicFeatures.filter(hasHistoricTimelineDate).length,
-      publicUndatedReview: publicUndated.length,
-      pendingGeometry: noGeometry.length,
-      missingLicence: noLicence.length,
-      sourceUseRestricted: sourceUseRestricted.length,
-      namedDateResearch: byTag(publicFeatures, 'curation-priority-named-site'),
-      archaeologyEvidence: byTag(publicFeatures, 'archaeology-evidence'),
+      inPublicScope: inScope.length,
+      outOfScope: pkg.features.length - inScope.length,
+      relatedContext: inScope.filter((feature) => feature.evidenceScope === 'related_context')
+        .length,
+      publishableMapRecords: publishable.filter((record) => {
+        const feature = recordById.get(record.recordId)!;
+        return feature.geometry && !isMapHidden(feature);
+      }).length,
+      historicDateEvidence: inScope.filter(hasHistoricTimelineDate).length,
+      legacyDefaulted: inScopeAssessments.filter((record) => record.usedLegacyDefault).length,
     },
-    validation: {
-      errors: validationErrors,
-      warningCount: validationWarnings.length,
+    issues: {
+      blockerCount: inScopeAssessments.reduce((count, record) => count + record.blockers.length, 0),
+      advisoryCount: inScopeAssessments.reduce(
+        (count, record) => count + record.advisories.length,
+        0,
+      ),
+      blockersByCode: countsByCode(inScopeAssessments),
     },
-    duplicates: {
-      officialReferenceCollisions: duplicateOfficialReferences(publicFeatures),
-    },
+    provisionalRecordIds: inScopeAssessments
+      .filter((record) => record.effectiveState === 'provisional')
+      .map((record) => record.recordId),
+    blockerRecords: inScopeAssessments
+      .filter((record) => record.effectiveState === 'requires_review')
+      .map((record) => ({
+        id: record.recordId,
+        name: recordById.get(record.recordId)?.name,
+        blockers: record.blockers.map((issue) => ({
+          code: issue.code,
+          field: issue.field,
+          message: issue.message,
+        })),
+      })),
+    duplicates: { officialReferenceCollisions: duplicateOfficialReferences(inScope) },
     historicMaps: {
       configured: historicMaps.length,
-      selectable: selectableHistoricMaps.map((layer) => ({ id: layer.id, title: layer.title })),
+      selectable: historicMaps
+        .filter(isRenderableMap)
+        .map((layer) => ({ id: layer.id, title: layer.title })),
       issues: mapLayerIssues,
-    },
-    settlementEvidence: {
-      publishedPolygons: pkg.settlementPolygons.length,
-      pendingGeometryRecords: noGeometry
-        .filter((feature) =>
-          /settlement|context|area/i.test(`${feature.id} ${feature.locationType}`),
-        )
-        .map((feature) => feature.id),
     },
   };
 });
 
+const totals = projects.reduce(
+  (sum, project) => ({
+    total: sum.total + project.records.total,
+    inPublicScope: sum.inPublicScope + project.records.inPublicScope,
+    outOfScope: sum.outOfScope + project.records.outOfScope,
+    publishable: sum.publishable + project.states.publishable,
+    provisional: sum.provisional + project.states.provisional,
+    verified: sum.verified + project.states.verified,
+    requiresReview: sum.requiresReview + project.states.requiresReview,
+    withheld: sum.withheld + project.states.withheld,
+    blockerCount: sum.blockerCount + project.issues.blockerCount,
+    advisoryCount: sum.advisoryCount + project.issues.advisoryCount,
+  }),
+  {
+    total: 0,
+    inPublicScope: 0,
+    outOfScope: 0,
+    publishable: 0,
+    provisional: 0,
+    verified: 0,
+    requiresReview: 0,
+    withheld: 0,
+    blockerCount: 0,
+    advisoryCount: 0,
+  },
+);
+
 const report = {
   generatedAt: new Date().toISOString(),
   purpose:
-    'Read-only final publication audit. It distinguishes public town records from retained out-of-scope audit records and does not alter curated evidence.',
+    'Read-only publication audit. Source records remain in their packages; public delivery includes only records whose effective state is publishable.',
   completionRule:
-    'A project is ready with known limitations when it has no validation errors and every public record has a licence. Pending geometry, undated evidence and unpublished map candidates remain explicit review limitations.',
+    'A record is public only when its package is explicitly publishable, the record is verified or explicitly publishable, and no material provenance, licence, validation or geometry blocker remains.',
   projects,
-  summary: {
-    projects: projects.length,
-    readyWithKnownLimitations: projects.filter(
-      (project) => project.status === 'ready_with_known_limitations',
-    ).length,
-    needsReview: projects
-      .filter((project) => project.status === 'needs_review')
-      .map((project) => project.town),
-  },
+  summary: { projects: projects.length, ...totals },
 };
 
 const markdown = [
-  '# Published Towns — Final Audit',
+  '# Published Towns — Publication and Provenance Audit',
   '',
   `Generated: ${report.generatedAt}`,
   '',
   report.purpose,
   '',
-  '| Town | Status | Public / total records | Dated | Undated review | Pending geometry | Licence gaps | Selectable historic maps |',
-  '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |',
+  report.completionRule,
+  '',
+  '| Town | Package | Effective status | Publishable | Provisional | Verified | Requires review | Withheld | Blockers | Advisories |',
+  '| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |',
   ...projects.map(
     (project) =>
-      `| ${project.town} | ${project.status.replaceAll('_', ' ')} | ${project.records.public} / ${project.records.total} | ${project.records.historicDateEvidence} | ${project.records.publicUndatedReview} | ${project.records.pendingGeometry} | ${project.records.missingLicence} | ${project.historicMaps.selectable.length} |`,
+      `| ${project.town} | ${project.packageDeclaration} | ${project.status.replaceAll('_', ' ')} | ${project.states.publishable} | ${project.states.provisional} | ${project.states.verified} | ${project.states.requiresReview} | ${project.states.withheld} | ${project.issues.blockerCount} | ${project.issues.advisoryCount} |`,
   ),
   '',
-  '## Remaining publication limitations',
+  `Catalogue total: ${totals.publishable} publishable; ${totals.provisional} provisional; ${totals.verified} verified but not package-approved; ${totals.requiresReview} requiring review; ${totals.withheld} explicitly withheld.`,
   '',
-  ...projects.flatMap((project) => {
-    const items = [
-      ...project.blockers,
-      ...(project.records.publicUndatedReview
-        ? [
-            `${project.records.publicUndatedReview} public record(s) still need historic-date review.`,
-          ]
-        : []),
-      ...(project.records.pendingGeometry
-        ? [
-            `${project.records.pendingGeometry} public record(s) have intentionally pending geometry.`,
-          ]
-        : []),
-      ...(project.records.sourceUseRestricted
-        ? [
-            `${project.records.sourceUseRestricted} public record(s) are citation-only and do not redistribute source media or text.`,
-          ]
-        : []),
-      ...(project.historicMaps.issues.length
-        ? [
-            `${project.historicMaps.issues.length} historic-map catalogue item(s) are not publishable overlays.`,
-          ]
-        : []),
-    ];
-    return items.length
-      ? [`- **${project.town}:** ${items.join(' ')}`]
-      : [`- **${project.town}:** no open publication limitation.`];
+  '## Remediation summary',
+  '',
+  ...projects.map((project) => {
+    const codes = Object.entries(project.issues.blockersByCode)
+      .map(([code, count]) => `${code}: ${count}`)
+      .join(', ');
+    return `- **${project.town}:** ${project.states.provisional} provisional record(s) need evidence review and ${project.states.requiresReview} record(s) have material blockers${codes ? ` (${codes})` : ''}. Full record IDs and blocker reasons are in the JSON companion.`;
   }),
   '',
-  'The JSON companion lists validation messages, duplicate official-reference checks, map-layer checks and the IDs of context records awaiting geometry.',
+  'Advisories remain visible in the audit but do not prevent publication. No source record or withheld candidate is removed from the repository package.',
   '',
 ].join('\n');
 
@@ -211,5 +237,5 @@ await mkdir(dirname(jsonReportPath), { recursive: true });
 await writeFile(jsonReportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 await writeFile(markdownReportPath, markdown, 'utf8');
 console.log(
-  `Audited ${projects.length} published town project(s): ${report.summary.readyWithKnownLimitations} ready with known limitations, ${report.summary.needsReview.length} needing review.`,
+  `Audited ${projects.length} town package(s): ${totals.publishable} publishable, ${totals.provisional} provisional, ${totals.requiresReview} requiring review and ${totals.withheld} withheld.`,
 );

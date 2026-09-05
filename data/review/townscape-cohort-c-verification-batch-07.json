@@ -1,0 +1,247 @@
+{
+  "projectId": "tillicoultry-scotland",
+  "checkedAt": "2026-09-04T00:55:58.115Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-3265969946",
+      "currentName": "Mickey Buns",
+      "outcome": "operating",
+      "source": "https://ratings.food.gov.uk/business/1551654/mickey-buns-tillicoultry",
+      "note": "Authority record identifies Mickey Buns at 103 High Street following a September 2025 inspection.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-9431156493",
+      "currentName": "BB’s Coffee and Muffins",
+      "outcome": "operating",
+      "source": "https://www.tripadvisor.co.uk/Restaurant_Review-g551955-d8317941-Reviews-BB_s_Coffee_Muffins-Tillicoultry_Clackmannanshire_Scotland.html",
+      "note": "Current 2026 listing and recent reviews identify BB’s at Sterling Mills.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-9431214265",
+      "currentName": "Ice-cream shop",
+      "outcome": "mapped_context",
+      "note": "The generic OSM name and nearby but non-coincident Penny Licks evidence do not establish this exact venue identity.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/9431214265"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-187304263",
+      "currentName": "Costa",
+      "outcome": "operating",
+      "source": "https://www.costa.co.uk/stores/tillicoultry",
+      "note": "Current operator store locator identifies Costa at Sterling Mills, Tillicoultry.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-320099376",
+      "currentName": "Penny Licks",
+      "outcome": "operating",
+      "source": "https://www.yell.com/biz/penny-licks-tillicoultry-10317031/",
+      "note": "Current directory listing identifies Penny-licks at 120 High Street, Tillicoultry.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-993045924",
+      "currentName": "Laura's Tilly Tearoom",
+      "outcome": "operating",
+      "source": "https://www.restaurantji.co.uk/scotland/tillicoultry/",
+      "note": "Current locality listing identifies Laura’s Tilly Tearoom at 10A Bank Street.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-1022597762",
+      "currentName": "The Mill Cafe",
+      "outcome": "operating",
+      "source": "https://www.tripadvisor.co.uk/Restaurant_Review-g551955-d8524600-Reviews-Mill_Cafe-Tillicoultry_Clackmannanshire_Scotland.html",
+      "note": "Current 2026 listing identifies The Mill Cafe within Sterling Furniture.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-11780574253",
+      "currentName": "West End Bakes",
+      "outcome": "provisional",
+      "note": "No sufficiently current operator, authority or reliable directory evidence found for West End Bakes.",
+      "effectiveState": "provisional",
+      "publicClaims": []
+    },
+    {
+      "recordId": "osm-community:node-13634000252",
+      "currentName": "Card Factory",
+      "outcome": "operating",
+      "source": "https://www.bizseek.co.uk/card-factory_825q-01259-751711",
+      "note": "Current directory listing identifies Card Factory at Sterling Mills, Tillicoultry.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-389616952",
+      "currentName": "Smugglers Bar and Bistro",
+      "outcome": "operating",
+      "source": "https://camra.org.uk/pubs/smugglers-bar-bistro-tillicoultry-168554",
+      "note": "Current specialist directory lists Smugglers Bar & Bistro at 148 High Street and current opening status.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-653224884",
+      "currentName": "Butterfly Restaurant",
+      "outcome": "withheld",
+      "note": "A current directory marks Butterfly Inn closed; current evidence identifies a different Mill Cafe operation elsewhere within Sterling Furniture. Closure is retained as a non-public research outcome, not asserted from OSM.",
+      "effectiveState": "withheld",
+      "publicClaims": []
+    },
+    {
+      "recordId": "osm-community:way-926391362",
+      "currentName": "Bayne's",
+      "outcome": "operating",
+      "source": "https://baynes.co.uk/our-shops/",
+      "note": "Current operator shop directory lists Tillicoultry High Street.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-929914355",
+      "currentName": "Village Inn",
+      "outcome": "operating",
+      "source": "https://www.just-eat.co.uk/restaurants-village-inn-tillicoultry/menu",
+      "note": "Current ordering platform lists Village Inn in Tillicoultry.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:way-989738553",
+      "currentName": "Good Year Chinese",
+      "outcome": "provisional",
+      "note": "No sufficiently current independent source found for Good Year Chinese at this exact mapped location.",
+      "effectiveState": "provisional",
+      "publicClaims": []
+    },
+    {
+      "recordId": "osm-community:way-1271991625",
+      "currentName": "Lily House Chinese Restaurant",
+      "outcome": "provisional",
+      "note": "No sufficiently current independent source found for Lily House at this exact Tillicoultry location.",
+      "effectiveState": "provisional",
+      "publicClaims": []
+    }
+  ]
+}

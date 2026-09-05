@@ -36,7 +36,8 @@ interface DateReview {
 const reviews: DateReview[] = [
   {
     id: 'nrhe:47202',
-    documentedDateText: 'National Bank rebuilding at the Mill Street and High Street corner began in 1861',
+    documentedDateText:
+      'National Bank rebuilding at the Mill Street and High Street corner began in 1861',
     earliestPossibleYear: 1861,
     latestPossibleYear: 1861,
     datePrecision: 'documented rebuilding start year',
@@ -165,7 +166,8 @@ const reviews: DateReview[] = [
   },
   {
     id: 'nrhe:214774',
-    documentedDateText: 'Norwood recorded as the residence of Thomson Paton by 1910 (building date not established)',
+    documentedDateText:
+      'Norwood recorded as the residence of Thomson Paton by 1910 (building date not established)',
     latestPossibleYear: 1910,
     datePrecision: 'documented residence year',
     dateBasis: 'present_by',

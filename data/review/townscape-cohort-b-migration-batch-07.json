@@ -1,0 +1,447 @@
+{
+  "registerType": "Cohort B controlled claim-evidence migration batch",
+  "batch": 7,
+  "projectId": "tillicoultry-scotland",
+  "records": 7,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-2023229220",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12969298093",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-13207107978",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12872049120",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-13113252507",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:way-859707266",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:way-1273388951",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "osm-community:node-2023229220",
+      "projectId": "tillicoultry-scotland",
+      "locality": "Tillicoultry",
+      "existingName": "Tillicoultry WW1 War Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/2023229220",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=pillar."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-2023229220",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=pillar; memorial:conflict=WW1; name=Tillicoultry WW1 War Memorial; ref:canmore=339157; ref:iwm=5772; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/2023229220.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=pillar; memorial:conflict=WW1; name=Tillicoultry WW1 War Memorial; ref:canmore=339157; ref:iwm=5772; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "2023229220",
+        "version": 7,
+        "lastEditedAt": "2025-10-10T16:25:17Z",
+        "changesetId": 173103592,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/2023229220/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "firstEditedAt": "2012-11-20T16:48:23Z",
+        "lastEditedAt": "2025-10-10T16:25:17Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12969298093",
+      "projectId": "tillicoultry-scotland",
+      "locality": "Tillicoultry",
+      "existingName": "Devonvale Mills War Memorial",
+      "featureType": "memorial_statue",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12969298093",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=statue."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12969298093",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=statue; memorial:conflict=WW2; name=Devonvale Mills War Memorial; ref:canmore=339158; ref:iwm=6027; start_date=1949; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12969298093.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=statue; memorial:conflict=WW2; name=Devonvale Mills War Memorial; ref:canmore=339158; ref:iwm=6027; start_date=1949; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12969298093",
+        "version": 3,
+        "lastEditedAt": "2025-10-10T16:26:08Z",
+        "changesetId": 173103639,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12969298093/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2025-07-02T10:33:31Z",
+        "lastEditedAt": "2025-10-10T16:26:08Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-13207107978",
+      "projectId": "tillicoultry-scotland",
+      "locality": "Tillicoultry",
+      "existingName": "Tillicoultry WW2 Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/13207107978",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=wall."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-13207107978",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=wall; memorial:conflict=WW2; name=Tillicoultry WW2 Memorial; ref:canmore=339157; ref:iwm=5773; start_date=1948; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/13207107978.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=wall; memorial:conflict=WW2; name=Tillicoultry WW2 Memorial; ref:canmore=339157; ref:iwm=5773; start_date=1948; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "13207107978",
+        "version": 1,
+        "lastEditedAt": "2025-10-10T16:25:17Z",
+        "changesetId": 173103592,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/13207107978/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2025-10-10T16:25:17Z",
+        "lastEditedAt": "2025-10-10T16:25:17Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12872049120",
+      "projectId": "tillicoultry-scotland",
+      "locality": "Tillicoultry",
+      "existingName": "Tillicoultry transmitter",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12872049120",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower; operator=Arqiva; tower:type=communication."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12872049120",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): communication:mobile_phone=yes; communication:television=yes; height=20; man_made=tower; name=Tillicoultry transmitter; operator=Arqiva; operator:wikidata=Q4795774; tower:construction=lattice; tower:type=communication. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12872049120.json",
+      "osmStatus": "current",
+      "osmTags": "communication:mobile_phone=yes; communication:television=yes; height=20; man_made=tower; name=Tillicoultry transmitter; operator=Arqiva; operator:wikidata=Q4795774; tower:construction=lattice; tower:type=communication",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12872049120",
+        "version": 2,
+        "lastEditedAt": "2025-10-02T10:48:02Z",
+        "changesetId": 172743337,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12872049120/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2025-05-28T22:56:51Z",
+        "lastEditedAt": "2025-10-02T10:48:02Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-13113252507",
+      "projectId": "tillicoultry-scotland",
+      "locality": "Tillicoultry",
+      "existingName": "Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/13113252507",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower; tower:type=firefighter_training."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-13113252507",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=tower; tower:type=firefighter_training. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/13113252507.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=tower; tower:type=firefighter_training",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "13113252507",
+        "version": 1,
+        "lastEditedAt": "2025-09-01T23:06:57Z",
+        "changesetId": 171336831,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/13113252507/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2025-09-01T23:06:57Z",
+        "lastEditedAt": "2025-09-01T23:06:57Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:way-859707266",
+      "projectId": "tillicoultry-scotland",
+      "locality": "Tillicoultry",
+      "existingName": "Tillicoultry Clock Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "way/859707266",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower; tower:type=clock_tower."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:way-859707266",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): building=yes; man_made=tower; name=Tillicoultry Clock Tower; source=https://www.buildingsatrisk.org.uk/details/961420; start_date=1878; tower:construction=brick; tower:type=clock_tower. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/way/859707266.json",
+      "osmStatus": "current",
+      "osmTags": "building=yes; man_made=tower; name=Tillicoultry Clock Tower; source=https://www.buildingsatrisk.org.uk/details/961420; start_date=1878; tower:construction=brick; tower:type=clock_tower",
+      "osmMetadata": {
+        "elementType": "way",
+        "elementId": "859707266",
+        "version": 3,
+        "lastEditedAt": "2024-04-29T16:24:42Z",
+        "changesetId": 150671331,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 5,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/way/859707266/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2020-10-16T12:47:22Z",
+        "lastEditedAt": "2024-04-29T16:24:42Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:way-1273388951",
+      "projectId": "tillicoultry-scotland",
+      "locality": "Tillicoultry",
+      "existingName": "Murray Square Clock Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "way/1273388951",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:way-1273388951",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): building=yes; man_made=tower; name=Murray Square Clock Tower. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/way/1273388951.json",
+      "osmStatus": "current",
+      "osmTags": "building=yes; man_made=tower; name=Murray Square Clock Tower",
+      "osmMetadata": {
+        "elementType": "way",
+        "elementId": "1273388951",
+        "version": 1,
+        "lastEditedAt": "2024-04-17T15:12:48Z",
+        "changesetId": 150134627,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/way/1273388951/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2024-04-17T15:12:48Z",
+        "lastEditedAt": "2024-04-17T15:12:48Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "publicTierFoeSuppression": true,
+    "sourceHistoryPreserved": true
+  }
+}

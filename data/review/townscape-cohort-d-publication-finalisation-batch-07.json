@@ -1,0 +1,170 @@
+{
+  "registerType": "Cohort D controlled publication finalisation batch",
+  "batch": 7,
+  "projectId": "quarriers-village-scotland",
+  "changed": 8,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:way-476412346",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    },
+    {
+      "recordId": "osm-community:way-476412347",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    },
+    {
+      "recordId": "osm-community:way-900166216",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    },
+    {
+      "recordId": "osm-community:way-900166217",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    },
+    {
+      "recordId": "osm-community:way-1462906878",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    },
+    {
+      "recordId": "osm-community:way-1462906882",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    },
+    {
+      "recordId": "osm-community:way-1462906885",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    },
+    {
+      "recordId": "osm-community:way-1462906886",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-03T23:34:03.639Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      }
+    }
+  ],
+  "afterState": [
+    {
+      "recordId": "osm-community:way-476412346",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:way-476412347",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:way-900166216",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:way-900166217",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:way-1462906878",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:way-1462906882",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:way-1462906885",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:way-1462906886",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "effectiveState": "publishable"
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "allApprovedRecordsPubliclyDeliverable": true,
+    "mappedContextProjectionOnly": true,
+    "privateCustomerParkingNotPublicAccess": true,
+    "osmAttributionAndOdblComponentPresent": true
+  }
+}

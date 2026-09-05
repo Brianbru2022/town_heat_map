@@ -1,17 +1,20 @@
 import { dateWording } from '../domain/timeline';
 import { useExplorerStore } from '../app/store';
-import type { SourceRecord } from '../domain/models';
-
-interface OsmDetail {
-  key: string;
-  value: string;
-}
+import {
+  publicationProfile,
+  publicCurrentPlaceDetails,
+  type CurrentPlaceDetail,
+} from '../domain/claims';
 
 const osmLabels: Record<string, string> = {
   description: 'Description',
   opening_hours: 'Opening hours',
   'opening_hours:description': 'Opening-hours note',
   operator: 'Operator',
+  fee: 'Fees',
+  charge: 'Charge',
+  access: 'Access',
+  capacity: 'Capacity',
   wheelchair: 'Accessibility',
   toilets: 'Toilets',
   cuisine: 'Cuisine',
@@ -19,26 +22,6 @@ const osmLabels: Record<string, string> = {
   rating_count: 'Rating count',
   rating_provider: 'Rating source',
 };
-
-function currentPlaceDetails(source?: SourceRecord): OsmDetail[] {
-  const notes = source?.notes;
-  if (!notes?.startsWith('Current OSM') && !notes?.startsWith('Current-place curation')) return [];
-  const colon = notes.indexOf(':');
-  if (colon === -1) return [];
-  return notes
-    .slice(colon + 1)
-    .replace(/\.$/, '')
-    .split(';')
-    .map((entry) => {
-      const separator = entry.indexOf('=');
-      if (separator === -1) return undefined;
-      return {
-        key: entry.slice(0, separator).trim(),
-        value: entry.slice(separator + 1).trim(),
-      };
-    })
-    .filter((entry): entry is OsmDetail => Boolean(entry?.key && entry.value));
-}
 
 function safeExternalUrl(value?: string): string | undefined {
   if (!value) return undefined;
@@ -50,17 +33,24 @@ function safeExternalUrl(value?: string): string | undefined {
   }
 }
 
-function currentPlaceType(osmDetails: OsmDetail[], tags: string[]): string {
+function currentPlaceType(osmDetails: CurrentPlaceDetail[], tags: string[]): string {
   const tag = (key: string) => osmDetails.find((detail) => detail.key === key)?.value;
   const amenity = tag('amenity');
   if (amenity === 'cafe') return 'Café';
   if (amenity === 'ice_cream') return 'Ice-cream shop';
   if (amenity === 'restaurant') return 'Restaurant';
   if (amenity === 'parking') return 'Parking';
-  if (amenity === 'toilets') return 'Public toilets';
+  if (amenity === 'toilets') return 'Mapped toilets';
   if (amenity === 'drinking_water') return 'Drinking water';
-  const category = tags.find((item) => item.startsWith('osm-community-') && item !== 'osm-community-place');
+  const category = tags.find(
+    (item) => item.startsWith('osm-community-') && item !== 'osm-community-place',
+  );
   return category?.replace('osm-community-', '').replaceAll('_', ' ') ?? 'Current place';
+}
+
+function presentedCurrentPlaceType(type: string, mappedContext: boolean): string {
+  if (!mappedContext || type.startsWith('Mapped ')) return type;
+  return `Mapped ${type.toLowerCase()}`;
 }
 
 export function FeatureDetails() {
@@ -73,19 +63,31 @@ export function FeatureDetails() {
         <p>Select a mapped historic feature to inspect its source-backed record.</p>
       </aside>
     );
-  const osmSource = feature.sourceRecords.find(
-    (source) => source.sourceName === 'OpenStreetMap current community places',
+  const osmSource = feature.sourceRecords.find((source) =>
+    /openstreetmap/i.test(`${source.sourceName} ${source.sourceOrganisation}`),
   );
-  const curatedPlaceSource = feature.sourceRecords.find((source) => source.notes?.startsWith('Current-place curation'));
+  const curatedPlaceSource = feature.sourceRecords.find(
+    (source) =>
+      source !== osmSource &&
+      (source.sourceRecordId?.startsWith('current-place-curation:') ||
+        source.notes?.startsWith('Current-place curation') ||
+        source.notes?.startsWith('Public claim details')),
+  );
   const currentPlaceSource = curatedPlaceSource ?? osmSource;
-  const currentDetails = currentPlaceDetails(currentPlaceSource);
-  const currentOsmDetails = currentPlaceDetails(osmSource);
+  const currentDetails = publicCurrentPlaceDetails(feature, currentPlaceSource);
+  const currentOsmDetails = publicCurrentPlaceDetails(feature, osmSource);
   const currentDetail = (key: string) => currentDetails.find((detail) => detail.key === key)?.value;
-  const osmWebsite = safeExternalUrl(currentDetail('website') ?? currentOsmDetails.find((detail) => detail.key === 'website')?.value);
+  const osmWebsite = safeExternalUrl(
+    currentDetail('website') ?? currentOsmDetails.find((detail) => detail.key === 'website')?.value,
+  );
   const shownCurrentDetails = currentDetails.filter(
-    (detail) => detail.key in osmLabels && !(detail.key === 'description' && detail.value === feature.shortDescription),
+    (detail) =>
+      detail.key in osmLabels &&
+      !(detail.key === 'description' && detail.value === feature.shortDescription),
   );
   const isCurrentPlace = Boolean(osmSource);
+  const profile = publicationProfile(feature);
+  const checkedAt = feature.osmElement?.checkedAt ?? osmSource?.accessedAt;
   return (
     <aside className="details">
       <button className="icon" onClick={() => select(undefined)} aria-label="Close details">
@@ -101,13 +103,30 @@ export function FeatureDetails() {
       {isCurrentPlace ? (
         <dl className="current-place-meta">
           <dt>Place type</dt>
-          <dd>{currentPlaceType(currentOsmDetails, feature.tags)}</dd>
+          <dd>
+            {presentedCurrentPlaceType(
+              currentPlaceType(currentOsmDetails, feature.tags),
+              profile === 'mapped_context',
+            )}
+          </dd>
           <dt>Location</dt>
           <dd>
             {feature.locationType.replaceAll('_', ' ')} ({feature.locationConfidence})
           </dd>
           <dt>Information</dt>
-          <dd>{curatedPlaceSource ? 'Source reviewed' : 'OpenStreetMap mapped'}</dd>
+          <dd>
+            {profile === 'editorial'
+              ? 'Editorial visitor information'
+              : profile === 'verified_facility'
+                ? 'Verified visitor information'
+                : 'Mapped context'}
+          </dd>
+          {checkedAt && (
+            <>
+              <dt>Map record checked</dt>
+              <dd>{new Date(checkedAt).toLocaleDateString()}</dd>
+            </>
+          )}
         </dl>
       ) : (
         <>
@@ -140,9 +159,17 @@ export function FeatureDetails() {
       {feature.shortDescription && <p>{feature.shortDescription}</p>}
       {currentPlaceSource && (
         <section className="osm-details">
-          <h3>{curatedPlaceSource ? 'Curated current-place details' : 'Current OSM details'}</h3>
+          <h3>
+            {profile === 'mapped_context'
+              ? 'Mapped context details'
+              : curatedPlaceSource
+                ? 'Verified current-place details'
+                : 'Current OSM details'}
+          </h3>
           <p>
-            {curatedPlaceSource ? 'Source-reviewed information. ' : 'Present-day mapped information only; it may be incomplete or out of date. '}
+            {profile === 'mapped_context'
+              ? 'Mapped present-day context only. It does not confirm public access, availability, accessibility, fees, opening hours or current operation. '
+              : 'Only fields supported by claim-specific evidence are shown. '}
             {curatedPlaceSource?.sourceUrl ? (
               <a href={curatedPlaceSource.sourceUrl} target="_blank" rel="noreferrer">
                 View the reviewed source
@@ -172,7 +199,9 @@ export function FeatureDetails() {
             </p>
           )}
           {currentDetails.length === 0 && (
-            <p className="source-notes">No opening hours or description have been mapped for this place yet.</p>
+            <p className="source-notes">
+              No additional claim-supported visitor details are available.
+            </p>
           )}
         </section>
       )}
@@ -195,7 +224,11 @@ export function FeatureDetails() {
           </small>
           {source.notes &&
             !source.notes.startsWith('Current OSM') &&
-            !source.notes.startsWith('Current-place curation') && <p className="source-notes">{source.notes}</p>}
+            !source.notes.startsWith('Current-place curation') &&
+            !source.notes.startsWith('Public claim details') &&
+            !source.notes.startsWith('Mapped-context source record') && (
+              <p className="source-notes">{source.notes}</p>
+            )}
         </div>
       ))}
     </aside>

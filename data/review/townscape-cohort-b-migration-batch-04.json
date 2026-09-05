@@ -1,0 +1,630 @@
+{
+  "registerType": "Cohort B controlled claim-evidence migration batch",
+  "batch": 4,
+  "projectId": "culross-scotland",
+  "records": 10,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-4995290448",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-5549163580",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-11110151571",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12568202994",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12917889941",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12949102088",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12949253424",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-13396052337",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-13396577203",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-5739968784",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "osm-community:node-4995290448",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "War Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/4995290448",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=pillar."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-4995290448",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; image=https://www.geograph.org.uk/photo/8013739; memorial=pillar; memorial:conflict=WW1;WW2;Iraq_War; name=War Memorial; ref:canmore=92425; ref:iwm=8511; start_date=1921; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/4995290448.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; image=https://www.geograph.org.uk/photo/8013739; memorial=pillar; memorial:conflict=WW1;WW2;Iraq_War; name=War Memorial; ref:canmore=92425; ref:iwm=8511; start_date=1921; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "4995290448",
+        "version": 7,
+        "lastEditedAt": "2025-12-22T21:07:49Z",
+        "changesetId": 176282383,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/4995290448/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "firstEditedAt": "2017-07-26T17:51:08Z",
+        "lastEditedAt": "2025-12-22T21:07:49Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-5549163580",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Tron",
+      "featureType": "historic_place",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/5549163580",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=monument."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-5549163580",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=monument; monument=pillar; name=Tron; ref:canmore=48028. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/5549163580.json",
+      "osmStatus": "current",
+      "osmTags": "historic=monument; monument=pillar; name=Tron; ref:canmore=48028",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "5549163580",
+        "version": 3,
+        "lastEditedAt": "2025-07-23T16:21:55Z",
+        "changesetId": 169354402,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/5549163580/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2018-04-12T23:54:52Z",
+        "lastEditedAt": "2025-07-23T16:21:55Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-11110151571",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Artwork",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/11110151571",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=anchor; tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-11110151571",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=anchor; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/11110151571.json",
+      "osmStatus": "current",
+      "osmTags": "historic=anchor; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "11110151571",
+        "version": 2,
+        "lastEditedAt": "2025-06-11T12:45:44Z",
+        "changesetId": 167490213,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/11110151571/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2023-08-12T15:17:30Z",
+        "lastEditedAt": "2025-06-11T12:45:44Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12568202994",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Completion Of The 50,000th House",
+      "featureType": "memorial_plaque",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12568202994",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=plaque."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12568202994",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): direction=240; historic=memorial; image=https://www.geograph.org.uk/photo/7986788; material=metal; memorial=plaque; name=Completion Of The 50,000th House. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12568202994.json",
+      "osmStatus": "current",
+      "osmTags": "direction=240; historic=memorial; image=https://www.geograph.org.uk/photo/7986788; material=metal; memorial=plaque; name=Completion Of The 50,000th House",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12568202994",
+        "version": 2,
+        "lastEditedAt": "2025-12-24T16:23:08Z",
+        "changesetId": 176368824,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12568202994/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2025-02-08T12:21:43Z",
+        "lastEditedAt": "2025-12-24T16:23:08Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12917889941",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Valleyfield Colliery Site monument",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12917889941",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=obelisk."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12917889941",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; image=https://www.geograph.org.uk/photo/1878505; memorial=obelisk; mining_memorial=yes; name=Valleyfield Colliery Site monument; ref:canmore=374781. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12917889941.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; image=https://www.geograph.org.uk/photo/1878505; memorial=obelisk; mining_memorial=yes; name=Valleyfield Colliery Site monument; ref:canmore=374781",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12917889941",
+        "version": 2,
+        "lastEditedAt": "2025-12-20T10:36:41Z",
+        "changesetId": 176174453,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12917889941/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2025-06-15T18:04:45Z",
+        "lastEditedAt": "2025-12-20T10:36:41Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12949102088",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Valleyfield Mining Disaster Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12949102088",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=sculpture."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12949102088",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; image=https://www.geograph.org.uk/photo/37304; memorial=sculpture; mining_memorial=yes; name=Valleyfield Mining Disaster Memorial; ref:canmore=374709. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12949102088.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; image=https://www.geograph.org.uk/photo/37304; memorial=sculpture; mining_memorial=yes; name=Valleyfield Mining Disaster Memorial; ref:canmore=374709",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12949102088",
+        "version": 3,
+        "lastEditedAt": "2025-12-19T20:44:31Z",
+        "changesetId": 176156396,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12949102088/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2025-06-24T09:57:13Z",
+        "lastEditedAt": "2025-12-19T20:44:31Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12949253424",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Mining Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12949253424",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=mining_wheel."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12949253424",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=mining_wheel; mining_memorial=yes; name=Mining Memorial; ref:canmore=374806. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12949253424.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=mining_wheel; mining_memorial=yes; name=Mining Memorial; ref:canmore=374806",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12949253424",
+        "version": 2,
+        "lastEditedAt": "2025-12-05T06:55:54Z",
+        "changesetId": 175534048,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12949253424/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2025-06-24T11:22:30Z",
+        "lastEditedAt": "2025-12-05T06:55:54Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-13396052337",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Artwork",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/13396052337",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: description=Large anchor; historic=anchor; tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-13396052337",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): description=Large anchor; historic=anchor; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/13396052337.json",
+      "osmStatus": "current",
+      "osmTags": "description=Large anchor; historic=anchor; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "13396052337",
+        "version": 1,
+        "lastEditedAt": "2025-12-22T21:07:49Z",
+        "changesetId": 176282383,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/13396052337/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2025-12-22T21:07:49Z",
+        "lastEditedAt": "2025-12-22T21:07:49Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-13396577203",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "John Alistair Erskine Cuninghame J.P. of Balgownie Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/13396577203",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=tablet."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-13396577203",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): direction=205; historic=memorial; image=https://www.geograph.org.uk/photo/4280910; memorial=tablet; name=John Alistair Erskine Cuninghame J.P. of Balgownie Memorial. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/13396577203.json",
+      "osmStatus": "current",
+      "osmTags": "direction=205; historic=memorial; image=https://www.geograph.org.uk/photo/4280910; memorial=tablet; name=John Alistair Erskine Cuninghame J.P. of Balgownie Memorial",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "13396577203",
+        "version": 1,
+        "lastEditedAt": "2025-12-23T01:39:21Z",
+        "changesetId": 176288211,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/13396577203/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2025-12-23T01:39:21Z",
+        "lastEditedAt": "2025-12-23T01:39:21Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-5739968784",
+      "projectId": "culross-scotland",
+      "locality": "Culross",
+      "existingName": "Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/5739968784",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower; tower:type=communication."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-5739968784",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=tower; tower:type=communication. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/5739968784.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=tower; tower:type=communication",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "5739968784",
+        "version": 1,
+        "lastEditedAt": "2018-07-04T22:51:57Z",
+        "changesetId": 60420530,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/5739968784/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2018-07-04T22:51:57Z",
+        "lastEditedAt": "2018-07-04T22:51:57Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "publicTierFoeSuppression": true,
+    "sourceHistoryPreserved": true
+  }
+}

@@ -1,0 +1,443 @@
+{
+  "registerType": "Cohort B controlled claim-evidence migration batch",
+  "batch": 3,
+  "projectId": "biggar-scotland",
+  "records": 7,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-10553726937",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-10553726945",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-10937177549",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-11133649400",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-11686060585",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-13671694543",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:way-1126085443",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "osm-community:node-10553726937",
+      "projectId": "biggar-scotland",
+      "locality": "Biggar",
+      "existingName": "Cuthbertson Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/10553726937",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=snow_plough."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-10553726937",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): alt_name=Memorial to James A Cuthbertson; historic=memorial; memorial=snow_plough; name=Cuthbertson Memorial; note=James A. Cuthbertson [1907-1993], the designer of the 'Cuthbertson Fixed-Vee 'Hi-lift' Snowplough', of which this is a 2/3 scale model.. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/10553726937.json",
+      "osmStatus": "current",
+      "osmTags": "alt_name=Memorial to James A Cuthbertson; historic=memorial; memorial=snow_plough; name=Cuthbertson Memorial; note=James A. Cuthbertson [1907-1993], the designer of the 'Cuthbertson Fixed-Vee 'Hi-lift' Snowplough', of which this is a 2/3 scale model.",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "10553726937",
+        "version": 3,
+        "lastEditedAt": "2025-07-26T07:05:18Z",
+        "changesetId": 169489345,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/10553726937/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2023-01-14T01:50:14Z",
+        "lastEditedAt": "2025-07-26T07:05:18Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-10553726945",
+      "projectId": "biggar-scotland",
+      "locality": "Biggar",
+      "existingName": "Hugh MacDiarmid",
+      "featureType": "memorial_plaque",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/10553726945",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=plaque."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-10553726945",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=plaque; name=Hugh MacDiarmid; subject:wikidata=Q981981. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/10553726945.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=plaque; name=Hugh MacDiarmid; subject:wikidata=Q981981",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "10553726945",
+        "version": 2,
+        "lastEditedAt": "2023-12-20T01:34:15Z",
+        "changesetId": 145312567,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/10553726945/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2023-01-14T01:50:14Z",
+        "lastEditedAt": "2023-12-20T01:34:15Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-10937177549",
+      "projectId": "biggar-scotland",
+      "locality": "Biggar",
+      "existingName": "Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/10937177549",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=sculpture."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-10937177549",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): fixme=What is this?; historic=memorial; memorial=sculpture. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/10937177549.json",
+      "osmStatus": "current",
+      "osmTags": "fixme=What is this?; historic=memorial; memorial=sculpture",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "10937177549",
+        "version": 3,
+        "lastEditedAt": "2025-07-26T07:01:08Z",
+        "changesetId": 169489232,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/10937177549/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2023-05-29T15:46:33Z",
+        "lastEditedAt": "2025-07-26T07:01:08Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-11133649400",
+      "projectId": "biggar-scotland",
+      "locality": "Biggar",
+      "existingName": "Map or model board",
+      "featureType": "map_or_model_board",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/11133649400",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: information=map; tourism=information."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-11133649400",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): information=map; tourism=information. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/11133649400.json",
+      "osmStatus": "current",
+      "osmTags": "information=map; tourism=information",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "11133649400",
+        "version": 1,
+        "lastEditedAt": "2023-08-21T09:46:19Z",
+        "changesetId": 140170854,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/11133649400/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2023-08-21T09:46:19Z",
+        "lastEditedAt": "2023-08-21T09:46:19Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-11686060585",
+      "projectId": "biggar-scotland",
+      "locality": "Biggar",
+      "existingName": "Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/11686060585",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-11686060585",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=tower. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/11686060585.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=tower",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "11686060585",
+        "version": 1,
+        "lastEditedAt": "2024-03-03T00:36:25Z",
+        "changesetId": 148150832,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/11686060585/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2024-03-03T00:36:25Z",
+        "lastEditedAt": "2024-03-03T00:36:25Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-13671694543",
+      "projectId": "biggar-scotland",
+      "locality": "Biggar",
+      "existingName": "Biggar Motte",
+      "featureType": "historic_place",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/13671694543",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=archaeological_site."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-13671694543",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): archaeological_site=fortification; fortification_type=motte; historic=archaeological_site; historic:civilization=medieval; name=Biggar Motte; ref:canmore=48647. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/13671694543.json",
+      "osmStatus": "current",
+      "osmTags": "archaeological_site=fortification; fortification_type=motte; historic=archaeological_site; historic:civilization=medieval; name=Biggar Motte; ref:canmore=48647",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "13671694543",
+        "version": 2,
+        "lastEditedAt": "2026-03-23T13:15:22Z",
+        "changesetId": 180305277,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/13671694543/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2026-03-23T13:12:48Z",
+        "lastEditedAt": "2026-03-23T13:15:22Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:way-1126085443",
+      "projectId": "biggar-scotland",
+      "locality": "Biggar",
+      "existingName": "Boghall Castle",
+      "featureType": "castle",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "way/1126085443",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: castle_type=defensive; historic=castle; wikipedia=en:Boghall Castle."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:way-1126085443",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): castle_type=defensive; historic=castle; historic:civilization=medieval; name=Boghall Castle; ruins=yes; wikidata=Q17845338; wikipedia=en:Boghall Castle. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/way/1126085443.json",
+      "osmStatus": "current",
+      "osmTags": "castle_type=defensive; historic=castle; historic:civilization=medieval; name=Boghall Castle; ruins=yes; wikidata=Q17845338; wikipedia=en:Boghall Castle",
+      "osmMetadata": {
+        "elementType": "way",
+        "elementId": "1126085443",
+        "version": 2,
+        "lastEditedAt": "2022-12-31T18:27:50Z",
+        "changesetId": 130730790,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/way/1126085443/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2022-12-31T18:25:20Z",
+        "lastEditedAt": "2022-12-31T18:27:50Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "publicTierFoeSuppression": true,
+    "sourceHistoryPreserved": true
+  }
+}

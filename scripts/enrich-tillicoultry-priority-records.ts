@@ -65,7 +65,8 @@ addSource(middletonMills, {
   sourceUrl: 'https://canmore.org.uk/site/48275/tillicoultry-middleton-mills?display=collection',
   accessedAt,
   licence: 'Open Government Licence v3.0; retain Historic Environment Scotland attribution.',
-  notes: 'Collection catalogue lists multiple views of the Middleton Mills entrance offices and machinery as c.1926.',
+  notes:
+    'Collection catalogue lists multiple views of the Middleton Mills entrance offices and machinery as c.1926.',
   reliability: 'official_non_statutory',
 });
 
@@ -110,7 +111,8 @@ addSource(murraySquareClock, {
   sourceOrganisation: 'Undiscovered Scotland',
   sourceUrl: 'https://www.undiscoveredscotland.co.uk/tillicoultry/tillicoultry/',
   accessedAt,
-  notes: 'Describes the Murray Square tower as built around 1930 as part of the dedicated bus-station development.',
+  notes:
+    'Describes the Murray Square tower as built around 1930 as part of the dedicated bus-station development.',
   reliability: 'secondary',
 });
 
@@ -127,7 +129,9 @@ Object.assign(westertownCairn, {
 });
 
 const westertownSettlementId = 'curated:westertown-historic-core';
-const existingWestertownSettlement = pkg.features.find((feature) => feature.id === westertownSettlementId);
+const existingWestertownSettlement = pkg.features.find(
+  (feature) => feature.id === westertownSettlementId,
+);
 if (!existingWestertownSettlement) {
   pkg.features.push({
     id: westertownSettlementId,

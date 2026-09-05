@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { ProjectPackage, Reliability, SourceRecord } from '../src/domain/models';
+import { setFeaturePublicationState } from '../src/domain/publication';
 
 interface CurationEntry {
   featureId: string;
@@ -24,8 +25,10 @@ const entries = JSON.parse(await readFile(curationPath, 'utf8')) as CurationEntr
 function validate(entry: CurationEntry): void {
   if (!entry.featureId || !entry.summary || entry.summary.length > 360)
     throw new Error(`Invalid current-place summary for ${entry.featureId || 'unknown feature'}.`);
-  if (!/^https:\/\//.test(entry.sourceUrl)) throw new Error(`A secure source URL is required for ${entry.featureId}.`);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.accessedAt)) throw new Error(`An ISO access date is required for ${entry.featureId}.`);
+  if (!/^https:\/\//.test(entry.sourceUrl))
+    throw new Error(`A secure source URL is required for ${entry.featureId}.`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.accessedAt))
+    throw new Error(`An ISO access date is required for ${entry.featureId}.`);
   if (entry.rating !== undefined && (entry.rating < 0 || entry.rating > 5))
     throw new Error(`Rating must be between 0 and 5 for ${entry.featureId}.`);
 }
@@ -60,8 +63,17 @@ for (const entry of entries) {
   ];
   feature.updatedAt = new Date().toISOString();
   feature.reviewed = true;
-  feature.reviewNotes = `${feature.reviewNotes ?? ''} Current-place web information reviewed against ${entry.sourceOrganisation} on ${entry.accessedAt}.`.trim();
+  setFeaturePublicationState(
+    feature,
+    'verified',
+    `${entry.accessedAt}T00:00:00.000Z`,
+    `Current-place evidence checked against ${entry.sourceOrganisation}.`,
+  );
+  feature.reviewNotes =
+    `${feature.reviewNotes ?? ''} Current-place web information reviewed against ${entry.sourceOrganisation} on ${entry.accessedAt}.`.trim();
 }
 
 await writeFile(projectPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
-console.log(`Applied ${entries.length} source-backed current-place curation entr${entries.length === 1 ? 'y' : 'ies'}.`);
+console.log(
+  `Applied ${entries.length} source-backed current-place curation entr${entries.length === 1 ? 'y' : 'ies'}.`,
+);

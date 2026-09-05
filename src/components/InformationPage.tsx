@@ -1,11 +1,45 @@
+import { lazy, Suspense } from 'react';
 import { useExplorerStore } from '../app/store';
-import { CurationReview } from './CurationReview';
+
+const CurationReview = lazy(() =>
+  import('./CurationReview').then((module) => ({ default: module.CurationReview })),
+);
 
 export function InformationPage() {
   const mode = useExplorerStore((state) => state.mode);
   const pkg = useExplorerStore((state) => state.package);
+  const loadStatus = useExplorerStore((state) => state.loadStatus);
+  const loadError = useExplorerStore((state) => state.loadError);
+  const retryLoad = useExplorerStore((state) => state.retryLoad);
   if (mode === 'explore') return null;
-  if (mode === 'data-review') return <CurationReview />;
+  if (!pkg) {
+    return (
+      <main className="info" aria-live="polite">
+        <article className="card">
+          <h1>{loadStatus === 'error' ? 'Town guide unavailable' : 'Loading town guide…'}</h1>
+          {loadError && <p>{loadError}</p>}
+          {loadStatus === 'error' && (
+            <button type="button" onClick={() => void retryLoad()}>
+              Try again
+            </button>
+          )}
+        </article>
+      </main>
+    );
+  }
+  if (mode === 'data-review') {
+    return (
+      <Suspense
+        fallback={
+          <main className="info" aria-live="polite">
+            Loading curator review…
+          </main>
+        }
+      >
+        <CurationReview />
+      </Suspense>
+    );
+  }
   const title =
     mode === 'sources'
       ? 'Sources & licences'

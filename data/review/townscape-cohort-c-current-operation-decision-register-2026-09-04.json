@@ -1,0 +1,541 @@
+{
+  "registerType": "controlled Cohort C business/venue/current-operation decision register",
+  "checkedAt": "2026-09-04T00:55:58.115Z",
+  "policy": "CLAIM_EVIDENCE_POLICY.md",
+  "sourceTriage": {
+    "path": "data/review/townscape-provisional-verification-triage-2026-09-03.json",
+    "exactCohort": "C",
+    "exactRecords": 43,
+    "membershipSha256": "41803b40041ffedf4142f030c914155ed215766c7318fcfa055e356ec5817844",
+    "inputSha256": "388e68ad30d5b97ef333b0081ce777e022f392af794abd49142b8b11e74a3624"
+  },
+  "summary": {
+    "confirmedCurrentlyOperating": 32,
+    "publishableAtTierO": 32,
+    "retainedTierMMappedContext": 4,
+    "remainingProvisional": 5,
+    "requiringReview": 1,
+    "withheldClosedOrSuperseded": 1,
+    "claimsSuppressed": [
+      "opening_hours",
+      "prices_or_fees",
+      "public_access",
+      "accessibility",
+      "facilities",
+      "dog_friendliness",
+      "booking_availability",
+      "quality",
+      "visitor_recommendation",
+      "editorial_description"
+    ],
+    "primaryEvidence": 17,
+    "secondaryEvidence": 15,
+    "publicationTotals": {
+      "before": {
+        "publishable": 0,
+        "provisional": 43,
+        "verified": 0,
+        "requires_review": 0,
+        "withheld": 0
+      },
+      "after": {
+        "publishable": 36,
+        "provisional": 6,
+        "verified": 0,
+        "requires_review": 0,
+        "withheld": 1
+      }
+    }
+  },
+  "contradictionsAndStaleSourceCases": [
+    {
+      "recordId": "osm-community:node-10657179804",
+      "outcome": "provisional",
+      "note": "Historic licensing material is not current-operation evidence; no sufficiently current independent operator or authority source found."
+    },
+    {
+      "recordId": "osm-community:node-13648474029",
+      "outcome": "review",
+      "note": "A current food-hygiene mirror marks the authority entry archived after a 2025 inspection; this is a material conflict but does not prove closure."
+    },
+    {
+      "recordId": "osm-community:node-10550529710",
+      "outcome": "provisional",
+      "note": "The online shop is current but the inspected page does not establish this Biggar premises."
+    },
+    {
+      "recordId": "osm-community:node-11780574253",
+      "outcome": "provisional",
+      "note": "No sufficiently current operator, authority or reliable directory evidence found for West End Bakes."
+    },
+    {
+      "recordId": "osm-community:way-1271991625",
+      "outcome": "provisional",
+      "note": "No sufficiently current independent source found for Lily House at this exact Tillicoultry location."
+    },
+    {
+      "recordId": "osm-community:way-653224884",
+      "outcome": "withheld",
+      "note": "A current directory marks Butterfly Inn closed; current evidence identifies a different Mill Cafe operation elsewhere within Sterling Furniture. Closure is retained as a non-public research outcome, not asserted from OSM."
+    },
+    {
+      "recordId": "osm-community:way-989738553",
+      "outcome": "provisional",
+      "note": "No sufficiently current independent source found for Good Year Chinese at this exact mapped location."
+    }
+  ],
+  "rulesApplied": [
+    "Every Tier O claim has an independent, non-OSM source and a 90-day expiry.",
+    "OSM remains retained solely for mapped identity/type/location.",
+    "No visitor score, town rating or scoring methodology was changed.",
+    "Hours, prices, access, accessibility, facilities, dog policy, booking, quality, recommendation and editorial description were not inferred from operation evidence."
+  ],
+  "decisions": [
+    {
+      "id": "osm-community:node-10657179791",
+      "outcome": "operating",
+      "source": {
+        "name": "Discover Clackmannanshire shopping directory",
+        "organisation": "Discover Clackmannanshire",
+        "url": "https://discoverclackmannanshire.com/shopping-in-alloa",
+        "reliability": "local_authority"
+      },
+      "note": "Current council tourism directory identifies Celebrations as an Alloa shop."
+    },
+    {
+      "id": "osm-community:node-10657179804",
+      "outcome": "provisional",
+      "note": "Historic licensing material is not current-operation evidence; no sufficiently current independent operator or authority source found."
+    },
+    {
+      "id": "osm-community:node-13648474029",
+      "outcome": "review",
+      "note": "A current food-hygiene mirror marks the authority entry archived after a 2025 inspection; this is a material conflict but does not prove closure."
+    },
+    {
+      "id": "osm-community:node-13662835231",
+      "outcome": "operating",
+      "source": {
+        "name": "Restaurant Guru current listing",
+        "organisation": "Restaurant Guru",
+        "url": "https://restaurantguru.com/Enjoy-Alloa",
+        "reliability": "secondary"
+      },
+      "note": "Recent 2026 reviews and a current listing identify Enjoy at Alloa High Street as operating."
+    },
+    {
+      "id": "osm-community:node-7500478539",
+      "outcome": "operating",
+      "source": {
+        "name": "ASDA Alloa Cafe",
+        "organisation": "ASDA",
+        "url": "https://storelocator.asda.com/scotland/alloa/whins-road/cafe",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator store locator identifies ASDA Alloa Cafe at Whins Road."
+    },
+    {
+      "id": "osm-community:way-318390943",
+      "outcome": "operating",
+      "source": {
+        "name": "Alba Claremont",
+        "organisation": "Alba Claremont",
+        "url": "https://albaclaremont.co.uk/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator site offers dining and room booking in Alloa."
+    },
+    {
+      "id": "osm-community:node-13638168004",
+      "outcome": "operating",
+      "source": {
+        "name": "Little Owls Cafe",
+        "organisation": "Little Owls Cafe",
+        "url": "https://www.littleowlscafe.co.uk/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator site identifies Little Owls at 86 Stirling Street, Alva."
+    },
+    {
+      "id": "osm-community:node-5879489144",
+      "outcome": "operating",
+      "source": {
+        "name": "Bayne’s shop directory",
+        "organisation": "Bayne’s the Family Bakers",
+        "url": "https://baynes.co.uk/our-shops/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator shop directory lists Alva."
+    },
+    {
+      "id": "osm-community:node-10550528510",
+      "outcome": "operating",
+      "source": {
+        "name": "The Barony Restaurant",
+        "organisation": "The Barony Restaurant",
+        "url": "https://www.barony-biggar.co.uk/home/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator site accepts bookings at 55 High Street, Biggar."
+    },
+    {
+      "id": "osm-community:node-10550529710",
+      "outcome": "provisional",
+      "note": "The online shop is current but the inspected page does not establish this Biggar premises."
+    },
+    {
+      "id": "osm-community:node-10550529712",
+      "outcome": "operating",
+      "source": {
+        "name": "Restaurant Guru current listing",
+        "organisation": "Restaurant Guru",
+        "url": "https://restaurantguru.com/Zest-Biggar",
+        "reliability": "secondary"
+      },
+      "note": "Recent 2026 listing and reviews identify Zest at 69 High Street, Biggar."
+    },
+    {
+      "id": "osm-community:node-10550530110",
+      "outcome": "operating",
+      "source": {
+        "name": "The Coffee Spot directory listing",
+        "organisation": "Yell",
+        "url": "https://www.yell.com/biz/the-coffee-spot-biggar-2476651/",
+        "reliability": "secondary"
+      },
+      "note": "Current directory listing identifies The Coffee Spot at 152 High Street, Biggar."
+    },
+    {
+      "id": "osm-community:node-10553226217",
+      "outcome": "operating",
+      "source": {
+        "name": "Elphinstone Hotel",
+        "organisation": "Elphinstone Hotel",
+        "url": "https://www.elphinstonehotel.co.uk/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator site offers restaurant and room booking at 145 High Street, Biggar."
+    },
+    {
+      "id": "osm-community:node-10934143056",
+      "outcome": "operating",
+      "source": {
+        "name": "Biggar cafés listing",
+        "organisation": "Tripadvisor",
+        "url": "https://www.tripadvisor.com/Restaurants-g551840-c8-Biggar_South_Lanarkshire_Scotland.html",
+        "reliability": "secondary"
+      },
+      "note": "Current 2026 directory lists Aroma Cafe as open in Biggar."
+    },
+    {
+      "id": "osm-community:node-10937125607",
+      "outcome": "operating",
+      "source": {
+        "name": "The Oriental current listing",
+        "organisation": "Restaurant Guru",
+        "url": "https://restaurantguru.com/The-Oriental-Biggar",
+        "reliability": "secondary"
+      },
+      "note": "Current 2026 listing identifies The Oriental as open in Biggar."
+    },
+    {
+      "id": "osm-community:node-12140732695",
+      "outcome": "mapped_context",
+      "note": "Current tourism evidence confirms the West Fife Woodlands Way, but does not independently establish this particular marker’s current physical state."
+    },
+    {
+      "id": "osm-community:node-1319913221",
+      "outcome": "operating",
+      "source": {
+        "name": "Visit Culross food and drink",
+        "organisation": "Visit Culross",
+        "url": "https://www.visitculross.com/foodanddrink",
+        "reliability": "local_authority"
+      },
+      "note": "Current tourism listing confirms the successor at this cafe location is Cobbled Lane, formerly The Biscuit Café.",
+      "renamedTo": "Cobbled Lane"
+    },
+    {
+      "id": "osm-community:node-4995290457",
+      "outcome": "operating",
+      "source": {
+        "name": "The Mercat",
+        "organisation": "The Mercat",
+        "url": "https://the-mercat.com/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator site identifies The Mercat cafe and shop at The Cross, Culross.",
+      "renamedTo": "The Mercat"
+    },
+    {
+      "id": "osm-community:node-4995290461",
+      "outcome": "operating",
+      "source": {
+        "name": "Bessie’s Café",
+        "organisation": "National Trust for Scotland",
+        "url": "https://www.nts.org.uk/visit/places/culross/highlights/bessies-caf%C3%A9",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator page identifies Bessie’s Café at Culross Palace."
+    },
+    {
+      "id": "osm-community:node-1834676847",
+      "outcome": "operating",
+      "source": {
+        "name": "Falls of Dochart Inn café",
+        "organisation": "Falls of Dochart Inn",
+        "url": "https://www.fallsofdochart.co.uk/food-and-drink/our-cafe/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator page identifies its Killin tearoom/cafe."
+    },
+    {
+      "id": "osm-community:node-335564591",
+      "outcome": "operating",
+      "source": {
+        "name": "Capercaillie current listing",
+        "organisation": "Big Red Directory",
+        "url": "https://www.bigreddirectory.com/capercaillie-killin",
+        "reliability": "secondary"
+      },
+      "note": "Current directory listing identifies Capercaillie restaurant on Main Street, Killin."
+    },
+    {
+      "id": "osm-community:node-5459661392",
+      "outcome": "operating",
+      "source": {
+        "name": "Escape in Killin current listing",
+        "organisation": "BizSeek",
+        "url": "https://www.bizseek.co.uk/escape-in-killin-01567-820212",
+        "reliability": "secondary"
+      },
+      "note": "Current directory listing identifies Escape in Killin at Myrtle Grove, Main Street."
+    },
+    {
+      "id": "osm-community:node-5459670520",
+      "outcome": "operating",
+      "source": {
+        "name": "Kula food-hygiene record",
+        "organisation": "Food Standards Agency",
+        "url": "https://ratings.food.gov.uk/business/1885889/kula-killin/online-ratings",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Authority record identifies Kula as a Killin cafe following a November 2025 inspection."
+    },
+    {
+      "id": "osm-community:node-5914517399",
+      "outcome": "mapped_context",
+      "note": "No current responsible authority source establishes a staffed visitor-information operation at this mapped point."
+    },
+    {
+      "id": "osm-community:way-89971785",
+      "outcome": "mapped_context",
+      "note": "Historic tourist-information references are stale; no current official source establishes an operating information office."
+    },
+    {
+      "id": "osm-community:node-10990017763",
+      "outcome": "operating",
+      "source": {
+        "name": "Marco’s Kitchen current listing",
+        "organisation": "Restaurant Guru",
+        "url": "https://restaurantguru.com/Marcos-Kitchen-Kincardine-Scotland",
+        "reliability": "secondary"
+      },
+      "note": "Current 2026 listing identifies Marco’s Kitchen as open in Kincardine."
+    },
+    {
+      "id": "osm-community:node-11104464562",
+      "outcome": "operating",
+      "source": {
+        "name": "The Puttery",
+        "organisation": "Tulliallan Golf Club",
+        "url": "https://tulliallangolf.co.uk/the-club/the-puttery/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current golf-club operator page identifies The Puttery near Kincardine and welcomes non-members."
+    },
+    {
+      "id": "osm-community:node-12513969929",
+      "outcome": "operating",
+      "source": {
+        "name": "Bayne’s shop directory",
+        "organisation": "Bayne’s the Family Bakers",
+        "url": "https://baynes.co.uk/our-shops/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator shop directory lists Kincardine High Street."
+    },
+    {
+      "id": "osm-community:node-11780574253",
+      "outcome": "provisional",
+      "note": "No sufficiently current operator, authority or reliable directory evidence found for West End Bakes."
+    },
+    {
+      "id": "osm-community:node-13634000252",
+      "outcome": "operating",
+      "source": {
+        "name": "Card Factory current listing",
+        "organisation": "BizSeek",
+        "url": "https://www.bizseek.co.uk/card-factory_825q-01259-751711",
+        "reliability": "secondary"
+      },
+      "note": "Current directory listing identifies Card Factory at Sterling Mills, Tillicoultry."
+    },
+    {
+      "id": "osm-community:node-3265969946",
+      "outcome": "operating",
+      "source": {
+        "name": "Mickey Buns food-hygiene record",
+        "organisation": "Food Standards Agency",
+        "url": "https://ratings.food.gov.uk/business/1551654/mickey-buns-tillicoultry",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Authority record identifies Mickey Buns at 103 High Street following a September 2025 inspection."
+    },
+    {
+      "id": "osm-community:node-9431156493",
+      "outcome": "operating",
+      "source": {
+        "name": "BB’s Coffee & Muffins current listing",
+        "organisation": "Tripadvisor",
+        "url": "https://www.tripadvisor.co.uk/Restaurant_Review-g551955-d8317941-Reviews-BB_s_Coffee_Muffins-Tillicoultry_Clackmannanshire_Scotland.html",
+        "reliability": "secondary"
+      },
+      "note": "Current 2026 listing and recent reviews identify BB’s at Sterling Mills."
+    },
+    {
+      "id": "osm-community:node-9431214265",
+      "outcome": "mapped_context",
+      "note": "The generic OSM name and nearby but non-coincident Penny Licks evidence do not establish this exact venue identity."
+    },
+    {
+      "id": "osm-community:way-1022597762",
+      "outcome": "operating",
+      "source": {
+        "name": "Mill Cafe current listing",
+        "organisation": "Tripadvisor",
+        "url": "https://www.tripadvisor.co.uk/Restaurant_Review-g551955-d8524600-Reviews-Mill_Cafe-Tillicoultry_Clackmannanshire_Scotland.html",
+        "reliability": "secondary"
+      },
+      "note": "Current 2026 listing identifies The Mill Cafe within Sterling Furniture."
+    },
+    {
+      "id": "osm-community:way-1271991625",
+      "outcome": "provisional",
+      "note": "No sufficiently current independent source found for Lily House at this exact Tillicoultry location."
+    },
+    {
+      "id": "osm-community:way-187304263",
+      "outcome": "operating",
+      "source": {
+        "name": "Costa Tillicoultry",
+        "organisation": "Costa Coffee",
+        "url": "https://www.costa.co.uk/stores/tillicoultry",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator store locator identifies Costa at Sterling Mills, Tillicoultry."
+    },
+    {
+      "id": "osm-community:way-320099376",
+      "outcome": "operating",
+      "source": {
+        "name": "Penny-licks current listing",
+        "organisation": "Yell",
+        "url": "https://www.yell.com/biz/penny-licks-tillicoultry-10317031/",
+        "reliability": "secondary"
+      },
+      "note": "Current directory listing identifies Penny-licks at 120 High Street, Tillicoultry."
+    },
+    {
+      "id": "osm-community:way-389616952",
+      "outcome": "operating",
+      "source": {
+        "name": "Smugglers Bar & Bistro",
+        "organisation": "CAMRA",
+        "url": "https://camra.org.uk/pubs/smugglers-bar-bistro-tillicoultry-168554",
+        "reliability": "secondary"
+      },
+      "note": "Current specialist directory lists Smugglers Bar & Bistro at 148 High Street and current opening status."
+    },
+    {
+      "id": "osm-community:way-653224884",
+      "outcome": "withheld",
+      "note": "A current directory marks Butterfly Inn closed; current evidence identifies a different Mill Cafe operation elsewhere within Sterling Furniture. Closure is retained as a non-public research outcome, not asserted from OSM."
+    },
+    {
+      "id": "osm-community:way-926391362",
+      "outcome": "operating",
+      "source": {
+        "name": "Bayne’s shop directory",
+        "organisation": "Bayne’s the Family Bakers",
+        "url": "https://baynes.co.uk/our-shops/",
+        "reliability": "official_non_statutory"
+      },
+      "note": "Current operator shop directory lists Tillicoultry High Street."
+    },
+    {
+      "id": "osm-community:way-929914355",
+      "outcome": "operating",
+      "source": {
+        "name": "Village Inn current ordering listing",
+        "organisation": "Just Eat",
+        "url": "https://www.just-eat.co.uk/restaurants-village-inn-tillicoultry/menu",
+        "reliability": "secondary"
+      },
+      "note": "Current ordering platform lists Village Inn in Tillicoultry."
+    },
+    {
+      "id": "osm-community:way-989738553",
+      "outcome": "provisional",
+      "note": "No sufficiently current independent source found for Good Year Chinese at this exact mapped location."
+    },
+    {
+      "id": "osm-community:way-993045924",
+      "outcome": "operating",
+      "source": {
+        "name": "Tillicoultry restaurant listing",
+        "organisation": "Restaurantji",
+        "url": "https://www.restaurantji.co.uk/scotland/tillicoultry/",
+        "reliability": "secondary"
+      },
+      "note": "Current locality listing identifies Laura’s Tilly Tearoom at 10A Bank Street."
+    }
+  ],
+  "batches": [
+    {
+      "projectId": "alloa-scotland",
+      "records": 6,
+      "validation": "passed with zero errors"
+    },
+    {
+      "projectId": "alva-scotland",
+      "records": 2,
+      "validation": "passed with zero errors"
+    },
+    {
+      "projectId": "biggar-scotland",
+      "records": 7,
+      "validation": "passed with zero errors"
+    },
+    {
+      "projectId": "culross-scotland",
+      "records": 4,
+      "validation": "passed with zero errors"
+    },
+    {
+      "projectId": "killin-scotland",
+      "records": 6,
+      "validation": "passed with zero errors"
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "records": 3,
+      "validation": "passed with zero errors"
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "records": 15,
+      "validation": "passed with zero errors"
+    }
+  ]
+}

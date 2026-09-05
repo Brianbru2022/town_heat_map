@@ -1,4 +1,5 @@
 import type { ProjectPackage } from '../domain/models';
+import { assertValidProjectPackage } from '../domain/packageSchema';
 import { alloaPackage } from './alloa';
 import { alvaPackage } from './alva';
 import { biggarPackage } from './biggar';
@@ -10,7 +11,7 @@ import { tillicoultryPackage } from './tillicoultry';
 
 // Register only curated, published project packages here. The catalogue UI and API sort them
 // consistently by country, region and town.
-export const publishedProjectPackages: ProjectPackage[] = [
+const cataloguePackages: unknown[] = [
   alloaPackage,
   alvaPackage,
   culrossPackage,
@@ -20,3 +21,8 @@ export const publishedProjectPackages: ProjectPackage[] = [
   biggarPackage,
   killinPackage,
 ];
+
+/** Invalid source JSON fails application startup/build instead of entering the public catalogue. */
+export const publishedProjectPackages: ProjectPackage[] = cataloguePackages.map((projectPackage) =>
+  assertValidProjectPackage(projectPackage, 'static published catalogue'),
+);

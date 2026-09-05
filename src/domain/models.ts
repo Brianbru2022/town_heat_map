@@ -18,6 +18,77 @@ export type DateBasis =
   | 'estimated_from_map_comparison'
   | 'unknown';
 export type EvidenceScope = 'parish_evidence' | 'related_context' | 'out_of_scope';
+/**
+ * The spatial relationship to the named Townscape locality. This is separate
+ * from evidenceScope: the latter controls presentation/scoring treatment,
+ * while this records the reproducible geographic decision behind it.
+ */
+export type GeographicRelationship =
+  | 'within_town_locality'
+  | 'immediately_associated'
+  | 'related_context'
+  | 'ambiguous'
+  | 'out_of_scope';
+export type PublicationState = 'provisional' | 'verified' | 'publishable' | 'withheld';
+export type EvidenceTier = 'mapped_context' | 'corroborated_facility' | 'operational' | 'editorial';
+export type PublicationProfile = 'mapped_context' | 'verified_facility' | 'editorial';
+export type ClaimType =
+  | 'mapped_identity'
+  | 'public_access'
+  | 'opening_hours'
+  | 'fees'
+  | 'accessibility'
+  | 'operator'
+  | 'capacity'
+  | 'current_operation'
+  | 'route_access'
+  | 'temporary_closure'
+  | 'ev_charging_operation'
+  | 'editorial_recommendation'
+  | 'visitor_score'
+  | 'visitor_suitability';
+
+/**
+ * An editorial declaration, not a substitute for the automated provenance,
+ * licence and geometry gates. A publishable declaration can still resolve to
+ * requires_review when a material blocker is present.
+ */
+export interface PublicationDeclaration {
+  state: PublicationState;
+  /** Controls the strength of claims that may be projected publicly. */
+  profile?: PublicationProfile;
+  reviewedAt?: string;
+  notes?: string;
+}
+
+/** Evidence for one public claim. Source references resolve against this record's sourceRecords. */
+export interface ClaimEvidence {
+  claim: ClaimType;
+  tier: EvidenceTier;
+  sourceRecordRefs: string[];
+  reviewedAt: string;
+  expiresAt?: string;
+  notes?: string;
+}
+
+export interface OsmElementMetadata {
+  elementType: 'node' | 'way' | 'relation';
+  elementId: string;
+  version?: number;
+  lastEditedAt?: string;
+  changesetId?: number;
+  visible?: boolean;
+  status: 'current' | 'deleted' | 'unavailable';
+  checkedAt: string;
+}
+
+export interface GeographicScopeDeclaration {
+  classification: GeographicRelationship;
+  boundaryName: string;
+  boundarySource: string;
+  verifiedAt: string;
+  rationale: string;
+}
 export type Significance = 'highest_national' | 'national' | 'regional' | 'local' | 'recognised';
 export type FeatureType =
   | 'castle'
@@ -127,6 +198,10 @@ export interface HeritageFeature {
   reviewed: boolean;
   reviewNotes?: string;
   evidenceScope?: EvidenceScope;
+  geographicScope?: GeographicScopeDeclaration;
+  publication?: PublicationDeclaration;
+  claimEvidence?: ClaimEvidence[];
+  osmElement?: OsmElementMetadata;
 }
 
 export interface HistoricMapLayer {
@@ -155,6 +230,7 @@ export interface HistoricMapLayer {
   georeferencingAccuracy?: Confidence;
   controlPointCount?: number;
   residualError?: number;
+  publication?: PublicationDeclaration;
 }
 
 export interface SettlementAgePolygon {
@@ -178,6 +254,7 @@ export interface SettlementAgePolygon {
   digitisationMethod: string;
   sourceRecords: SourceRecord[];
   reviewed: boolean;
+  publication?: PublicationDeclaration;
 }
 
 export interface DataSourceDefinition {
@@ -239,8 +316,21 @@ export interface ScoringMethodology {
 export interface ValidationResult {
   recordId: string;
   severity: 'error' | 'warning';
+  code?: string;
+  publicationImpact?: 'blocker' | 'advisory';
   field?: string;
   message: string;
+}
+
+export interface PublicationSummary {
+  totalRecords: number;
+  publishable: number;
+  provisional: number;
+  verified: number;
+  requiresReview: number;
+  withheld: number;
+  blockerCount: number;
+  advisoryCount: number;
 }
 
 export interface ImportedPackMetadata {
@@ -252,7 +342,23 @@ export interface ImportedPackMetadata {
   methodology?: Record<string, unknown>;
   licensingAndAttribution?: Record<string, unknown>;
 }
+
+export interface DataLicenceComponent {
+  id: string;
+  name: string;
+  source: string;
+  licence: string;
+  licenceUrl?: string;
+  attribution: string;
+  scope: string;
+  legalReviewNote?: string;
+}
+
+export interface LicensingMetadata {
+  components: DataLicenceComponent[];
+}
 export interface ProjectPackage {
+  $schema?: string;
   project: TownProject;
   features: HeritageFeature[];
   sources: DataSourceDefinition[];
@@ -260,4 +366,9 @@ export interface ProjectPackage {
   settlementPolygons: SettlementAgePolygon[];
   validation: ValidationResult[];
   curationMetadata?: { importedPacks: ImportedPackMetadata[] };
+  publication?: PublicationDeclaration;
+  /** Computed for delivery/audit responses; not a source-data declaration. */
+  publicationSummary?: PublicationSummary;
+  /** Computed component-level licensing information for a public delivery. */
+  licensingMetadata?: LicensingMetadata;
 }

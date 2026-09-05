@@ -18,7 +18,11 @@ interface OsmWay {
 function bounds(pkg: ProjectPackage): [number, number, number, number] {
   const positions: Array<[number, number]> = [];
   const visit = (value: unknown): void => {
-    if (Array.isArray(value) && value.length === 2 && value.every((item) => typeof item === 'number'))
+    if (
+      Array.isArray(value) &&
+      value.length === 2 &&
+      value.every((item) => typeof item === 'number')
+    )
       positions.push(value as [number, number]);
     else if (Array.isArray(value)) value.forEach(visit);
   };
@@ -32,7 +36,10 @@ function bounds(pkg: ProjectPackage): [number, number, number, number] {
 }
 
 function normalise(value: string): string {
-  return value.toLocaleLowerCase().replaceAll(/[^a-z0-9]+/g, ' ').trim();
+  return value
+    .toLocaleLowerCase()
+    .replaceAll(/[^a-z0-9]+/g, ' ')
+    .trim();
 }
 
 function decodeXml(value: string): string {
@@ -100,10 +107,16 @@ function sourceRecord(way: OsmWay): SourceRecord {
 
 const pkg = JSON.parse(await readFile(projectPath, 'utf8')) as ProjectPackage;
 const townArea = pkg.project.townStudyArea?.bufferedBoundary ?? pkg.project.boundary;
-const [west, south, east, north] = bounds({ ...pkg, project: { ...pkg.project, boundary: townArea } });
-const response = await fetch(`${osmMapUrl}?${new URLSearchParams({ bbox: `${west},${south},${east},${north}` })}`, {
-  headers: { 'user-agent': 'Historic Town Explorer local curator/1.0' },
+const [west, south, east, north] = bounds({
+  ...pkg,
+  project: { ...pkg.project, boundary: townArea },
 });
+const response = await fetch(
+  `${osmMapUrl}?${new URLSearchParams({ bbox: `${west},${south},${east},${north}` })}`,
+  {
+    headers: { 'user-agent': 'Historic Town Explorer local curator/1.0' },
+  },
+);
 if (!response.ok) throw new Error(`OpenStreetMap current-context query failed: ${response.status}`);
 const elements = parseOsmWays(await response.text());
 let added = 0;
@@ -180,7 +193,8 @@ const source: DataSourceDefinition = {
   name: 'OpenStreetMap current parks and gardens',
   organisation: 'OpenStreetMap contributors',
   coverage: `Named leisure=park, leisure=garden and landuse=recreation_ground ways intersecting the ${pkg.project.locality} project boundary.`,
-  accessMethod: 'OpenStreetMap API map call for the NRS locality plus 500m buffer; exact project-boundary intersection',
+  accessMethod:
+    'OpenStreetMap API map call for the NRS locality plus 500m buffer; exact project-boundary intersection',
   sourceUrl: 'https://www.openstreetmap.org/copyright',
   licence: 'Open Database Licence (ODbL); © OpenStreetMap contributors.',
   reliability: 'discovery_only',

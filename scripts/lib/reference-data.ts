@@ -45,8 +45,7 @@ export function referenceDataPath(key: ReferenceDatasetKey): string {
 }
 
 export async function localHesListedBuildingFiles(): Promise<
-  | { shp: string; dbf: string; prj: string; cpg: string }
-  | undefined
+  { shp: string; dbf: string; prj: string; cpg: string } | undefined
 > {
   const entries = Object.fromEntries(
     localListedBuildingExtensions.map((extension) => [
@@ -78,7 +77,9 @@ export async function localHesDatasetFiles(
   }
 }
 
-export async function localHesListedBuildingSnapshot(): Promise<Record<string, unknown> | undefined> {
+export async function localHesListedBuildingSnapshot(): Promise<
+  Record<string, unknown> | undefined
+> {
   const files = await localHesListedBuildingFiles();
   if (!files) return undefined;
   const checksum = createHash('sha256');

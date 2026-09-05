@@ -1,0 +1,335 @@
+{
+  "registerType": "Cohort B controlled claim-evidence migration batch",
+  "batch": 5,
+  "projectId": "killin-scotland",
+  "records": 5,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-332068053",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-2664301244",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-2664301256",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-2664301260",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:way-386515817",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "osm-community:node-332068053",
+      "projectId": "killin-scotland",
+      "locality": "Killin",
+      "existingName": "Fingal's Stone",
+      "featureType": "historic_place",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/332068053",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=archaeological_site."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-332068053",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=archaeological_site; historic:civilization=prehistoric; name=Fingal's Stone; source=https://canmore.org.uk/site/24192/killin-schoolhouse-fingals-stone. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/332068053.json",
+      "osmStatus": "current",
+      "osmTags": "historic=archaeological_site; historic:civilization=prehistoric; name=Fingal's Stone; source=https://canmore.org.uk/site/24192/killin-schoolhouse-fingals-stone",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "332068053",
+        "version": 6,
+        "lastEditedAt": "2022-05-19T14:18:46Z",
+        "changesetId": 121198430,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/332068053/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "firstEditedAt": "2009-01-14T18:04:22Z",
+        "lastEditedAt": "2022-05-19T14:18:46Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-2664301244",
+      "projectId": "killin-scotland",
+      "locality": "Killin",
+      "existingName": "Killin Millennium Time Capsule Cairn",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/2664301244",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=cairn."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-2664301244",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=cairn; name=Killin Millennium Time Capsule Cairn. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/2664301244.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=cairn; name=Killin Millennium Time Capsule Cairn",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "2664301244",
+        "version": 3,
+        "lastEditedAt": "2023-12-02T18:15:57Z",
+        "changesetId": 144700007,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/2664301244/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2014-02-10T00:12:22Z",
+        "lastEditedAt": "2023-12-02T18:15:57Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-2664301256",
+      "projectId": "killin-scotland",
+      "locality": "Killin",
+      "existingName": "Killin War Memorial",
+      "featureType": "memorial_statue",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/2664301256",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=statue."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-2664301256",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=statue; memorial:conflict=WW1;WW2; name=Killin War Memorial; ref:canmore=137717; ref:iwm=5789; start_date=1920; war_memorial=yes; wikidata=Q77778253. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/2664301256.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=statue; memorial:conflict=WW1;WW2; name=Killin War Memorial; ref:canmore=137717; ref:iwm=5789; start_date=1920; war_memorial=yes; wikidata=Q77778253",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "2664301256",
+        "version": 5,
+        "lastEditedAt": "2025-08-25T15:13:03Z",
+        "changesetId": 170982704,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/2664301256/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "firstEditedAt": "2014-02-10T00:12:22Z",
+        "lastEditedAt": "2025-08-25T15:13:03Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-2664301260",
+      "projectId": "killin-scotland",
+      "locality": "Killin",
+      "existingName": "James Stewart Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/2664301260",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=cross."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-2664301260",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=cross; name=James Stewart Memorial; ref:canmore=339405; wikidata=Q77778258. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/2664301260.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=cross; name=James Stewart Memorial; ref:canmore=339405; wikidata=Q77778258",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "2664301260",
+        "version": 4,
+        "lastEditedAt": "2025-06-23T09:27:33Z",
+        "changesetId": 167993288,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/2664301260/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "firstEditedAt": "2014-02-10T00:12:22Z",
+        "lastEditedAt": "2025-06-23T09:27:33Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:way-386515817",
+      "projectId": "killin-scotland",
+      "locality": "Killin",
+      "existingName": "Killin Stone Circle",
+      "featureType": "historic_place",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "way/386515817",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=archaeological_site; wikipedia=en:Killin Stone Circle."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:way-386515817",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): alt_name=Kinnell Stone Circle; archaeological_site=megalith; heritage=yes; historic=archaeological_site; historic:civilization=prehistoric; historic:period=stone-age; locality=place; megalith_type=stone_circle; name=Killin Stone Circle; place=locality; wikidata=Q19758161; wikipedia=en:Killin Stone Circle. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/way/386515817.json",
+      "osmStatus": "current",
+      "osmTags": "alt_name=Kinnell Stone Circle; archaeological_site=megalith; heritage=yes; historic=archaeological_site; historic:civilization=prehistoric; historic:period=stone-age; locality=place; megalith_type=stone_circle; name=Killin Stone Circle; place=locality; wikidata=Q19758161; wikipedia=en:Killin Stone Circle",
+      "osmMetadata": {
+        "elementType": "way",
+        "elementId": "386515817",
+        "version": 6,
+        "lastEditedAt": "2023-07-15T11:12:10Z",
+        "changesetId": 138540530,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/way/386515817/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "firstEditedAt": "2015-12-18T16:36:17Z",
+        "lastEditedAt": "2023-07-15T11:12:10Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "publicTierFoeSuppression": true,
+    "sourceHistoryPreserved": true
+  }
+}

@@ -1,0 +1,555 @@
+{
+  "reviewedAt": "2026-09-03T00:00:00.000Z",
+  "scope": "Material publication blockers from the 2026-09-03 Townscape Guides audit.",
+  "geometry": {
+    "resolved": [
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-early-street-core-1702",
+        "decision": "resolved",
+        "reason": "Current named street-centre lines were checked against the council appraisal’s named 1702 core; the geometry is explicitly a present-day alignment, not an asserted 1702 cadastral boundary.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450",
+          "OpenStreetMap ways 81231597, 334300358, 334300359, 849664983, 81231602 and 81231593"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:context-alva-house",
+        "decision": "resolved",
+        "reason": "Matched to the existing HES NRHE Alva House representative point (111955, 1m stated precision).",
+        "evidence": [
+          "HES NRHE/Trove record 111955"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:context-glentana",
+        "decision": "resolved",
+        "reason": "Matched to HES NRHE Glentana Mills (47074); retained as a representative point because the official record states 100m positional accuracy.",
+        "evidence": [
+          "HES NRHE/Trove record 47074"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:context-railway",
+        "decision": "resolved",
+        "reason": "Matched to HES NRHE Alva Station (139051, 1m stated precision), not a reconstructed branch-line alignment.",
+        "evidence": [
+          "HES NRHE/Trove record 139051"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:context-games",
+        "decision": "resolved",
+        "reason": "The operator and Council both locate the Games in Johnstone Park; the existing OSM park polygon supplies the location geometry.",
+        "evidence": [
+          "Alva Games Find Us",
+          "Clackmannanshire Council Johnstone and Cochrane Parks",
+          "OpenStreetMap way 423424487"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:context-illuminations",
+        "decision": "resolved",
+        "reason": "Recorded as an explicitly representative point for Alva Glen from HES NRHE 47054 (10m stated precision), not as the extent of every illumination installation.",
+        "evidence": [
+          "HES NRHE/Trove record 47054",
+          "Alva Glen Heritage Trust source"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:context-academy",
+        "decision": "resolved",
+        "reason": "Matched to the current Alva Academy campus polygon in OSM; the record describes the continuing institution and labels the geometry as the current campus.",
+        "evidence": [
+          "OpenStreetMap way 218002833",
+          "Alva Academy official site"
+        ]
+      },
+      {
+        "projectId": "culross-scotland",
+        "id": "curated:area-culross-conservation",
+        "decision": "resolved",
+        "reason": "Imported the current HES Conservation Areas spatial polygon CA143, rather than inferring an area from listed-building density.",
+        "evidence": [
+          "HES Conservation Areas spatial layer CA143"
+        ]
+      },
+      {
+        "projectId": "kincardine-on-forth-scotland",
+        "id": "curated:area-kincardine-conservation",
+        "decision": "resolved",
+        "reason": "Imported the current HES Conservation Areas spatial polygon CA153.",
+        "evidence": [
+          "HES Conservation Areas spatial layer CA153"
+        ]
+      },
+      {
+        "projectId": "kincardine-on-forth-scotland",
+        "id": "curated:context-high-kirk-elphinstone-core",
+        "decision": "resolved",
+        "reason": "Current named street-centre lines were imported for the exact streets identified by the appraisal; this is not presented as a historic building polygon.",
+        "evidence": [
+          "Kincardine Conservation Area Appraisal",
+          "OpenStreetMap named street ways"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-glassford-square",
+        "decision": "resolved",
+        "reason": "Matched to the current named Glassford Square street-centre line (OSM way 20353620).",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454",
+          "OpenStreetMap way 20353620"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-craigfoot-mill",
+        "decision": "resolved",
+        "reason": "Matched to HES NRHE Craigfoot Mill 48283 (10m stated precision).",
+        "evidence": [
+          "HES NRHE/Trove record 48283"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-middleton",
+        "decision": "resolved",
+        "reason": "Matched to HES NRHE Middleton Mills 48275; the 100m stated precision is retained as a representative point.",
+        "evidence": [
+          "HES NRHE/Trove record 48275"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:mem-eu-ww2",
+        "decision": "resolved",
+        "reason": "Matched to the HES NRHE Evangelical Union Congregational Church point 260240 (1m stated precision). IWM material remains citation-only.",
+        "evidence": [
+          "HES NRHE/Trove record 260240",
+          "IWM War Memorials Register WMR 85053"
+        ]
+      }
+    ],
+    "unresolved": [
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-bedford-place-expansion",
+        "decision": "unresolved",
+        "reason": "The appraisal identifies the phase but not a reproducible 1820s–1830s extent; a georeferenced period map is still required.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450"
+        ]
+      },
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-railway-arrival",
+        "decision": "unresolved",
+        "reason": "The appraisal supports the dates, but not a period-specific branch alignment; the modern railway must not stand in for it.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450"
+        ]
+      },
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-glebe-victorian-expansion",
+        "decision": "unresolved",
+        "reason": "A character-area description is not a surveyed Victorian development polygon.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450"
+        ]
+      },
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-mill-street-3-29",
+        "decision": "unresolved",
+        "reason": "The appraisal identifies a group, but the constituent buildings have not each been matched to verified current building geometry.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450"
+        ]
+      },
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-baronial-buildings",
+        "decision": "unresolved",
+        "reason": "The appraisal places it at Coalgate and West Vennel, but the exact building footprint has not been independently matched.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450"
+        ]
+      },
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-oakleigh-house",
+        "decision": "unresolved",
+        "reason": "No authoritative address-to-footprint match was found for the appraisal’s Oakleigh House reference.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450"
+        ]
+      },
+      {
+        "projectId": "alloa-scotland",
+        "id": "curated:context-alloa-harbour-docks",
+        "decision": "unresolved",
+        "reason": "The historic harbour/dock extent and branch alignment require period mapping; no surrogate modern waterfront polygon was used.",
+        "evidence": [
+          "Clackmannanshire Council appraisal 6450"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:context-first-mill",
+        "decision": "unresolved",
+        "reason": "The history identifies the industrial phase but does not identify a mappable first-mill site.",
+        "evidence": [
+          "Gazetteer for Scotland history of Alva"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:memorial-carrie-johnstone-fountain",
+        "decision": "unresolved",
+        "reason": "Johnstone Park is evidenced, but no source fixes the fountain within the park; a park-wide geometry would falsely imply the fountain’s footprint.",
+        "evidence": [
+          "Clackmannanshire Council Johnstone and Cochrane Parks"
+        ]
+      },
+      {
+        "projectId": "alva-scotland",
+        "id": "curated:public-art-river-spirit",
+        "decision": "unresolved",
+        "reason": "The Council identifies Collylands Roundabout but no independently verified sculpture coordinate was obtained. The former Geograph citation was a different, Shetland image and has been removed.",
+        "evidence": [
+          "Clackmannanshire Council River Spirit page"
+        ]
+      },
+      {
+        "projectId": "culross-scotland",
+        "id": "curated:context-nts-royal-burgh-portfolio",
+        "decision": "unresolved",
+        "reason": "This is a portfolio group with several properties, not one mappable asset; it remains a non-public linking record until individual links are modelled.",
+        "evidence": [
+          "National Trust for Scotland Culross page"
+        ]
+      },
+      {
+        "projectId": "kincardine-on-forth-scotland",
+        "id": "curated:context-burgh-of-barony-1663",
+        "decision": "unresolved",
+        "reason": "The burgh history does not establish a bounded 1663 core; a historic-map interpretation remains necessary.",
+        "evidence": [
+          "Kincardine Conservation Area Appraisal",
+          "Kincardine Local Place Plan 2024"
+        ]
+      },
+      {
+        "projectId": "kincardine-on-forth-scotland",
+        "id": "curated:context-power-station",
+        "decision": "unresolved",
+        "reason": "No authoritative digitised station/reclamation footprint was located; a contemporary shoreline would be misleading after demolition and reclamation.",
+        "evidence": [
+          "Kincardine Local Place Plan 2024"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-cloth-1560s",
+        "decision": "unresolved",
+        "reason": "Early cloth manufacture is a diffuse activity, not a named site in the source.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-three-villages",
+        "decision": "unresolved",
+        "reason": "The three named settlement components need separately evidenced historic extents; a single broad polygon would invent their limits.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-water-mill",
+        "decision": "unresolved",
+        "reason": "The source dates the first water-powered mill but does not identify a mappable site.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-high-street",
+        "decision": "unresolved",
+        "reason": "The source describes expansion along and south of High Street but does not supply a defensible phase boundary.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-workers-grid",
+        "decision": "unresolved",
+        "reason": "The planned-grid extent needs a dated mapped comparison; it cannot be inferred from today’s street pattern alone.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-railway",
+        "decision": "unresolved",
+        "reason": "No period-specific Devon Valley line alignment was imported; the current network is not a substitute.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-burgh",
+        "decision": "unresolved",
+        "reason": "Police-burgh status is a civic history fact, not a discrete spatial feature in the cited source.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:context-flood-1883",
+        "decision": "unresolved",
+        "reason": "The source establishes the event but not a surveyed impact extent or a single event location.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:plaque-conn",
+        "decision": "unresolved",
+        "reason": "The IWM entry is citation-only and no independently verified precise plaque location was found.",
+        "evidence": [
+          "IWM War Memorials Register WMR 85116"
+        ]
+      },
+      {
+        "projectId": "tillicoultry-scotland",
+        "id": "curated:mem-walker-fountain",
+        "decision": "unresolved",
+        "reason": "The appraisal identifies the fountain but no authoritative coordinate or surveyed footprint was found.",
+        "evidence": [
+          "Tillicoultry Conservation Area Appraisal 6454"
+        ]
+      }
+    ]
+  },
+  "licence": {
+    "sourceCohorts": [
+      {
+        "source": "Historic Environment Scotland Listed Buildings spatial snapshot",
+        "determination": "Resolved 33 records against the locally held HES Listed Buildings dataset. The local library, source metadata and current HES Portal terms identify this spatial download as OGL v3.0 with prescribed HES and OS attribution.",
+        "evidence": [
+          "data/reference/scotland-hes-library.zip (Listed Buildings spatial snapshot, accessed 2026-07-30)",
+          "data/reference/SCOTLAND_HES_LIBRARY.md",
+          "https://portal.historicenvironment.scot/apex/f?p=PORTAL:termsandconditions",
+          "https://inspire.hes.scot/arcgis/rest/services/HES/HES_Designations/MapServer/2"
+        ],
+        "records": [
+          {
+            "projectId": "alva-scotland",
+            "id": "hes-listed-building:LB1979",
+            "name": "King O' Muirs"
+          },
+          {
+            "projectId": "alva-scotland",
+            "id": "hes-listed-building:LB52529",
+            "name": "Devon colliery pumping engine house"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB13",
+            "name": "Brucefield Mains, Brucefield House, Clackmannan"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB14",
+            "name": "Walled Garden, Brucefield House, Clackmannan"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB15",
+            "name": "Hartshaw Farm"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16",
+            "name": "Corn Mill, Hartshaw"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB1956",
+            "name": "Brucefield House, Clackmannan"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16615",
+            "name": "Entrance Gateway And Lodge, Torrie House"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16617",
+            "name": "Old Bridge, Bluther Burn, Newmills"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16626",
+            "name": "Dovecot, Fernwoodlee"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16636",
+            "name": "16 Main Street, Newmills"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16637",
+            "name": "Ryeburn, 30 Main Street, Newmills"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16638",
+            "name": "Rockvale, 81 Main Street, Low Torry"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16639",
+            "name": "Ellenbank, 91 Main Street, Low Torry"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16640",
+            "name": "Albert Cottage, 101 Main Street, Newmills"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16641",
+            "name": "Tinian House, Low Torry"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16643",
+            "name": "Farmhouse, Over Inzievar"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16648",
+            "name": "Torrie House"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16650",
+            "name": "Drybridge, Torrie House"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16651",
+            "name": "Bridge At Shawhill Plantation, Torrie House"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB16652",
+            "name": "12 Main Street, Newmills"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB17131",
+            "name": "Dovecot, Sands House"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB19120",
+            "name": "Garden, Valleyfield House"
+          },
+          {
+            "projectId": "culross-scotland",
+            "id": "hes-listed-building:LB19123",
+            "name": "Rustic Bridge 2, Bluther Burn, Valleyfield Wood, Valleyfield House"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "curated:hes-lb13856",
+            "name": "Harviestoun Castle Home Farm and Farmhouse Buildings"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "curated:hes-lb19727",
+            "name": "Shannockhill Farmhouse"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "curated:hes-lb15204",
+            "name": "Devonknowes Farmhouse"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "curated:hes-lb15205",
+            "name": "Harviestoun Castle Stable Block"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "hes-listed-building:LB1935",
+            "name": "East Lodge, Harviestoun Road, Dollar"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "hes-listed-building:LB1936",
+            "name": "Wester Sheardale"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "hes-listed-building:LB1995",
+            "name": "Stables, Alva House"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "hes-listed-building:LB51095",
+            "name": "Icehouse, Alva Woodland Park"
+          },
+          {
+            "projectId": "tillicoultry-scotland",
+            "id": "hes-listed-building:LB52529",
+            "name": "Devon colliery pumping engine house"
+          }
+        ]
+      },
+      {
+        "source": "Women of Scotland memorial record",
+        "determination": "No reuse licence found; retain only a citation link. The Culross plaque’s public coordinate/metadata relies on Wikidata structured data under CC0.",
+        "evidence": [
+          "https://www.wikidata.org/wiki/Q123250198",
+          "https://womenofscotland.org.uk/memorials/plaque-alleged-witches-culross"
+        ],
+        "records": [
+          {
+            "projectId": "culross-scotland",
+            "id": "community:culross-witch-memorial-plaque",
+            "name": "Culross witch memorial plaque"
+          }
+        ]
+      },
+      {
+        "source": "Clackmannanshire Council documents and pages",
+        "determination": "Used as evidence/citation only. The Council reuse page requires a reuse request where needed and flags third-party material; no Council text or media is redistributed by these geometry remediations.",
+        "evidence": [
+          "https://www.clacks.gov.uk/regulation/reuseofpublicsectorinfo/"
+        ]
+      }
+    ]
+  }
+}

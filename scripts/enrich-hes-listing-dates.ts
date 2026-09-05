@@ -14,9 +14,7 @@ interface DateEvidence {
   sourceLicence?: string;
   sourceNotes?: string;
   sourceReliability?: SourceRecord['reliability'];
-  additionalSources?: Array<
-    Omit<SourceRecord, 'accessedAt'> & { sourceRecordId?: string }
-  >;
+  additionalSources?: Array<Omit<SourceRecord, 'accessedAt'> & { sourceRecordId?: string }>;
   documentedDateText: string;
   earliestPossibleYear?: number;
   latestPossibleYear?: number;
@@ -454,7 +452,7 @@ const dateEvidence: DateEvidence[] = [
     sourceLicence:
       'Website content consulted as a first-party reference; retain the source link and do not redistribute its text.',
     sourceNotes:
-      'The club\'s published history records Recreation Park as its home from 1895. The official NRHE record independently classifies the ground as 19th century.',
+      "The club's published history records Recreation Park as its home from 1895. The official NRHE record independently classifies the ground as 19th century.",
     sourceReliability: 'secondary',
     documentedDateText: 'Recreation Park in use by Alloa Athletic from 1895',
     earliestPossibleYear: 1895,

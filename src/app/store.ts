@@ -1,12 +1,55 @@
 import { create } from 'zustand';
 import type { HeritageFeature, HistoricMapLayer, ProjectPackage } from '../domain/models';
-import { alloaPackage } from '../data/alloa';
+import {
+  loadProjectCatalogue,
+  loadProjectPackage,
+  type PublishedProjectSummary,
+} from '../data/projectClient';
 import { withLocalMapReviews } from '../data/localMapReviews';
 import { hasHistoricTimelineDate } from '../domain/timeline';
 
 export type AppMode = 'explore' | 'sources' | 'methodology' | 'data-review';
+type LoadStatus = 'idle' | 'loading' | 'ready' | 'error';
+type HistoryMode = 'none' | 'push' | 'replace';
+
+const appModes = new Set<AppMode>(['explore', 'sources', 'methodology', 'data-review']);
+let packageLoadSequence = 0;
+
+function locationState(): { mode: AppMode; townId?: string } {
+  if (typeof window === 'undefined') return { mode: 'explore' };
+  const parameters = new URLSearchParams(window.location.search);
+  const requestedMode = parameters.get('view');
+  return {
+    mode:
+      requestedMode && appModes.has(requestedMode as AppMode)
+        ? (requestedMode as AppMode)
+        : 'explore',
+    townId: parameters.get('town') || undefined,
+  };
+}
+
+function updateLocation(townId: string | undefined, mode: AppMode, historyMode: HistoryMode): void {
+  if (typeof window === 'undefined' || historyMode === 'none') return;
+  const url = new URL(window.location.href);
+  if (townId) url.searchParams.set('town', townId);
+  else url.searchParams.delete('town');
+  if (mode === 'explore') url.searchParams.delete('view');
+  else url.searchParams.set('view', mode);
+  window.history[historyMode === 'replace' ? 'replaceState' : 'pushState']({}, '', url);
+}
+
+function loadErrorMessage(error: unknown): string {
+  return error instanceof Error
+    ? error.message
+    : 'The town guide could not be loaded. Please try again.';
+}
+
 interface ExplorerState {
-  package: ProjectPackage;
+  package?: ProjectPackage;
+  publishedProjects: PublishedProjectSummary[];
+  loadStatus: LoadStatus;
+  loadError?: string;
+  requestedProjectId?: string;
   mode: AppMode;
   selectedFeature?: HeritageFeature;
   selectedYear: number;
@@ -36,7 +79,10 @@ interface ExplorerState {
   showOsmLegend: boolean;
   archaeologyOnly: boolean;
   communityLayersOnly: boolean;
-  setPackage(projectPackage: ProjectPackage): void;
+  initialise(): Promise<void>;
+  loadPackage(id: string, historyMode?: HistoryMode): Promise<void>;
+  retryLoad(): Promise<void>;
+  syncLocation(): void;
   setMode(mode: AppMode): void;
   setYear(year: number): void;
   selectFeature(feature?: HeritageFeature): void;
@@ -68,8 +114,10 @@ interface ExplorerState {
   setCommunityLayersOnly(value: boolean): void;
 }
 export const useExplorerStore = create<ExplorerState>((set) => ({
-  package: withLocalMapReviews(alloaPackage),
-  mode: 'explore',
+  package: undefined,
+  publishedProjects: [],
+  loadStatus: 'idle',
+  mode: locationState().mode,
   selectedYear: 1900,
   query: '',
   visibleTypes: [],
@@ -96,37 +144,91 @@ export const useExplorerStore = create<ExplorerState>((set) => ({
   showOsmLegend: false,
   archaeologyOnly: false,
   communityLayersOnly: false,
-  setPackage: (projectPackage) => {
-    const packageWithReviews = withLocalMapReviews(projectPackage);
-    set({
-      package: packageWithReviews,
-      selectedFeature: undefined,
-      activeMap: undefined,
-      showHesDesignations: false,
-      showPublicArt: false,
-      showPlaquesAndMemorials: false,
-      showCurrentContext: false,
-      showOsmFood: false,
-      showOsmPicnic: false,
-      showOsmArt: false,
-      showOsmMemorials: false,
-      showOsmHistoricPlaces: false,
-      showOsmLeisure: false,
-      showOsmVisitor: false,
-      showOsmAmenities: false,
-      showOsmParking: false,
-      showOsmNature: false,
-      showHistoricLegend: true,
-      showOsmLegend: false,
-      archaeologyOnly: false,
-      communityLayersOnly: false,
-      showAreaPolygons: true,
-      query: '',
-      visibleTypes: [],
-      selectedYear: packageWithReviews.project.timelineEnd ?? new Date().getFullYear(),
-    });
+  initialise: async () => {
+    set({ loadStatus: 'loading', loadError: undefined });
+    try {
+      const publishedProjects = await loadProjectCatalogue();
+      const requestedTown = locationState().townId;
+      const requestedProject = publishedProjects.find((project) => project.id === requestedTown);
+      const selectedProject =
+        requestedProject ??
+        publishedProjects.find((project) => project.id === 'alloa-scotland') ??
+        publishedProjects[0];
+      if (!selectedProject) throw new Error('No published town guides are available.');
+      set({ publishedProjects });
+      await useExplorerStore
+        .getState()
+        .loadPackage(selectedProject.id, requestedTown && !requestedProject ? 'replace' : 'none');
+    } catch (error) {
+      set({ loadStatus: 'error', loadError: loadErrorMessage(error) });
+    }
   },
-  setMode: (mode) => set({ mode }),
+  loadPackage: async (id, historyMode = 'push') => {
+    const sequence = ++packageLoadSequence;
+    set({ loadStatus: 'loading', loadError: undefined, requestedProjectId: id });
+    try {
+      const packageWithReviews = withLocalMapReviews(await loadProjectPackage(id));
+      if (sequence !== packageLoadSequence) return;
+      set({
+        package: packageWithReviews,
+        loadStatus: 'ready',
+        loadError: undefined,
+        requestedProjectId: undefined,
+        selectedFeature: undefined,
+        activeMap: undefined,
+        showHesDesignations: false,
+        showPublicArt: false,
+        showPlaquesAndMemorials: false,
+        showCurrentContext: false,
+        showOsmFood: false,
+        showOsmPicnic: false,
+        showOsmArt: false,
+        showOsmMemorials: false,
+        showOsmHistoricPlaces: false,
+        showOsmLeisure: false,
+        showOsmVisitor: false,
+        showOsmAmenities: false,
+        showOsmParking: false,
+        showOsmNature: false,
+        showHistoricLegend: true,
+        showOsmLegend: false,
+        archaeologyOnly: false,
+        communityLayersOnly: false,
+        showAreaPolygons: true,
+        query: '',
+        visibleTypes: [],
+        selectedYear: packageWithReviews.project.timelineEnd ?? new Date().getFullYear(),
+      });
+      updateLocation(packageWithReviews.project.id, useExplorerStore.getState().mode, historyMode);
+    } catch (error) {
+      if (sequence !== packageLoadSequence) return;
+      set({ loadStatus: 'error', loadError: loadErrorMessage(error) });
+    }
+  },
+  retryLoad: async () => {
+    const state = useExplorerStore.getState();
+    if (state.requestedProjectId) {
+      await state.loadPackage(state.requestedProjectId, state.package ? 'push' : 'none');
+      return;
+    }
+    await state.initialise();
+  },
+  syncLocation: () => {
+    const requested = locationState();
+    set({ mode: requested.mode });
+    const state = useExplorerStore.getState();
+    const selected = requested.townId
+      ? state.publishedProjects.find((project) => project.id === requested.townId)
+      : (state.publishedProjects.find((project) => project.id === 'alloa-scotland') ??
+        state.publishedProjects[0]);
+    if (selected && selected.id !== state.package?.project.id) {
+      void state.loadPackage(selected.id, 'none');
+    }
+  },
+  setMode: (mode) => {
+    set({ mode });
+    updateLocation(useExplorerStore.getState().package?.project.id, mode, 'push');
+  },
   setYear: (selectedYear) => set({ selectedYear }),
   selectFeature: (selectedFeature) => set({ selectedFeature }),
   setQuery: (query) => set({ query }),
@@ -187,3 +289,10 @@ export const useExplorerStore = create<ExplorerState>((set) => ({
         : { communityLayersOnly },
     ),
 }));
+
+export function useLoadedProjectPackage(): ProjectPackage {
+  const projectPackage = useExplorerStore((state) => state.package);
+  if (!projectPackage)
+    throw new Error('A town guide must be loaded before rendering the explorer.');
+  return projectPackage;
+}

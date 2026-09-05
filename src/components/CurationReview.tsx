@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useExplorerStore } from '../app/store';
+import { useExplorerStore, useLoadedProjectPackage } from '../app/store';
 import {
   buildReviewQueue,
   type LocalReviewDecision,
@@ -10,6 +10,7 @@ import { dateWording } from '../domain/timeline';
 
 const filters: Array<{ value: ReviewFilter; label: string }> = [
   { value: 'all', label: 'All open review items' },
+  { value: 'publication', label: 'Publication blockers / provisional' },
   { value: 'date', label: 'Date evidence needed' },
   { value: 'location', label: 'Location / geometry check' },
   { value: 'unreviewed', label: 'Not curator-reviewed' },
@@ -35,7 +36,7 @@ function statusLabel(status?: LocalReviewStatus): string {
 }
 
 export function CurationReview() {
-  const pkg = useExplorerStore((state) => state.package);
+  const pkg = useLoadedProjectPackage();
   const selectFeature = useExplorerStore((state) => state.selectFeature);
   const setMode = useExplorerStore((state) => state.setMode);
   const [filter, setFilter] = useState<ReviewFilter>('all');
@@ -71,7 +72,12 @@ export function CurationReview() {
   const persist = (featureId: string, status: LocalReviewStatus) => {
     const next = {
       ...decisions,
-      [featureId]: { featureId, status, note: note.trim() || undefined, updatedAt: new Date().toISOString() },
+      [featureId]: {
+        featureId,
+        status,
+        note: note.trim() || undefined,
+        updatedAt: new Date().toISOString(),
+      },
     };
     setDecisions(next);
     window.localStorage.setItem(storageKey(pkg.project.id), JSON.stringify(Object.values(next)));
@@ -109,10 +115,22 @@ export function CurationReview() {
         Triage source-backed date and location checks for {pkg.project.name}. Local decisions stay
         in this browser until you download and apply them through the curation workflow.
       </p>
+      {pkg.publicationSummary &&
+        pkg.publicationSummary.totalRecords > pkg.publicationSummary.publishable && (
+          <p className="notice">
+            Public delivery includes {pkg.publicationSummary.publishable} of{' '}
+            {pkg.publicationSummary.totalRecords} retained records. Review the repository
+            publication audit for provisional, withheld, and blocked record IDs; those records are
+            not exposed by the public API.
+          </p>
+        )}
       <article className="card review-controls">
         <label>
           Review queue
-          <select value={filter} onChange={(event) => setFilter(event.target.value as ReviewFilter)}>
+          <select
+            value={filter}
+            onChange={(event) => setFilter(event.target.value as ReviewFilter)}
+          >
             {filters.map((item) => (
               <option key={item.value} value={item.value}>
                 {item.label}
@@ -131,7 +149,10 @@ export function CurationReview() {
         <button type="button" onClick={download} disabled={!Object.keys(decisions).length}>
           Download local decisions
         </button>
-        <a href={`/api/projects/${encodeURIComponent(pkg.project.id)}/exports/undated-heritage-review.csv`} download>
+        <a
+          href={`/api/projects/${encodeURIComponent(pkg.project.id)}/exports/undated-heritage-review.csv`}
+          download
+        >
           Download undated heritage CSV
         </a>
       </article>
@@ -178,10 +199,13 @@ export function CurationReview() {
                 <dd>{selected.feature.dateBasis.replaceAll('_', ' ')}</dd>
                 <dt>Location</dt>
                 <dd>
-                  {selected.feature.locationType.replaceAll('_', ' ')} ({selected.feature.locationConfidence})
+                  {selected.feature.locationType.replaceAll('_', ' ')} (
+                  {selected.feature.locationConfidence})
                 </dd>
                 <dt>Published review status</dt>
                 <dd>{selected.feature.reviewed ? 'Reviewed' : 'Unreviewed'}</dd>
+                <dt>Effective publication state</dt>
+                <dd>{selected.publication.effectiveState.replaceAll('_', ' ')}</dd>
               </dl>
               <h3>Why this is in the queue</h3>
               <ul className="review-list">
@@ -202,7 +226,12 @@ export function CurationReview() {
                     ) : (
                       source.sourceName
                     )}
-                    {source.quotedDateText && <><br />{source.quotedDateText}</>}
+                    {source.quotedDateText && (
+                      <>
+                        <br />
+                        {source.quotedDateText}
+                      </>
+                    )}
                   </p>
                 ))
               ) : (
@@ -218,7 +247,10 @@ export function CurationReview() {
                 />
               </label>
               <div className="review-actions">
-                <button type="button" onClick={() => persist(selected.feature.id, 'needs_research')}>
+                <button
+                  type="button"
+                  onClick={() => persist(selected.feature.id, 'needs_research')}
+                >
                   Save research note
                 </button>
                 <button type="button" onClick={() => persist(selected.feature.id, 'approved')}>

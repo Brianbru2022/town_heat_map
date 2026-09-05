@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import maplibregl, { type Map } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { useExplorerStore } from '../app/store';
+import { useExplorerStore, useLoadedProjectPackage } from '../app/store';
 import { historicCharacterScore } from '../domain/scoring';
 import { featureTimelineState, hasHistoricTimelineDate } from '../domain/timeline';
+import { mapAttribution } from '../domain/attribution';
 import {
   isArchaeologyEvidenceFeature,
   isMapCatalogueRecord,
@@ -765,7 +766,7 @@ export function MapCanvas() {
   const mapRef = useRef<Map | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [overlayError, setOverlayError] = useState<string | null>(null);
-  const pkg = useExplorerStore((state) => state.package);
+  const pkg = useLoadedProjectPackage();
   const year = useExplorerStore((state) => state.selectedYear);
   const possible = useExplorerStore((state) => state.possible);
   const excludeUndated = useExplorerStore((state) => state.excludeUndated);
@@ -1184,12 +1185,14 @@ export function MapCanvas() {
       'historic-character-heatmap',
     );
   }, [pkg.historicMaps, showHesDesignations, communityLayersOnly, mapReady]);
+  const attribution = mapAttribution(import.meta.env.VITE_MAP_ATTRIBUTION);
   return (
     <div className="map-wrap">
       <div ref={container} className="map" aria-label="Historic map" />
       <div className="attribution">
+        {attribution.provider && <span>{attribution.provider} · </span>}
         <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
-          {import.meta.env.VITE_MAP_ATTRIBUTION || 'OpenStreetMap contributors'}
+          {attribution.openStreetMap}
         </a>
       </div>
       {(showHistoricLegend || showHesDesignations || showOsmLegend) && (

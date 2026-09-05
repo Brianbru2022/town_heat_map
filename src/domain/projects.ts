@@ -1,9 +1,13 @@
 import type { ProjectPackage, TownProject } from './models';
 
 const collator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
+type PublishedProjectIdentity = Pick<TownProject, 'country' | 'region' | 'locality' | 'name'>;
 
 /** Public catalogue order: country, region, then the town/locality name. */
-export function comparePublishedProjects(a: TownProject, b: TownProject): number {
+export function comparePublishedProjects(
+  a: PublishedProjectIdentity,
+  b: PublishedProjectIdentity,
+): number {
   return (
     collator.compare(a.country, b.country) ||
     collator.compare(a.region ?? '', b.region ?? '') ||
@@ -12,7 +16,9 @@ export function comparePublishedProjects(a: TownProject, b: TownProject): number
   );
 }
 
-export function sortPublishedProjects<T extends TownProject>(projects: readonly T[]): T[] {
+export function sortPublishedProjects<T extends PublishedProjectIdentity>(
+  projects: readonly T[],
+): T[] {
   return [...projects].sort(comparePublishedProjects);
 }
 

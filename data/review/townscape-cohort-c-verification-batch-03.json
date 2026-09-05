@@ -1,0 +1,130 @@
+{
+  "projectId": "biggar-scotland",
+  "checkedAt": "2026-09-04T00:55:58.115Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-10550528510",
+      "currentName": "The Barony",
+      "outcome": "operating",
+      "source": "https://www.barony-biggar.co.uk/home/",
+      "note": "Current operator site accepts bookings at 55 High Street, Biggar.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-10550529710",
+      "currentName": "Merry + Bright",
+      "outcome": "provisional",
+      "note": "The online shop is current but the inspected page does not establish this Biggar premises.",
+      "effectiveState": "provisional",
+      "publicClaims": []
+    },
+    {
+      "recordId": "osm-community:node-10550529712",
+      "currentName": "Zest sandwich bar",
+      "outcome": "operating",
+      "source": "https://restaurantguru.com/Zest-Biggar",
+      "note": "Recent 2026 listing and reviews identify Zest at 69 High Street, Biggar.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-10550530110",
+      "currentName": "The Coffee Spot",
+      "outcome": "operating",
+      "source": "https://www.yell.com/biz/the-coffee-spot-biggar-2476651/",
+      "note": "Current directory listing identifies The Coffee Spot at 152 High Street, Biggar.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-10553226217",
+      "currentName": "The Elphinstone Hotel",
+      "outcome": "operating",
+      "source": "https://www.elphinstonehotel.co.uk/",
+      "note": "Current operator site offers restaurant and room booking at 145 High Street, Biggar.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-10934143056",
+      "currentName": "Aroma",
+      "outcome": "operating",
+      "source": "https://www.tripadvisor.com/Restaurants-g551840-c8-Biggar_South_Lanarkshire_Scotland.html",
+      "note": "Current 2026 directory lists Aroma Cafe as open in Biggar.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-10937125607",
+      "currentName": "The Oriental",
+      "outcome": "operating",
+      "source": "https://restaurantguru.com/The-Oriental-Biggar",
+      "note": "Current 2026 listing identifies The Oriental as open in Biggar.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    }
+  ]
+}

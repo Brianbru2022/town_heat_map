@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { alloaPackage } from '../data/alloa';
 import { buildReviewQueue } from './review';
 import type { HeritageFeature, ProjectPackage, ValidationResult } from './models';
 
@@ -10,14 +11,25 @@ const feature = (overrides: Partial<HeritageFeature> = {}): HeritageFeature => (
   countryCode: 'GB',
   featureType: 'other',
   locationType: 'exact',
-  geometry: { type: 'Point', coordinates: [-3.7, 56.1] },
+  geometry: { type: 'Point', coordinates: [-3.79, 56.117] },
   documentedDateText: 'Built 1900',
   earliestPossibleYear: 1900,
   latestPossibleYear: 1900,
   dateBasis: 'documented_construction',
   dateConfidence: 'high',
   locationConfidence: 'high',
-  sourceRecords: [],
+  sourceRecords: [
+    {
+      sourceName: 'Test source',
+      sourceOrganisation: 'Test archive',
+      sourceRecordId: 'TEST-1',
+      sourceUrl: 'https://example.com/test',
+      accessedAt: '2026-01-01T00:00:00.000Z',
+      licence: 'Open Government Licence v3.0',
+      reliability: 'archival',
+    },
+  ],
+  licence: 'Open Government Licence v3.0',
   tags: [],
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z',
@@ -25,8 +37,19 @@ const feature = (overrides: Partial<HeritageFeature> = {}): HeritageFeature => (
   ...overrides,
 });
 
-const project = (features: HeritageFeature[], validation: ValidationResult[] = []): ProjectPackage =>
-  ({ features, validation }) as unknown as ProjectPackage;
+const project = (
+  features: HeritageFeature[],
+  validation: ValidationResult[] = [],
+): ProjectPackage =>
+  ({
+    project: alloaPackage.project,
+    features,
+    sources: [],
+    historicMaps: [],
+    settlementPolygons: [],
+    validation,
+    publication: { state: 'publishable' },
+  }) as unknown as ProjectPackage;
 
 describe('review queue', () => {
   it('selects date, location and validation review records without treating reviewed records as open', () => {
@@ -56,9 +79,10 @@ describe('review queue', () => {
       dateConfidence: 'unknown',
       reviewed: false,
     });
-    const pkg = project([dated, undated, location, excluded], [
-      { recordId: 'feature:3', severity: 'warning', field: 'geometry', message: 'Check point.' },
-    ]);
+    const pkg = project(
+      [dated, undated, location, excluded],
+      [{ recordId: 'feature:3', severity: 'warning', field: 'geometry', message: 'Check point.' }],
+    );
 
     expect(buildReviewQueue(pkg, 'date').map((item) => item.feature.id)).toEqual(['feature:2']);
     expect(buildReviewQueue(pkg, 'location').map((item) => item.feature.id)).toEqual(['feature:3']);

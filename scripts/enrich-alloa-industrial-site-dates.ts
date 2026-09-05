@@ -1,6 +1,11 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import type { DateBasis, HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
+import type {
+  DateBasis,
+  HeritageFeature,
+  ProjectPackage,
+  SourceRecord,
+} from '../src/domain/models';
 import { validateFeatures } from '../src/domain/validation';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
@@ -39,7 +44,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'documented mine-operation range',
     note: 'Industrial date review completed from a named local-history mine register. The dates refer to colliery operation, not a single construction phase.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, 'Lists Devon Colliery as operating from 1879 to March 1960.'),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      'Lists Devon Colliery as operating from 1879 to March 1960.',
+    ),
   },
   {
     id: 'nrhe:133239',
@@ -49,7 +58,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'documented mine-operation range',
     note: 'Industrial date review completed from a named local-history mine register. The dates refer to the identified Meta / Devon No. 3 colliery operation.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, 'Lists Devon No. 3 (Meta) as operating from 1923 to March 1959.'),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      'Lists Devon No. 3 (Meta) as operating from 1923 to March 1959.',
+    ),
   },
   {
     id: 'nrhe:130817',
@@ -59,7 +72,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'documented mine-operation range',
     note: 'Industrial date review completed from a named local-history mine register. The dates refer to operation of Forthbank 1 and 2, not every associated structure.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, 'Lists Forthbank as operating from 1947 to January 1958.'),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      'Lists Forthbank as operating from 1947 to January 1958.',
+    ),
   },
   {
     id: 'nrhe:130821',
@@ -69,7 +86,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'documented mine-operation range',
     note: 'Industrial date review completed from a named local-history mine register. The dates refer to colliery operation, not a single construction phase.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, 'Lists Glenochil as operating from 1952 to June 1962.'),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      'Lists Glenochil as operating from 1952 to June 1962.',
+    ),
   },
   {
     id: 'nrhe:130823',
@@ -79,7 +100,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'documented mine-operation range',
     note: 'Industrial date review completed from a named local-history mine register. The dates refer to King o’ Muirs No. 1 colliery operation.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, "Lists King o' Muirs No. 1 as operating from 1938 to March 1954."),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      "Lists King o' Muirs No. 1 as operating from 1938 to March 1954.",
+    ),
   },
   {
     id: 'nrhe:133242',
@@ -89,7 +114,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'partially documented multi-component operation range',
     note: 'Industrial date review completed from a named local-history mine register. The source dates No. 2 only; the public wording keeps the No. 3 component explicitly unresolved.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, "Lists King o' Muirs No. 2 as operating from 1950 to May 1957."),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      "Lists King o' Muirs No. 2 as operating from 1950 to May 1957.",
+    ),
   },
   {
     id: 'nrhe:279000',
@@ -99,7 +128,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'documented mine-operation range',
     note: 'Industrial date review completed from a named local-history mine register. The dates refer to operation of Jellyholm pit near the west end of Gartmorn Dam.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, 'Lists Jellyholm Colliery as started in 1887 and closed in 1921.'),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      'Lists Jellyholm Colliery as started in 1887 and closed in 1921.',
+    ),
   },
   {
     id: 'nrhe:111966',
@@ -109,7 +142,11 @@ const reviews: IndustrialReview[] = [
     basis: 'documented_date_range',
     precision: 'documented early operational milestones',
     note: 'Industrial date review completed from a named local-history mine register. The range records the engine-pit and transport milestones for the colliery site, not construction dates for every later component.',
-    source: localHistorySource('Clackmannanshire mines register', minesUrl, 'States that Collyland’s engine pit was sunk in 1764 and it received a waggonway connection in 1771.'),
+    source: localHistorySource(
+      'Clackmannanshire mines register',
+      minesUrl,
+      'States that Collyland’s engine pit was sunk in 1764 and it received a waggonway connection in 1771.',
+    ),
   },
   {
     id: 'nrhe:111972',
@@ -133,7 +170,11 @@ const reviews: IndustrialReview[] = [
     basis: 'present_by',
     precision: 'documented present-by year',
     note: 'Industrial date review completed from a named local-history mines account. It establishes brick and tile works at the site by 1873, not a construction date.',
-    source: localHistorySource('Clackmannanshire mines historical account', minesUrl, 'Records the Hillton Fire Clay Brick and Tile works on the site in 1873.'),
+    source: localHistorySource(
+      'Clackmannanshire mines historical account',
+      minesUrl,
+      'Records the Hillton Fire Clay Brick and Tile works on the site in 1873.',
+    ),
   },
 ];
 

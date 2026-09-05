@@ -14,9 +14,12 @@ type LocalityFeature = Feature<Polygon | MultiPolygon, { code?: string; name?: s
 type ShapeCollection = { features: LocalityFeature[] };
 
 const parsed = (await shp(await readFile(localityZip))) as ShapeCollection | ShapeCollection[];
-const localities = (Array.isArray(parsed) ? parsed : [parsed]).flatMap((collection) => collection.features);
+const localities = (Array.isArray(parsed) ? parsed : [parsed]).flatMap(
+  (collection) => collection.features,
+);
 const locality = localities.find(
-  (feature) => feature.properties?.name?.trim().toLocaleLowerCase() === localityName.toLocaleLowerCase(),
+  (feature) =>
+    feature.properties?.name?.trim().toLocaleLowerCase() === localityName.toLocaleLowerCase(),
 );
 if (!locality) throw new Error(`NRS 2022 locality '${localityName}' was not found.`);
 
@@ -62,6 +65,10 @@ const boundary: Feature<Polygon | MultiPolygon, Record<string, unknown>> = {
 };
 
 const pkg: ProjectPackage = {
+  publication: {
+    state: 'provisional',
+    notes: 'New package; publication approval has not been completed.',
+  },
   project: {
     id: 'quarriers-village-scotland',
     name: localityName,

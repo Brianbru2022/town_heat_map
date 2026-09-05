@@ -1,6 +1,12 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import type { Confidence, DateBasis, HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
+import type {
+  Confidence,
+  DateBasis,
+  HeritageFeature,
+  ProjectPackage,
+  SourceRecord,
+} from '../src/domain/models';
 import { validateFeatures } from '../src/domain/validation';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
@@ -282,4 +288,6 @@ pkg.validation = validateFeatures(pkg.project, pkg.features);
 const errors = pkg.validation.filter((result) => result.severity === 'error');
 if (errors.length) throw new Error(`Refusing to write ${errors.length} validation error(s).`);
 await writeFile(projectPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
-console.log(`Added reviewed source-backed date evidence to ${reviews.length} Alloa site record(s).`);
+console.log(
+  `Added reviewed source-backed date evidence to ${reviews.length} Alloa site record(s).`,
+);

@@ -42,8 +42,7 @@ pkg.project.boundary = {
 pkg.project.boundarySource =
   'National Records of Scotland Civil Parish Dataset (1930 civil-parish boundary; downloaded from NRS Geography Products).';
 pkg.project.boundaryConfidence = 'high';
-pkg.project.researchNotes =
-  `The project extent is the official NRS ${String(boundary.properties.name)} civil-parish boundary. ${pkg.project.locality} is the historic town focus; conservation areas and other evidence layers are not substituted for the parish boundary.`;
+pkg.project.researchNotes = `The project extent is the official NRS ${String(boundary.properties.name)} civil-parish boundary. ${pkg.project.locality} is the historic town focus; conservation areas and other evidence layers are not substituted for the parish boundary.`;
 pkg.validation = validateFeatures(pkg.project, pkg.features);
 const errors = pkg.validation.filter((item) => item.severity === 'error');
 if (errors.length) throw new Error(`Refusing to write ${errors.length} validation error(s).`);

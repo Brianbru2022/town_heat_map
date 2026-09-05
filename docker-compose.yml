@@ -10,6 +10,8 @@ services:
     volumes: ['.:/app']
     environment:
       PORT: 3001
+      NODE_ENV: production
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
       DATABASE_URL: postgres://historic:historic@postgis:5432/historic_towns
     ports: ['3001:3001']
     depends_on:

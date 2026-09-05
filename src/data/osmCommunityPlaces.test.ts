@@ -7,11 +7,17 @@ describe('current OpenStreetMap community places', () => {
     for (const pkg of publishedProjectPackages) {
       const places = pkg.features.filter((feature) => feature.tags.includes('osm-community-place'));
       expect(places.length, pkg.project.name).toBeGreaterThan(0);
-      expect(new Set(places.map((feature) => feature.id)).size, pkg.project.name).toBe(places.length);
+      expect(new Set(places.map((feature) => feature.id)).size, pkg.project.name).toBe(
+        places.length,
+      );
       expect(pkg.sources.some((source) => source.id === 'osm-current-community-places')).toBe(true);
       for (const feature of places) {
         expect(feature.tags).toContain('current-context');
-        expect(feature.sourceRecords.some((source) => source.sourceRecordId?.match(/^(node|way|relation)\/\d+$/))).toBe(true);
+        expect(
+          feature.sourceRecords.some((source) =>
+            source.sourceRecordId?.match(/^(node|way|relation)\/\d+$/),
+          ),
+        ).toBe(true);
         expect(historicCharacterScore(feature, pkg.project.methodology)).toBe(0);
       }
     }

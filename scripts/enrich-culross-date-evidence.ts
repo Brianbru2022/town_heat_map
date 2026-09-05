@@ -145,7 +145,10 @@ function nrhePeriodDate(feature: HeritageFeature): ExtractedDate | undefined {
   if (/\bbronze\s+age\b/i.test(classification)) ranges.push([-2500, -801]);
   if (/\biron\s+age\b/i.test(classification)) ranges.push([-800, 399]);
   if (/\broman\b/i.test(classification)) ranges.push([43, 410]);
-  if (/\bprehistoric\b/i.test(classification) && !/\bneolithic|bronze\s+age|iron\s+age\b/i.test(classification))
+  if (
+    /\bprehistoric\b/i.test(classification) &&
+    !/\bneolithic|bronze\s+age|iron\s+age\b/i.test(classification)
+  )
     ranges.push([-4000, 399]);
   if (/\bmodern\b/i.test(classification)) ranges.push([1900, 1999]);
   if (!ranges.length) return undefined;

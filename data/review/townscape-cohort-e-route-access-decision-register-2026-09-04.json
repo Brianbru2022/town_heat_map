@@ -1,0 +1,445 @@
+{
+  "registerType": "controlled Cohort E route/access/outdoor decision register",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "policy": "CLAIM_EVIDENCE_POLICY.md",
+  "sourceTriage": {
+    "path": "data/review/townscape-provisional-verification-triage-2026-09-03.json",
+    "exactCohort": "E",
+    "exactRecords": 29,
+    "membershipSha256": "963970a1bb5922e6f6c7271bba96c464a9ba22c99e0849c0812ece3794a8497f",
+    "inputSha256": "388e68ad30d5b97ef333b0081ce777e022f392af794abd49142b8b11e74a3624"
+  },
+  "summary": {
+    "tierMMappedContext": 24,
+    "independentlyVerifiedRouteOrAccess": 5,
+    "tierEEditorialSupported": 0,
+    "remainingProvisional": 0,
+    "requiringReview": 0,
+    "withheldOrOutOfScope": 0,
+    "unsupportedClaimsSuppressed": [
+      "public_access except five cited claims",
+      "route status except Falls of Dochart access claim",
+      "closures/restrictions at uncorrelated points",
+      "safety",
+      "accessibility",
+      "dog suitability",
+      "difficulty",
+      "facilities",
+      "visitor recommendation",
+      "editorial description"
+    ],
+    "evidenceUsage": {
+      "primaryOrAuthoritativeClaimEvidence": 5,
+      "secondaryClaimEvidence": 0,
+      "currentResearchSourcesRecorded": 29
+    },
+    "publicationTotals": {
+      "before": {
+        "publishable": 0,
+        "provisional": 29,
+        "verified": 0,
+        "requires_review": 0,
+        "withheld": 0
+      },
+      "after": {
+        "publishable": 29,
+        "provisional": 0,
+        "verified": 0,
+        "requires_review": 0,
+        "withheld": 0
+      }
+    }
+  },
+  "contradictoryOrStaleEvidence": [
+    {
+      "recordIds": [
+        "osm-community:node-11807355552",
+        "osm-community:node-11822229938",
+        "osm-community:node-1446890832"
+      ],
+      "source": "https://www.clacks.gov.uk/visiting/tillicoultryglen/",
+      "note": "Current council closure applies to part of Tillicoultry Glen path, but current evidence does not correlate the restriction to each anonymous waterfall pin; all remain Tier M only."
+    },
+    {
+      "recordId": "osm-community:node-1861230548",
+      "source": "https://www.clacks.gov.uk/form/1128.pdf",
+      "note": "Council asset register calls Alloa Docks non-operational; that is not proof of viewpoint access or closure, so no access claim is published."
+    }
+  ],
+  "rulesApplied": [
+    "Each Cohort E OSM object was checked live against the OSM API for mapped identity context.",
+    "OSM supports Tier M only and is not used to establish legal access, route status, safety, accessibility, difficulty or recommendation.",
+    "Every stronger claim has claim-specific current authority/operator evidence and a 180-day review expiry.",
+    "No visitor score, town rating or scoring methodology was changed."
+  ],
+  "decisions": [
+    {
+      "id": "osm-community:node-1861230548",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "The council asset record describes Alloa Docks as non-operational land; it does not establish visitor access to this mapped viewpoint."
+      },
+      "claimNote": "Live mapped identity retained only; asset-status evidence is not an access permission."
+    },
+    {
+      "id": "osm-park:way-81291580",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current authority route or access page was found for this exact Earlsfield polygon."
+      },
+      "claimNote": "Live mapped park context only; no access, facilities or suitability claim."
+    },
+    {
+      "id": "osm-park:way-92352276",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Greenfield Park",
+        "url": "https://www.clacks.gov.uk/culture/greenfieldpark/",
+        "reliability": "local_authority",
+        "finding": "Current council visitor page identifies Greenfield Park in Alloa and describes it as a public park."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F public-park access only; opening hours, facilities, accessibility and visitor recommendation are not claimed."
+    },
+    {
+      "id": "osm-park:way-92352291",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current access authority page was found for this exact bowling-club polygon."
+      },
+      "claimNote": "Live mapped context only; a sports-ground label does not establish public access."
+    },
+    {
+      "id": "osm-park:way-94132373",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire cricket",
+        "url": "https://www.clacks.gov.uk/learning/cricket/",
+        "reliability": "local_authority",
+        "finding": "The council identifies the cricket club at The Arns, but does not provide a current public-access condition for this polygon."
+      },
+      "claimNote": "Live mapped context only; no general public-access or event-access claim."
+    },
+    {
+      "id": "osm-community:node-5061863243",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Core Paths Plan",
+        "url": "https://www.clacks.gov.uk/document/2345.pdf",
+        "reliability": "local_authority",
+        "finding": "Authority mapping provides area context but does not establish access to this exact viewpoint point."
+      },
+      "claimNote": "Live mapped viewpoint context only; no route, safety or access claim."
+    },
+    {
+      "id": "osm-park:way-166100727",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Johnstone and Cochrane Parks",
+        "url": "https://www.clacks.gov.uk/culture/johnstonecochraneparks/",
+        "reliability": "local_authority",
+        "finding": "Current council page identifies Cochrane Park, Alva as a public park."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F public-park access only; no facilities, accessibility or recommendation claim."
+    },
+    {
+      "id": "osm-park:way-423424487",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Johnstone and Cochrane Parks",
+        "url": "https://www.clacks.gov.uk/culture/johnstonecochraneparks/",
+        "reliability": "local_authority",
+        "finding": "Current council page identifies Johnstone Park, Alva as a public park."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F public-park access only; no facilities, accessibility or recommendation claim."
+    },
+    {
+      "id": "osm-community:node-4411862438",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "South Lanarkshire Council parks information",
+        "url": "https://www.southlanarkshire.gov.uk/info/200168/parks_and_open_spaces",
+        "reliability": "local_authority",
+        "finding": "No current authority or route-operator evidence linked this exact Biggar viewpoint point to public access."
+      },
+      "claimNote": "Live mapped viewpoint context only; no access or visitor claim."
+    },
+    {
+      "id": "osm-community:node-11848606894",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "Current tourism information confirms the Fife Coastal Path through Culross, but does not independently establish the present condition of this specific signboard."
+      },
+      "claimNote": "Mapped signboard context only; no route-status claim is attached to the signboard."
+    },
+    {
+      "id": "osm-community:node-12905986604",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body source establishes access to this exact viewpoint point."
+      },
+      "claimNote": "Live mapped viewpoint context only; no public-access or safety claim."
+    },
+    {
+      "id": "osm-community:node-12909451261",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "National Trust for Scotland Culross planning",
+        "url": "https://www.nts.org.uk/visit/places/culross/planning-your-visit",
+        "reliability": "official_non_statutory",
+        "finding": "The current page concerns National Trust visitor areas, but does not identify this exact Hanging Gardens viewpoint."
+      },
+      "claimNote": "Live mapped viewpoint context only; no inferred access from nearby visitor information."
+    },
+    {
+      "id": "osm-community:way-930975377",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body source establishes public access to this Parkhouse manor-house polygon."
+      },
+      "claimNote": "Mapped identity/location only; private-estate access is not inferred."
+    },
+    {
+      "id": "osm-park:way-932845024",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "National Trust for Scotland Culross planning",
+        "url": "https://www.nts.org.uk/visit/places/culross/planning-your-visit",
+        "reliability": "official_non_statutory",
+        "finding": "Current visitor information does not identify this exact Old School Yard garden polygon."
+      },
+      "claimNote": "Mapped garden context only; no public-access claim."
+    },
+    {
+      "id": "osm-park:way-94351879",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Visit Culross nature and outdoors",
+        "url": "https://www.visitculross.com/naturandoutdoors",
+        "reliability": "local_authority",
+        "finding": "No current access authority evidence was found for this exact Playing Field polygon."
+      },
+      "claimNote": "Mapped context only; playing-field access rights are not inferred."
+    },
+    {
+      "id": "osm-park:way-94516038",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "National Trust for Scotland Culross planning",
+        "url": "https://www.nts.org.uk/visit/places/culross/planning-your-visit",
+        "reliability": "official_non_statutory",
+        "finding": "Current visitor information does not identify this exact Abbey Mansion House garden polygon."
+      },
+      "claimNote": "Mapped garden context only; no public-access claim."
+    },
+    {
+      "id": "osm-park:way-94710202",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Dunimarle Castle visit information",
+        "url": "https://www.dunimarlecastle.co.uk/visit-us",
+        "reliability": "official_non_statutory",
+        "finding": "Current estate page says entrance is via Chapel Gate and access is limited to its advertised opening arrangements/guided tours."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F conditional visitor access only; no hours, accessibility, facilities or general-access claim is carried."
+    },
+    {
+      "id": "osm-park:way-94725851",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Dunimarle Castle visit information",
+        "url": "https://www.dunimarlecastle.co.uk/visit-us",
+        "reliability": "official_non_statutory",
+        "finding": "Current nearby estate information does not identify or authorise access to this separate Blair Castle garden polygon."
+      },
+      "claimNote": "Mapped garden context only; no private-estate access inference."
+    },
+    {
+      "id": "osm-community:node-368979641",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Loch Lomond and The Trossachs National Park waterfalls",
+        "url": "https://www.lochlomond-trossachs.org/things-to-see/waterfalls/",
+        "reliability": "local_authority",
+        "finding": "Current National Park visitor guidance identifies the Falls of Dochart and describes access from the bridge."
+      },
+      "claim": "route_access",
+      "claimNote": "Tier O access-to-viewing claim only; no independent difficulty, accessibility, dog or visitor-recommendation claim."
+    },
+    {
+      "id": "osm-community:node-5514420225",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Killin Heritage Trail",
+        "url": "https://www.lochlomond-trossachs.org/discover-the-park/our-heritage-culture/heritage-walks/killin-heritage-trail/",
+        "reliability": "local_authority",
+        "finding": "Current route guidance does not identify this anonymous waterfall point."
+      },
+      "claimNote": "Mapped waterfall context only; no public-access or passability claim."
+    },
+    {
+      "id": "osm-community:node-6690804225",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Killin Heritage Trail",
+        "url": "https://www.lochlomond-trossachs.org/discover-the-park/our-heritage-culture/heritage-walks/killin-heritage-trail/",
+        "reliability": "local_authority",
+        "finding": "Current route guidance does not identify this exact viewpoint point."
+      },
+      "claimNote": "Mapped viewpoint context only; no public-access or safety claim."
+    },
+    {
+      "id": "osm-park:way-543305423",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Killin Heritage Trail",
+        "url": "https://www.lochlomond-trossachs.org/discover-the-park/our-heritage-culture/heritage-walks/killin-heritage-trail/",
+        "reliability": "local_authority",
+        "finding": "Current trail guidance supplies locality context but no exact public-access evidence for Breadalbane Park."
+      },
+      "claimNote": "Mapped park context only; no access, facility or suitability claim."
+    },
+    {
+      "id": "osm-community:node-3883540476",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Fife Council outdoor access",
+        "url": "https://www.fife.gov.uk/community-life/parks-allotments-core-paths/outdoor-access",
+        "reliability": "local_authority",
+        "finding": "Current council guidance confirms the Fife Coastal Path as a local long-distance route, but not the current condition of this specific arch artwork."
+      },
+      "claimNote": "Mapped artwork context only; no route or access claim attached to the artwork."
+    },
+    {
+      "id": "osm-community:node-11807355552",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Tillicoultry Glen",
+        "url": "https://www.clacks.gov.uk/visiting/tillicoultryglen/",
+        "reliability": "local_authority",
+        "finding": "Current council closure advice concerns parts of the Glen path, but does not establish access to this exact waterfall point."
+      },
+      "claimNote": "Mapped waterfall context only; no passability claim. Current Glen closure is recorded as an unresolved nearby restriction."
+    },
+    {
+      "id": "osm-community:node-11822229938",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Tillicoultry Glen",
+        "url": "https://www.clacks.gov.uk/visiting/tillicoultryglen/",
+        "reliability": "local_authority",
+        "finding": "Current council closure advice concerns parts of the Glen path, but does not establish access to this exact waterfall point."
+      },
+      "claimNote": "Mapped waterfall context only; no passability claim. Current Glen closure is recorded as an unresolved nearby restriction."
+    },
+    {
+      "id": "osm-community:node-1446890832",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Tillicoultry Glen",
+        "url": "https://www.clacks.gov.uk/visiting/tillicoultryglen/",
+        "reliability": "local_authority",
+        "finding": "Current council closure advice concerns parts of the Glen path, but does not establish access to this exact waterfall point."
+      },
+      "claimNote": "Mapped waterfall context only; no passability claim. Current Glen closure is recorded as an unresolved nearby restriction."
+    },
+    {
+      "id": "osm-park:way-1269318858",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body source identifies access conditions for this exact community-garden polygon."
+      },
+      "claimNote": "Mapped garden context only; no access, opening or community-use claim."
+    },
+    {
+      "id": "osm-park:way-166960629",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "The current asset register identifies an operational Recreation Ground, but its geometry does not establish that it is this exact public-park polygon."
+      },
+      "claimNote": "Mapped park context only; asset status is not used as a public-access claim."
+    },
+    {
+      "id": "osm-park:way-656830978",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body page establishes access conditions for this exact Hepburn Park polygon."
+      },
+      "claimNote": "Mapped park context only; no public-access or facilities claim."
+    }
+  ],
+  "batches": [
+    {
+      "projectId": "alloa-scotland",
+      "records": 5,
+      "validation": "passed with zero errors",
+      "publicProjection": "passed"
+    },
+    {
+      "projectId": "alva-scotland",
+      "records": 3,
+      "validation": "passed with zero errors",
+      "publicProjection": "passed"
+    },
+    {
+      "projectId": "biggar-scotland",
+      "records": 1,
+      "validation": "passed with zero errors",
+      "publicProjection": "passed"
+    },
+    {
+      "projectId": "culross-scotland",
+      "records": 9,
+      "validation": "passed with zero errors",
+      "publicProjection": "passed"
+    },
+    {
+      "projectId": "killin-scotland",
+      "records": 4,
+      "validation": "passed with zero errors",
+      "publicProjection": "passed"
+    },
+    {
+      "projectId": "kincardine-on-forth-scotland",
+      "records": 1,
+      "validation": "passed with zero errors",
+      "publicProjection": "passed"
+    },
+    {
+      "projectId": "tillicoultry-scotland",
+      "records": 6,
+      "validation": "passed with zero errors",
+      "publicProjection": "passed"
+    }
+  ]
+}

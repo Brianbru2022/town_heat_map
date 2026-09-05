@@ -26,5 +26,8 @@ const records = pkg.features
   })
   .sort((left, right) => left.priority - right.priority || left.name.localeCompare(right.name));
 await mkdir(dirname(outputPath), { recursive: true });
-await writeFile(outputPath, `${JSON.stringify({ projectId: pkg.project.id, generatedAt: new Date().toISOString(), records }, null, 2)}\n`);
+await writeFile(
+  outputPath,
+  `${JSON.stringify({ projectId: pkg.project.id, generatedAt: new Date().toISOString(), records }, null, 2)}\n`,
+);
 console.log(`Wrote ${records.length} undated records to ${outputPath}.`);

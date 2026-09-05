@@ -1,0 +1,503 @@
+{
+  "registerType": "Cohort B controlled claim-evidence migration batch",
+  "batch": 6,
+  "projectId": "kincardine-on-forth-scotland",
+  "records": 8,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-984839901",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-5634740951",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12954215161",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-13158013116",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-6838044639",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-9970231922",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-9970231927",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-9970231943",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "osm-community:node-984839901",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "Kincardine Sailor's Memorial",
+      "featureType": "point_of_interest",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/984839901",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=monument; memorial=anchor."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-984839901",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=monument; image=https://www.geograph.org.uk/photo/470601; memorial=anchor; name=Kincardine Sailor's Memorial; source=survey. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/984839901.json",
+      "osmStatus": "current",
+      "osmTags": "historic=monument; image=https://www.geograph.org.uk/photo/470601; memorial=anchor; name=Kincardine Sailor's Memorial; source=survey",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "984839901",
+        "version": 2,
+        "lastEditedAt": "2025-12-20T10:21:04Z",
+        "changesetId": 176173779,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/984839901/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2010-11-10T23:14:21Z",
+        "lastEditedAt": "2025-12-20T10:21:04Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-5634740951",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "Mercat Cross",
+      "featureType": "point_of_interest",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/5634740951",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=monument."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-5634740951",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=monument; monument=mercat_cross; name=Mercat Cross; ref:canmore=48126. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/5634740951.json",
+      "osmStatus": "current",
+      "osmTags": "historic=monument; monument=mercat_cross; name=Mercat Cross; ref:canmore=48126",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "5634740951",
+        "version": 2,
+        "lastEditedAt": "2025-07-22T10:15:35Z",
+        "changesetId": 169285215,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/5634740951/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2018-05-22T10:10:08Z",
+        "lastEditedAt": "2025-07-22T10:15:35Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12954215161",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "War Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12954215161",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=pillar."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12954215161",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; image=https://www.geograph.org.uk/photo/697065; memorial=pillar; memorial:conflict=WW1;WW2; name=War Memorial; ref:canmore=93139; ref:iwm=8522; start_date=1922; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12954215161.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; image=https://www.geograph.org.uk/photo/697065; memorial=pillar; memorial:conflict=WW1;WW2; name=War Memorial; ref:canmore=93139; ref:iwm=8522; start_date=1922; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12954215161",
+        "version": 3,
+        "lastEditedAt": "2025-12-20T10:11:53Z",
+        "changesetId": 176173390,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12954215161/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2025-06-26T14:49:10Z",
+        "lastEditedAt": "2025-12-20T10:11:53Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-13158013116",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "War Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/13158013116",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=stele."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-13158013116",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; image=https://www.geograph.org.uk/photo/5879119; memorial=stele; memorial:conflict=WW2; name=War Memorial; note=No Canmore ID; ref:iwm=58288; start_date=2004; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/13158013116.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; image=https://www.geograph.org.uk/photo/5879119; memorial=stele; memorial:conflict=WW2; name=War Memorial; note=No Canmore ID; ref:iwm=58288; start_date=2004; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "13158013116",
+        "version": 3,
+        "lastEditedAt": "2025-12-23T15:32:39Z",
+        "changesetId": 176314173,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/13158013116/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2025-09-20T12:35:56Z",
+        "lastEditedAt": "2025-12-23T15:32:39Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-6838044639",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "Kincardine Radar",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/6838044639",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower; tower:type=radar."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-6838044639",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=tower; name=Kincardine Radar; tower:type=radar. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/6838044639.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=tower; name=Kincardine Radar; tower:type=radar",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "6838044639",
+        "version": 2,
+        "lastEditedAt": "2022-08-22T15:30:55Z",
+        "changesetId": 125232840,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/6838044639/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2019-09-30T15:18:38Z",
+        "lastEditedAt": "2022-08-22T15:30:55Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-9970231922",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/9970231922",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-9970231922",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=tower. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/9970231922.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=tower",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "9970231922",
+        "version": 1,
+        "lastEditedAt": "2022-08-22T15:17:27Z",
+        "changesetId": 125232274,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/9970231922/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2022-08-22T15:17:27Z",
+        "lastEditedAt": "2022-08-22T15:17:27Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-9970231927",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/9970231927",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-9970231927",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=tower. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/9970231927.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=tower",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "9970231927",
+        "version": 1,
+        "lastEditedAt": "2022-08-22T15:17:27Z",
+        "changesetId": 125232274,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/9970231927/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2022-08-22T15:17:27Z",
+        "lastEditedAt": "2022-08-22T15:17:27Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-9970231943",
+      "projectId": "kincardine-on-forth-scotland",
+      "locality": "Kincardine-on-Forth",
+      "existingName": "Tower",
+      "featureType": "tower",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/9970231943",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=tower."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-9970231943",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=tower. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/9970231943.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=tower",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "9970231943",
+        "version": 1,
+        "lastEditedAt": "2022-08-22T15:17:27Z",
+        "changesetId": 125232274,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/9970231943/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2022-08-22T15:17:27Z",
+        "lastEditedAt": "2022-08-22T15:17:27Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "publicTierFoeSuppression": true,
+    "sourceHistoryPreserved": true
+  }
+}

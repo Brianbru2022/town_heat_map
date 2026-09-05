@@ -29,8 +29,7 @@ interface LocalHistoricMapManifest {
 }
 
 const suppliedPath = process.argv[2];
-if (!suppliedPath)
-  throw new Error('Usage: npm run prepare-local-historic-map -- <manifest.json>');
+if (!suppliedPath) throw new Error('Usage: npm run prepare-local-historic-map -- <manifest.json>');
 const draftMode = process.argv.includes('--draft');
 const manifest = JSON.parse(
   await readFile(resolve(suppliedPath), 'utf8'),
@@ -58,7 +57,8 @@ const sourceCrop = manifest.sourceCrop ?? {
   height: manifest.sourceHeight,
 };
 const renderHeight = Math.round((sourceCrop.height * renderWidth) / sourceCrop.width);
-const gdalBin = process.env.GDAL_BIN ?? (process.platform === 'win32' ? 'C:\\Program Files\\GDAL' : undefined);
+const gdalBin =
+  process.env.GDAL_BIN ?? (process.platform === 'win32' ? 'C:\\Program Files\\GDAL' : undefined);
 
 async function gdalCommand(command: string) {
   if (!gdalBin) return command;
@@ -84,7 +84,9 @@ async function run(command: string, args: string[]) {
     const child = spawn(command, args, { stdio: 'inherit', shell: false, env: gdalEnvironment });
     child.once('error', rejectCommand);
     child.once('exit', (code) =>
-      code === 0 ? resolveCommand() : rejectCommand(new Error(`${command} exited with code ${code}`)),
+      code === 0
+        ? resolveCommand()
+        : rejectCommand(new Error(`${command} exited with code ${code}`)),
     );
   });
 }
@@ -134,13 +136,35 @@ try {
     warpedTiff,
   ]);
   await rm(outputTiles, { force: true });
-  await run(await gdalCommand('gdal_translate'), ['-of', 'MBTILES', '-co', 'TILE_FORMAT=PNG', warpedTiff, outputTiles]);
-  await run(await gdalCommand('gdaladdo'), ['-r', 'average', outputTiles, '2', '4', '8', '16', '32', '64']);
+  await run(await gdalCommand('gdal_translate'), [
+    '-of',
+    'MBTILES',
+    '-co',
+    'TILE_FORMAT=PNG',
+    warpedTiff,
+    outputTiles,
+  ]);
+  await run(await gdalCommand('gdaladdo'), [
+    '-r',
+    'average',
+    outputTiles,
+    '2',
+    '4',
+    '8',
+    '16',
+    '32',
+    '64',
+  ]);
 } finally {
   await rm(temporaryTiff, { force: true });
   await rm(warpedTiff, { force: true });
 }
 
 if (draftMode)
-  console.log(`Prepared alignment-review draft ${outputTiles}. Do not publish it until it passes visual and residual checks.`);
-else console.log(`Prepared ${outputTiles}. Restart the tiles service, then run publish-local-historic-maps.`);
+  console.log(
+    `Prepared alignment-review draft ${outputTiles}. Do not publish it until it passes visual and residual checks.`,
+  );
+else
+  console.log(
+    `Prepared ${outputTiles}. Restart the tiles service, then run publish-local-historic-maps.`,
+  );

@@ -1,0 +1,55 @@
+{
+  "registerType": "Cohort B controlled mapped-context publication batch",
+  "batch": 2,
+  "projectId": "alva-scotland",
+  "changed": 2,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-4439552255",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    },
+    {
+      "recordId": "osm-community:node-5061863242",
+      "publication": {
+        "state": "provisional",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:05.480Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      }
+    }
+  ],
+  "afterState": [
+    {
+      "recordId": "osm-community:node-4439552255",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    },
+    {
+      "recordId": "osm-community:node-5061863242",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:17:24.013Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only."
+      },
+      "effectiveState": "publishable"
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "allApprovedRecordsDelivered": true,
+    "tierFoeSuppression": true,
+    "osmAttributionPresent": true
+  }
+}

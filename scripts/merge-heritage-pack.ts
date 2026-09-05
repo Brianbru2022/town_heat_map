@@ -291,11 +291,11 @@ function newFeature(record: PackRecord): HeritageFeature {
     locationConfidence: record.locationConfidence ?? 'unknown',
     survival: survival(record.extantStatus),
     shortDescription: record.shortDescription ?? undefined,
-      fullDescription: appendText(
-        record.fullDescription ?? undefined,
-        record.architectOrDesigner ?? record.designerOrMaker
-          ? `Architect or designer: ${record.architectOrDesigner ?? record.designerOrMaker}.`
-          : undefined,
+    fullDescription: appendText(
+      record.fullDescription ?? undefined,
+      (record.architectOrDesigner ?? record.designerOrMaker)
+        ? `Architect or designer: ${record.architectOrDesigner ?? record.designerOrMaker}.`
+        : undefined,
     ),
     sourceRecords: sourcesFor(record),
     licence: record.licence,
@@ -304,7 +304,7 @@ function newFeature(record: PackRecord): HeritageFeature {
     updatedAt: now,
     reviewed: record.reviewed ?? false,
     reviewNotes: geometry
-      ? record.reviewNotes ?? undefined
+      ? (record.reviewNotes ?? undefined)
       : appendText(
           record.reviewNotes ?? undefined,
           'No verified geometry was supplied. Retained for source review only and not rendered, counted, heat-scored, or treated as a settlement polygon.',
@@ -318,7 +318,10 @@ let added = 0;
 let datesUpdated = 0;
 const records = [
   ...pack.records,
-  ...(pack.memorialPublicArtRecords ?? []).map((record) => ({ ...record, isCommunityRecord: true })),
+  ...(pack.memorialPublicArtRecords ?? []).map((record) => ({
+    ...record,
+    isCommunityRecord: true,
+  })),
 ];
 for (const record of records) {
   const existing = targetFor(record);

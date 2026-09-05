@@ -1,4 +1,9 @@
 {
+  "$schema": "../../schemas/historic-town-project.schema.json",
+  "publication": {
+    "state": "publishable",
+    "notes": "Migrated from the existing published-project registry; record-level publication remains gated."
+  },
   "project": {
     "id": "quarriers-village-scotland",
     "name": "Quarrier's Village",
@@ -3098,7 +3103,7 @@
         }
       ],
       "licence": "Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.",
-      "updatedAt": "2026-07-31T14:58:33.347Z",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
       "dateBasis": "unknown",
       "dateConfidence": "unknown",
       "survival": "unknown",
@@ -3108,8 +3113,14 @@
         "conservation_area"
       ],
       "createdAt": "2026-07-31T14:58:33.347Z",
-      "reviewed": false,
-      "reviewNotes": "Current statutory designation geometry. This designation does not establish the construction date of every asset within it."
+      "reviewed": true,
+      "reviewNotes": "Current statutory designation geometry. This designation does not establish the construction date of every asset within it. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "hes-designed-landscape:GDL00146",
@@ -12505,7 +12516,7 @@
         }
       ],
       "licence": "Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.",
-      "updatedAt": "2026-07-31T14:58:33.347Z",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
       "dateBasis": "unknown",
       "dateConfidence": "unknown",
       "survival": "unknown",
@@ -12515,8 +12526,14 @@
         "designed_landscape"
       ],
       "createdAt": "2026-07-31T14:58:33.347Z",
-      "reviewed": false,
-      "reviewNotes": "Current statutory designation geometry. This designation does not establish the construction date of every asset within it."
+      "reviewed": true,
+      "reviewNotes": "Current statutory designation geometry. This designation does not establish the construction date of every asset within it. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Publishable only as clearly labelled related designation context; the designation intersects the locality but does not locate Duchal House within it."
+      }
     },
     {
       "id": "nrhe:171043",
@@ -12562,9 +12579,15 @@
         "nrhe-class-agriculture-and-subsistence"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:197718",
@@ -12620,13 +12643,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HOSPITAL (19TH CENTURY)",
       "earliestPossibleYear": 1800,
       "latestPossibleYear": 1899,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199193",
@@ -12682,13 +12711,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: CHILDRENS HOME (MODERN), VILLA (19TH CENTURY) - (20TH CENTURY)",
       "earliestPossibleYear": 1800,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199200",
@@ -12732,9 +12767,15 @@
         "nrhe-class-unassigned"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199210",
@@ -12778,9 +12819,15 @@
         "nrhe-class-civil"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199223",
@@ -12824,9 +12871,15 @@
         "nrhe-class-domestic"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:197301",
@@ -12872,9 +12925,15 @@
         "nrhe-class-domestic-health-and-welfare"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199183",
@@ -12920,9 +12979,15 @@
         "nrhe-class-domestic-health-and-welfare"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199184",
@@ -12978,13 +13043,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HOUSE (20TH CENTURY)",
       "earliestPossibleYear": 1900,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199187",
@@ -13028,9 +13099,15 @@
         "nrhe-class-education"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199188",
@@ -13074,9 +13151,15 @@
         "nrhe-class-unassigned"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:199191",
@@ -13120,9 +13203,15 @@
         "nrhe-class-unassigned"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:264200",
@@ -13180,13 +13269,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HOSPITAL (20TH CENTURY)",
       "earliestPossibleYear": 1900,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:264201",
@@ -13244,13 +13339,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HOSPITAL (20TH CENTURY)",
       "earliestPossibleYear": 1900,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:264198",
@@ -13308,13 +13409,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HOSPITAL (19TH CENTURY)",
       "earliestPossibleYear": 1800,
       "latestPossibleYear": 1899,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:264202",
@@ -13372,13 +13479,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HOSPITAL (20TH CENTURY)",
       "earliestPossibleYear": 1900,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:264203",
@@ -13436,13 +13549,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: CHAPEL (20TH CENTURY), HALL (20TH CENTURY)",
       "earliestPossibleYear": 1900,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:264204",
@@ -13498,13 +13617,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HOSPITAL (19TH CENTURY), RESIDENTIAL BUILDING (19TH CENTURY)",
       "earliestPossibleYear": 1800,
       "latestPossibleYear": 1899,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:277150",
@@ -13548,9 +13673,15 @@
         "nrhe-class-industrial-civil"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:317060",
@@ -13606,13 +13737,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: HEALTH WORKERS HOUSE (MODERN)",
       "earliestPossibleYear": 1900,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:317065",
@@ -13668,13 +13805,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: SCHOOL (20TH CENTURY)",
       "earliestPossibleYear": 1900,
       "latestPossibleYear": 1999,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:350586",
@@ -13730,13 +13873,19 @@
         "curation-date-enriched"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T15:26:11.981Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites.",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Date range normalised from the official NRHE classification period for a named historic built-environment or infrastructure component; curator review remains required for multi-component sites. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
       "documentedDateText": "NRHE classification period: VILLA (19TH CENTURY)",
       "earliestPossibleYear": 1800,
       "latestPossibleYear": 1899,
-      "datePrecision": "NRHE classification period"
+      "datePrecision": "NRHE classification period",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "nrhe:340549",
@@ -13849,9 +13998,15 @@
         "nrhe-class-domestic-health-and-welfare"
       ],
       "createdAt": "2026-07-31T14:58:54.095Z",
-      "updatedAt": "2026-07-31T14:58:54.095Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence."
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from the official NRHE spatial index. This GIS record does not provide a construction date; review the linked trove.scot record before adding timeline evidence. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "The precise limited official-record claim is supported by the retained local HES source and passes the publication gates."
+      }
     },
     {
       "id": "osm-community:node-6832719685",
@@ -13886,6 +14041,16 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=bench.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "node/6832719685",
+          "sourceUrl": "https://www.openstreetmap.org/node/6832719685",
+          "accessedAt": "2026-09-03T20:29:59.565Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check returned the same element and current tags: amenity=bench; backrest=no. This confirms only the current volunteer-mapped record, not public access, operator, visitor role or independent factual corroboration."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -13895,10 +14060,15 @@
         "osm-community-picnic"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "related_context"
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the volunteer-mapped object, but its point remains outside the NRS locality and lacks independent context evidence; retained source record is withheld from delivery.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "withheld",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Outside the NRS locality and supported only by a discovery-only OSM record. Retained for future corroborated related-context review."
+      }
     },
     {
       "id": "osm-community:node-7323540836",
@@ -13933,6 +14103,16 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: description=Quarriers village; information=board; tourism=information.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "node/7323540836",
+          "sourceUrl": "https://www.openstreetmap.org/node/7323540836",
+          "accessedAt": "2026-09-03T20:29:59.565Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check returned the same element and current tags: board_type=history; description=Quarriers village; information=board; tourism=information. This confirms only the current volunteer-mapped record, not public access, operator, visitor role or independent factual corroboration."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -13942,10 +14122,15 @@
         "osm-community-visitor"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "related_context"
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the volunteer-mapped object, but its point remains outside the NRS locality and lacks independent context evidence; retained source record is withheld from delivery.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "withheld",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Outside the NRS locality and supported only by a discovery-only OSM record. Retained for future corroborated related-context review."
+      }
     },
     {
       "id": "osm-community:node-12132458920",
@@ -13980,6 +14165,16 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=bench.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "node/12132458920",
+          "sourceUrl": "https://www.openstreetmap.org/node/12132458920",
+          "accessedAt": "2026-09-03T20:29:59.565Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check returned the same element and current tags: amenity=bench; backrest=yes. This confirms only the current volunteer-mapped record, not public access, operator, visitor role or independent factual corroboration."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -13989,10 +14184,15 @@
         "osm-community-picnic"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "related_context"
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the volunteer-mapped object, but its point remains outside the NRS locality and lacks independent context evidence; retained source record is withheld from delivery.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "withheld",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Outside the NRS locality and supported only by a discovery-only OSM record. Retained for future corroborated related-context review."
+      }
     },
     {
       "id": "osm-community:node-12132458922",
@@ -14027,6 +14227,16 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: information=board; tourism=information.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "node/12132458922",
+          "sourceUrl": "https://www.openstreetmap.org/node/12132458922",
+          "accessedAt": "2026-09-03T20:29:59.565Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check returned the same element and current tags: information=board; tourism=information. This confirms only the current volunteer-mapped record, not public access, operator, visitor role or independent factual corroboration."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14036,10 +14246,15 @@
         "osm-community-visitor"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
-      "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "related_context"
+      "updatedAt": "2026-09-03T20:29:59.565Z",
+      "reviewed": true,
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the volunteer-mapped object, but its point remains outside the NRS locality and lacks independent context evidence; retained source record is withheld from delivery.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "withheld",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Outside the NRS locality and supported only by a discovery-only OSM record. Retained for future corroborated related-context review."
+      }
     },
     {
       "id": "osm-community:node-13202468343",
@@ -14124,6 +14339,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=parking.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/476412346",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/476412346.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-476412346",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/476412346.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14133,10 +14368,36 @@
         "osm-community-parking"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "476412346",
+        "version": 1,
+        "lastEditedAt": "2017-02-22T21:31:24Z",
+        "changesetId": 46320089,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-476412346"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "osm-community:way-476412347",
@@ -14171,6 +14432,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=parking.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/476412347",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/476412347.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-476412347",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/476412347.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14180,10 +14461,36 @@
         "osm-community-parking"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "476412347",
+        "version": 1,
+        "lastEditedAt": "2017-02-22T21:31:24Z",
+        "changesetId": 46320089,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-476412347"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "osm-community:way-900166216",
@@ -14218,6 +14525,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: leisure=playground.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/900166216",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/900166216.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): leisure=playground; source=OS Open Greenspace This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-900166216",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/900166216.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): leisure=playground; source=OS Open Greenspace This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14227,10 +14554,36 @@
         "osm-community-leisure"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "900166216",
+        "version": 2,
+        "lastEditedAt": "2023-11-22T01:53:15Z",
+        "changesetId": 144308002,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-900166216"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "osm-community:way-900166217",
@@ -14265,6 +14618,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: leisure=playground.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/900166217",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/900166217.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): leisure=playground; source=OS Open Greenspace This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-900166217",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/900166217.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): leisure=playground; source=OS Open Greenspace This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14274,10 +14647,36 @@
         "osm-community-leisure"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "900166217",
+        "version": 1,
+        "lastEditedAt": "2021-01-25T23:13:21Z",
+        "changesetId": 98147644,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-900166217"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "osm-community:way-1462906878",
@@ -14312,6 +14711,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=parking; parking=street_side.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/1462906878",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906878.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; orientation=perpendicular; parking=street_side; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-1462906878",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906878.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; orientation=perpendicular; parking=street_side; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14321,10 +14740,36 @@
         "osm-community-parking"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "1462906878",
+        "version": 1,
+        "lastEditedAt": "2025-12-30T19:12:43Z",
+        "changesetId": 176644045,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-1462906878"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "osm-community:way-1462906882",
@@ -14359,6 +14804,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=parking; parking=surface.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/1462906882",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906882.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; parking=surface; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-1462906882",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906882.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; parking=surface; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14368,10 +14833,36 @@
         "osm-community-parking"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "1462906882",
+        "version": 1,
+        "lastEditedAt": "2025-12-30T19:12:43Z",
+        "changesetId": 176644045,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-1462906882"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "osm-community:way-1462906885",
@@ -14406,6 +14897,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=parking; parking=street_side.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/1462906885",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906885.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; orientation=perpendicular; parking=street_side; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-1462906885",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906885.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; orientation=perpendicular; parking=street_side; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14415,10 +14926,36 @@
         "osm-community-parking"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "1462906885",
+        "version": 1,
+        "lastEditedAt": "2025-12-30T19:12:43Z",
+        "changesetId": 176644045,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-1462906885"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "osm-community:way-1462906886",
@@ -14453,6 +14990,26 @@
           "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
           "notes": "Current OSM details: amenity=parking; parking=street_side.",
           "reliability": "discovery_only"
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "way/1462906886",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906886.json",
+          "accessedAt": "2026-09-03T21:56:52.925Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; orientation=perpendicular; parking=street_side; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
+        },
+        {
+          "sourceName": "OpenStreetMap API record check",
+          "sourceOrganisation": "OpenStreetMap contributors",
+          "sourceRecordId": "osm-api-check:osm-community:way-1462906886",
+          "sourceUrl": "https://api.openstreetmap.org/api/0.6/way/1462906886.json",
+          "accessedAt": "2026-09-03T23:34:03.639Z",
+          "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): amenity=parking; orientation=perpendicular; parking=street_side; surface=asphalt This establishes only the current volunteer-mapped record status; it does not establish public operation, access, operator or facility characteristics."
         }
       ],
       "licence": "Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.",
@@ -14462,10 +15019,36 @@
         "osm-community-parking"
       ],
       "createdAt": "2026-07-31T14:58:58.375Z",
-      "updatedAt": "2026-07-31T14:58:58.375Z",
+      "updatedAt": "2026-09-03T23:34:03.639Z",
       "reviewed": false,
-      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports.",
-      "evidenceScope": "parish_evidence"
+      "reviewNotes": "Imported from OpenStreetMap for an optional present-day icon layer. Excluded from historic timeline filtering, heat scoring, historic feature totals and heritage exports. Evidence-and-editorial pilot review completed 2026-09-03. Live OSM confirms the current volunteer-mapped tag, but no independent authoritative source establishes the object’s identity, operator, public access or visitor relevance. It remains provisional and excluded from historic evidence and scoring. Cohort D verification 2026-09-03: current OSM element checked; authoritative source-class checks were performed, but generic or non-identical facilities remain provisional. No unsupported access, operator, payment, opening or accessibility claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added. Cohort D migration 2026-09-03: OSM metadata persisted; mapped identity and geometry checked where current. No unsupported access, operator, payment, opening, capacity, accessibility or visitor-suitability claim added.",
+      "evidenceScope": "parish_evidence",
+      "publication": {
+        "state": "verified",
+        "profile": "mapped_context",
+        "reviewedAt": "2026-09-04T00:02:43.819Z",
+        "notes": "Controlled Cohort D migration: mapped context only; no stronger claim is authorised from OSM alone."
+      },
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "1462906886",
+        "version": 1,
+        "lastEditedAt": "2025-12-30T19:12:43Z",
+        "changesetId": 176644045,
+        "status": "current",
+        "checkedAt": "2026-09-03T23:34:03.639Z"
+      },
+      "claimEvidence": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "osm-api-check:osm-community:way-1462906886"
+          ],
+          "reviewedAt": "2026-09-03T23:34:03.639Z",
+          "notes": "Current OSM element metadata and mapped geometry checked; supports mapped existence, broad type and location/geometry only."
+        }
+      ]
     },
     {
       "id": "hes-listed-building:LB12745",
@@ -14506,15 +15089,20 @@
         "hes-listed-building",
         "town-selection-heritage-buffer"
       ],
-      "updatedAt": "2026-07-31T15:18:40.529Z",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
       "dateBasis": "unknown",
       "dateConfidence": "unknown",
       "survival": "unknown",
       "shortDescription": "TORR HALL",
       "createdAt": "2026-07-31T15:18:40.529Z",
-      "reviewed": false,
-      "reviewNotes": "Within the 500m town heritage buffer; review before treating it as a town listed-building record.",
-      "evidenceScope": "related_context"
+      "reviewed": true,
+      "reviewNotes": "Within the 500m town heritage buffer; review before treating it as a town listed-building record. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Publishable only as clearly labelled related listed-building context outside the NRS locality."
+      }
     },
     {
       "id": "hes-listed-building:LB13047",
@@ -14555,15 +15143,20 @@
         "hes-listed-building",
         "town-selection-heritage-buffer"
       ],
-      "updatedAt": "2026-07-31T15:18:40.529Z",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
       "dateBasis": "unknown",
       "dateConfidence": "unknown",
       "survival": "unknown",
       "shortDescription": "CRAIGBET, BY TORR ROAD, BRIDGE OF WEIR",
       "createdAt": "2026-07-31T15:18:40.529Z",
-      "reviewed": false,
-      "reviewNotes": "Within the 500m town heritage buffer; review before treating it as a town listed-building record.",
-      "evidenceScope": "related_context"
+      "reviewed": true,
+      "reviewNotes": "Within the 500m town heritage buffer; review before treating it as a town listed-building record. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Publishable only as clearly labelled related listed-building context outside the NRS locality."
+      }
     },
     {
       "id": "hes-listed-building:LB13230",
@@ -14604,15 +15197,20 @@
         "hes-listed-building",
         "town-selection-heritage-buffer"
       ],
-      "updatedAt": "2026-07-31T15:18:40.529Z",
+      "updatedAt": "2026-09-03T20:29:59.565Z",
       "dateBasis": "unknown",
       "dateConfidence": "unknown",
       "survival": "unknown",
       "shortDescription": "HOPE LODGE, ( ORIGINALLY LODGE TO BRIDGE OF WEIR HOSPITAL)",
       "createdAt": "2026-07-31T15:18:40.529Z",
-      "reviewed": false,
-      "reviewNotes": "Within the 500m town heritage buffer; review before treating it as a town listed-building record.",
-      "evidenceScope": "related_context"
+      "reviewed": true,
+      "reviewNotes": "Within the 500m town heritage buffer; review before treating it as a town listed-building record. Evidence-and-editorial pilot review completed 2026-09-03. The limited claim, official identity, retained geometry, category, OGL provenance and licence were checked against the local HES dataset. No unrecorded date, condition, access or ownership claim has been added.",
+      "evidenceScope": "related_context",
+      "publication": {
+        "state": "publishable",
+        "reviewedAt": "2026-09-03T20:29:59.565Z",
+        "notes": "Publishable only as clearly labelled related listed-building context outside the NRS locality."
+      }
     },
     {
       "id": "curated:plaque-holmlea",

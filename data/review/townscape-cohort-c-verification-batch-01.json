@@ -1,0 +1,100 @@
+{
+  "projectId": "alloa-scotland",
+  "checkedAt": "2026-09-04T00:55:58.115Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-7500478539",
+      "currentName": "Asda Café",
+      "outcome": "operating",
+      "source": "https://storelocator.asda.com/scotland/alloa/whins-road/cafe",
+      "note": "Current operator store locator identifies ASDA Alloa Cafe at Whins Road.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-13648474029",
+      "currentName": "Orlandi's",
+      "outcome": "review",
+      "note": "A current food-hygiene mirror marks the authority entry archived after a 2025 inspection; this is a material conflict but does not prove closure.",
+      "effectiveState": "provisional",
+      "publicClaims": []
+    },
+    {
+      "recordId": "osm-community:node-13662835231",
+      "currentName": "Enjoy",
+      "outcome": "operating",
+      "source": "https://restaurantguru.com/Enjoy-Alloa",
+      "note": "Recent 2026 reviews and a current listing identify Enjoy at Alloa High Street as operating.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-10657179791",
+      "currentName": "Celebrations",
+      "outcome": "operating",
+      "source": "https://discoverclackmannanshire.com/shopping-in-alloa",
+      "note": "Current council tourism directory identifies Celebrations as an Alloa shop.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-10657179804",
+      "currentName": "Azad Tandoori Restaurant",
+      "outcome": "provisional",
+      "note": "Historic licensing material is not current-operation evidence; no sufficiently current independent operator or authority source found.",
+      "effectiveState": "provisional",
+      "publicClaims": []
+    },
+    {
+      "recordId": "osm-community:way-318390943",
+      "currentName": "Alba Claremont",
+      "outcome": "operating",
+      "source": "https://albaclaremont.co.uk/",
+      "note": "Current operator site offers dining and room booking in Alloa.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    }
+  ]
+}

@@ -38,7 +38,8 @@ interface Manifest {
 const packPath = resolve(process.argv[2] ?? '');
 const manifestPath = process.argv[3] ? resolve(process.argv[3]) : undefined;
 const expectedCount = process.argv[4] ? Number(process.argv[4]) : undefined;
-if (!packPath) throw new Error('Usage: validate-heritage-pack <pack.json> [manifest.json] [record-count]');
+if (!packPath)
+  throw new Error('Usage: validate-heritage-pack <pack.json> [manifest.json] [record-count]');
 if (expectedCount !== undefined && (!Number.isInteger(expectedCount) || expectedCount < 1))
   throw new Error('Expected record count must be a positive integer.');
 
@@ -51,7 +52,11 @@ for (const [index, record] of records.entries()) {
   if (!record.id || ids.has(record.id)) errors.push(`${label}: record IDs must be unique.`);
   ids.add(record.id ?? '');
   if (!record.name) errors.push(`${label}: a name is required.`);
-  if (!record.documentedDateText || record.earliestPossibleYear === undefined || record.latestPossibleYear === undefined)
+  if (
+    !record.documentedDateText ||
+    record.earliestPossibleYear === undefined ||
+    record.latestPossibleYear === undefined
+  )
     errors.push(`${label}: complete date text and numeric bounds are required.`);
   if (!record.dateBasis || !record.dateConfidence)
     errors.push(`${label}: date basis and confidence are required.`);
@@ -73,10 +78,12 @@ if (manifestPath) {
     errors.push('Manifest entrypoint does not identify the supplied pack.');
   if (!manifest.files?.includes(basename(packPath)))
     errors.push('Manifest file list does not include the supplied pack.');
-  if (manifest.validationPassed !== true) errors.push('Manifest does not report a passed validation.');
+  if (manifest.validationPassed !== true)
+    errors.push('Manifest does not report a passed validation.');
   const allDated =
     manifest.allRecordsDated === true ||
-    (manifest.allHeritageRecordsDated === true && manifest.allMemorialPublicArtRecordsDated === true) ||
+    (manifest.allHeritageRecordsDated === true &&
+      manifest.allMemorialPublicArtRecordsDated === true) ||
     pack.dateCompleteness?.allRecordsDated === true ||
     (pack.dateCompleteness?.allHeritageRecordsDated === true &&
       pack.dateCompleteness?.allMemorialPublicArtRecordsDated === true) ||

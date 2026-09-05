@@ -17,7 +17,9 @@ const removedMenstrieRecords = projectPackage.features.filter((feature) =>
 projectPackage.features = projectPackage.features.filter(
   (feature) => !excludedLocality.test(feature.name),
 );
-const riverSpirit = projectPackage.features.find((feature) => feature.id === 'curated:public-art-river-spirit');
+const riverSpirit = projectPackage.features.find(
+  (feature) => feature.id === 'curated:public-art-river-spirit',
+);
 if (!riverSpirit) throw new Error('River Spirit record was not found after Alva community import.');
 riverSpirit.evidenceScope = 'related_context';
 riverSpirit.reviewed = true;

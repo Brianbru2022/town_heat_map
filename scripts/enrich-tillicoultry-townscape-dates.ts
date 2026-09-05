@@ -46,7 +46,8 @@ function apply(target: HeritageFeature, values: Partial<HeritageFeature>): void 
 // survey date for every surviving mill component.  `present_by` makes that
 // distinction visible in cards and the timeline.
 apply(feature('nrhe:48279'), {
-  documentedDateText: 'Castle Mills established by 1806 (site-sequence evidence; construction year not established)',
+  documentedDateText:
+    'Castle Mills established by 1806 (site-sequence evidence; construction year not established)',
   latestPossibleYear: 1806,
   datePrecision: 'present-by site evidence',
   dateBasis: 'present_by',
@@ -101,7 +102,8 @@ apply(feature('nrhe:310490'), {
 });
 
 apply(feature('nrhe:310456'), {
-  documentedDateText: 'Walker Terrace dates to the late nineteenth century (street-development evidence)',
+  documentedDateText:
+    'Walker Terrace dates to the late nineteenth century (street-development evidence)',
   earliestPossibleYear: 1870,
   latestPossibleYear: 1899,
   datePrecision: 'documented broad period / street-development evidence',
@@ -131,7 +133,8 @@ addSource(colliery, {
   sourceUrl: 'https://www.trove.scot/place/130824',
   accessedAt,
   licence: 'Open Government Licence v3.0; retain Historic Environment Scotland attribution.',
-  notes: 'NRHE archaeology note records production commencement in 1876 (Tillicoultry 1) and 1947 (Tillicoultry 2).',
+  notes:
+    'NRHE archaeology note records production commencement in 1876 (Tillicoultry 1) and 1947 (Tillicoultry 2).',
   reliability: 'official_non_statutory',
 });
 
@@ -154,7 +157,8 @@ addSource(station, appraisalSource);
 // listed clock tower.  Retain the earlier pack's 1878 reference in review
 // history, but display the Council's explicit 1879 date.
 apply(feature('curated:hes-lb42050'), {
-  documentedDateText: 'Clock tower added in 1879; former Popular Institute built 1859 and demolished 1986',
+  documentedDateText:
+    'Clock tower added in 1879; former Popular Institute built 1859 and demolished 1986',
   earliestPossibleYear: 1879,
   latestPossibleYear: 1879,
   datePrecision: 'documented year',

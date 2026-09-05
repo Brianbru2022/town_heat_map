@@ -16,7 +16,8 @@ const source: SourceRecord = {
   sourceUrl:
     'https://portal.historicenvironment.scot/apex/f?p=1505:300:::::VIEWTYPE,VIEWREF:designation,LB20959',
   accessedAt,
-  licence: 'Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.',
+  licence:
+    'Open Government Licence v3.0; retain Historic Environment Scotland attribution and source link.',
   quotedDateText: '15th century, altered 16th, 17th and late 18th century.',
   notes:
     'HES identifies this as Alloa Tower; the description supplies the historic period and later alteration sequence.',

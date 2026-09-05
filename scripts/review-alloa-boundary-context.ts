@@ -22,7 +22,12 @@ function boundaryReviewSource(): SourceRecord {
   };
 }
 
-const decisions: Array<{ id: string; name: string; decision: 'related_context'; rationale: string }> = [];
+const decisions: Array<{
+  id: string;
+  name: string;
+  decision: 'related_context';
+  rationale: string;
+}> = [];
 for (const feature of pkg.features) {
   if (feature.geometry?.type !== 'Point') continue;
   if (booleanPointInPolygon(point(feature.geometry.coordinates), pkg.project.boundary)) continue;

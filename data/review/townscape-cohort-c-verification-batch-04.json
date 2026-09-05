@@ -1,0 +1,82 @@
+{
+  "projectId": "culross-scotland",
+  "checkedAt": "2026-09-04T00:55:58.115Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-1319913221",
+      "currentName": "Cobbled Lane",
+      "outcome": "operating",
+      "source": "https://www.visitculross.com/foodanddrink",
+      "note": "Current tourism listing confirms the successor at this cafe location is Cobbled Lane, formerly The Biscuit Café.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-4995290457",
+      "currentName": "The Mercat",
+      "outcome": "operating",
+      "source": "https://the-mercat.com/",
+      "note": "Current operator site identifies The Mercat cafe and shop at The Cross, Culross.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-4995290461",
+      "currentName": "Bessie's Cafe",
+      "outcome": "operating",
+      "source": "https://www.nts.org.uk/visit/places/culross/highlights/bessies-caf%C3%A9",
+      "note": "Current operator page identifies Bessie’s Café at Culross Palace.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "current_operation",
+          "tier": "operational",
+          "sourceRecordRefs": [
+            "townscape-current-operation-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z",
+          "expiresAt": "2026-12-03T00:55:58.115Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-12140732695",
+      "currentName": "Visitor information",
+      "outcome": "mapped_context",
+      "note": "Current tourism evidence confirms the West Fife Woodlands Way, but does not independently establish this particular marker’s current physical state.",
+      "effectiveState": "publishable",
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/12140732695"
+          ],
+          "reviewedAt": "2026-09-04T00:55:58.115Z"
+        }
+      ]
+    }
+  ]
+}

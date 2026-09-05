@@ -1,0 +1,321 @@
+{
+  "createdAt": "2026-09-04T00:17:05.480Z",
+  "exactCohort": "B",
+  "exactRecords": 52,
+  "membershipSha256": "5283d654c4c5cb6307c59e4bb9ea693689de5518347484dd1289863fa61cdde3",
+  "triageInputSha256": "388e68ad30d5b97ef333b0081ce777e022f392af794abd49142b8b11e74a3624",
+  "records": [
+    {
+      "recordId": "osm-community:node-10553726937",
+      "projectId": "biggar-scotland",
+      "workflowState": "verified",
+      "sourceHash": "eb5909eeb16d10f1813b10d80f0d26fb20bd9c2ca202ad6e23024593c642e6fd"
+    },
+    {
+      "recordId": "osm-community:node-10553726945",
+      "projectId": "biggar-scotland",
+      "workflowState": "verified",
+      "sourceHash": "87ca15abb25e6a5a846fec49aabbe3fd65fcf48923295c8876c36e97ddd10e8b"
+    },
+    {
+      "recordId": "osm-community:node-10937177549",
+      "projectId": "biggar-scotland",
+      "workflowState": "verified",
+      "sourceHash": "ba17e68fe3f2378aac2d0c0a0d549fe29baeae47b84b2ea7fa89533be6864562"
+    },
+    {
+      "recordId": "osm-community:node-11110151571",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "628fb08f45f9d7970e7c34925dc98cce4dbf9bc52e798465118357c3c408e4ed"
+    },
+    {
+      "recordId": "osm-community:node-11133649400",
+      "projectId": "biggar-scotland",
+      "workflowState": "verified",
+      "sourceHash": "ca7611147b7e0b7dfefd4a15f85b996008d2efdf01e02902299f219ee2157581"
+    },
+    {
+      "recordId": "osm-community:node-11686060585",
+      "projectId": "biggar-scotland",
+      "workflowState": "verified",
+      "sourceHash": "f70d01eb242fc9000cfc68fa6e3b6a320fd36399a0a01570ac0f2a73773d636f"
+    },
+    {
+      "recordId": "osm-community:node-12568202994",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "0a9516f911002a78c6b93ca4d9d27f41637bd8800132947d3d43a9df3b3828ad"
+    },
+    {
+      "recordId": "osm-community:node-12872049120",
+      "projectId": "tillicoultry-scotland",
+      "workflowState": "verified",
+      "sourceHash": "4c462a1c802646877b9eb9971d47bc3c1b77ac787d22ef8fcc8720a3426595eb"
+    },
+    {
+      "recordId": "osm-community:node-12917889941",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "7c22784834d294e12eb66b56b0951259486d4c9a920ec7376df55e0bad7eeccf"
+    },
+    {
+      "recordId": "osm-community:node-12942397750",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "49366f669df39701fd0fbaa57176ada4bcd8d2720e4393f62e5e725930e6e274"
+    },
+    {
+      "recordId": "osm-community:node-12949102088",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "5ef2b4d01eb99d7491c42a988b5b133c351bb11ac1c7cde697d4b2983affba0a"
+    },
+    {
+      "recordId": "osm-community:node-12949253424",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "6c429084320cc2e26505cda288629a1c041444d76630f0eda8ae0f53c728beae"
+    },
+    {
+      "recordId": "osm-community:node-12954215161",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "e3c4abb51f8a3451ccea88028b02a83ce67e83b64b8ad51061d875b5518b15be"
+    },
+    {
+      "recordId": "osm-community:node-12969298093",
+      "projectId": "tillicoultry-scotland",
+      "workflowState": "verified",
+      "sourceHash": "0a859707a1598ff08c7d154e853585b79e9ed965f0413d7f5c8ff75a1ffb5f2b"
+    },
+    {
+      "recordId": "osm-community:node-12973407022",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "3867315f69efd89f2a3f6e74c50f6765d44c7c99a46272268118faa34ba828c4"
+    },
+    {
+      "recordId": "osm-community:node-12994231040",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "1b35ec376f1587a4e274b3d942ad6a09d36418ee15db742be412b31ecebf5aa7"
+    },
+    {
+      "recordId": "osm-community:node-12994231041",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "8a29b0027241abc66b334698b5030060eeb1f47a0913f47bc95d49da72035bb1"
+    },
+    {
+      "recordId": "osm-community:node-13113252507",
+      "projectId": "tillicoultry-scotland",
+      "workflowState": "verified",
+      "sourceHash": "f9ac02129b129699cd73124215d7b6806683b914065cfc84da35b9216cba5fcf"
+    },
+    {
+      "recordId": "osm-community:node-13158013116",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "8b034729ffb996af181dc5552079aac4e75df6471a01928c32e243b2b72c5136"
+    },
+    {
+      "recordId": "osm-community:node-13207107978",
+      "projectId": "tillicoultry-scotland",
+      "workflowState": "verified",
+      "sourceHash": "2acdb7d017029a704162a112a48166e51d0d5def2f34401f934ddcf3b79b60c3"
+    },
+    {
+      "recordId": "osm-community:node-13396052337",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "99af6e03ac06a046ee324de2248f952ef8a3ebba02e898ee2b5de63ec56ccc28"
+    },
+    {
+      "recordId": "osm-community:node-13396577203",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "30bb077727826c7342ca47c6dfbc1c5b428aecdd20738ad6c649011b1ad739bf"
+    },
+    {
+      "recordId": "osm-community:node-13671694543",
+      "projectId": "biggar-scotland",
+      "workflowState": "verified",
+      "sourceHash": "21ac28c52298d755a807c2597c0a40da185b83a4383782c01ba0cbf505e49a24"
+    },
+    {
+      "recordId": "osm-community:node-2023229220",
+      "projectId": "tillicoultry-scotland",
+      "workflowState": "verified",
+      "sourceHash": "b531e1bbab4aef12e813714d9f47f70ff9e6c6b623f0479473a2dcfd108fc832"
+    },
+    {
+      "recordId": "osm-community:node-2664301244",
+      "projectId": "killin-scotland",
+      "workflowState": "verified",
+      "sourceHash": "8fd20b4a5e3121d83b039f4741c7837555e04a9abce4885028d1e800af0a523a"
+    },
+    {
+      "recordId": "osm-community:node-2664301256",
+      "projectId": "killin-scotland",
+      "workflowState": "verified",
+      "sourceHash": "654b0268d4d2f467c2126aeb1cf648b03e5b955d63120d0b1a56a3acd69ce629"
+    },
+    {
+      "recordId": "osm-community:node-2664301260",
+      "projectId": "killin-scotland",
+      "workflowState": "verified",
+      "sourceHash": "9385a5232f35dc4b21e083564409e6d13deaf91aedcedafce10920f5e05d06d9"
+    },
+    {
+      "recordId": "osm-community:node-332068053",
+      "projectId": "killin-scotland",
+      "workflowState": "verified",
+      "sourceHash": "636866a96f1366dae7969f4d2f7653c3a9430b1deb82a4df1dac98087bf2e9c1"
+    },
+    {
+      "recordId": "osm-community:node-4439552255",
+      "projectId": "alva-scotland",
+      "workflowState": "verified",
+      "sourceHash": "0d66ee119334b427fd477f7810d4d099add8bbbee7e938ef866e5136d74c00fc"
+    },
+    {
+      "recordId": "osm-community:node-4884199850",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "b099dba5b1a36af3c8e26daea3784dd5a9943e6bf9565d2f1b0d7467c2cb7ff7"
+    },
+    {
+      "recordId": "osm-community:node-4884199852",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "6eed3f0feeeb5a945dbff8341145986ff22f0db9fb3c28528e44c9e389ee41be"
+    },
+    {
+      "recordId": "osm-community:node-4884199853",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "760311a7ad5a68a65335c7a06ac04bb548b6576063e706f1d00161521467a29f"
+    },
+    {
+      "recordId": "osm-community:node-4884199855",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "c2724f09ed724ae02f8d896215b877c2a2ed813706413ff016ba81eb102eb341"
+    },
+    {
+      "recordId": "osm-community:node-4884199856",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "9b65a1e3f2bf7b5d7a7fce66e816b56609134b764ab4518e4407e024b455d210"
+    },
+    {
+      "recordId": "osm-community:node-4995290448",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "6c3c1776dfb490cc84277aae4120114ff67aa760c83d9fa9d2014f287f920cf4"
+    },
+    {
+      "recordId": "osm-community:node-5061863242",
+      "projectId": "alva-scotland",
+      "workflowState": "verified",
+      "sourceHash": "8d59c80892d0ed4dc8c7c51e1c994a5bd0c772b7a7a023cb974a031c22e55cc9"
+    },
+    {
+      "recordId": "osm-community:node-5319141614",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "b41e5f785d9b9f863b2fbbbf98f71cd61bed9593ca8530b5f1173cbe2e08258c"
+    },
+    {
+      "recordId": "osm-community:node-5319143513",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "59b122d06902ad9700bff9027e244176cc44993ce9fba8e248e35c8d7aaa2b25"
+    },
+    {
+      "recordId": "osm-community:node-5549163580",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "902fddda31f5c07a69c9e883641353090e6083bc68fde356ca27264bfdca7821"
+    },
+    {
+      "recordId": "osm-community:node-5634740951",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "628b9983cd9170c6e2d52a24d66ced2c95ebd4ff73fcb49799d806a4b9b5dc71"
+    },
+    {
+      "recordId": "osm-community:node-5739968784",
+      "projectId": "culross-scotland",
+      "workflowState": "verified",
+      "sourceHash": "64fde29177a63acf623928964247644a31d4ed55b99091f0bce17b5eae9e7d35"
+    },
+    {
+      "recordId": "osm-community:node-6838044639",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "869d5363b7fe3086e5f4ad6c9129deebba99cf0bef20c3af80a8136a90db94e0"
+    },
+    {
+      "recordId": "osm-community:node-7653250924",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "cfdbe453e9d1eb9cb5d04e95cfd1ecbd6c1d9c79ee80b0f2c68435f58ce97cf9"
+    },
+    {
+      "recordId": "osm-community:node-7653296086",
+      "projectId": "alloa-scotland",
+      "workflowState": "verified",
+      "sourceHash": "e12f0c81c759a4408cd21a44628cb91648a2f9cf79dd2f2d0b31933bb434361b"
+    },
+    {
+      "recordId": "osm-community:node-984839901",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "d6a1f6c4c2e5b4c44450a4ab22cfd3c266c7fd0f2b398cdfd6fb3f4fd28dd899"
+    },
+    {
+      "recordId": "osm-community:node-9970231922",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "07d877aa4f76f6aae0235579bdec6c76ab937591f4b66bad92c0565682cc8352"
+    },
+    {
+      "recordId": "osm-community:node-9970231927",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "deb62575f20df011daaa276a23e1743de0601f759b538b59fbd6254820bb9ce7"
+    },
+    {
+      "recordId": "osm-community:node-9970231943",
+      "projectId": "kincardine-on-forth-scotland",
+      "workflowState": "verified",
+      "sourceHash": "9bb2554e2a1258d736c57418ebbbc9012431b06f6f81a01148b2f7e62fa5824d"
+    },
+    {
+      "recordId": "osm-community:way-1126085443",
+      "projectId": "biggar-scotland",
+      "workflowState": "verified",
+      "sourceHash": "0a4819087b055bcff778f1c5b35a0a994e63c6898db412654806f6643cb8bb07"
+    },
+    {
+      "recordId": "osm-community:way-1273388951",
+      "projectId": "tillicoultry-scotland",
+      "workflowState": "verified",
+      "sourceHash": "cfeeda58497374f699acf445ecd301a26f0cc579c5cb3db15f2846c6d2e5033d"
+    },
+    {
+      "recordId": "osm-community:way-386515817",
+      "projectId": "killin-scotland",
+      "workflowState": "verified",
+      "sourceHash": "2ea418baad14010cc5f9744e5d9c5e9c90351e694b3d41e4b63ad7be0f40b561"
+    },
+    {
+      "recordId": "osm-community:way-859707266",
+      "projectId": "tillicoultry-scotland",
+      "workflowState": "verified",
+      "sourceHash": "e30d4b0a3843c4c2c9b6647c2849dfd5fac69f5d8d6895963f65fe0eea440fb9"
+    }
+  ]
+}

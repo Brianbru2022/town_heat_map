@@ -380,14 +380,30 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
 }
-.age-pre1000 { background: #5d3f7f; }
-.age-1000 { background: #76365c; }
-.age-1200 { background: #913a4b; }
-.age-1400 { background: #b54d35; }
-.age-1600 { background: #d36b2d; }
-.age-1800 { background: #df9638; }
-.age-1900 { background: #e5ba57; }
-.age-unknown { background: #4f9bb5; }
+.age-pre1000 {
+  background: #5d3f7f;
+}
+.age-1000 {
+  background: #76365c;
+}
+.age-1200 {
+  background: #913a4b;
+}
+.age-1400 {
+  background: #b54d35;
+}
+.age-1600 {
+  background: #d36b2d;
+}
+.age-1800 {
+  background: #df9638;
+}
+.age-1900 {
+  background: #e5ba57;
+}
+.age-unknown {
+  background: #4f9bb5;
+}
 .osm-legend-icon {
   display: inline-grid;
   width: 17px;
@@ -401,16 +417,47 @@ h2 {
   font-weight: 800;
   line-height: 1;
 }
-.osm-legend-icon.food { border-radius: 50%; background: #9c4a20; font-size: 10px; }
-.osm-legend-icon.picnic { border-radius: 4px; background: #397a56; }
-.osm-legend-icon.art { background: #87579f; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
-.osm-legend-icon.memorial { border-radius: 50%; background: #4b5795; }
-.osm-legend-icon.historic { clip-path: polygon(50% 0, 88% 22%, 88% 72%, 50% 100%, 12% 72%, 12% 22%); background: #70403b; }
-.osm-legend-icon.leisure { border-radius: 4px; background: #137b92; }
-.osm-legend-icon.visitor { border-radius: 4px; background: #50679c; }
-.osm-legend-icon.amenities { border-radius: 50%; background: #397f8c; }
-.osm-legend-icon.parking { border-radius: 4px; background: #3d5e91; }
-.osm-legend-icon.nature { border-radius: 5px; background: #5a8161; }
+.osm-legend-icon.food {
+  border-radius: 50%;
+  background: #9c4a20;
+  font-size: 10px;
+}
+.osm-legend-icon.picnic {
+  border-radius: 4px;
+  background: #397a56;
+}
+.osm-legend-icon.art {
+  background: #87579f;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.osm-legend-icon.memorial {
+  border-radius: 50%;
+  background: #4b5795;
+}
+.osm-legend-icon.historic {
+  clip-path: polygon(50% 0, 88% 22%, 88% 72%, 50% 100%, 12% 72%, 12% 22%);
+  background: #70403b;
+}
+.osm-legend-icon.leisure {
+  border-radius: 4px;
+  background: #137b92;
+}
+.osm-legend-icon.visitor {
+  border-radius: 4px;
+  background: #50679c;
+}
+.osm-legend-icon.amenities {
+  border-radius: 50%;
+  background: #397f8c;
+}
+.osm-legend-icon.parking {
+  border-radius: 4px;
+  background: #3d5e91;
+}
+.osm-legend-icon.nature {
+  border-radius: 5px;
+  background: #5a8161;
+}
 .timeline {
   grid-column: 2/4;
   background: #12343b;

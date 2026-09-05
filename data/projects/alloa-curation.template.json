@@ -1,5 +1,9 @@
 {
   "$schema": "../../schemas/historic-town-project.schema.json",
+  "publication": {
+    "state": "provisional",
+    "notes": "Template package; publication approval has not been completed."
+  },
   "project": {
     "id": "alloa-scotland",
     "name": "Alloa",

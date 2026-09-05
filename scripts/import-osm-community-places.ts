@@ -2,7 +2,12 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { booleanPointInPolygon, centroid, distance, point } from '@turf/turf';
 import type { Point } from 'geojson';
-import type { DataSourceDefinition, HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
+import type {
+  DataSourceDefinition,
+  HeritageFeature,
+  ProjectPackage,
+  SourceRecord,
+} from '../src/domain/models';
 import { validateFeatures } from '../src/domain/validation';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
@@ -42,13 +47,20 @@ interface OverpassResponse {
 }
 
 function normalise(value: string): string {
-  return value.toLocaleLowerCase().replaceAll(/[^a-z0-9]+/g, ' ').trim();
+  return value
+    .toLocaleLowerCase()
+    .replaceAll(/[^a-z0-9]+/g, ' ')
+    .trim();
 }
 
 function bounds(pkg: ProjectPackage): [number, number, number, number] {
   const positions: Array<[number, number]> = [];
   const visit = (value: unknown): void => {
-    if (Array.isArray(value) && value.length === 2 && value.every((item) => typeof item === 'number'))
+    if (
+      Array.isArray(value) &&
+      value.length === 2 &&
+      value.every((item) => typeof item === 'number')
+    )
       positions.push(value as [number, number]);
     else if (Array.isArray(value)) value.forEach(visit);
   };
@@ -78,18 +90,31 @@ function categoryFor(tags: Record<string, string>): CommunityCategory | undefine
   if (['artwork', 'museum', 'gallery'].includes(tags.tourism ?? '')) return 'art';
   if (tags.historic === 'memorial') return 'memorial';
   if (
-    ['archaeological_site', 'wayside_shrine', 'monument', 'castle', 'fort', 'city_gate', 'manor'].includes(
-      tags.historic ?? '',
-    ) ||
+    [
+      'archaeological_site',
+      'wayside_shrine',
+      'monument',
+      'castle',
+      'fort',
+      'city_gate',
+      'manor',
+    ].includes(tags.historic ?? '') ||
     ['obelisk', 'tower', 'lighthouse', 'windmill'].includes(tags.man_made ?? '')
   )
     return 'historic';
-  if (['amusement_arcade', 'playground', 'miniature_golf', 'beach_resort'].includes(tags.leisure ?? '')) return 'leisure';
+  if (
+    ['amusement_arcade', 'playground', 'miniature_golf', 'beach_resort'].includes(
+      tags.leisure ?? '',
+    )
+  )
+    return 'leisure';
   if (tags.amenity === 'parking' || tags.parking === 'street_side') return 'parking';
   if (['toilets', 'drinking_water'].includes(tags.amenity ?? '')) return 'amenities';
   if (
     tags.tourism === 'information' ||
-    ['guidepost', 'board', 'map', 'office', 'terminal', 'audioguide'].includes(tags.information ?? '') ||
+    ['guidepost', 'board', 'map', 'office', 'terminal', 'audioguide'].includes(
+      tags.information ?? '',
+    ) ||
     tags.tourism === 'viewpoint' ||
     ['gift', 'souvenir'].includes(tags.shop ?? '')
   )
@@ -124,7 +149,10 @@ function typeLabel(tags: Record<string, string>, category: CommunityCategory): s
     if (tags.memorial === 'bust') return 'Memorial bust';
     return 'Memorial';
   }
-  if (tags.historic === 'castle') return tags.castle_type === 'palace' || tags.castle_type === 'stately' ? 'Palace or stately home' : 'Castle';
+  if (tags.historic === 'castle')
+    return tags.castle_type === 'palace' || tags.castle_type === 'stately'
+      ? 'Palace or stately home'
+      : 'Castle';
   if (tags.historic === 'fort') return 'Historic fort';
   if (tags.historic === 'city_gate') return 'City gate';
   if (tags.historic === 'manor') return 'Manor house';
@@ -179,7 +207,9 @@ function typeLabel(tags: Record<string, string>, category: CommunityCategory): s
 function coordinates(element: OsmElement): [number, number] | undefined {
   const latitude = element.lat ?? element.center?.lat;
   const longitude = element.lon ?? element.center?.lon;
-  return Number.isFinite(latitude) && Number.isFinite(longitude) ? [longitude as number, latitude as number] : undefined;
+  return Number.isFinite(latitude) && Number.isFinite(longitude)
+    ? [longitude as number, latitude as number]
+    : undefined;
 }
 
 function sourceRecord(element: OsmElement, tags: Record<string, string>): SourceRecord {
@@ -267,7 +297,8 @@ async function fetchOverpass(queryText: string): Promise<OverpassResponse> {
         method: 'POST',
         headers: {
           'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-          'user-agent': 'Historic Town Explorer local curation/1.0 (read-only current-place import)',
+          'user-agent':
+            'Historic Town Explorer local curation/1.0 (read-only current-place import)',
         },
         body: new URLSearchParams({ data: queryText }),
         signal: controller.signal,
@@ -347,11 +378,14 @@ for (const element of elements) {
     continue;
   }
   const name = tags.name?.trim() || label;
-  const matchingRecord = tags.name ? nearbyMatchingFeature(pkg.features, name, location) : undefined;
+  const matchingRecord = tags.name
+    ? nearbyMatchingFeature(pkg.features, name, location)
+    : undefined;
   if (matchingRecord) {
     matchingRecord.sourceRecords = [...matchingRecord.sourceRecords, source];
     matchingRecord.updatedAt = accessedAt;
-    matchingRecord.reviewNotes = `${matchingRecord.reviewNotes ?? ''} Current OSM community-place record ${sourceId} is linked for present-day reference; it is not a separate duplicate feature.`.trim();
+    matchingRecord.reviewNotes =
+      `${matchingRecord.reviewNotes ?? ''} Current OSM community-place record ${sourceId} is linked for present-day reference; it is not a separate duplicate feature.`.trim();
     linked += 1;
     continue;
   }
@@ -392,14 +426,18 @@ const sourceDefinition: DataSourceDefinition = {
   name: 'OpenStreetMap current community places',
   organisation: 'OpenStreetMap contributors',
   coverage: `Food and drink, picnic/rest, art, memorial, historic, leisure, visitor, amenity, parking and natural-sight places within the ${pkg.project.townStudyArea?.localityName ?? pkg.project.locality} study area plus its ${pkg.project.townStudyArea?.bufferMetres ?? 0}m buffer.`,
-  accessMethod: 'Read-only Overpass API query, then exact point-in-study-area filtering and source-ID/name-proximity deduplication.',
+  accessMethod:
+    'Read-only Overpass API query, then exact point-in-study-area filtering and source-ID/name-proximity deduplication.',
   sourceUrl: 'https://www.openstreetmap.org/copyright',
   licence: 'Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.',
   reliability: 'discovery_only',
   limitations:
     'Current voluntary mapping only. Tags, names and locations may change; this optional icon layer is excluded from historic evidence, dates, heat scoring, totals and historic exports.',
 };
-pkg.sources = [sourceDefinition, ...pkg.sources.filter((source) => source.id !== sourceDefinition.id)];
+pkg.sources = [
+  sourceDefinition,
+  ...pkg.sources.filter((source) => source.id !== sourceDefinition.id),
+];
 pkg.validation = validateFeatures(pkg.project, pkg.features);
 const errors = pkg.validation.filter((result) => result.severity === 'error');
 if (errors.length) throw new Error(`Refusing to write ${errors.length} validation error(s).`);
@@ -407,5 +445,7 @@ await writeFile(projectPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
 console.log(
   `Imported ${added} OSM community place(s) (${Object.entries(totals)
     .map(([category, count]) => `${category}=${count}`)
-    .join(', ')}); linked ${linked}; excluded ${outsideStudyArea} outside study area and ${withoutCoordinates} without coordinates.`,
+    .join(
+      ', ',
+    )}); linked ${linked}; excluded ${outsideStudyArea} outside study area and ${withoutCoordinates} without coordinates.`,
 );

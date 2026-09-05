@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+const apiPort = process.env.TOWNSCAPE_API_PORT ?? '3001';
+
 function hesTileExportPath(path: string): string {
   const match = path.match(/^\/api\/hes-designations\/(\d+)\/(\d+)\/(\d+)\.png$/);
   if (!match) return path;
@@ -37,11 +39,11 @@ export default defineConfig({
         },
       },
       '/api/local-historic-maps': {
-        target: 'http://localhost:3001',
+        target: `http://127.0.0.1:${apiPort}`,
         changeOrigin: true,
       },
       '/api/projects': {
-        target: 'http://localhost:3001',
+        target: `http://127.0.0.1:${apiPort}`,
         changeOrigin: true,
       },
     },

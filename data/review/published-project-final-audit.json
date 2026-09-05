@@ -1,38 +1,154 @@
 {
-  "generatedAt": "2026-07-31T16:15:09.816Z",
-  "purpose": "Read-only final publication audit. It distinguishes public town records from retained out-of-scope audit records and does not alter curated evidence.",
-  "completionRule": "A project is ready with known limitations when it has no validation errors and every public record has a licence. Pending geometry, undated evidence and unpublished map candidates remain explicit review limitations.",
+  "generatedAt": "2026-09-04T01:32:32.068Z",
+  "purpose": "Read-only publication audit. Source records remain in their packages; public delivery includes only records whose effective state is publishable.",
+  "completionRule": "A record is public only when its package is explicitly publishable, the record is verified or explicitly publishable, and no material provenance, licence, validation or geometry blocker remains.",
   "projects": [
     {
       "projectId": "alloa-scotland",
       "town": "Alloa",
       "region": "Clackmannanshire",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "partially_publishable_requires_remediation",
+      "states": {
+        "publishable": 337,
+        "provisional": 4,
+        "verified": 0,
+        "requiresReview": 9,
+        "withheld": 0
+      },
       "records": {
         "total": 516,
-        "public": 350,
+        "inPublicScope": 350,
         "outOfScope": 166,
-        "relatedContext": 2,
-        "mapRenderable": 316,
-        "hiddenCatalogue": 26,
-        "historicDateEvidence": 173,
-        "publicUndatedReview": 177,
-        "pendingGeometry": 8,
-        "missingLicence": 0,
-        "sourceUseRestricted": 0,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 7
+        "relatedContext": 3,
+        "publishableMapRecords": 311,
+        "historicDateEvidence": 172,
+        "legacyDefaulted": 152
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 8
+      "issues": {
+        "blockerCount": 9,
+        "advisoryCount": 0,
+        "blockersByCode": {
+          "geometry.pending": 7,
+          "osm.element_not_current": 2
+        }
       },
+      "provisionalRecordIds": [
+        "curated:context-mar-street-1785",
+        "curated:context-west-end-park",
+        "osm-community:node-13648474029",
+        "osm-community:node-10657179804"
+      ],
+      "blockerRecords": [
+        {
+          "id": "curated:context-bedford-place-expansion",
+          "name": "Bedford Place Georgian expansion",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-railway-arrival",
+          "name": "Alloa railway and harbour branch",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-glebe-victorian-expansion",
+          "name": "Glebe Fields Victorian expansion",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-mill-street-3-29",
+          "name": "3–29 Mill Street historic commercial group",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-baronial-buildings",
+          "name": "Baronial Buildings",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-oakleigh-house",
+          "name": "Oakleigh House, Church Street",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-alloa-harbour-docks",
+          "name": "Former Alloa Harbour and Docks",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "osm-community:way-896307613",
+          "name": "Playground",
+          "blockers": [
+            {
+              "code": "osm.element_not_current",
+              "field": "osmElement.status",
+              "message": "The OSM element is deleted or unavailable and requires review; this is not proof that the real-world object has been removed."
+            }
+          ]
+        },
+        {
+          "id": "osm-community:way-896307614",
+          "name": "Playground",
+          "blockers": [
+            {
+              "code": "osm.element_not_current",
+              "field": "osmElement.status",
+              "message": "The OSM element is deleted or unavailable and requires review; this is not proof that the real-world object has been removed."
+            }
+          ]
+        }
+      ],
       "duplicates": {
         "officialReferenceCollisions": [
           {
             "reference": "LB20959",
-            "featureIds": ["curated:context-alloa-house", "nrhe:320380"]
+            "featureIds": [
+              "curated:context-alloa-house",
+              "nrhe:320380"
+            ]
           }
         ]
       },
@@ -40,46 +156,74 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 2,
-        "pendingGeometryRecords": [
-          "curated:context-early-street-core-1702",
-          "curated:context-bedford-place-expansion",
-          "curated:context-railway-arrival",
-          "curated:context-glebe-victorian-expansion",
-          "curated:context-mill-street-3-29",
-          "curated:context-baronial-buildings",
-          "curated:context-oakleigh-house",
-          "curated:context-alloa-harbour-docks"
-        ]
       }
     },
     {
       "projectId": "alva-scotland",
       "town": "Alva",
       "region": "Clackmannanshire",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "partially_publishable_requires_remediation",
+      "states": {
+        "publishable": 183,
+        "provisional": 0,
+        "verified": 0,
+        "requiresReview": 3,
+        "withheld": 0
+      },
       "records": {
         "total": 186,
-        "public": 186,
+        "inPublicScope": 186,
         "outOfScope": 0,
         "relatedContext": 4,
-        "mapRenderable": 177,
-        "hiddenCatalogue": 0,
+        "publishableMapRecords": 183,
         "historicDateEvidence": 101,
-        "publicUndatedReview": 85,
-        "pendingGeometry": 9,
-        "missingLicence": 0,
-        "sourceUseRestricted": 0,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 0
+        "legacyDefaulted": 39
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 9
+      "issues": {
+        "blockerCount": 3,
+        "advisoryCount": 4,
+        "blockersByCode": {
+          "geometry.pending": 3
+        }
       },
+      "provisionalRecordIds": [],
+      "blockerRecords": [
+        {
+          "id": "curated:context-first-mill",
+          "name": "First modern woollen mill and beginning of industrial Alva",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:memorial-carrie-johnstone-fountain",
+          "name": "Carrie Johnstone Memorial Fountain",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:public-art-river-spirit",
+          "name": "River Spirit",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        }
+      ],
       "duplicates": {
         "officialReferenceCollisions": []
       },
@@ -87,58 +231,81 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 0,
-        "pendingGeometryRecords": [
-          "curated:context-alva-house",
-          "curated:context-first-mill",
-          "curated:context-glentana",
-          "curated:context-railway",
-          "curated:context-games",
-          "curated:context-illuminations",
-          "curated:context-academy"
-        ]
       }
     },
     {
       "projectId": "culross-scotland",
       "town": "Culross",
       "region": "Fife",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "partially_publishable_requires_remediation",
+      "states": {
+        "publishable": 471,
+        "provisional": 6,
+        "verified": 0,
+        "requiresReview": 1,
+        "withheld": 0
+      },
       "records": {
         "total": 503,
-        "public": 503,
-        "outOfScope": 0,
-        "relatedContext": 52,
-        "mapRenderable": 501,
-        "hiddenCatalogue": 0,
-        "historicDateEvidence": 223,
-        "publicUndatedReview": 280,
-        "pendingGeometry": 2,
-        "missingLicence": 0,
-        "sourceUseRestricted": 0,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 0
+        "inPublicScope": 478,
+        "outOfScope": 25,
+        "relatedContext": 49,
+        "publishableMapRecords": 471,
+        "historicDateEvidence": 210,
+        "legacyDefaulted": 41
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 2
+      "issues": {
+        "blockerCount": 1,
+        "advisoryCount": 1,
+        "blockersByCode": {
+          "geometry.pending": 1
+        }
       },
+      "provisionalRecordIds": [
+        "curated:hes-lb24060",
+        "curated:hes-lb24067",
+        "curated:hes-lb48796",
+        "curated:hes-lb24059",
+        "curated:hes-lb3359",
+        "curated:hes-gdl00155"
+      ],
+      "blockerRecords": [
+        {
+          "id": "curated:context-nts-royal-burgh-portfolio",
+          "name": "National Trust for Scotland Royal Burgh properties",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        }
+      ],
       "duplicates": {
         "officialReferenceCollisions": [
           {
             "reference": "LB23969",
-            "featureIds": ["curated:hes-lb23969", "curated:hes-sm831"]
+            "featureIds": [
+              "curated:hes-lb23969",
+              "curated:hes-sm831"
+            ]
           },
           {
             "reference": "SM13797",
-            "featureIds": ["curated:context-coal-salt-industrial-landscape", "nrhe:48064"]
+            "featureIds": [
+              "curated:context-coal-salt-industrial-landscape",
+              "nrhe:48064"
+            ]
           },
           {
             "reference": "SM831",
-            "featureIds": ["curated:hes-lb23969", "curated:hes-sm831"]
+            "featureIds": [
+              "curated:hes-lb23969",
+              "curated:hes-sm831"
+            ]
           }
         ]
       },
@@ -146,57 +313,93 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 3,
-        "pendingGeometryRecords": [
-          "curated:context-nts-royal-burgh-portfolio",
-          "curated:area-culross-conservation"
-        ]
       }
     },
     {
       "projectId": "kincardine-on-forth-scotland",
       "town": "Kincardine-on-Forth",
       "region": "Fife",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "partially_publishable_requires_remediation",
+      "states": {
+        "publishable": 315,
+        "provisional": 0,
+        "verified": 0,
+        "requiresReview": 2,
+        "withheld": 0
+      },
       "records": {
         "total": 374,
-        "public": 374,
-        "outOfScope": 0,
-        "relatedContext": 6,
-        "mapRenderable": 370,
-        "hiddenCatalogue": 0,
-        "historicDateEvidence": 218,
-        "publicUndatedReview": 156,
-        "pendingGeometry": 4,
-        "missingLicence": 0,
-        "sourceUseRestricted": 0,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 0
+        "inPublicScope": 317,
+        "outOfScope": 57,
+        "relatedContext": 21,
+        "publishableMapRecords": 315,
+        "historicDateEvidence": 192,
+        "legacyDefaulted": 66
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 4
+      "issues": {
+        "blockerCount": 2,
+        "advisoryCount": 0,
+        "blockersByCode": {
+          "geometry.pending": 2
+        }
       },
+      "provisionalRecordIds": [],
+      "blockerRecords": [
+        {
+          "id": "curated:context-burgh-of-barony-1663",
+          "name": "Kincardine burgh of barony and early town core",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-power-station",
+          "name": "Former Kincardine Power Station and reclaimed industrial shore",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        }
+      ],
       "duplicates": {
         "officialReferenceCollisions": [
           {
             "reference": "GDL00379",
-            "featureIds": ["curated:hes-lb16585", "curated:hes-lb49037"]
+            "featureIds": [
+              "curated:hes-lb16585",
+              "curated:hes-lb49037"
+            ]
           },
           {
             "reference": "LB16585",
-            "featureIds": ["curated:hes-lb16585", "curated:hes-lb49037"]
+            "featureIds": [
+              "curated:hes-lb16585",
+              "curated:hes-lb49037"
+            ]
           },
           {
             "reference": "LB49037",
-            "featureIds": ["curated:hes-lb16585", "curated:hes-lb49037"]
+            "featureIds": [
+              "curated:hes-lb16585",
+              "curated:hes-lb49037"
+            ]
           },
           {
             "reference": "SM736",
-            "featureIds": ["curated:hes-lb16585", "curated:hes-lb49037", "curated:hes-sm736"]
+            "featureIds": [
+              "curated:hes-lb16585",
+              "curated:hes-lb49037",
+              "curated:hes-sm736"
+            ]
           }
         ]
       },
@@ -204,42 +407,155 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 0,
-        "pendingGeometryRecords": [
-          "curated:area-kincardine-conservation",
-          "curated:context-burgh-of-barony-1663",
-          "curated:context-high-kirk-elphinstone-core",
-          "curated:context-power-station"
-        ]
       }
     },
     {
       "projectId": "tillicoultry-scotland",
       "town": "Tillicoultry",
       "region": "Clackmannanshire",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "partially_publishable_requires_remediation",
+      "states": {
+        "publishable": 203,
+        "provisional": 3,
+        "verified": 0,
+        "requiresReview": 10,
+        "withheld": 1
+      },
       "records": {
         "total": 276,
-        "public": 276,
-        "outOfScope": 0,
-        "relatedContext": 5,
-        "mapRenderable": 262,
-        "hiddenCatalogue": 0,
-        "historicDateEvidence": 114,
-        "publicUndatedReview": 162,
-        "pendingGeometry": 14,
-        "missingLicence": 0,
-        "sourceUseRestricted": 7,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 0
+        "inPublicScope": 217,
+        "outOfScope": 59,
+        "relatedContext": 16,
+        "publishableMapRecords": 203,
+        "historicDateEvidence": 78,
+        "legacyDefaulted": 43
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 14
+      "issues": {
+        "blockerCount": 10,
+        "advisoryCount": 7,
+        "blockersByCode": {
+          "geometry.pending": 10
+        }
       },
+      "provisionalRecordIds": [
+        "curated:hes-lb42057",
+        "osm-community:node-11780574253",
+        "osm-community:way-1271991625"
+      ],
+      "blockerRecords": [
+        {
+          "id": "curated:context-cloth-1560s",
+          "name": "Early cloth manufacture",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-three-villages",
+          "name": "Westertown, Eastertown and Coalsnaughton",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-water-mill",
+          "name": "First water-powered textile mill",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-high-street",
+          "name": "High Street and southward expansion",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-workers-grid",
+          "name": "Victorian workers' streets and planned grid",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-railway",
+          "name": "Tillicoultry railway station and Devon Valley line",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-burgh",
+          "name": "Tillicoultry police burgh",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:context-flood-1883",
+          "name": "Tillicoultry flood",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:plaque-conn",
+          "name": "Captain J. F. C. Conn Memorial Plaque",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        },
+        {
+          "id": "curated:mem-walker-fountain",
+          "name": "Walker Fountain",
+          "blockers": [
+            {
+              "code": "geometry.pending",
+              "field": "geometry",
+              "message": "Geometry is intentionally pending import or digitisation."
+            }
+          ]
+        }
+      ],
       "duplicates": {
         "officialReferenceCollisions": []
       },
@@ -247,49 +563,38 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 0,
-        "pendingGeometryRecords": [
-          "curated:context-cloth-1560s",
-          "curated:context-three-villages",
-          "curated:context-water-mill",
-          "curated:context-glassford-square",
-          "curated:context-craigfoot-mill",
-          "curated:context-high-street",
-          "curated:context-workers-grid",
-          "curated:context-railway",
-          "curated:context-burgh",
-          "curated:context-flood-1883",
-          "curated:context-middleton"
-        ]
       }
     },
     {
       "projectId": "quarriers-village-scotland",
       "town": "Quarrier's Village",
       "region": "Inverclyde",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "publishable",
+      "states": {
+        "publishable": 49,
+        "provisional": 0,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 4
+      },
       "records": {
         "total": 53,
-        "public": 53,
+        "inPublicScope": 53,
         "outOfScope": 0,
-        "relatedContext": 8,
-        "mapRenderable": 52,
-        "hiddenCatalogue": 1,
+        "relatedContext": 9,
+        "publishableMapRecords": 48,
         "historicDateEvidence": 23,
-        "publicUndatedReview": 30,
-        "pendingGeometry": 0,
-        "missingLicence": 0,
-        "sourceUseRestricted": 0,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 0
+        "legacyDefaulted": 13
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 0
+      "issues": {
+        "blockerCount": 0,
+        "advisoryCount": 0,
+        "blockersByCode": {}
       },
+      "provisionalRecordIds": [],
+      "blockerRecords": [],
       "duplicates": {
         "officialReferenceCollisions": []
       },
@@ -297,37 +602,38 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 0,
-        "pendingGeometryRecords": []
       }
     },
     {
       "projectId": "biggar-scotland",
       "town": "Biggar",
       "region": "South Lanarkshire",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "publishable",
+      "states": {
+        "publishable": 341,
+        "provisional": 0,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 0
+      },
       "records": {
         "total": 341,
-        "public": 341,
+        "inPublicScope": 341,
         "outOfScope": 0,
-        "relatedContext": 16,
-        "mapRenderable": 341,
-        "hiddenCatalogue": 0,
+        "relatedContext": 18,
+        "publishableMapRecords": 341,
         "historicDateEvidence": 210,
-        "publicUndatedReview": 131,
-        "pendingGeometry": 0,
-        "missingLicence": 0,
-        "sourceUseRestricted": 0,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 0
+        "legacyDefaulted": 13
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 0
+      "issues": {
+        "blockerCount": 0,
+        "advisoryCount": 0,
+        "blockersByCode": {}
       },
+      "provisionalRecordIds": [],
+      "blockerRecords": [],
       "duplicates": {
         "officialReferenceCollisions": []
       },
@@ -335,37 +641,38 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 0,
-        "pendingGeometryRecords": []
       }
     },
     {
       "projectId": "killin-scotland",
       "town": "Killin",
       "region": "Stirling",
-      "status": "ready_with_known_limitations",
-      "blockers": [],
+      "packageDeclaration": "publishable",
+      "packageUsedLegacyDefault": false,
+      "status": "publishable",
+      "states": {
+        "publishable": 100,
+        "provisional": 0,
+        "verified": 0,
+        "requiresReview": 0,
+        "withheld": 0
+      },
       "records": {
         "total": 100,
-        "public": 100,
+        "inPublicScope": 100,
         "outOfScope": 0,
-        "relatedContext": 18,
-        "mapRenderable": 100,
-        "hiddenCatalogue": 0,
-        "historicDateEvidence": 19,
-        "publicUndatedReview": 81,
-        "pendingGeometry": 0,
-        "missingLicence": 0,
-        "sourceUseRestricted": 0,
-        "namedDateResearch": 0,
-        "archaeologyEvidence": 0
+        "relatedContext": 20,
+        "publishableMapRecords": 100,
+        "historicDateEvidence": 29,
+        "legacyDefaulted": 17
       },
-      "validation": {
-        "errors": [],
-        "warningCount": 0
+      "issues": {
+        "blockerCount": 0,
+        "advisoryCount": 0,
+        "blockersByCode": {}
       },
+      "provisionalRecordIds": [],
+      "blockerRecords": [],
       "duplicates": {
         "officialReferenceCollisions": []
       },
@@ -373,16 +680,20 @@
         "configured": 0,
         "selectable": [],
         "issues": []
-      },
-      "settlementEvidence": {
-        "publishedPolygons": 0,
-        "pendingGeometryRecords": []
       }
     }
   ],
   "summary": {
     "projects": 8,
-    "readyWithKnownLimitations": 8,
-    "needsReview": []
+    "total": 2349,
+    "inPublicScope": 2042,
+    "outOfScope": 307,
+    "publishable": 1999,
+    "provisional": 13,
+    "verified": 0,
+    "requiresReview": 25,
+    "withheld": 5,
+    "blockerCount": 25,
+    "advisoryCount": 12
   }
 }

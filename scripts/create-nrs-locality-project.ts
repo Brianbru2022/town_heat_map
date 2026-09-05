@@ -58,6 +58,10 @@ const methodology: ProjectPackage['project']['methodology'] = {
 };
 const centre = centroid(locality).geometry.coordinates as [number, number];
 const pkg: ProjectPackage = {
+  publication: {
+    state: 'provisional',
+    notes: 'New package; publication approval has not been completed.',
+  },
   project: {
     id: projectId,
     name: localityName,

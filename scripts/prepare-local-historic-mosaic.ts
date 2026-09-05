@@ -43,7 +43,8 @@ const outputSuffix = draftMode ? '-draft' : '';
 const workingDirectory = resolve(sourceDirectory, manifest.tilePackageId + outputSuffix);
 const mosaicVrt = resolve(workingDirectory, 'mosaic.vrt');
 const outputTiles = resolve(tilesDirectory, manifest.tilePackageId + outputSuffix + '.mbtiles');
-const gdalBin = process.env.GDAL_BIN ?? (process.platform === 'win32' ? 'C:\\Program Files\\GDAL' : undefined);
+const gdalBin =
+  process.env.GDAL_BIN ?? (process.platform === 'win32' ? 'C:\\Program Files\\GDAL' : undefined);
 
 async function gdalCommand(command: string) {
   if (!gdalBin) return command;
@@ -55,13 +56,19 @@ async function gdalCommand(command: string) {
 async function run(command: string, args: string[]) {
   const environment =
     gdalBin && process.platform === 'win32'
-      ? { ...process.env, GDAL_DATA: join(gdalBin, 'gdal-data'), PROJ_LIB: join(gdalBin, 'projlib') }
+      ? {
+          ...process.env,
+          GDAL_DATA: join(gdalBin, 'gdal-data'),
+          PROJ_LIB: join(gdalBin, 'projlib'),
+        }
       : process.env;
   await new Promise<void>((resolveCommand, rejectCommand) => {
     const child = spawn(command, args, { stdio: 'inherit', shell: false, env: environment });
     child.once('error', rejectCommand);
     child.once('exit', (code) =>
-      code === 0 ? resolveCommand() : rejectCommand(new Error(command + ' exited with code ' + String(code))),
+      code === 0
+        ? resolveCommand()
+        : rejectCommand(new Error(command + ' exited with code ' + String(code))),
     );
   });
 }
@@ -100,7 +107,11 @@ try {
               sourceInfo.height * (1 - cropDefinition.topFraction - cropDefinition.bottomFraction),
             ),
           };
-    if (crop.height <= 0 || crop.x + crop.width > sourceInfo.width || crop.y + crop.height > sourceInfo.height)
+    if (
+      crop.height <= 0 ||
+      crop.x + crop.width > sourceInfo.width ||
+      crop.y + crop.height > sourceInfo.height
+    )
       throw new Error('Invalid source crop for NLS record ' + sheet.recordId + '.');
     const renderHeight = Math.round((crop.height * manifest.renderWidthPerSheet) / crop.width);
     const rawTiff = resolve(workingDirectory, sheet.recordId + '.tif');
@@ -159,7 +170,12 @@ try {
     warpedSheets.push(warpedTiff);
     await rm(rawTiff, { force: true });
   }
-  await run(await gdalCommand('gdalbuildvrt'), ['-resolution', 'highest', mosaicVrt, ...warpedSheets]);
+  await run(await gdalCommand('gdalbuildvrt'), [
+    '-resolution',
+    'highest',
+    mosaicVrt,
+    ...warpedSheets,
+  ]);
   await rm(outputTiles, { force: true });
   await run(await gdalCommand('gdal_translate'), [
     '-of',
@@ -169,11 +185,28 @@ try {
     mosaicVrt,
     outputTiles,
   ]);
-  await run(await gdalCommand('gdaladdo'), ['-r', 'average', outputTiles, '2', '4', '8', '16', '32', '64']);
+  await run(await gdalCommand('gdaladdo'), [
+    '-r',
+    'average',
+    outputTiles,
+    '2',
+    '4',
+    '8',
+    '16',
+    '32',
+    '64',
+  ]);
 } finally {
   await rm(workingDirectory, { recursive: true, force: true });
 }
 
 if (draftMode)
-  console.log('Prepared alignment-review mosaic draft ' + outputTiles + '. Do not publish until visual and residual checks pass.');
-else console.log('Prepared ' + outputTiles + '. Restart the tile service, then publish the approved map.');
+  console.log(
+    'Prepared alignment-review mosaic draft ' +
+      outputTiles +
+      '. Do not publish until visual and residual checks pass.',
+  );
+else
+  console.log(
+    'Prepared ' + outputTiles + '. Restart the tile service, then publish the approved map.',
+  );

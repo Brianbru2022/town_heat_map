@@ -1,0 +1,207 @@
+{
+  "projectId": "tillicoultry-scotland",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "recordResults": [
+    {
+      "recordId": "osm-park:way-166960629",
+      "currentName": "Tillicoultry Public Park",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "The current asset register identifies an operational Recreation Ground, but its geometry does not establish that it is this exact public-park polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped park context only; asset status is not used as a public-access claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "166960629",
+        "version": 8,
+        "lastEditedAt": "2024-04-30T11:29:22Z",
+        "changesetId": 150702949,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/166960629"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-656830978",
+      "currentName": "Hepburn Park",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body page establishes access conditions for this exact Hepburn Park polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped park context only; no public-access or facilities claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "656830978",
+        "version": 2,
+        "lastEditedAt": "2024-05-07T09:33:49Z",
+        "changesetId": 151000785,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/656830978"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-1269318858",
+      "currentName": "Tillicoultry Community Garden",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current responsible-body source identifies access conditions for this exact community-garden polygon."
+      },
+      "claim": null,
+      "claimNote": "Mapped garden context only; no access, opening or community-use claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "1269318858",
+        "version": 4,
+        "lastEditedAt": "2025-10-01T12:43:02Z",
+        "changesetId": 172704880,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/1269318858"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-1446890832",
+      "currentName": "Waterfall",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Tillicoultry Glen",
+        "url": "https://www.clacks.gov.uk/visiting/tillicoultryglen/",
+        "reliability": "local_authority",
+        "finding": "Current council closure advice concerns parts of the Glen path, but does not establish access to this exact waterfall point."
+      },
+      "claim": null,
+      "claimNote": "Mapped waterfall context only; no passability claim. Current Glen closure is recorded as an unresolved nearby restriction.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "1446890832",
+        "version": 2,
+        "lastEditedAt": "2024-04-25T15:37:36Z",
+        "changesetId": 150502796,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/1446890832"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-11807355552",
+      "currentName": "Waterfall",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Tillicoultry Glen",
+        "url": "https://www.clacks.gov.uk/visiting/tillicoultryglen/",
+        "reliability": "local_authority",
+        "finding": "Current council closure advice concerns parts of the Glen path, but does not establish access to this exact waterfall point."
+      },
+      "claim": null,
+      "claimNote": "Mapped waterfall context only; no passability claim. Current Glen closure is recorded as an unresolved nearby restriction.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "11807355552",
+        "version": 1,
+        "lastEditedAt": "2024-04-10T15:04:28Z",
+        "changesetId": 149824701,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/11807355552"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-11822229938",
+      "currentName": "Waterfall",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Tillicoultry Glen",
+        "url": "https://www.clacks.gov.uk/visiting/tillicoultryglen/",
+        "reliability": "local_authority",
+        "finding": "Current council closure advice concerns parts of the Glen path, but does not establish access to this exact waterfall point."
+      },
+      "claim": null,
+      "claimNote": "Mapped waterfall context only; no passability claim. Current Glen closure is recorded as an unresolved nearby restriction.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "11822229938",
+        "version": 1,
+        "lastEditedAt": "2024-04-16T14:27:30Z",
+        "changesetId": 150088079,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/11822229938"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    }
+  ]
+}

@@ -46,11 +46,11 @@ function isPriorityCandidate(feature: HeritageFeature): boolean {
   const classification = classificationFor(feature);
   return Boolean(
     feature.id.startsWith('nrhe:') &&
-      feature.dateBasis === 'unknown' &&
-      classification &&
-      explicitHistoricPeriod.test(classification) &&
-      builtEnvironmentTerms.test(classification) &&
-      !archaeologicalTerms.test(classification),
+    feature.dateBasis === 'unknown' &&
+    classification &&
+    explicitHistoricPeriod.test(classification) &&
+    builtEnvironmentTerms.test(classification) &&
+    !archaeologicalTerms.test(classification),
   );
 }
 
@@ -146,7 +146,11 @@ for (const feature of candidates) {
   const classification = classificationFor(feature)!;
   const date = extractDate(classification);
   if (!date) {
-    skipped.push({ id: feature.id, name: feature.name, reason: 'No normalisable historic period.' });
+    skipped.push({
+      id: feature.id,
+      name: feature.name,
+      reason: 'No normalisable historic period.',
+    });
     continue;
   }
   applyDate(feature, date);
@@ -181,4 +185,6 @@ await writeFile(
   'utf8',
 );
 await writeFile(projectPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8');
-console.log(`Enriched ${enriched.length} Alloa priority NRHE record(s); ${skipped.length} candidate(s) skipped.`);
+console.log(
+  `Enriched ${enriched.length} Alloa priority NRHE record(s); ${skipped.length} candidate(s) skipped.`,
+);

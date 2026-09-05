@@ -1,0 +1,42 @@
+{
+  "projectId": "kincardine-on-forth-scotland",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "recordResults": [
+    {
+      "recordId": "osm-community:node-3883540476",
+      "currentName": "Fife Coastal Path arch",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Fife Council outdoor access",
+        "url": "https://www.fife.gov.uk/community-life/parks-allotments-core-paths/outdoor-access",
+        "reliability": "local_authority",
+        "finding": "Current council guidance confirms the Fife Coastal Path as a local long-distance route, but not the current condition of this specific arch artwork."
+      },
+      "claim": null,
+      "claimNote": "Mapped artwork context only; no route or access claim attached to the artwork.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "3883540476",
+        "version": 2,
+        "lastEditedAt": "2022-05-31T20:32:27Z",
+        "changesetId": 121784158,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/3883540476"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    }
+  ]
+}

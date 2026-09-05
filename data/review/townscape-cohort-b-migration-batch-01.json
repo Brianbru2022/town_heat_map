@@ -1,0 +1,817 @@
+{
+  "registerType": "Cohort B controlled claim-evidence migration batch",
+  "batch": 1,
+  "projectId": "alloa-scotland",
+  "records": 13,
+  "reversibleBeforeState": [
+    {
+      "recordId": "osm-community:node-4884199850",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-4884199852",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-4884199853",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-4884199855",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-4884199856",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-5319141614",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-5319143513",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-7653250924",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-7653296086",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12942397750",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12973407022",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12994231040",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    },
+    {
+      "recordId": "osm-community:node-12994231041",
+      "publication": {
+        "state": "verified",
+        "reviewedAt": "2026-09-04T00:14:58.717Z",
+        "notes": "Controlled Cohort B migration: Tier M mapped context only.",
+        "profile": "mapped_context"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "recordId": "osm-community:node-4884199850",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Men of Clackmannan - Boer War Memorial",
+      "featureType": "memorial_statue",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/4884199850",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=statue."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-4884199850",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): alt_name=South African War Memorial; historic=memorial; memorial=statue; memorial:conflict=Second_Boer_War; name=Men of Clackmannan - Boer War Memorial; ref:canmore=187992; ref:iwm=44743; start_date=1905; war_memorial=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/4884199850.json",
+      "osmStatus": "current",
+      "osmTags": "alt_name=South African War Memorial; historic=memorial; memorial=statue; memorial:conflict=Second_Boer_War; name=Men of Clackmannan - Boer War Memorial; ref:canmore=187992; ref:iwm=44743; start_date=1905; war_memorial=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "4884199850",
+        "version": 4,
+        "lastEditedAt": "2025-08-27T14:44:08Z",
+        "changesetId": 171085104,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/4884199850/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "firstEditedAt": "2017-05-29T19:54:52Z",
+        "lastEditedAt": "2025-08-27T14:44:08Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-4884199852",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Alloa Mercat Cross",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/4884199852",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=mercat_cross."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-4884199852",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=mercat_cross; name=Alloa Mercat Cross; ref:canmore=47169. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/4884199852.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=mercat_cross; name=Alloa Mercat Cross; ref:canmore=47169",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "4884199852",
+        "version": 3,
+        "lastEditedAt": "2025-06-28T10:38:26Z",
+        "changesetId": 168221361,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/4884199852/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2017-05-29T19:54:52Z",
+        "lastEditedAt": "2025-06-28T10:38:26Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-4884199853",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Chain & Anchor",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/4884199853",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-4884199853",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): name=Chain & Anchor; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/4884199853.json",
+      "osmStatus": "current",
+      "osmTags": "name=Chain & Anchor; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "4884199853",
+        "version": 1,
+        "lastEditedAt": "2017-05-29T19:54:52Z",
+        "changesetId": 49083696,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/4884199853/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2017-05-29T19:54:52Z",
+        "lastEditedAt": "2017-05-29T19:54:52Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-4884199855",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Workers of the World Memorial",
+      "featureType": "memorial_plaque",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/4884199855",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=plaque."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-4884199855",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; memorial=plaque; name=Workers of the World Memorial. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/4884199855.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; memorial=plaque; name=Workers of the World Memorial",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "4884199855",
+        "version": 5,
+        "lastEditedAt": "2025-07-03T11:00:39Z",
+        "changesetId": 168439197,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/4884199855/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "firstEditedAt": "2017-05-29T19:54:52Z",
+        "lastEditedAt": "2025-07-03T11:00:39Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-4884199856",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Copper Vessel",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/4884199856",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: artwork_type=sculpture; tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-4884199856",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): artwork_type=sculpture; name=Copper Vessel; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/4884199856.json",
+      "osmStatus": "current",
+      "osmTags": "artwork_type=sculpture; name=Copper Vessel; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "4884199856",
+        "version": 1,
+        "lastEditedAt": "2017-05-29T19:54:52Z",
+        "changesetId": 49083696,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/4884199856/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2017-05-29T19:54:52Z",
+        "lastEditedAt": "2017-05-29T19:54:52Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-5319141614",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Artwork",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/5319141614",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-5319141614",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): fixme=What is this?; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/5319141614.json",
+      "osmStatus": "current",
+      "osmTags": "fixme=What is this?; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "5319141614",
+        "version": 2,
+        "lastEditedAt": "2025-08-06T14:00:43Z",
+        "changesetId": 170059976,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/5319141614/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2018-01-03T22:14:46Z",
+        "lastEditedAt": "2025-08-06T14:00:43Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-5319143513",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Artwork",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/5319143513",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-5319143513",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): fixme=What is this?; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/5319143513.json",
+      "osmStatus": "current",
+      "osmTags": "fixme=What is this?; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "5319143513",
+        "version": 2,
+        "lastEditedAt": "2025-08-06T14:00:43Z",
+        "changesetId": 170059976,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/5319143513/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2
+        ],
+        "firstEditedAt": "2018-01-03T22:15:03Z",
+        "lastEditedAt": "2025-08-06T14:00:43Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-7653250924",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "War Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/7653250924",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=cross; wheelchair=yes."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-7653250924",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; image=https://www.geograph.org.uk/photo/3956515; inscription=6 o'clock face: IN MEMORY OF/ THE MEN OF THIS DISTRICT/ WHO GAVE THEIR LIVES/ IN THE TWO WORLD WARS/ 1914-19 1939-45; memorial=cross; memorial:conflict=WW1;WW2; name=War Memorial; ref:canmore=267297; ref:iwm=6030; war_memorial=yes; wheelchair=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/7653250924.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; image=https://www.geograph.org.uk/photo/3956515; inscription=6 o'clock face: IN MEMORY OF/ THE MEN OF THIS DISTRICT/ WHO GAVE THEIR LIVES/ IN THE TWO WORLD WARS/ 1914-19 1939-45; memorial=cross; memorial:conflict=WW1;WW2; name=War Memorial; ref:canmore=267297; ref:iwm=6030; war_memorial=yes; wheelchair=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "7653250924",
+        "version": 6,
+        "lastEditedAt": "2025-12-06T19:35:37Z",
+        "changesetId": 175598817,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/7653250924/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "firstEditedAt": "2020-06-25T16:37:18Z",
+        "lastEditedAt": "2025-12-06T19:35:37Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-7653296086",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Sauchie Mining Memorial",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/7653296086",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial; memorial=pillar; website=https://www.clacks.gov.uk/council/press/?release=3091; wheelchair=yes."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-7653296086",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; inscription=To commemorate the legacy of the mining industry of Sauchie village, unveiled during the Queen's Jubilee 2012. Their darkness, our light; memorial=pillar; mining_memorial=yes; name=Sauchie Mining Memorial; ref:canmore=267297; website=https://www.clacks.gov.uk/council/press/?release=3091; wheelchair=yes. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/7653296086.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; inscription=To commemorate the legacy of the mining industry of Sauchie village, unveiled during the Queen's Jubilee 2012. Their darkness, our light; memorial=pillar; mining_memorial=yes; name=Sauchie Mining Memorial; ref:canmore=267297; website=https://www.clacks.gov.uk/council/press/?release=3091; wheelchair=yes",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "7653296086",
+        "version": 4,
+        "lastEditedAt": "2025-12-06T19:35:37Z",
+        "changesetId": 175598817,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/7653296086/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "firstEditedAt": "2020-06-25T16:55:23Z",
+        "lastEditedAt": "2025-12-06T19:35:37Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12942397750",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Napoleon Pillar",
+      "featureType": "memorial",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12942397750",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: historic=memorial."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12942397750",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): historic=memorial; inscription=This Pillar/was conquest of Napoleon at Grand Cairo in Egypt/in the year 1798/and/having been captured by the Allies en route to France/was sent by them to Florence/where it was bought by my father C E Dede [continues in Note].; name=Napoleon Pillar; note=[continuation from Inscription] \"and forwarded to/Altona Schleswig Holstein/Fraulein Dede, Altona den 14 ten August 1852.\n\nAbove Pillar presented to J B Harvey/by Miss Dede.\"\n\nTemporarily relocated but will be returned to original location someday.; ref:canmore=141908. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12942397750.json",
+      "osmStatus": "current",
+      "osmTags": "historic=memorial; inscription=This Pillar/was conquest of Napoleon at Grand Cairo in Egypt/in the year 1798/and/having been captured by the Allies en route to France/was sent by them to Florence/where it was bought by my father C E Dede [continues in Note].; name=Napoleon Pillar; note=[continuation from Inscription] \"and forwarded to/Altona Schleswig Holstein/Fraulein Dede, Altona den 14 ten August 1852.\n\nAbove Pillar presented to J B Harvey/by Miss Dede.\"\n\nTemporarily relocated but will be returned to original location someday.; ref:canmore=141908",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12942397750",
+        "version": 3,
+        "lastEditedAt": "2026-04-27T08:00:21Z",
+        "changesetId": 181877661,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12942397750/history.json",
+        "status": "current",
+        "versions": [
+          1,
+          2,
+          3
+        ],
+        "firstEditedAt": "2025-06-21T11:52:16Z",
+        "lastEditedAt": "2026-04-27T08:00:21Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12973407022",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Sentinel",
+      "featureType": "artwork",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12973407022",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: artwork_type=sculpture; tourism=artwork."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12973407022",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): artist_name=Rob Mulholland; artwork_type=sculpture; name=Sentinel; source=https://artuk.org/discover/artworks/sentinel-307352; tourism=artwork. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12973407022.json",
+      "osmStatus": "current",
+      "osmTags": "artist_name=Rob Mulholland; artwork_type=sculpture; name=Sentinel; source=https://artuk.org/discover/artworks/sentinel-307352; tourism=artwork",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12973407022",
+        "version": 1,
+        "lastEditedAt": "2025-07-03T10:44:59Z",
+        "changesetId": 168438539,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12973407022/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2025-07-03T10:44:59Z",
+        "lastEditedAt": "2025-07-03T10:44:59Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12994231040",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Obelisk",
+      "featureType": "obelisk",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12994231040",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=obelisk."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12994231040",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=obelisk; note=gate decoration for Alloa House; ref:canmore=47225. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12994231040.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=obelisk; note=gate decoration for Alloa House; ref:canmore=47225",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12994231040",
+        "version": 1,
+        "lastEditedAt": "2025-07-11T12:43:30Z",
+        "changesetId": 168794742,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12994231040/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2025-07-11T12:43:30Z",
+        "lastEditedAt": "2025-07-11T12:43:30Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    },
+    {
+      "recordId": "osm-community:node-12994231041",
+      "projectId": "alloa-scotland",
+      "locality": "Alloa",
+      "existingName": "Obelisk",
+      "featureType": "obelisk",
+      "existingSourceRecords": [
+        {
+          "sourceRecordId": "node/12994231041",
+          "sourceName": "OpenStreetMap current community places",
+          "reliability": "discovery_only",
+          "notes": "Current OSM details: man_made=obelisk."
+        },
+        {
+          "sourceRecordId": "osm-api-check:osm-community:node-12994231041",
+          "sourceName": "OpenStreetMap API record check",
+          "reliability": "discovery_only",
+          "notes": "Live API check result (current): man_made=obelisk; note=gate decoration for Alloa House; ref:canmore=47225. This establishes only current volunteer-mapped identity, broad mapped type and location; it does not establish historic significance, official designation, operation, access, opening hours, fees, accessibility, safety, suitability or recommendation."
+        }
+      ],
+      "existingClaimsExceedOsm": true,
+      "decision": "mapped_context",
+      "evidenceRoute": "live OSM element + geometry + element history",
+      "osmUrl": "https://api.openstreetmap.org/api/0.6/node/12994231041.json",
+      "osmStatus": "current",
+      "osmTags": "man_made=obelisk; note=gate decoration for Alloa House; ref:canmore=47225",
+      "osmMetadata": {
+        "elementType": "node",
+        "elementId": "12994231041",
+        "version": 1,
+        "lastEditedAt": "2025-07-11T12:43:30Z",
+        "changesetId": 168794742,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T00:17:05.480Z"
+      },
+      "geometryChecked": true,
+      "geometryDistanceMetres": 0,
+      "history": {
+        "url": "https://api.openstreetmap.org/api/0.6/node/12994231041/history.json",
+        "status": "current",
+        "versions": [
+          1
+        ],
+        "firstEditedAt": "2025-07-11T12:43:30Z",
+        "lastEditedAt": "2025-07-11T12:43:30Z"
+      },
+      "conclusion": "Current element identity and geometry are sufficiently established for Tier M mapped context; OSM supports mapped existence, broad mapped type and location only.",
+      "claimsRetained": "Tier M mapped identity only.",
+      "sourceHistoryPreserved": true
+    }
+  ],
+  "gates": {
+    "preflightValidationErrors": 0,
+    "postBatchValidationErrors": 0,
+    "publicTierFoeSuppression": true,
+    "sourceHistoryPreserved": true
+  }
+}

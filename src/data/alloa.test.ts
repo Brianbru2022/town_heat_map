@@ -20,7 +20,9 @@ describe('Alloa published package', () => {
       alloaPackage.features.filter((feature) => feature.tags.includes('archaeology-evidence')),
     ).toHaveLength(21);
     expect(
-      alloaPackage.features.filter((feature) => feature.tags.includes('curation-priority-named-site')),
+      alloaPackage.features.filter((feature) =>
+        feature.tags.includes('curation-priority-named-site'),
+      ),
     ).toHaveLength(0);
     expect(alloaPackage.features.find((feature) => feature.id === 'nrhe:130814')).toMatchObject({
       earliestPossibleYear: 1879,
@@ -44,7 +46,9 @@ describe('Alloa published package', () => {
       dateBasis: 'present_by',
       survival: 'site_only_or_demolished',
     });
-    expect(alloaPackage.features.find((feature) => feature.id === 'nrhe:47197')?.earliestPossibleYear).toBeUndefined();
+    expect(
+      alloaPackage.features.find((feature) => feature.id === 'nrhe:47197')?.earliestPossibleYear,
+    ).toBeUndefined();
     expect(alloaPackage.features.find((feature) => feature.id === 'nrhe:141970')).toMatchObject({
       earliestPossibleYear: 1731,
       latestPossibleYear: 1731,
@@ -61,12 +65,16 @@ describe('Alloa published package', () => {
       latestPossibleYear: 1799,
       dateBasis: 'present_by',
     });
-    expect(alloaPackage.features.find((feature) => feature.id === 'nrhe:47235')?.earliestPossibleYear).toBeUndefined();
+    expect(
+      alloaPackage.features.find((feature) => feature.id === 'nrhe:47235')?.earliestPossibleYear,
+    ).toBeUndefined();
   });
 
   it('keeps source-reviewed but undated named records in the public review path', () => {
     expect(
-      alloaPackage.features.filter((feature) => feature.tags.includes('alloa-date-researched-no-date')),
+      alloaPackage.features.filter((feature) =>
+        feature.tags.includes('alloa-date-researched-no-date'),
+      ),
     ).toHaveLength(14);
     expect(alloaPackage.features.find((feature) => feature.id === 'nrhe:141370')).toMatchObject({
       latestPossibleYear: 1815,

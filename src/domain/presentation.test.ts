@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import type { HeritageFeature } from './models';
-import { isArchaeologyEvidenceFeature, isMapCatalogueRecord, isPublicTownFeature } from './presentation';
+import {
+  isArchaeologyEvidenceFeature,
+  isMapCatalogueRecord,
+  isPublicTownFeature,
+} from './presentation';
 
 const feature = (tags: string[]): HeritageFeature => ({
   id: 'test:feature',

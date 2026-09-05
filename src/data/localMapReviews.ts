@@ -43,7 +43,8 @@ const localMapReviews: HistoricMapLayer[] = [
     surveyEndYear: 1899,
     publicationYear: 1900,
     sourceUrl: 'https://maps.nls.uk/view/82875201',
-    attribution: 'National Library of Scotland, Ordnance Survey 25-inch mapping, Alloa-area sheets (1898-99 revisions; 1900 publication).',
+    attribution:
+      'National Library of Scotland, Ordnance Survey 25-inch mapping, Alloa-area sheets (1898-99 revisions; 1900 publication).',
     tilePackageId: 'nls-alloa-os-25-inch-1900-mosaic',
     bounds: [-3.8463, 56.0992, -3.7298, 56.1426],
   }),
@@ -56,7 +57,8 @@ const localMapReviews: HistoricMapLayer[] = [
     surveyEndYear: 1899,
     publicationYear: 1900,
     sourceUrl: 'https://maps.nls.uk/view/83546229',
-    attribution: 'National Library of Scotland, Ordnance Survey 25-inch mapping, Alva-area sheets (1898-99 revisions; 1900 publication).',
+    attribution:
+      'National Library of Scotland, Ordnance Survey 25-inch mapping, Alva-area sheets (1898-99 revisions; 1900 publication).',
     tilePackageId: 'nls-alva-os-25-inch-1900-mosaic',
     bounds: [-3.8463, 56.1281, -3.7297, 56.1715],
   }),
@@ -69,7 +71,8 @@ const localMapReviews: HistoricMapLayer[] = [
     surveyEndYear: 1895,
     publicationYear: 1896,
     sourceUrl: 'https://maps.nls.uk/view/82882002',
-    attribution: 'National Library of Scotland, Ordnance Survey 25-inch mapping, Culross-area sheets (1895 survey; 1896 publication).',
+    attribution:
+      'National Library of Scotland, Ordnance Survey 25-inch mapping, Culross-area sheets (1895 survey; 1896 publication).',
     tilePackageId: 'nls-culross-os-25-inch-1896-mosaic',
     bounds: [-3.6564, 56.0436, -3.5782, 56.0874],
   }),
@@ -82,7 +85,8 @@ const localMapReviews: HistoricMapLayer[] = [
     surveyEndYear: 1895,
     publicationYear: 1896,
     sourceUrl: 'https://maps.nls.uk/view/82881969',
-    attribution: 'National Library of Scotland, Ordnance Survey 25-inch mapping, Kincardine-area Fifeshire sheets (1894-95 surveys; 1896 publication).',
+    attribution:
+      'National Library of Scotland, Ordnance Survey 25-inch mapping, Kincardine-area Fifeshire sheets (1894-95 surveys; 1896 publication).',
     tilePackageId: 'nls-kincardine-os-25-inch-1896-mosaic',
     bounds: [-3.7727, 56.0431, -3.6557, 56.0867],
   }),
@@ -95,7 +99,8 @@ const localMapReviews: HistoricMapLayer[] = [
     surveyEndYear: 1899,
     publicationYear: 1900,
     sourceUrl: 'https://maps.nls.uk/view/82875144',
-    attribution: 'National Library of Scotland, Ordnance Survey 25-inch mapping, Tillicoultry-area sheets (1898-99 revisions; 1900 publication).',
+    attribution:
+      'National Library of Scotland, Ordnance Survey 25-inch mapping, Tillicoultry-area sheets (1898-99 revisions; 1900 publication).',
     tilePackageId: 'nls-tillicoultry-os-25-inch-1900-mosaic',
     bounds: [-3.8075, 56.1281, -3.6909, 56.1715],
   }),
@@ -106,15 +111,24 @@ export function withLocalMapReviews(
   enabled = import.meta.env.DEV && import.meta.env.VITE_ENABLE_LOCAL_MAP_REVIEWS === 'true',
 ): ProjectPackage {
   if (!enabled) return projectPackage;
-  const mapsForProject = localMapReviews.filter((map) => map.projectId === projectPackage.project.id);
-  if (!mapsForProject.length || mapsForProject.every((map) => projectPackage.historicMaps.some((existing) => existing.id === map.id)))
+  const mapsForProject = localMapReviews.filter(
+    (map) => map.projectId === projectPackage.project.id,
+  );
+  if (
+    !mapsForProject.length ||
+    mapsForProject.every((map) =>
+      projectPackage.historicMaps.some((existing) => existing.id === map.id),
+    )
+  )
     return projectPackage;
 
   return {
     ...projectPackage,
     historicMaps: [
       ...projectPackage.historicMaps,
-      ...mapsForProject.filter((map) => !projectPackage.historicMaps.some((existing) => existing.id === map.id)),
+      ...mapsForProject.filter(
+        (map) => !projectPackage.historicMaps.some((existing) => existing.id === map.id),
+      ),
     ],
   };
 }

@@ -27,5 +27,6 @@ describe('published project catalogue', () => {
     expect(projects.find((item) => item.project.id === 'alva-scotland')?.project.centre).toEqual([
       -3.8005, 56.1538,
     ]);
+    expect(projects.every((item) => item.publication?.state === 'publishable')).toBe(true);
   });
 });

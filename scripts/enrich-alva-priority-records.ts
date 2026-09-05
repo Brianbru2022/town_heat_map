@@ -25,7 +25,11 @@ function addSource(target: HeritageFeature, source: SourceRecord): void {
   target.sourceRecords.push(source);
 }
 
-function apply(target: HeritageFeature, values: Partial<HeritageFeature>, source: SourceRecord): void {
+function apply(
+  target: HeritageFeature,
+  values: Partial<HeritageFeature>,
+  source: SourceRecord,
+): void {
   Object.assign(target, values, {
     // A reviewed historic date supersedes the prior inventory-recording date;
     // otherwise the UI intentionally suppresses it from timeline evidence.
@@ -39,7 +43,8 @@ function apply(target: HeritageFeature, values: Partial<HeritageFeature>, source
 apply(
   feature('nrhe:111955'),
   {
-    documentedDateText: 'Alva House present by 1866 (first-edition OS map evidence; later demolished)',
+    documentedDateText:
+      'Alva House present by 1866 (first-edition OS map evidence; later demolished)',
     earliestPossibleYear: undefined,
     latestPossibleYear: 1866,
     datePrecision: 'first-mapped present-by evidence',
@@ -65,7 +70,8 @@ apply(
 apply(
   feature('nrhe:47070'),
   {
-    documentedDateText: 'Ochilvale Mill: late nineteenth-century mill; 1922 mill shop is a later component',
+    documentedDateText:
+      'Ochilvale Mill: late nineteenth-century mill; 1922 mill shop is a later component',
     earliestPossibleYear: 1860,
     latestPossibleYear: 1899,
     datePrecision: 'documented broad period',
@@ -90,7 +96,8 @@ apply(
 apply(
   feature('nrhe:47074'),
   {
-    documentedDateText: 'Glentana Mills dates from the mid-1870s; rebuilt as a one-storey block after the 1941 fire',
+    documentedDateText:
+      'Glentana Mills dates from the mid-1870s; rebuilt as a one-storey block after the 1941 fire',
     earliestPossibleYear: 1873,
     latestPossibleYear: 1877,
     datePrecision: 'mid-decade authoritative-source evidence',

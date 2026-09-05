@@ -1,0 +1,183 @@
+{
+  "projectId": "alloa-scotland",
+  "checkedAt": "2026-09-04T01:29:16.386Z",
+  "preflightValidationErrors": 0,
+  "postBatchValidationErrors": 0,
+  "publicProjection": "passed",
+  "recordResults": [
+    {
+      "recordId": "osm-park:way-81291580",
+      "currentName": "Earlsfield",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current authority route or access page was found for this exact Earlsfield polygon."
+      },
+      "claim": null,
+      "claimNote": "Live mapped park context only; no access, facilities or suitability claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "81291580",
+        "version": 6,
+        "lastEditedAt": "2026-03-17T11:47:29Z",
+        "changesetId": 180002457,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/81291580"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-92352276",
+      "currentName": "Greenfield leisure park",
+      "outcome": "verified_access",
+      "research": {
+        "name": "Greenfield Park",
+        "url": "https://www.clacks.gov.uk/culture/greenfieldpark/",
+        "reliability": "local_authority",
+        "finding": "Current council visitor page identifies Greenfield Park in Alloa and describes it as a public park."
+      },
+      "claim": "public_access",
+      "claimNote": "Tier F public-park access only; opening hours, facilities, accessibility and visitor recommendation are not claimed.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "92352276",
+        "version": 6,
+        "lastEditedAt": "2026-03-28T11:07:38Z",
+        "changesetId": 180537410,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/92352276"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        },
+        {
+          "claim": "public_access",
+          "tier": "corroborated_facility",
+          "sourceRecordRefs": [
+            "townscape-cohort-e-2026-09-04"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z",
+          "expiresAt": "2027-03-03T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-92352291",
+      "currentName": "Alloa East End Bowling Club",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "No current access authority page was found for this exact bowling-club polygon."
+      },
+      "claim": null,
+      "claimNote": "Live mapped context only; a sports-ground label does not establish public access.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "92352291",
+        "version": 4,
+        "lastEditedAt": "2026-03-14T21:41:24Z",
+        "changesetId": 179876867,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/92352291"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-park:way-94132373",
+      "currentName": "Clackmannan County Cricket Club",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire cricket",
+        "url": "https://www.clacks.gov.uk/learning/cricket/",
+        "reliability": "local_authority",
+        "finding": "The council identifies the cricket club at The Arns, but does not provide a current public-access condition for this polygon."
+      },
+      "claim": null,
+      "claimNote": "Live mapped context only; no general public-access or event-access claim.",
+      "osmElement": {
+        "elementType": "way",
+        "elementId": "94132373",
+        "version": 5,
+        "lastEditedAt": "2026-03-17T11:47:29Z",
+        "changesetId": 180002457,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "way/94132373"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    },
+    {
+      "recordId": "osm-community:node-1861230548",
+      "currentName": "Alloa Dock",
+      "outcome": "mapped_context",
+      "research": {
+        "name": "Clackmannanshire Council estates asset register",
+        "url": "https://www.clacks.gov.uk/form/1128.pdf",
+        "reliability": "local_authority",
+        "finding": "The council asset record describes Alloa Docks as non-operational land; it does not establish visitor access to this mapped viewpoint."
+      },
+      "claim": null,
+      "claimNote": "Live mapped identity retained only; asset-status evidence is not an access permission.",
+      "osmElement": {
+        "elementType": "node",
+        "elementId": "1861230548",
+        "version": 2,
+        "lastEditedAt": "2012-08-11T07:44:37Z",
+        "changesetId": 12688081,
+        "visible": true,
+        "status": "current",
+        "checkedAt": "2026-09-04T01:29:16.386Z"
+      },
+      "publicClaims": [
+        {
+          "claim": "mapped_identity",
+          "tier": "mapped_context",
+          "sourceRecordRefs": [
+            "node/1861230548"
+          ],
+          "reviewedAt": "2026-09-04T01:29:16.386Z"
+        }
+      ]
+    }
+  ]
+}

@@ -22,26 +22,26 @@ describe('Kincardine-on-Forth published package', () => {
           feature.dateBasis !== 'unknown',
       ),
     ).toHaveLength(224);
-    expect(historicFeatures.filter((feature) => feature.id.startsWith('nrhe:'))).toHaveLength(
-      248,
-    );
+    expect(historicFeatures.filter((feature) => feature.id.startsWith('nrhe:'))).toHaveLength(248);
     expect(historicFeatures.some((feature) => feature.datePrecision)).toBe(true);
-    expect(historicFeatures.filter((feature) => feature.tags.includes('nrhe-period-extracted'))).toHaveLength(
-      158,
-    );
-    expect(historicFeatures.filter(hasHistoricTimelineDate)).toHaveLength(218);
-    expect(validateFeatures(kincardinePackage.project, kincardinePackage.features)).not.toContainEqual(
-      expect.objectContaining({ severity: 'error' }),
-    );
+    expect(
+      historicFeatures.filter((feature) => feature.tags.includes('nrhe-period-extracted')),
+    ).toHaveLength(158);
+    expect(historicFeatures.filter(hasHistoricTimelineDate)).toHaveLength(192);
+    expect(
+      validateFeatures(kincardinePackage.project, kincardinePackage.features),
+    ).not.toContainEqual(expect.objectContaining({ severity: 'error' }));
   });
 
   it('keeps unapproved maps out of the selector', () => {
     expect(kincardinePackage.historicMaps).toHaveLength(1);
-    expect(
-      kincardinePackage.historicMaps.some((map) => map.id === 'nls-os-1920s-public-api'),
-    ).toBe(false);
+    expect(kincardinePackage.historicMaps.some((map) => map.id === 'nls-os-1920s-public-api')).toBe(
+      false,
+    );
     expect(kincardinePackage.settlementPolygons).toEqual([]);
-    expect(kincardinePackage.curationMetadata?.importedPacks[0]?.historicMapCatalogue).toHaveLength(7);
-    expect(kincardinePackage.features.filter((feature) => !feature.geometry)).toHaveLength(4);
+    expect(kincardinePackage.curationMetadata?.importedPacks[0]?.historicMapCatalogue).toHaveLength(
+      7,
+    );
+    expect(kincardinePackage.features.filter((feature) => !feature.geometry)).toHaveLength(2);
   });
 });

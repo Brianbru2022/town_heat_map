@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useExplorerStore } from '../app/store';
-import { publishedProjectPackages } from '../data/publishedProjects';
-import { sortPublishedPackages } from '../domain/projects';
+import { sortPublishedProjects } from '../domain/projects';
 
 const hesDesignationsLayerId = 'hes-listed-buildings-by-category';
 const unspecifiedCounty = 'Unspecified county';
@@ -60,31 +59,11 @@ export function Sidebar() {
   const setArchaeologyOnly = useExplorerStore((state) => state.setArchaeologyOnly);
   const communityLayersOnly = useExplorerStore((state) => state.communityLayersOnly);
   const setCommunityLayersOnly = useExplorerStore((state) => state.setCommunityLayersOnly);
-  const setPackage = useExplorerStore((state) => state.setPackage);
-  const hasHesDesignations = pkg.historicMaps.some((map) => map.id === hesDesignationsLayerId);
-  const publishedPackages = sortPublishedPackages(publishedProjectPackages);
-  const countries = [
-    ...new Set(publishedPackages.map((projectPackage) => projectPackage.project.country)),
-  ];
-  const counties = [
-    ...new Set(
-      publishedPackages
-        .filter((projectPackage) => projectPackage.project.country === pkg.project.country)
-        .map((projectPackage) => projectPackage.project.region ?? unspecifiedCounty),
-    ),
-  ];
-  const townsInCounty = publishedPackages.filter(
-    (projectPackage) =>
-      projectPackage.project.country === pkg.project.country &&
-      (projectPackage.project.region ?? unspecifiedCounty) ===
-        (pkg.project.region ?? unspecifiedCounty),
-  );
-  const matchingTowns = townsInCounty.filter((projectPackage) =>
-    projectPackage.project.locality
-      .toLocaleLowerCase()
-      .includes(townSearch.trim().toLocaleLowerCase()),
-  );
-  const townOptions = townSearch ? matchingTowns : townsInCounty;
+  const publishedProjects = useExplorerStore((state) => state.publishedProjects);
+  const loadStatus = useExplorerStore((state) => state.loadStatus);
+  const loadError = useExplorerStore((state) => state.loadError);
+  const loadPackage = useExplorerStore((state) => state.loadPackage);
+  const retryLoad = useExplorerStore((state) => state.retryLoad);
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -94,9 +73,30 @@ export function Sidebar() {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, []);
 
+  if (!pkg) return null;
+  const hasHesDesignations = pkg.historicMaps.some((map) => map.id === hesDesignationsLayerId);
+  const sortedProjects = sortPublishedProjects(publishedProjects);
+  const countries = [...new Set(sortedProjects.map((project) => project.country))];
+  const counties = [
+    ...new Set(
+      sortedProjects
+        .filter((project) => project.country === pkg.project.country)
+        .map((project) => project.region ?? unspecifiedCounty),
+    ),
+  ];
+  const townsInCounty = sortedProjects.filter(
+    (project) =>
+      project.country === pkg.project.country &&
+      (project.region ?? unspecifiedCounty) === (pkg.project.region ?? unspecifiedCounty),
+  );
+  const matchingTowns = townsInCounty.filter((project) =>
+    project.locality.toLocaleLowerCase().includes(townSearch.trim().toLocaleLowerCase()),
+  );
+  const townOptions = townSearch ? matchingTowns : townsInCounty;
+
   function selectPackage(id: string) {
-    const next = publishedPackages.find((candidate) => candidate.project.id === id);
-    if (next) setPackage(next);
+    const next = sortedProjects.find((candidate) => candidate.id === id);
+    if (next) void loadPackage(next.id);
   }
 
   return (
@@ -123,12 +123,12 @@ export function Sidebar() {
           value={pkg.project.country}
           aria-label="Country"
           onChange={(event) => {
-            const next = publishedPackages.find(
-              (candidate) => candidate.project.country === event.target.value,
+            const next = sortedProjects.find(
+              (candidate) => candidate.country === event.target.value,
             );
             if (next) {
               setTownSearch('');
-              setPackage(next);
+              void loadPackage(next.id);
             }
           }}
         >
@@ -145,14 +145,14 @@ export function Sidebar() {
           value={pkg.project.region ?? unspecifiedCounty}
           aria-label="County"
           onChange={(event) => {
-            const next = publishedPackages.find(
+            const next = sortedProjects.find(
               (candidate) =>
-                candidate.project.country === pkg.project.country &&
-                (candidate.project.region ?? unspecifiedCounty) === event.target.value,
+                candidate.country === pkg.project.country &&
+                (candidate.region ?? unspecifiedCounty) === event.target.value,
             );
             if (next) {
               setTownSearch('');
-              setPackage(next);
+              void loadPackage(next.id);
             }
           }}
         >
@@ -176,22 +176,18 @@ export function Sidebar() {
       <label>
         Town
         <select
-          value={
-            townOptions.some((projectPackage) => projectPackage.project.id === pkg.project.id)
-              ? pkg.project.id
-              : ''
-          }
+          value={townOptions.some((project) => project.id === pkg.project.id) ? pkg.project.id : ''}
           aria-label="Town"
           onChange={(event) => selectPackage(event.target.value)}
         >
-          {!townOptions.some((projectPackage) => projectPackage.project.id === pkg.project.id) && (
+          {!townOptions.some((project) => project.id === pkg.project.id) && (
             <option value="" disabled>
               {matchingTowns.length ? 'Choose a town' : 'No matching towns'}
             </option>
           )}
-          {townOptions.map((projectPackage) => (
-            <option value={projectPackage.project.id} key={projectPackage.project.id}>
-              {projectPackage.project.locality}
+          {townOptions.map((project) => (
+            <option value={project.id} key={project.id}>
+              {project.locality}
             </option>
           ))}
         </select>
@@ -203,6 +199,15 @@ export function Sidebar() {
         Explore source-backed historic places, maps and evidence across {pkg.project.locality}
         {pkg.project.region ? `, ${pkg.project.region}` : ''}.
       </p>
+      {loadStatus === 'loading' && <p role="status">Loading the selected town guide…</p>}
+      {loadError && (
+        <div role="alert">
+          <p>{loadError}</p>
+          <button type="button" onClick={() => void retryLoad()}>
+            Try again
+          </button>
+        </div>
+      )}
       <label>
         Search features
         <input

@@ -12,17 +12,23 @@ describe('Alva published package', () => {
     expect(alvaPackage.project.townStudyArea?.localityName).toBe('Alva');
     expect(alvaPackage.project.townStudyArea?.bufferMetres).toBe(500);
     expect(historicFeatures).toHaveLength(164);
-    expect(historicFeatures.filter((feature) => feature.id.startsWith('curated:'))).toHaveLength(34);
-    expect(historicFeatures.filter((feature) => feature.id.startsWith('curated:')).every(hasEstablishedDate)).toBe(true);
+    expect(historicFeatures.filter((feature) => feature.id.startsWith('curated:'))).toHaveLength(
+      34,
+    );
+    expect(
+      historicFeatures
+        .filter((feature) => feature.id.startsWith('curated:'))
+        .every(hasEstablishedDate),
+    ).toBe(true);
     expect(historicFeatures.filter(hasEstablishedDate)).toHaveLength(164);
     expect(historicFeatures.filter(hasHistoricTimelineDate)).toHaveLength(101);
-    expect(historicFeatures.filter((feature) => feature.id.startsWith('nrhe:'))).toHaveLength(
-      124,
-    );
+    expect(historicFeatures.filter((feature) => feature.id.startsWith('nrhe:'))).toHaveLength(124);
     expect(
       historicFeatures.filter((feature) => feature.tags.includes('inventory-presence-date')),
     ).toHaveLength(62);
-    expect(alvaPackage.features.filter((feature) => feature.tags.includes('osm-current-park'))).toHaveLength(2);
+    expect(
+      alvaPackage.features.filter((feature) => feature.tags.includes('osm-current-park')),
+    ).toHaveLength(2);
     expect(validateFeatures(alvaPackage.project, alvaPackage.features)).not.toContainEqual(
       expect.objectContaining({ severity: 'error' }),
     );
@@ -36,7 +42,9 @@ describe('Alva published package', () => {
       latestPossibleYear: 1866,
       dateBasis: 'first_mapped',
     });
-    expect(alvaPackage.features.find((feature) => feature.id === 'nrhe:111955')?.earliestPossibleYear).toBeUndefined();
+    expect(
+      alvaPackage.features.find((feature) => feature.id === 'nrhe:111955')?.earliestPossibleYear,
+    ).toBeUndefined();
   });
 
   it('publishes the reviewed community inventory without an unapproved historic map', () => {
@@ -48,7 +56,9 @@ describe('Alva published package', () => {
       expect.any(String),
     );
     expect(alvaPackage.historicMaps).toHaveLength(1);
-    expect(alvaPackage.historicMaps.some((map) => map.id === 'nls-os-1920s-public-api')).toBe(false);
+    expect(alvaPackage.historicMaps.some((map) => map.id === 'nls-os-1920s-public-api')).toBe(
+      false,
+    );
     expect(alvaPackage.settlementPolygons).toEqual([]);
     expect(alvaPackage.curationMetadata?.importedPacks[0]?.historicMapCatalogue).toHaveLength(6);
   });
