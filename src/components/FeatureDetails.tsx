@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { dateWording } from '../domain/timeline';
 import { useExplorerStore } from '../app/store';
 import type { PublicCurrentPlaceDetail } from '../domain/publicDto';
@@ -50,8 +51,17 @@ function presentedCurrentPlaceType(type: string, mappedContext: boolean): string
 }
 
 export function FeatureDetails() {
+  const detailsRef = useRef<HTMLElement>(null);
   const feature = useExplorerStore((state) => state.selectedFeature);
   const select = useExplorerStore((state) => state.selectFeature);
+  useEffect(() => {
+    if (!feature || !window.matchMedia('(max-width: 650px)').matches) return;
+    const revealDetails = window.requestAnimationFrame(() => {
+      detailsRef.current?.scrollIntoView({ block: 'start' });
+      detailsRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(revealDetails);
+  }, [feature]);
   if (!feature)
     return (
       <aside className="details empty" aria-labelledby="feature-details-heading">
@@ -86,7 +96,12 @@ export function FeatureDetails() {
     );
   }
   return (
-    <aside className="details" aria-labelledby="feature-details-heading">
+    <aside
+      ref={detailsRef}
+      className="details"
+      aria-labelledby="feature-details-heading"
+      tabIndex={-1}
+    >
       <button className="icon" type="button" onClick={closeDetails} aria-label="Close details">
         ×
       </button>

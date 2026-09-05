@@ -75,5 +75,21 @@ describe('production deployment boundary', () => {
     expect(nginx).toContain('(?:data|scripts|server|src|docker|schemas|node_modules)');
     expect(nginx).toContain('(?:map|sqlite|mbtiles|log|ya?ml|toml|ini)');
     expect(nginx).toContain('return 404;');
+    expect(nginx).toContain('(?:^|/)(?:\\.env(?:[./]|$)|\\.git(?:/|$))');
+  });
+
+  it('keeps the explicit production basemap, CSP and static compression aligned', async () => {
+    const nginx = await deploymentFile('docker/nginx.conf');
+    const productionEnvironment = await deploymentFile('.env.production');
+    const dockerfile = await deploymentFile('Dockerfile');
+
+    expect(productionEnvironment).toContain(
+      'VITE_BASEMAP_TILE_URL=https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    );
+    expect(dockerfile).toContain('COPY index.html vite.config.ts .env.production ./');
+    expect(nginx).toContain("connect-src 'self' https://tile.openstreetmap.org");
+    expect(nginx).not.toMatch(/connect-src[^;"]+\*/);
+    expect(nginx).toContain('gzip on;');
+    expect(nginx).toContain('gzip_types application/javascript application/json');
   });
 });

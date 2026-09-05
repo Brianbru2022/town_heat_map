@@ -96,6 +96,59 @@ describe('publication assessment', () => {
     );
   });
 
+  it.each([
+    ['empty', ''],
+    ['conditional', 'Open Government Licence v3.0; conditional on confirmation'],
+    ['pending', 'Reuse pending provider confirmation'],
+    ['denied', 'Permission not granted'],
+    ['ambiguous', 'Collection-specific'],
+  ])('fails %s feature licensing closed', (_label, licence) => {
+    const record = feature({ licence });
+
+    expect(assessFeaturePublication(projectPackage([record]), record).canPublish).toBe(false);
+  });
+
+  it('resolves delegated feature licensing only when every retained source licence is resolved', () => {
+    const resolved = feature({
+      licence: 'See individual source records.',
+      sourceRecords: [
+        { ...sourceFeature.sourceRecords[0], licence: 'Open Database Licence (ODbL) v1.0' },
+      ],
+    });
+    const unresolved = feature({
+      id: 'publication:delegated-unresolved',
+      licence: 'See individual source records.',
+      sourceRecords: [{ ...sourceFeature.sourceRecords[0], licence: 'Awaiting confirmation' }],
+    });
+
+    expect(assessFeaturePublication(projectPackage([resolved]), resolved).canPublish).toBe(true);
+    expect(assessFeaturePublication(projectPackage([unresolved]), unresolved).blockers).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: 'licence.delegated_unresolved' }),
+        expect.objectContaining({ code: 'licence.source_unresolved' }),
+      ]),
+    );
+  });
+
+  it('blocks a feature whose source-record licence is missing or unresolved', () => {
+    const missing = feature({
+      sourceRecords: [{ ...sourceFeature.sourceRecords[0], licence: undefined }],
+    });
+    const unresolved = feature({
+      id: 'publication:source-unresolved',
+      sourceRecords: [
+        { ...sourceFeature.sourceRecords[0], licence: 'Open licence pending confirmation' },
+      ],
+    });
+
+    expect(assessFeaturePublication(projectPackage([missing]), missing).blockers).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: 'licence.source_missing' })]),
+    );
+    expect(assessFeaturePublication(projectPackage([unresolved]), unresolved).blockers).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: 'licence.source_unresolved' })]),
+    );
+  });
+
   it('blocks material missing geometry even when it is an intentional validation warning', () => {
     const record = feature({ geometry: null, locationType: 'geometry_to_digitise' });
     const assessment = assessFeaturePublication(projectPackage([record]), record);
@@ -167,6 +220,7 @@ describe('publication assessment', () => {
       sourceRecords: [
         {
           ...sourceFeature.sourceRecords[0],
+          quotedDateText: 'Unsupported nested narrative.',
           notes: 'Internal source analysis.',
         },
       ],
@@ -185,6 +239,20 @@ describe('publication assessment', () => {
       project: {
         ...alloaPackage.project,
         researchNotes: 'Internal project research.',
+        boundary: {
+          ...alloaPackage.project.boundary,
+          properties: {
+            ...alloaPackage.project.boundary.properties,
+            reviewNotes: 'Internal boundary review.',
+          },
+        },
+        methodology: {
+          ...alloaPackage.project.methodology,
+          age: {
+            ...alloaPackage.project.methodology.age,
+            internalWeight: 99,
+          },
+        },
       },
       sources: alloaPackage.sources.map((entry, index) =>
         index === 0 ? { ...entry, limitations: 'Internal limitations analysis.' } : entry,
@@ -214,8 +282,69 @@ describe('publication assessment', () => {
       'sourceRecordRefs',
       'limitations',
       'notes',
+      'quotedDateText',
+      'reviewNotes',
+      'internalWeight',
     ])
       expect(publicText).not.toContain(`"${field}"`);
+    expect(delivered.project.boundary.properties).toEqual({});
+  });
+
+  it('omits unresolved source definitions, maps, polygons and licence components', () => {
+    const record = feature();
+    const resolvedPolygon = structuredClone(alloaPackage.settlementPolygons[0]);
+    if (!resolvedPolygon) throw new Error('Expected a settlement polygon fixture.');
+    resolvedPolygon.id = 'resolved-polygon';
+    resolvedPolygon.publication = { state: 'publishable' };
+    resolvedPolygon.sourceRecords = [
+      { ...sourceFeature.sourceRecords[0], licence: 'Creative Commons Attribution 4.0' },
+    ];
+    const unresolvedPolygon = structuredClone(resolvedPolygon);
+    unresolvedPolygon.id = 'unresolved-polygon';
+    unresolvedPolygon.sourceRecords[0].licence = 'Permission denied';
+    const pkg = {
+      ...projectPackage([record]),
+      sources: [
+        { ...alloaPackage.sources[0], id: 'resolved-source', licence: 'CC0' },
+        { ...alloaPackage.sources[0], id: 'unresolved-source', licence: 'Pending review' },
+      ],
+      historicMaps: [
+        historicMap('resolved-map', 'publishable', 'Open Government Licence v3.0'),
+        historicMap('denied-map', 'publishable', 'Permission not granted'),
+      ],
+      settlementPolygons: [resolvedPolygon, unresolvedPolygon],
+      licensingMetadata: {
+        components: [
+          {
+            id: 'resolved-component',
+            name: 'Resolved component',
+            source: 'Example',
+            licence: 'CC BY 4.0',
+            attribution: 'Example',
+            scope: 'Example data',
+          },
+          {
+            id: 'unresolved-component',
+            name: 'Unresolved component',
+            source: 'Example',
+            licence: 'Confirmation required',
+            attribution: 'Example',
+            scope: 'Example data',
+          },
+        ],
+      },
+    };
+    const delivered = publicProjectPackage(pkg)!;
+
+    expect(delivered.sources.map((source) => source.id)).toEqual(['resolved-source']);
+    expect(delivered.historicMaps.map((map) => map.id)).toEqual(['resolved-map']);
+    expect(delivered.settlementPolygons.map((polygon) => polygon.id)).toEqual(['resolved-polygon']);
+    expect(delivered.licensingMetadata?.components.map((component) => component.id)).toEqual(
+      expect.arrayContaining(['resolved-component']),
+    );
+    expect(delivered.licensingMetadata?.components.map((component) => component.id)).not.toContain(
+      'unresolved-component',
+    );
   });
 
   it('exposes direct local tiles only for map layers that pass publication projection', () => {

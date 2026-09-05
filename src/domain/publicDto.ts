@@ -22,7 +22,6 @@ export interface PublicSourceRecord {
   sourceUrl?: string;
   accessedAt: string;
   licence?: string;
-  quotedDateText?: string;
   reliability: Reliability;
 }
 

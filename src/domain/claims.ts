@@ -320,6 +320,28 @@ export function projectPublicClaims(
   const editorial = claimIsSupported(feature, 'editorial_recommendation', now);
   const profile = publicationProfile(feature);
   const narrativeIsClaimConstrained = profile !== undefined;
+  const legacyNarrativeClaims = feature.shortDescription
+    ? [
+        ...(/\b(?:recommend(?:ed|ation)?|must[- ]see|excellent|ideal|best|unmissable|worthwhile|high[- ]quality)\b/i.test(
+          feature.shortDescription,
+        )
+          ? (['editorial_recommendation'] as const)
+          : []),
+        ...(/\b(?:currently|open (?:daily|today|to the public)|opening hours?|booking|admission|entry fee|visitor facilit|in operation|operates? as)\b/i.test(
+          feature.shortDescription,
+        )
+          ? (['current_operation'] as const)
+          : []),
+        ...(/\b(?:public access|wheelchair accessible|accessible entrance|free entry)\b/i.test(
+          feature.shortDescription,
+        )
+          ? (['public_access'] as const)
+          : []),
+      ]
+    : [];
+  const legacyNarrativeIsSupported = legacyNarrativeClaims.every((claim) =>
+    evidenceIsUsable(feature, claim, now),
+  );
   const publication = feature.publication
     ? {
         state: feature.publication.state,
@@ -341,7 +363,9 @@ export function projectPublicClaims(
       ? editorial
         ? feature.shortDescription
         : 'Mapped present-day context; availability and visitor facilities are not implied.'
-      : feature.shortDescription,
+      : legacyNarrativeIsSupported
+        ? feature.shortDescription
+        : undefined,
     fullDescription:
       narrativeIsClaimConstrained && !editorial ? undefined : feature.fullDescription,
   };

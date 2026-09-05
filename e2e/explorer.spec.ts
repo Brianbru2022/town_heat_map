@@ -37,6 +37,7 @@ test('opens the published explorer and information pages', async ({ page }) => {
   await expect(page.getByLabel('Parking')).toBeChecked();
   await expect(page.getByLabel('Natural sights')).toBeChecked();
   await page.getByLabel('Only community layers').uncheck();
+  await page.getByRole('button', { name: 'Close settings' }).click();
   await page.getByLabel('Search towns').fill('Tillicoultry');
   await page.getByLabel('Town', { exact: true }).selectOption('tillicoultry-scotland');
   await expect(page.getByLabel('Town', { exact: true })).toHaveValue('tillicoultry-scotland');
@@ -54,6 +55,7 @@ test('opens the published explorer and information pages', async ({ page }) => {
   await page.getByLabel('County').selectOption('Clackmannanshire');
   await page.getByLabel('Search towns').fill('Alloa');
   await page.getByLabel('Town', { exact: true }).selectOption('alloa-scotland');
+  await page.getByRole('button', { name: 'Open settings' }).click();
   const currentContext = page.getByLabel('Show current parks & open spaces');
   await expect(currentContext).not.toBeChecked();
   await currentContext.check();
@@ -115,6 +117,8 @@ test('provides keyboard discovery and manages settings focus as a modal', async 
   await settings.press('Enter');
   const dialog = page.getByRole('dialog', { name: 'Explorer settings' });
   await expect(dialog).toBeVisible();
+  await expect(page.locator('.app')).toHaveAttribute('inert', '');
+  await expect(page.getByRole('button', { name: 'Explore', includeHidden: false })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Close settings' })).toBeFocused();
   await page.keyboard.press('Shift+Tab');
   expect(
@@ -122,23 +126,34 @@ test('provides keyboard discovery and manages settings focus as a modal', async 
   ).toBe(true);
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
+  await expect(page.locator('.app')).not.toHaveAttribute('inert', '');
   await expect(settings).toBeFocused();
 });
 
 test('keeps feature details available on a narrow touch viewport', async ({ page }) => {
-  await page.setViewportSize({ width: 320, height: 720 });
-  await page.goto('/');
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 720 });
+    await page.goto('/');
 
-  const firstPlace = page.locator('[data-feature-id]').first();
-  await expect(firstPlace).toBeVisible();
-  await firstPlace.click();
-  await expect(page.getByRole('button', { name: 'Close details' })).toBeVisible();
-  await expect(page.locator('.details h2')).toContainText(/./);
-  const widths = await page.locator('body').evaluate((body) => ({
-    client: body.clientWidth,
-    scroll: body.scrollWidth,
-  }));
-  expect(widths.scroll).toBeLessThanOrEqual(widths.client + 1);
+    const firstPlace = page.locator('[data-feature-id]').first();
+    await expect(firstPlace).toBeVisible();
+    await firstPlace.click();
+    const details = page.locator('.details');
+    await expect(page.getByRole('button', { name: 'Close details' })).toBeVisible();
+    await expect(details.locator('h2')).toContainText(/./);
+    await expect(details).toBeFocused();
+    const position = await details.evaluate((element) => {
+      const bounds = element.getBoundingClientRect();
+      return { top: bounds.top, bottom: bounds.bottom, viewportHeight: window.innerHeight };
+    });
+    expect(position.bottom).toBeGreaterThan(0);
+    expect(position.top).toBeLessThan(position.viewportHeight);
+    const widths = await page.locator('body').evaluate((body) => ({
+      client: body.clientWidth,
+      scroll: body.scrollWidth,
+    }));
+    expect(widths.scroll).toBeLessThanOrEqual(widths.client + 1);
+  }
 });
 
 test('keeps controls and the non-map route usable at phone and tablet widths', async ({ page }) => {
@@ -157,8 +172,8 @@ test('keeps controls and the non-map route usable at phone and tablet widths', a
   }
 });
 
-test('keeps selected feature details inside the tablet viewport', async ({ page }) => {
-  for (const width of [651, 700, 768, 820, 900]) {
+test('keeps selected feature details inside tablet and desktop viewports', async ({ page }) => {
+  for (const width of [651, 768, 900, 1280]) {
     await page.setViewportSize({ width, height: 820 });
     await page.goto('/');
     await page.locator('[data-feature-id]').first().click();

@@ -189,4 +189,18 @@ describe('public API safeguards', () => {
     expect(response.statusCode).toBe(400);
     expect(fetchImplementation).not.toHaveBeenCalled();
   });
+
+  it('rejects repeated bbox and search parameters with controlled 400 responses', async () => {
+    const fetchImplementation = vi.fn<typeof fetch>();
+    const app = await createTestApp({ fetchImplementation });
+
+    const bboxResponse = await app.inject('/api/hes-designations?bbox=1&bbox=2');
+    const queryResponse = await app.inject('/api/geocode?q=Alloa&q=Alva');
+
+    expect(bboxResponse.statusCode).toBe(400);
+    expect(bboxResponse.json()).toEqual({ message: 'A valid Web Mercator bbox is required.' });
+    expect(queryResponse.statusCode).toBe(400);
+    expect(queryResponse.json()).toEqual({ message: 'A single search query is required.' });
+    expect(fetchImplementation).not.toHaveBeenCalled();
+  });
 });

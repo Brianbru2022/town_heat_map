@@ -60,6 +60,7 @@ function osmFeature(overrides: Partial<HeritageFeature> = {}): HeritageFeature {
         sourceRecordId: 'operator:test-facility',
         sourceUrl: 'https://example.test/facility',
         accessedAt: '2026-09-03T10:00:00.000Z',
+        licence: 'Open Government Licence v3.0',
         reliability: 'local_authority',
         notes:
           'Current-place curation: access=yes; opening_hours=09:00-17:00; fee=no; wheelchair=yes; operator=Example Council; capacity=18; website=https://example.test/facility; description=Recommended stop.',
@@ -154,8 +155,8 @@ describe('claim-relative public projection', () => {
 
       expect(internalSource.notes).toMatch(/operator/i);
       expect(claimIsSupported(sourceFeature, 'operator')).toBe(false);
-      expect(JSON.stringify(publicSource)).not.toContain('notes');
-      expect(JSON.stringify(delivered)).not.toContain(internalSource.notes);
+      expect(JSON.stringify(publicSource ?? {})).not.toContain('notes');
+      expect(JSON.stringify(delivered ?? {})).not.toContain(internalSource.notes);
     },
   );
 
@@ -245,6 +246,28 @@ describe('claim-relative public projection', () => {
     );
     expect(JSON.stringify(publicProjectPackage(packageWith(editorial)))).not.toContain(
       'fullDescription',
+    );
+  });
+
+  it('suppresses operational or editorial legacy descriptions without explicit claim evidence', () => {
+    const operational = {
+      ...hesFeature,
+      id: 'legacy:operational-copy',
+      publication: { state: 'publishable' as const },
+      shortDescription: 'Open daily with free entry and highly recommended for visitors.',
+    };
+    const neutral = {
+      ...hesFeature,
+      id: 'legacy:historic-copy',
+      publication: { state: 'publishable' as const },
+      shortDescription: 'Classical early-19th-century civic building with later additions.',
+    };
+
+    expect(publicProjectPackage(packageWith(operational))?.features[0]?.shortDescription).toBe(
+      undefined,
+    );
+    expect(publicProjectPackage(packageWith(neutral))?.features[0]?.shortDescription).toBe(
+      neutral.shortDescription,
     );
   });
 

@@ -151,6 +151,10 @@ function isWebMercatorBbox(value: string): boolean {
   );
 }
 
+function singleQueryString(value: unknown): string | undefined {
+  return typeof value === 'string' ? value : undefined;
+}
+
 function tileBbox(z: number, x: number, y: number): string | undefined {
   if (!Number.isInteger(z) || !Number.isInteger(x) || !Number.isInteger(y) || z < 0 || z > 22)
     return undefined;
@@ -353,7 +357,8 @@ export async function buildApp(options: BuildAppOptions = {}) {
       },
     },
     async (request, reply) => {
-      const { bbox = '' } = request.query as { bbox?: string };
+      const rawBbox = (request.query as { bbox?: unknown }).bbox;
+      const bbox = singleQueryString(rawBbox) ?? '';
       if (!isWebMercatorBbox(bbox))
         return reply.code(400).send({ message: 'A valid Web Mercator bbox is required.' });
       return hesDesignationImage(bbox, request, reply);
@@ -481,7 +486,10 @@ export async function buildApp(options: BuildAppOptions = {}) {
     };
   });
   app.get('/api/geocode', async (request, reply) => {
-    const { q = '' } = request.query as { q?: string };
+    const rawQuery = (request.query as { q?: unknown }).q;
+    if (rawQuery !== undefined && singleQueryString(rawQuery) === undefined)
+      return reply.code(400).send({ message: 'A single search query is required.' });
+    const q = singleQueryString(rawQuery) ?? '';
     if (q.length > 200) return reply.code(400).send({ message: 'The search query is too long.' });
     const search = q.trim().toLocaleLowerCase();
     const projects = sortPublishedProjects(await repository.list());

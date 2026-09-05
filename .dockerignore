@@ -3,6 +3,7 @@ dist/
 playwright-report/
 test-results/
 .env*
+!.env.production
 *.log
 .git/
 data/runtime/

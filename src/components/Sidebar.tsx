@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useExplorerStore } from '../app/store';
 import { sortPublishedProjects } from '../domain/projects';
 import { FeatureList } from './FeatureList';
@@ -76,6 +77,9 @@ export function Sidebar() {
 
   useEffect(() => {
     if (!settingsOpen) return;
+    const application = document.querySelector<HTMLElement>('.app');
+    application?.setAttribute('inert', '');
+    application?.setAttribute('aria-hidden', 'true');
     const focusCloseControl = window.requestAnimationFrame(() => settingsCloseRef.current?.focus());
     const trapFocus = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -105,6 +109,8 @@ export function Sidebar() {
     return () => {
       window.cancelAnimationFrame(focusCloseControl);
       window.removeEventListener('keydown', trapFocus);
+      application?.removeAttribute('inert');
+      application?.removeAttribute('aria-hidden');
     };
   }, [closeSettings, settingsOpen]);
 
@@ -258,243 +264,245 @@ export function Sidebar() {
         Historic dot colour shows the earliest evidence century: purple is oldest, then red, orange
         and amber; blue means no usable historic date.
       </p>
-      {settingsOpen && (
-        <>
-          <div className="settings-backdrop" aria-hidden="true" onMouseDown={closeSettings} />
-          <section
-            ref={settingsDialogRef}
-            className="settings-popover"
-            aria-labelledby="settings-title"
-            aria-describedby="settings-description"
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="settings-popover-heading">
-              <h2 id="settings-title">Explorer settings</h2>
-              <button
-                ref={settingsCloseRef}
-                type="button"
-                className="icon"
-                aria-label="Close settings"
-                onClick={closeSettings}
-              >
-                ×
-              </button>
-            </div>
-            <p className="visually-hidden" id="settings-description">
-              Settings open in a modal window. Press Escape to close it.
-            </p>
-            <fieldset>
-              <legend>Timeline visibility</legend>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={possible}
-                  onChange={(event) => setPossible(event.target.checked)}
-                />
-                Include possibly present
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={excludeUndated}
-                  onChange={(event) => setExcludeUndated(event.target.checked)}
-                />
-                Show only entries with established dates
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={demolished}
-                  onChange={(event) => setDemolished(event.target.checked)}
-                />
-                Show demolished features
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Evidence layers</legend>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={settlementAge}
-                  onChange={(event) => setSettlementAge(event.target.checked)}
-                />
-                Show settlement-age evidence
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showAreaPolygons}
-                  onChange={(event) => setShowAreaPolygons(event.target.checked)}
-                />
-                Show heritage area polygons
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showCurrentContext}
-                  onChange={(event) => setShowCurrentContext(event.target.checked)}
-                />
-                Show current parks &amp; open spaces
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={archaeologyOnly}
-                  onChange={(event) => setArchaeologyOnly(event.target.checked)}
-                />
-                Archaeology evidence only
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Map key</legend>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showHistoricLegend}
-                  onChange={(event) => setShowHistoricLegend(event.target.checked)}
-                />
-                Show historic-date colours
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmLegend}
-                  onChange={(event) => setShowOsmLegend(event.target.checked)}
-                />
-                Show OSM category icons
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Community layers</legend>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={communityLayersOnly}
-                  onChange={(event) => setCommunityLayersOnly(event.target.checked)}
-                />
-                Only community layers
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showPublicArt}
-                  onChange={(event) => setShowPublicArt(event.target.checked)}
-                />
-                Show public art
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showPlaquesAndMemorials}
-                  onChange={(event) => setShowPlaquesAndMemorials(event.target.checked)}
-                />
-                Show plaques &amp; memorials
-              </label>
-            </fieldset>
-            <fieldset>
-              <legend>Current OSM places</legend>
-              <p className="settings-help">
-                Optional present-day OSM places with their own map icons. They are not historic
-                evidence.
+      {settingsOpen &&
+        createPortal(
+          <>
+            <div className="settings-backdrop" aria-hidden="true" onMouseDown={closeSettings} />
+            <section
+              ref={settingsDialogRef}
+              className="settings-popover"
+              aria-labelledby="settings-title"
+              aria-describedby="settings-description"
+              role="dialog"
+              aria-modal="true"
+            >
+              <div className="settings-popover-heading">
+                <h2 id="settings-title">Explorer settings</h2>
+                <button
+                  ref={settingsCloseRef}
+                  type="button"
+                  className="icon"
+                  aria-label="Close settings"
+                  onClick={closeSettings}
+                >
+                  ×
+                </button>
+              </div>
+              <p className="visually-hidden" id="settings-description">
+                Settings open in a modal window. Press Escape to close it.
               </p>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmFood}
-                  onChange={(event) => setShowOsmFood(event.target.checked)}
-                />
-                Food &amp; drink
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmPicnic}
-                  onChange={(event) => setShowOsmPicnic(event.target.checked)}
-                />
-                Picnic &amp; rest
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmArt}
-                  onChange={(event) => setShowOsmArt(event.target.checked)}
-                />
-                Art &amp; culture
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmMemorials}
-                  onChange={(event) => setShowOsmMemorials(event.target.checked)}
-                />
-                Memorials &amp; plaques
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmHistoricPlaces}
-                  onChange={(event) => setShowOsmHistoricPlaces(event.target.checked)}
-                />
-                Historic places
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmLeisure}
-                  onChange={(event) => setShowOsmLeisure(event.target.checked)}
-                />
-                Leisure
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmVisitor}
-                  onChange={(event) => setShowOsmVisitor(event.target.checked)}
-                />
-                Visitor information
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmAmenities}
-                  onChange={(event) => setShowOsmAmenities(event.target.checked)}
-                />
-                Amenities
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmParking}
-                  onChange={(event) => setShowOsmParking(event.target.checked)}
-                />
-                Parking
-              </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={showOsmNature}
-                  onChange={(event) => setShowOsmNature(event.target.checked)}
-                />
-                Natural sights
-              </label>
-            </fieldset>
-            {hasHesDesignations && (
               <fieldset>
-                <legend>Live cross-check</legend>
+                <legend>Timeline visibility</legend>
                 <label className="check">
                   <input
                     type="checkbox"
-                    checked={showHesDesignations}
-                    onChange={(event) => setShowHesDesignations(event.target.checked)}
+                    checked={possible}
+                    onChange={(event) => setPossible(event.target.checked)}
                   />
-                  Show current HES designations (external symbols)
+                  Include possibly present
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={excludeUndated}
+                    onChange={(event) => setExcludeUndated(event.target.checked)}
+                  />
+                  Show only entries with established dates
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={demolished}
+                    onChange={(event) => setDemolished(event.target.checked)}
+                  />
+                  Show demolished features
                 </label>
               </fieldset>
-            )}
-          </section>
-        </>
-      )}
+              <fieldset>
+                <legend>Evidence layers</legend>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={settlementAge}
+                    onChange={(event) => setSettlementAge(event.target.checked)}
+                  />
+                  Show settlement-age evidence
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showAreaPolygons}
+                    onChange={(event) => setShowAreaPolygons(event.target.checked)}
+                  />
+                  Show heritage area polygons
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showCurrentContext}
+                    onChange={(event) => setShowCurrentContext(event.target.checked)}
+                  />
+                  Show current parks &amp; open spaces
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={archaeologyOnly}
+                    onChange={(event) => setArchaeologyOnly(event.target.checked)}
+                  />
+                  Archaeology evidence only
+                </label>
+              </fieldset>
+              <fieldset>
+                <legend>Map key</legend>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showHistoricLegend}
+                    onChange={(event) => setShowHistoricLegend(event.target.checked)}
+                  />
+                  Show historic-date colours
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmLegend}
+                    onChange={(event) => setShowOsmLegend(event.target.checked)}
+                  />
+                  Show OSM category icons
+                </label>
+              </fieldset>
+              <fieldset>
+                <legend>Community layers</legend>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={communityLayersOnly}
+                    onChange={(event) => setCommunityLayersOnly(event.target.checked)}
+                  />
+                  Only community layers
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showPublicArt}
+                    onChange={(event) => setShowPublicArt(event.target.checked)}
+                  />
+                  Show public art
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showPlaquesAndMemorials}
+                    onChange={(event) => setShowPlaquesAndMemorials(event.target.checked)}
+                  />
+                  Show plaques &amp; memorials
+                </label>
+              </fieldset>
+              <fieldset>
+                <legend>Current OSM places</legend>
+                <p className="settings-help">
+                  Optional present-day OSM places with their own map icons. They are not historic
+                  evidence.
+                </p>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmFood}
+                    onChange={(event) => setShowOsmFood(event.target.checked)}
+                  />
+                  Food &amp; drink
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmPicnic}
+                    onChange={(event) => setShowOsmPicnic(event.target.checked)}
+                  />
+                  Picnic &amp; rest
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmArt}
+                    onChange={(event) => setShowOsmArt(event.target.checked)}
+                  />
+                  Art &amp; culture
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmMemorials}
+                    onChange={(event) => setShowOsmMemorials(event.target.checked)}
+                  />
+                  Memorials &amp; plaques
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmHistoricPlaces}
+                    onChange={(event) => setShowOsmHistoricPlaces(event.target.checked)}
+                  />
+                  Historic places
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmLeisure}
+                    onChange={(event) => setShowOsmLeisure(event.target.checked)}
+                  />
+                  Leisure
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmVisitor}
+                    onChange={(event) => setShowOsmVisitor(event.target.checked)}
+                  />
+                  Visitor information
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmAmenities}
+                    onChange={(event) => setShowOsmAmenities(event.target.checked)}
+                  />
+                  Amenities
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmParking}
+                    onChange={(event) => setShowOsmParking(event.target.checked)}
+                  />
+                  Parking
+                </label>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={showOsmNature}
+                    onChange={(event) => setShowOsmNature(event.target.checked)}
+                  />
+                  Natural sights
+                </label>
+              </fieldset>
+              {hasHesDesignations && (
+                <fieldset>
+                  <legend>Live cross-check</legend>
+                  <label className="check">
+                    <input
+                      type="checkbox"
+                      checked={showHesDesignations}
+                      onChange={(event) => setShowHesDesignations(event.target.checked)}
+                    />
+                    Show current HES designations (external symbols)
+                  </label>
+                </fieldset>
+              )}
+            </section>
+          </>,
+          document.body,
+        )}
       <fieldset>
         <legend>Historic map</legend>
         <select

@@ -29,7 +29,7 @@ export function InformationPage() {
         ? 'Methodology'
         : 'Town guide';
   return (
-    <main className="info">
+    <main className="info" id="main-content">
       <h1>{title}</h1>
       {mode === 'sources' && (
         <>

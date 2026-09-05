@@ -41,8 +41,14 @@ for (const sourcePackage of publishedProjectPackages) {
     'changesetId',
     'publicationSummary',
     'validation',
+    'quotedDateText',
   ])
     reject(publicText.includes(`"${field}"`), `${sourcePackage.project.id}: ${field}`);
+
+  reject(
+    Object.keys(publicPackage.project.boundary.properties ?? {}).length > 0,
+    `${sourcePackage.project.id}: boundary properties`,
+  );
 
   for (const feature of publicPackage.features) {
     publicFeatureCount += 1;

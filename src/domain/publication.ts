@@ -14,6 +14,7 @@ import { validateProjectPackageSchema } from './packageSchema';
 import {
   geometryIsStructurallyValid,
   historicLayerLicenceTextIsResolved,
+  licenceTextIsResolved,
   validateFeatures,
 } from './validation';
 import type {
@@ -218,7 +219,10 @@ function historicMapCanPublish(pkg: ProjectPackage, map: HistoricMapLayer): bool
     pkg.publication?.state === 'publishable' &&
     (state === 'verified' || state === 'publishable') &&
     configured &&
-    historicLayerLicenceTextIsResolved(map.licence) &&
+    licenceTextIsResolved(
+      map.licence,
+      pkg.sources.map((source) => source.licence),
+    ) &&
     Boolean(map.attribution.trim())
   );
 }
@@ -232,7 +236,7 @@ function settlementPolygonCanPublish(pkg: ProjectPackage, polygon: SettlementAge
         source.sourceName?.trim() &&
         source.sourceOrganisation?.trim() &&
         source.accessedAt?.trim() &&
-        source.licence?.trim(),
+        licenceTextIsResolved(source.licence),
     );
   return (
     pkg.publication?.state === 'publishable' &&
@@ -272,7 +276,6 @@ function publicSourceRecord(source: SourceRecord): PublicSourceRecord {
     ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}),
     accessedAt: source.accessedAt,
     ...(source.licence ? { licence: source.licence } : {}),
-    ...(source.quotedDateText ? { quotedDateText: source.quotedDateText } : {}),
     reliability: source.reliability,
   };
 }
@@ -372,7 +375,9 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
       confidence: polygon.confidence,
       sourceRecords: polygon.sourceRecords.map(publicSourceRecord),
     }));
-  const existingComponents = pkg.licensingMetadata?.components ?? [];
+  const existingComponents = (pkg.licensingMetadata?.components ?? []).filter((component) =>
+    licenceTextIsResolved(component.licence),
+  );
   const osmComponent: DataLicenceComponent = {
     id: 'openstreetmap-current-place-data',
     name: 'OpenStreetMap-derived current-place data',
@@ -429,24 +434,62 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
       ...(pkg.project.region ? { region: pkg.project.region } : {}),
       locality: pkg.project.locality,
       centre: pkg.project.centre,
-      boundary: pkg.project.boundary,
+      boundary: {
+        type: 'Feature',
+        properties: {},
+        geometry: pkg.project.boundary.geometry,
+      },
       ...(pkg.project.timelineStart !== undefined
         ? { timelineStart: pkg.project.timelineStart }
         : {}),
       ...(pkg.project.timelineEnd !== undefined ? { timelineEnd: pkg.project.timelineEnd } : {}),
-      methodology: pkg.project.methodology,
+      methodology: {
+        age: {
+          before_1700: pkg.project.methodology.age.before_1700,
+          '1700_1799': pkg.project.methodology.age['1700_1799'],
+          '1800_1849': pkg.project.methodology.age['1800_1849'],
+          '1850_1899': pkg.project.methodology.age['1850_1899'],
+          '1900_1918': pkg.project.methodology.age['1900_1918'],
+          '1919_1945': pkg.project.methodology.age['1919_1945'],
+          '1946_1960': pkg.project.methodology.age['1946_1960'],
+          after_1960: pkg.project.methodology.age.after_1960,
+          unknown: pkg.project.methodology.age.unknown,
+        },
+        significance: {
+          highest_national: pkg.project.methodology.significance.highest_national,
+          national: pkg.project.methodology.significance.national,
+          regional: pkg.project.methodology.significance.regional,
+          local: pkg.project.methodology.significance.local,
+          recognised: pkg.project.methodology.significance.recognised,
+        },
+        confidence: {
+          high: pkg.project.methodology.confidence.high,
+          medium: pkg.project.methodology.confidence.medium,
+          low: pkg.project.methodology.confidence.low,
+          unknown: pkg.project.methodology.confidence.unknown,
+        },
+        survival: {
+          substantially_intact: pkg.project.methodology.survival.substantially_intact,
+          altered_recognisable: pkg.project.methodology.survival.altered_recognisable,
+          heavily_altered: pkg.project.methodology.survival.heavily_altered,
+          site_only_or_demolished: pkg.project.methodology.survival.site_only_or_demolished,
+          unknown: pkg.project.methodology.survival.unknown,
+        },
+      },
     },
     features,
-    sources: pkg.sources.map((source) => ({
-      id: source.id,
-      name: source.name,
-      organisation: source.organisation,
-      coverage: source.coverage,
-      accessMethod: source.accessMethod,
-      ...(source.licence ? { licence: source.licence } : {}),
-      ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}),
-      reliability: source.reliability,
-    })),
+    sources: pkg.sources
+      .filter((source) => licenceTextIsResolved(source.licence))
+      .map((source) => ({
+        id: source.id,
+        name: source.name,
+        organisation: source.organisation,
+        coverage: source.coverage,
+        accessMethod: source.accessMethod,
+        ...(source.licence ? { licence: source.licence } : {}),
+        ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}),
+        reliability: source.reliability,
+      })),
     historicMaps,
     settlementPolygons,
     ...(components.length > 0

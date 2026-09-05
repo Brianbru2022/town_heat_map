@@ -5,6 +5,7 @@ import type { FastifyInstance } from 'fastify';
 import { alloaPackage } from '../src/data/alloa';
 import type { HeritageFeature, ProjectPackage } from '../src/domain/models';
 import type { PublicProjectPackage } from '../src/domain/publicDto';
+import { publicProjectPackage } from '../src/domain/publication';
 import { buildApp } from './app';
 import type { ProjectRepository } from './repository';
 
@@ -132,6 +133,11 @@ describe('project delivery', () => {
     pkg.features[0].reviewNotes = 'Internal reviewer identity and decision.';
     pkg.features[0].createdAt = '2026-09-05T09:00:00.000Z';
     pkg.features[0].sourceRecords[0].notes = 'Internal workflow batch 42.';
+    pkg.features[0].sourceRecords[0].quotedDateText = 'Unsupported nested source narrative.';
+    pkg.project.boundary.properties = {
+      ...pkg.project.boundary.properties,
+      reviewNotes: 'Internal boundary decision.',
+    };
     pkg.features[0].claimEvidence = [
       {
         claim: 'mapped_identity',
@@ -227,13 +233,40 @@ describe('project delivery', () => {
       'osmElement',
       'changesetId',
       'localPath',
+      'quotedDateText',
     ])
       expect(publicText).not.toContain(`"${forbidden}"`);
+    expect(body.project.boundary.properties).toEqual({});
     expect(geoJson.statusCode).toBe(200);
     expect(
       geoJson.json<{ features: Array<{ properties: unknown }> }>().features[0]?.properties,
     ).toEqual(feature);
     expect(geoJson.body).not.toContain('Internal evidence mechanics.');
+  });
+
+  it('fails conditional feature licensing closed in JSON, GeoJSON and CSV projections', async () => {
+    const pkg = structuredClone(alloaPackage);
+    const publicId = pkg.features.find((candidate) =>
+      publicProjectPackage(alloaPackage)?.features.some((feature) => feature.id === candidate.id),
+    )!.id;
+    const record = pkg.features.find((candidate) => candidate.id === publicId)!;
+    record.licence = 'Open Government Licence v3.0; conditional on confirmation';
+    pkg.features = [record];
+    const repository: ProjectRepository = {
+      list: async () => [pkg.project],
+      get: async () => pkg,
+    };
+    const app = await buildApp({ repository });
+    apps.push(app);
+
+    const json = await app.inject(`/api/projects/${pkg.project.id}`);
+    const geoJson = await app.inject(`/api/projects/${pkg.project.id}/features`);
+    const csv = await app.inject(`/api/projects/${pkg.project.id}/exports/listed-buildings.csv`);
+
+    expect(json.json<PublicProjectPackage>().features).toEqual([]);
+    expect(geoJson.json<{ features: unknown[] }>().features).toEqual([]);
+    expect(csv.statusCode).toBe(200);
+    expect(csv.body).not.toContain(publicId);
   });
 
   it('does not publish the curator-only undated heritage-review export', async () => {

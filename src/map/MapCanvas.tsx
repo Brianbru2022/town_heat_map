@@ -14,12 +14,17 @@ import type { ScoringMethodology } from '../domain/models';
 import type { PublicFeature, PublicSettlementPolygon } from '../domain/publicDto';
 import type { LineString, MultiPolygon, Point, Polygon } from 'geojson';
 
-const openStreetMapFallbackStyle = {
+const developmentBasemapTileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+const configuredBasemapTileUrl = import.meta.env.VITE_BASEMAP_TILE_URL?.trim();
+if (import.meta.env.PROD && !configuredBasemapTileUrl)
+  throw new Error('VITE_BASEMAP_TILE_URL must be configured for a production build.');
+const basemapTileUrl = configuredBasemapTileUrl || developmentBasemapTileUrl;
+const openStreetMapBasemapStyle = {
   version: 8,
   sources: {
     openstreetmap: {
       type: 'raster',
-      tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+      tiles: [basemapTileUrl],
       tileSize: 256,
       maxzoom: 19,
       attribution: 'OpenStreetMap contributors',
@@ -867,7 +872,7 @@ export function MapCanvas() {
     if (!container.current || mapRef.current) return;
     const map = new maplibregl.Map({
       container: container.current,
-      style: import.meta.env.VITE_MAP_STYLE_URL || openStreetMapFallbackStyle,
+      style: import.meta.env.VITE_MAP_STYLE_URL || openStreetMapBasemapStyle,
       center: pkg.project.centre,
       zoom: 13,
       attributionControl: false,

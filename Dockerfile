@@ -4,7 +4,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN corepack enable && pnpm install --frozen-lockfile
 
 FROM dependencies AS web-build
-COPY index.html vite.config.ts ./
+COPY index.html vite.config.ts .env.production ./
 COPY public ./public
 COPY src ./src
 RUN pnpm build:client
