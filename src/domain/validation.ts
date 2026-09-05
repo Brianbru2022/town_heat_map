@@ -12,8 +12,22 @@ import {
 
 const unresolvedLicencePattern =
   /\b(?:not stated|unknown|unresolved|pending|to be confirmed|must be reviewed)\b/i;
+const unresolvedHistoricLayerLicencePatterns = [
+  /\b(?:not stated|unknown|unresolved|pending|placeholder|tbc|to be confirmed)\b/i,
+  /\b(?:await(?:ing)?|requires?|needs?|must)\b.{0,80}\b(?:review(?:ed)?|confirmation|permission|clearance|approval)\b/i,
+  /\bconditional(?:ly)?\b.{0,80}\b(?:confirm(?:ation)?|permission|clearance|approval|review)\b/i,
+  /\b(?:confirm|review|clear|obtain)\b.{0,100}\bbefore\b.{0,60}\b(?:publish|publication|public display|display|reuse|redistribut|export)\w*/i,
+  /\b(?:rights?|licen[cs]e|permission)\b.{0,80}\b(?:not final|not confirmed|not cleared|not granted)\b/i,
+];
 const delegatedLicencePattern = /\b(?:see|refer to)\b.*\b(?:source|dataset|metadata|licen[cs]e)/i;
 const restrictedUsePattern = /\b(?:citation only|link only|do not redistribute|no reuse)\b/i;
+
+export function historicLayerLicenceTextIsResolved(value: string | undefined): boolean {
+  const licence = value?.trim();
+  return Boolean(
+    licence && !unresolvedHistoricLayerLicencePatterns.some((pattern) => pattern.test(licence)),
+  );
+}
 
 function result(
   recordId: string,

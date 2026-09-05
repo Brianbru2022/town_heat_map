@@ -14,4 +14,15 @@ describe('map attribution', () => {
       openStreetMap: '© OpenStreetMap contributors',
     });
   });
+
+  it('keeps provider, OSM and HES credits additive without duplicates', () => {
+    const hes =
+      'Contains Historic Environment Scotland and OS data © Historic Environment Scotland and Crown Copyright and database right 2026, licensed under the Open Government Licence v3.0.';
+
+    expect(mapAttribution('Example tiles', [hes, hes, '© OpenStreetMap contributors'])).toEqual({
+      provider: 'Example tiles',
+      openStreetMap: '© OpenStreetMap contributors',
+      additional: [hes],
+    });
+  });
 });

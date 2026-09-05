@@ -23,7 +23,10 @@ export default defineConfig({
       command: `${node} ./node_modules/vite/bin/vite.js --host 127.0.0.1 --port ${port} --strictPort`,
       url: baseURL,
       reuseExistingServer: false,
-      env: { TOWNSCAPE_API_PORT: String(apiPort) },
+      env: {
+        TOWNSCAPE_API_PORT: String(apiPort),
+        VITE_MAP_ATTRIBUTION: 'Example tile provider',
+      },
     },
   ],
 });

@@ -11,7 +11,11 @@ import type {
 } from './models';
 import { projectPublicClaims, publicCurrentPlaceDetails } from './claims';
 import { validateProjectPackageSchema } from './packageSchema';
-import { geometryIsStructurallyValid, validateFeatures } from './validation';
+import {
+  geometryIsStructurallyValid,
+  historicLayerLicenceTextIsResolved,
+  validateFeatures,
+} from './validation';
 import type {
   PublicCurrentPlaceDetail,
   PublicFeature,
@@ -214,7 +218,8 @@ function historicMapCanPublish(pkg: ProjectPackage, map: HistoricMapLayer): bool
     pkg.publication?.state === 'publishable' &&
     (state === 'verified' || state === 'publishable') &&
     configured &&
-    Boolean(map.licence?.trim() && map.attribution.trim())
+    historicLayerLicenceTextIsResolved(map.licence) &&
+    Boolean(map.attribution.trim())
   );
 }
 
@@ -380,9 +385,41 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
   const containsOsmData = features.some((feature) =>
     feature.sourceRecords.some((source) => /openstreetmap/i.test(source.sourceName)),
   );
-  const components = containsOsmData
-    ? [...existingComponents.filter((component) => component.id !== osmComponent.id), osmComponent]
-    : existingComponents;
+  const hesSources = features.flatMap((feature) =>
+    feature.sourceRecords.filter((source) => {
+      const identity = `${source.sourceName} ${source.sourceOrganisation} ${source.sourceUrl ?? ''}`;
+      return (
+        /(?:historic environment scotland|\bhes\b|canmore|trove\.scot)/i.test(identity) &&
+        /(?:open government licen[cs]e|\bogl\b)/i.test(source.licence ?? '') &&
+        historicLayerLicenceTextIsResolved(source.licence)
+      );
+    }),
+  );
+  const hesYears = hesSources
+    .map((source) => new Date(source.accessedAt).getUTCFullYear())
+    .filter((year) => Number.isInteger(year));
+  const hesYear = hesYears.length > 0 ? Math.max(...hesYears) : undefined;
+  const hesComponent: DataLicenceComponent | undefined = hesYear
+    ? {
+        id: 'historic-environment-scotland-spatial-data',
+        name: 'Historic Environment Scotland spatial data',
+        source: 'Historic Environment Scotland and Ordnance Survey',
+        licence: 'Open Government Licence v3.0',
+        licenceUrl: 'https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/',
+        attribution: `Contains Historic Environment Scotland and OS data © Historic Environment Scotland and Crown Copyright and database right ${hesYear}, licensed under the Open Government Licence v3.0.`,
+        scope:
+          'HES/NRHE source records delivered in this town guide. This records component terms only; classification of the combined Townscape database remains subject to professional legal review.',
+      }
+    : undefined;
+  const computedComponents = [
+    ...(hesComponent ? [hesComponent] : []),
+    ...(containsOsmData ? [osmComponent] : []),
+  ];
+  const computedComponentIds = new Set(computedComponents.map((component) => component.id));
+  const components = [
+    ...existingComponents.filter((component) => !computedComponentIds.has(component.id)),
+    ...computedComponents,
+  ];
   return {
     project: {
       id: pkg.project.id,

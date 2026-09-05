@@ -10,7 +10,7 @@ services:
     ports: ['${WEB_BIND_ADDRESS:-127.0.0.1}:${WEB_PORT:-8080}:8080']
     depends_on:
       api:
-        condition: service_started
+        condition: service_healthy
     networks: [edge, api]
     security_opt: ['no-new-privileges:true']
 
@@ -57,5 +57,6 @@ services:
 
 networks:
   edge: {}
-  api:
-    internal: true
+  # This network is private at the host perimeter because the API declares no
+  # published port. It must still allow outbound DNS/HTTPS for the HES proxy.
+  api: {}

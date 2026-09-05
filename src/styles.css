@@ -774,6 +774,31 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
+@media (min-width: 651px) and (max-width: 900px) {
+  .app {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  header {
+    flex: 0 0 auto;
+  }
+  .explorer {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    grid-template-rows: minmax(260px, 1fr) minmax(180px, 32vh) 108px;
+  }
+  .sidebar,
+  .details,
+  .map-wrap {
+    min-height: 0;
+  }
+  .details {
+    max-height: none;
+  }
+}
 @media (max-width: 650px) {
   .explorer {
     display: block;

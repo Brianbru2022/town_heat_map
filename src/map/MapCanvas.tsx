@@ -787,6 +787,7 @@ export function MapCanvas() {
   const showAreaPolygons = useExplorerStore((state) => state.showAreaPolygons);
   const select = useExplorerStore((state) => state.selectFeature);
   const activeMap = useExplorerStore((state) => state.activeMap);
+  const hesLayer = pkg.historicMaps.find((mapLayer) => mapLayer.id === hesDesignationsLayerId);
   const visibleData = mapFeatures(
     pkg.features,
     year,
@@ -1163,7 +1164,6 @@ export function MapCanvas() {
     if (map.getSource('hes-designations-overlay')) map.removeSource('hes-designations-overlay');
     if (!showHesDesignations || communityLayersOnly) return;
 
-    const hesLayer = pkg.historicMaps.find((mapLayer) => mapLayer.id === hesDesignationsLayerId);
     const tileUrl = hesLayer?.tileUrl && resolvedTileUrl(hesLayer.tileUrl);
     if (!tileUrl) {
       return;
@@ -1179,8 +1179,15 @@ export function MapCanvas() {
       },
       'historic-character-heatmap',
     );
-  }, [pkg.historicMaps, showHesDesignations, communityLayersOnly, mapReady]);
-  const attribution = mapAttribution(import.meta.env.VITE_MAP_ATTRIBUTION);
+  }, [hesLayer, showHesDesignations, communityLayersOnly, mapReady]);
+  const hesAttribution =
+    showHesDesignations && !communityLayersOnly && hesLayer?.tileUrl
+      ? hesLayer.attribution
+      : undefined;
+  const attribution = mapAttribution(
+    import.meta.env.VITE_MAP_ATTRIBUTION,
+    hesAttribution ? [hesAttribution] : [],
+  );
   return (
     <section className="map-wrap" aria-labelledby="map-heading">
       <h2 className="visually-hidden" id="map-heading">
@@ -1195,6 +1202,9 @@ export function MapCanvas() {
         <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
           {attribution.openStreetMap}
         </a>
+        {attribution.additional?.map((item) => (
+          <span key={item}> · {item}</span>
+        ))}
       </div>
       {(showHistoricLegend || showHesDesignations || showOsmLegend) && (
         <aside className="map-legend" aria-label="Map key">

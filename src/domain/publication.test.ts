@@ -32,6 +32,27 @@ function projectPackage(features: HeritageFeature[], publishable = true): Projec
   };
 }
 
+function historicMap(
+  id: string,
+  state: PublicationState,
+  licence: string | undefined = 'Open Government Licence v3.0',
+): HistoricMapLayer {
+  return {
+    id,
+    projectId: alloaPackage.project.id,
+    title: id,
+    displayDate: '1900',
+    sourceInstitution: 'Historic Environment Scotland',
+    licence,
+    attribution:
+      'Contains Historic Environment Scotland and OS data © Historic Environment Scotland and Crown Copyright and database right 2026, licensed under the Open Government Licence v3.0.',
+    layerType: 'georeferenced_raster_tiles',
+    tileUrl: `/api/local-historic-maps/${id}/{z}/{x}/{y}.png`,
+    opacity: 0.8,
+    publication: { state },
+  };
+}
+
 describe('publication assessment', () => {
   it('publishes a verified record with adequate provenance, licence and geometry', () => {
     const record = feature();
@@ -198,24 +219,40 @@ describe('publication assessment', () => {
   });
 
   it('exposes direct local tiles only for map layers that pass publication projection', () => {
-    const map = (id: string, state: PublicationState): HistoricMapLayer => ({
-      id,
-      projectId: alloaPackage.project.id,
-      title: id,
-      displayDate: '1900',
-      sourceInstitution: 'Test archive',
-      licence: 'Open Government Licence v3.0',
-      attribution: 'Test archive',
-      layerType: 'georeferenced_raster_tiles',
-      tileUrl: `/api/local-historic-maps/${id}/{z}/{x}/{y}.png`,
-      opacity: 0.8,
-      publication: { state },
-    });
     const pkg = {
       ...projectPackage([feature()]),
-      historicMaps: [map('public-map', 'verified'), map('draft-map', 'provisional')],
+      historicMaps: [
+        historicMap('public-map', 'verified'),
+        historicMap('draft-map', 'provisional'),
+      ],
     };
 
     expect(publishedLocalMapPackageIds([pkg])).toEqual(new Set(['public-map']));
+  });
+
+  it('publishes resolved HES/OGL layers and fails unresolved licensing closed', () => {
+    const pkg = {
+      ...projectPackage([feature()]),
+      historicMaps: [
+        historicMap('resolved-ogl', 'publishable'),
+        historicMap(
+          'confirmation-required',
+          'publishable',
+          'Live service; confirm current reproduction terms before export or redistribution.',
+        ),
+        historicMap(
+          'conditional-rights',
+          'publishable',
+          'Public display remains conditional on confirmation from the provider.',
+        ),
+        historicMap('placeholder-rights', 'publishable', 'Licence placeholder — TBC.'),
+        historicMap('empty-rights', 'publishable', ''),
+      ],
+    };
+
+    expect(publicProjectPackage(pkg)?.historicMaps.map((map) => map.id)).toEqual(['resolved-ogl']);
+    expect(publicProjectPackage(alloaPackage)?.historicMaps.map((map) => map.id)).not.toContain(
+      'hes-listed-buildings-by-category',
+    );
   });
 });

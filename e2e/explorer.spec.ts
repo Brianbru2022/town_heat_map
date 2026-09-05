@@ -156,3 +156,72 @@ test('keeps controls and the non-map route usable at phone and tablet widths', a
     expect(widths.scroll).toBeLessThanOrEqual(widths.client + 1);
   }
 });
+
+test('keeps selected feature details inside the tablet viewport', async ({ page }) => {
+  for (const width of [651, 700, 768, 820, 900]) {
+    await page.setViewportSize({ width, height: 820 });
+    await page.goto('/');
+    await page.locator('[data-feature-id]').first().click();
+    await expect(page.getByRole('button', { name: 'Close details' })).toBeVisible();
+
+    const position = await page.locator('.details').evaluate((details) => {
+      const bounds = details.getBoundingClientRect();
+      return {
+        top: bounds.top,
+        bottom: bounds.bottom,
+        viewportHeight: window.innerHeight,
+      };
+    });
+    expect(position.bottom).toBeGreaterThan(0);
+    expect(position.top).toBeLessThan(position.viewportHeight);
+  }
+});
+
+test('renders resolved HES attribution alongside provider and OSM credits', async ({ page }) => {
+  const hesAttribution =
+    'Contains Historic Environment Scotland and OS data © Historic Environment Scotland and Crown Copyright and database right 2026, licensed under the Open Government Licence v3.0.';
+  await page.route('**/api/projects/alloa-scotland', async (route) => {
+    const response = await route.fetch();
+    const project = await response.json();
+    project.historicMaps.push({
+      id: 'hes-listed-buildings-by-category',
+      title: 'HES listed buildings by category',
+      displayDate: 'Current',
+      sourceInstitution: 'Historic Environment Scotland',
+      sourceUrl: 'https://portal.historicenvironment.scot/',
+      licence: 'Open Government Licence v3.0',
+      attribution: hesAttribution,
+      layerType: 'xyz',
+      tileUrl: '/api/hes-designations/{z}/{x}/{y}.png',
+      opacity: 0.8,
+    });
+    await route.fulfill({ response, json: project });
+  });
+
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Open settings' }).click();
+  await page.getByLabel('Show current HES designations (external symbols)').check();
+
+  const attribution = page.locator('.attribution');
+  await expect(attribution).toContainText('Example tile provider');
+  await expect(attribution).toContainText('© OpenStreetMap contributors');
+  await expect(attribution).toContainText(hesAttribution);
+});
+
+test('exposes HES component licensing on the Sources page', async ({ page }) => {
+  await page.goto('/?town=alloa-scotland&view=sources');
+
+  const component = page.locator('article').filter({
+    has: page.getByRole('heading', { name: 'Historic Environment Scotland spatial data' }),
+  });
+  await expect(component).toContainText(
+    'Contains Historic Environment Scotland and OS data © Historic Environment Scotland',
+  );
+  await expect(
+    component.getByRole('link', { name: 'Open Government Licence v3.0' }),
+  ).toHaveAttribute(
+    'href',
+    'https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/',
+  );
+  await expect(component).toContainText('professional legal review');
+});

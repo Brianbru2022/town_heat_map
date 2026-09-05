@@ -15,7 +15,8 @@ describe('production deployment boundary', () => {
     expect(compose).toContain("'${WEB_BIND_ADDRESS:-127.0.0.1}:${WEB_PORT:-8080}:8080'");
     expect(api).toContain("expose: ['3001']");
     expect(api).not.toContain('ports:');
-    expect(compose).toContain('internal: true');
+    expect(compose).toContain('condition: service_healthy');
+    expect(compose).not.toMatch(/\n\s+api:\n\s+internal: true/);
     expect(compose).not.toContain('.:/app');
   });
 
@@ -29,9 +30,31 @@ describe('production deployment boundary', () => {
     expect(compose).toContain('APP_VERSION: ${APP_VERSION:-0.1.0}');
     expect(dockerfile).toContain('COPY data/exports/*-listed-buildings.csv');
     expect(dockerfile).toContain('USER node');
+    expect(dockerfile).toContain("fetch('http://127.0.0.1:3001/health')");
     expect(dockerfile).not.toContain('COPY . .');
     expect(ignored).toContain('data/review/');
     expect(ignored).toContain('scripts/');
+  });
+
+  it('carries the reviewed pnpm lifecycle policy into every dependency install stage', async () => {
+    const dockerfile = await deploymentFile('Dockerfile');
+    const packageJson = JSON.parse(await deploymentFile('package.json')) as {
+      packageManager?: string;
+    };
+    const workspace = await deploymentFile('pnpm-workspace.yaml');
+    const installStages = dockerfile
+      .split(/^FROM /m)
+      .filter((stage) => stage.includes('pnpm install'));
+
+    expect(installStages).toHaveLength(2);
+    for (const stage of installStages) {
+      expect(stage).toMatch(
+        /COPY package\.json pnpm-lock\.yaml pnpm-workspace\.yaml \.\/[\s\S]*pnpm install/,
+      );
+    }
+    expect(packageJson.packageManager).toBe('pnpm@11.19.0');
+    expect(dockerfile.match(/corepack enable && pnpm install/g)).toHaveLength(2);
+    expect(workspace).toMatch(/^allowBuilds:\s*\r?\n\s+esbuild: true\s*$/);
   });
 
   it('proxies only API routes and denies raw, configuration and source-map paths', async () => {
@@ -47,7 +70,8 @@ describe('production deployment boundary', () => {
       expect(nginx).toContain(header);
     expect(nginx).toContain('location ^~ /api/');
     expect(nginx).toContain('proxy_pass http://api:3001');
-    expect(nginx).toContain('X-Forwarded-For');
+    expect(nginx).toContain('proxy_set_header X-Forwarded-For $remote_addr;');
+    expect(nginx).not.toContain('proxy_add_x_forwarded_for');
     expect(nginx).toContain('(?:data|scripts|server|src|docker|schemas|node_modules)');
     expect(nginx).toContain('(?:map|sqlite|mbtiles|log|ya?ml|toml|ini)');
     expect(nginx).toContain('return 404;');

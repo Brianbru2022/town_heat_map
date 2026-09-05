@@ -291,7 +291,7 @@ describe('claim-relative public projection', () => {
     );
   });
 
-  it('adds component-level ODbL status without changing authoritative public facts', () => {
+  it('adds component-level ODbL and HES OGL status without changing public facts', () => {
     const osmDelivery = publicProjectPackage(packageWith(osmFeature()))!;
     const hesDelivery = publicProjectPackage(packageWith(hesFeature))!;
     const nrheDelivery = publicProjectPackage(packageWith(nrheFeature))!;
@@ -319,7 +319,19 @@ describe('claim-relative public projection', () => {
     });
     expect(JSON.stringify(hesDelivery.features[0])).not.toContain('reviewNotes');
     expect(JSON.stringify(hesDelivery.features[0])).not.toContain('notes');
-    expect(hesDelivery.licensingMetadata).toBeUndefined();
-    expect(nrheDelivery.licensingMetadata).toBeUndefined();
+    for (const delivery of [hesDelivery, nrheDelivery]) {
+      expect(delivery.licensingMetadata?.components).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: 'historic-environment-scotland-spatial-data',
+            licence: 'Open Government Licence v3.0',
+            attribution: expect.stringContaining(
+              'Contains Historic Environment Scotland and OS data',
+            ),
+            scope: expect.stringContaining('professional legal review'),
+          }),
+        ]),
+      );
+    }
   });
 });
