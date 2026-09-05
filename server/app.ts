@@ -9,7 +9,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { publicProjectPackage, publishedLocalMapPackageIds } from '../src/domain/publication';
 import { featureTimelineState } from '../src/domain/timeline';
 import { sortPublishedProjects } from '../src/domain/projects';
-import { publicCsvByRecordIds } from './csv';
+import { csvRecordIds, publicListedBuildingsCsv } from './csv';
 import { createProjectRepository, type ProjectRepository } from './repository';
 
 const hesDesignationsExportUrl =
@@ -28,27 +28,6 @@ const localMapPackages = new Set([
 ]);
 const localMapDatabases = new Map<string, DatabaseSync>();
 const HES_CACHE_CONTROL = 'public, max-age=3600, s-maxage=86400, stale-if-error=86400';
-const publicListedBuildingColumns = [
-  'project_id',
-  'town',
-  'selection_class',
-  'hes_designation_reference',
-  'feature_id',
-  'listed_building_title',
-  'statutory_title',
-  'category',
-  'designation_type',
-  'statutory_status',
-  'longitude',
-  'latitude',
-  'location_precision',
-  'documented_date',
-  'date_basis',
-  'date_confidence',
-  'source_url',
-  'source_accessed_at',
-  'source_attribution',
-] as const;
 
 interface HesImageCacheEntry {
   body: Buffer;
@@ -447,12 +426,8 @@ export async function buildApp(options: BuildAppOptions = {}) {
     reply.header('Content-Type', 'text/csv; charset=utf-8');
     reply.header('Content-Disposition', `attachment; filename="${id}-listed-buildings.csv"`);
     reply.header('Cache-Control', 'no-cache');
-    const csv = publicCsvByRecordIds(
-      await readFile(filename, 'utf8'),
-      'feature_id',
-      new Set(publicProject.features.map((feature) => feature.id)),
-      publicListedBuildingColumns,
-    );
+    const listedBuildingIds = csvRecordIds(await readFile(filename, 'utf8'), 'feature_id');
+    const csv = publicListedBuildingsCsv(publicProject, listedBuildingIds);
     return reply.send(csv);
   });
   app.get('/api/projects/:id', async (request, reply) => {

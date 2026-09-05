@@ -26,10 +26,22 @@ const feature = (overrides: Partial<HeritageFeature> = {}): HeritageFeature => (
       sourceUrl: 'https://example.com/test',
       accessedAt: '2026-01-01T00:00:00.000Z',
       licence: 'Open Government Licence v3.0',
+      licenceDecision: {
+        state: 'approved',
+        scope: 'public_metadata',
+        reviewedAt: '2026-09-05',
+        evidenceText: 'Open Government Licence v3.0',
+      },
       reliability: 'archival',
     },
   ],
   licence: 'Open Government Licence v3.0',
+  licenceDecision: {
+    state: 'approved',
+    scope: 'public_metadata',
+    reviewedAt: '2026-09-05',
+    evidenceText: 'Open Government Licence v3.0',
+  },
   tags: [],
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z',
@@ -49,6 +61,11 @@ const project = (
     settlementPolygons: [],
     validation,
     publication: { state: 'publishable' },
+    licenceDecision: {
+      state: 'approved',
+      scope: 'public_metadata',
+      reviewedAt: '2026-09-05',
+    },
   }) as unknown as ProjectPackage;
 
 describe('review queue', () => {

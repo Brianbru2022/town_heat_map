@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { alloaPackage } from '../data/alloa';
 import { publishedProjectPackages } from '../data/publishedProjects';
-import type { ClaimEvidence, HeritageFeature, ProjectPackage } from './models';
+import type { ClaimEvidence, HeritageFeature, LicenceDecision, ProjectPackage } from './models';
 import { claimIsSupported } from './claims';
 import { assessFeaturePublication, publicProjectPackage } from './publication';
 
@@ -20,6 +20,15 @@ function evidence(claim: ClaimEvidence['claim'], tier: ClaimEvidence['tier']): C
   };
 }
 
+function approvedLicence(evidenceText: string): LicenceDecision {
+  return {
+    state: 'approved',
+    scope: 'public_metadata',
+    reviewedAt: '2026-09-05T00:00:00.000Z',
+    evidenceText,
+  };
+}
+
 function osmFeature(overrides: Partial<HeritageFeature> = {}): HeritageFeature {
   return {
     ...hesFeature,
@@ -31,6 +40,9 @@ function osmFeature(overrides: Partial<HeritageFeature> = {}): HeritageFeature {
     fullDescription: 'Editorial copy that must not be inferred from mapping.',
     tags: ['current-context', 'osm-community-place', 'osm-community-parking'],
     licence: 'Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.',
+    licenceDecision: approvedLicence(
+      'Open Database Licence (ODbL) v1.0; © OpenStreetMap contributors.',
+    ),
     publication: { state: 'verified', profile: 'mapped_context' },
     osmElement: {
       elementType: 'node',
@@ -50,6 +62,7 @@ function osmFeature(overrides: Partial<HeritageFeature> = {}): HeritageFeature {
         sourceUrl: 'https://www.openstreetmap.org/node/123',
         accessedAt: '2026-09-03T09:00:00.000Z',
         licence: 'Open Database Licence (ODbL) v1.0',
+        licenceDecision: approvedLicence('Open Database Licence (ODbL) v1.0'),
         reliability: 'discovery_only',
         notes:
           'Current OSM details: amenity=parking; name=Test car park; access=customers; opening_hours=24/7; fee=yes; wheelchair=yes; operator=Example Council; capacity=20; website=https://example.test/.',
@@ -61,6 +74,7 @@ function osmFeature(overrides: Partial<HeritageFeature> = {}): HeritageFeature {
         sourceUrl: 'https://example.test/facility',
         accessedAt: '2026-09-03T10:00:00.000Z',
         licence: 'Open Government Licence v3.0',
+        licenceDecision: approvedLicence('Open Government Licence v3.0'),
         reliability: 'local_authority',
         notes:
           'Current-place curation: access=yes; opening_hours=09:00-17:00; fee=no; wheelchair=yes; operator=Example Council; capacity=18; website=https://example.test/facility; description=Recommended stop.',
@@ -266,9 +280,9 @@ describe('claim-relative public projection', () => {
     expect(publicProjectPackage(packageWith(operational))?.features[0]?.shortDescription).toBe(
       undefined,
     );
-    expect(publicProjectPackage(packageWith(neutral))?.features[0]?.shortDescription).toBe(
-      neutral.shortDescription,
-    );
+    expect(
+      publicProjectPackage(packageWith(neutral))?.features[0]?.shortDescription,
+    ).toBeUndefined();
   });
 
   it('escalates Gone/deleted OSM elements to requires_review without asserting removal', () => {
@@ -332,14 +346,14 @@ describe('claim-relative public projection', () => {
       id: hesFeature.id,
       name: hesFeature.name,
       geometry: hesFeature.geometry,
-      shortDescription: hesFeature.shortDescription,
     });
+    expect(hesDelivery.features[0].shortDescription).toBeUndefined();
     expect(nrheDelivery.features[0]).toMatchObject({
       id: nrheFeature.id,
       name: nrheFeature.name,
       geometry: nrheFeature.geometry,
-      shortDescription: nrheFeature.shortDescription,
     });
+    expect(nrheDelivery.features[0].shortDescription).toBeUndefined();
     expect(JSON.stringify(hesDelivery.features[0])).not.toContain('reviewNotes');
     expect(JSON.stringify(hesDelivery.features[0])).not.toContain('notes');
     for (const delivery of [hesDelivery, nrheDelivery]) {

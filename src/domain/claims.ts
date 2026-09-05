@@ -319,29 +319,6 @@ export function projectPublicClaims(
   );
   const editorial = claimIsSupported(feature, 'editorial_recommendation', now);
   const profile = publicationProfile(feature);
-  const narrativeIsClaimConstrained = profile !== undefined;
-  const legacyNarrativeClaims = feature.shortDescription
-    ? [
-        ...(/\b(?:recommend(?:ed|ation)?|must[- ]see|excellent|ideal|best|unmissable|worthwhile|high[- ]quality)\b/i.test(
-          feature.shortDescription,
-        )
-          ? (['editorial_recommendation'] as const)
-          : []),
-        ...(/\b(?:currently|open (?:daily|today|to the public)|opening hours?|booking|admission|entry fee|visitor facilit|in operation|operates? as)\b/i.test(
-          feature.shortDescription,
-        )
-          ? (['current_operation'] as const)
-          : []),
-        ...(/\b(?:public access|wheelchair accessible|accessible entrance|free entry)\b/i.test(
-          feature.shortDescription,
-        )
-          ? (['public_access'] as const)
-          : []),
-      ]
-    : [];
-  const legacyNarrativeIsSupported = legacyNarrativeClaims.every((claim) =>
-    evidenceIsUsable(feature, claim, now),
-  );
   const publication = feature.publication
     ? {
         state: feature.publication.state,
@@ -359,15 +336,13 @@ export function projectPublicClaims(
       delete projected.notes;
       return projected;
     }),
-    shortDescription: narrativeIsClaimConstrained
-      ? editorial
+    shortDescription:
+      profile === 'editorial' && editorial
         ? feature.shortDescription
-        : 'Mapped present-day context; availability and visitor facilities are not implied.'
-      : legacyNarrativeIsSupported
-        ? feature.shortDescription
-        : undefined,
-    fullDescription:
-      narrativeIsClaimConstrained && !editorial ? undefined : feature.fullDescription,
+        : profile
+          ? 'Mapped present-day context; availability and visitor facilities are not implied.'
+          : undefined,
+    fullDescription: profile === 'editorial' && editorial ? feature.fullDescription : undefined,
   };
   if (!isOsmDerivedFeature(feature)) return common;
   return {

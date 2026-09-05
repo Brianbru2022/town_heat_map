@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import type { HeritageFeature, HistoricMapLayer, ProjectPackage } from '../src/domain/models';
+import { withRecordedLicenceDecisions } from '../src/data/recordedLicenceDecisions';
 import { assessProjectPackage } from '../src/domain/publication';
 import { hasHistoricTimelineDate } from '../src/domain/timeline';
 
@@ -64,8 +65,10 @@ function countsByCode(records: ReturnType<typeof assessProjectPackage>['records'
 }
 
 const packages = await Promise.all(
-  projectPaths.map(
-    async (path) => JSON.parse(await readFile(resolve(path), 'utf8')) as ProjectPackage,
+  projectPaths.map(async (path) =>
+    withRecordedLicenceDecisions(
+      JSON.parse(await readFile(resolve(path), 'utf8')) as ProjectPackage,
+    ),
   ),
 );
 

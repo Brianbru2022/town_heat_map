@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { filterCsvByRecordIds, publicCsvByRecordIds } from './csv';
+import { alloaPackage } from '../src/data/alloa';
+import { publicProjectPackage } from '../src/domain/publication';
+import { filterCsvByRecordIds, publicCsvByRecordIds, publicListedBuildingsCsv } from './csv';
 
 describe('publication-aware CSV delivery', () => {
   it('retains the header and publishable rows while excluding blocked records', () => {
@@ -29,5 +31,19 @@ describe('publication-aware CSV delivery', () => {
     );
     expect(result).not.toContain('review_notes');
     expect(result).not.toContain('batch-42');
+  });
+
+  it('builds the listed-building export only from the public DTO contract', () => {
+    const publicPackage = publicProjectPackage(alloaPackage)!;
+    const feature = publicPackage.features.find((candidate) => candidate.id.includes('LB20953'))!;
+    const csv = publicListedBuildingsCsv(publicPackage, new Set([feature.id]));
+
+    expect(csv.split('\r\n')[0]).toBe(
+      'project_id,town,selection_class,hes_designation_reference,feature_id,listed_building_title,statutory_title,category,designation_type,statutory_status,longitude,latitude,location_precision,documented_date,date_basis,date_confidence,source_url,source_accessed_at,source_attribution',
+    );
+    expect(csv).toContain(feature.id);
+    expect(csv).not.toContain('documentedDateText');
+    expect(csv).not.toContain('shortDescription');
+    expect(csv).not.toContain('notes');
   });
 });

@@ -129,20 +129,43 @@ describe('project delivery', () => {
 
   it('enforces the explicit visitor DTO allowlist across package and GeoJSON responses', async () => {
     const pkg = structuredClone(alloaPackage);
+    const target = pkg.features.find(
+      (candidate) => candidate.id === 'hes-listed-building:LB20953',
+    )!;
     pkg.project.researchNotes = 'C:\\Users\\curator\\private-research.md';
-    pkg.features[0].reviewNotes = 'Internal reviewer identity and decision.';
-    pkg.features[0].createdAt = '2026-09-05T09:00:00.000Z';
-    pkg.features[0].sourceRecords[0].notes = 'Internal workflow batch 42.';
-    pkg.features[0].sourceRecords[0].quotedDateText = 'Unsupported nested source narrative.';
+    target.reviewNotes = 'Internal reviewer identity and decision.';
+    target.createdAt = '2026-09-05T09:00:00.000Z';
+    target.documentedDateText =
+      'Open daily; dogs welcome; wheelchair access; toilets; family tickets cost £5.';
+    target.sourceRecords[0].notes = 'Internal workflow batch 42.';
+    target.sourceRecords[0].quotedDateText = 'Unsupported nested source narrative.';
+    target.sourceRecords[0].sourceUrl = 'file:///C:/Users/curator/private-source.html';
+    (target.geometry as unknown as Record<string, unknown>).privateGeometry =
+      'ROUTE_GEOMETRY_SENTINEL';
+    target.additionalPointLocations = [
+      {
+        type: 'Point',
+        coordinates: [-3.79, 56.11],
+        privatePoint: 'ROUTE_POINT_SENTINEL',
+      } as never,
+    ];
     pkg.project.boundary.properties = {
       ...pkg.project.boundary.properties,
       reviewNotes: 'Internal boundary decision.',
     };
-    pkg.features[0].claimEvidence = [
+    (pkg.project.boundary.geometry as unknown as Record<string, unknown>).privateBoundary =
+      'ROUTE_BOUNDARY_SENTINEL';
+    if (pkg.settlementPolygons[0])
+      (pkg.settlementPolygons[0].geometry as unknown as Record<string, unknown>).privateSettlement =
+        'ROUTE_SETTLEMENT_SENTINEL';
+    pkg.sources[0].coverage =
+      'Opening hours, prices, toilets, dogs, wheelchair access and family recommendations.';
+    pkg.sources[0].sourceUrl = 'file:///C:/Users/curator/private-catalogue.csv';
+    target.claimEvidence = [
       {
         claim: 'mapped_identity',
         tier: 'mapped_context',
-        sourceRecordRefs: [pkg.features[0].sourceRecords[0].sourceName],
+        sourceRecordRefs: [target.sourceRecords[0].sourceName],
         reviewedAt: '2026-09-05T09:00:00.000Z',
         notes: 'Internal evidence mechanics.',
       },
@@ -156,6 +179,7 @@ describe('project delivery', () => {
 
     const response = await app.inject(`/api/projects/${pkg.project.id}`);
     const geoJson = await app.inject(`/api/projects/${pkg.project.id}/features`);
+    const csv = await app.inject(`/api/projects/${pkg.project.id}/exports/listed-buildings.csv`);
     const body = response.json<PublicProjectPackage>();
     const publicText = response.body;
 
@@ -195,7 +219,6 @@ describe('project delivery', () => {
       'geometry',
       'additionalPointLocations',
       'locationType',
-      'documentedDateText',
       'earliestPossibleYear',
       'latestPossibleYear',
       'datePrecision',
@@ -234,14 +257,35 @@ describe('project delivery', () => {
       'changesetId',
       'localPath',
       'quotedDateText',
+      'documentedDateText',
+      'coverage',
+      'accessMethod',
+      'privateGeometry',
+      'privatePoint',
+      'privateBoundary',
+      'privateSettlement',
     ])
-      expect(publicText).not.toContain(`"${forbidden}"`);
+      for (const output of [publicText, geoJson.body, csv.body])
+        expect(output).not.toContain(`"${forbidden}"`);
+    for (const sentinel of [
+      'ROUTE_GEOMETRY_SENTINEL',
+      'ROUTE_POINT_SENTINEL',
+      'ROUTE_BOUNDARY_SENTINEL',
+      'ROUTE_SETTLEMENT_SENTINEL',
+      'file:///',
+      'dogs welcome',
+      'family recommendations',
+    ])
+      for (const output of [publicText, geoJson.body, csv.body])
+        expect(output).not.toContain(sentinel);
     expect(body.project.boundary.properties).toEqual({});
     expect(geoJson.statusCode).toBe(200);
     expect(
       geoJson.json<{ features: Array<{ properties: unknown }> }>().features[0]?.properties,
     ).toEqual(feature);
     expect(geoJson.body).not.toContain('Internal evidence mechanics.');
+    expect(csv.statusCode).toBe(200);
+    expect(csv.body).toContain(target.id);
   });
 
   it('fails conditional feature licensing closed in JSON, GeoJSON and CSV projections', async () => {
@@ -267,6 +311,30 @@ describe('project delivery', () => {
     expect(geoJson.json<{ features: unknown[] }>().features).toEqual([]);
     expect(csv.statusCode).toBe(200);
     expect(csv.body).not.toContain(publicId);
+  });
+
+  it('fails malformed feature geometry closed without a generic server error', async () => {
+    const pkg = structuredClone(alloaPackage);
+    const record = pkg.features.find(
+      (candidate) => candidate.id === 'hes-listed-building:LB20953',
+    )!;
+    record.geometry = { type: 'Point', coordinates: [-3.79] } as never;
+    pkg.features = [record];
+    const repository: ProjectRepository = {
+      list: async () => [pkg.project],
+      get: async () => pkg,
+    };
+    const app = await buildApp({ repository });
+    apps.push(app);
+
+    const json = await app.inject(`/api/projects/${pkg.project.id}`);
+    const geoJson = await app.inject(`/api/projects/${pkg.project.id}/features`);
+    const csv = await app.inject(`/api/projects/${pkg.project.id}/exports/listed-buildings.csv`);
+
+    expect(json.statusCode).not.toBe(500);
+    expect(geoJson.statusCode).not.toBe(500);
+    expect(csv.statusCode).not.toBe(500);
+    if (json.statusCode === 200) expect(json.json<PublicProjectPackage>().features).toEqual([]);
   });
 
   it('does not publish the curator-only undated heritage-review export', async () => {

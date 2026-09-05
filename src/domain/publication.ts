@@ -9,14 +9,17 @@ import type {
   SourceRecord,
   ValidationResult,
 } from './models';
+import type { Geometry, MultiPolygon, Point, Polygon, Position } from 'geojson';
 import { projectPublicClaims, publicCurrentPlaceDetails } from './claims';
 import { validateProjectPackageSchema } from './packageSchema';
+import { geometryIsStructurallyValid, validateFeatures } from './validation';
 import {
-  geometryIsStructurallyValid,
-  historicLayerLicenceTextIsResolved,
-  licenceTextIsResolved,
-  validateFeatures,
-} from './validation';
+  componentLicenceAllowsPublicUse,
+  licenceDecisionAllowsPublicUse,
+  mapLicenceAllowsPublicUse,
+  packageLicenceAllowsPublicUse,
+  settlementLicenceAllowsPublicUse,
+} from './licensing';
 import type {
   PublicCurrentPlaceDetail,
   PublicFeature,
@@ -186,6 +189,7 @@ export function assessProjectPackage(pkg: ProjectPackage): PackagePublicationAss
   }
   const validation = validateFeatures(pkg.project, pkg.features);
   const packageState = pkg.publication?.state ?? 'provisional';
+  const licenceApproved = packageLicenceAllowsPublicUse(pkg);
   const records = pkg.features.map((feature) =>
     assessValidatedFeaturePublication(pkg, feature, validation),
   );
@@ -202,7 +206,7 @@ export function assessProjectPackage(pkg: ProjectPackage): PackagePublicationAss
   return {
     packageState,
     usedLegacyDefault: pkg.publication === undefined,
-    canPublishPackage: packageState === 'publishable',
+    canPublishPackage: packageState === 'publishable' && licenceApproved,
     records,
     summary,
   };
@@ -219,10 +223,7 @@ function historicMapCanPublish(pkg: ProjectPackage, map: HistoricMapLayer): bool
     pkg.publication?.state === 'publishable' &&
     (state === 'verified' || state === 'publishable') &&
     configured &&
-    licenceTextIsResolved(
-      map.licence,
-      pkg.sources.map((source) => source.licence),
-    ) &&
+    mapLicenceAllowsPublicUse(map) &&
     Boolean(map.attribution.trim())
   );
 }
@@ -236,14 +237,75 @@ function settlementPolygonCanPublish(pkg: ProjectPackage, polygon: SettlementAge
         source.sourceName?.trim() &&
         source.sourceOrganisation?.trim() &&
         source.accessedAt?.trim() &&
-        licenceTextIsResolved(source.licence),
+        licenceDecisionAllowsPublicUse(source.licenceDecision, source.licence),
     );
   return (
     pkg.publication?.state === 'publishable' &&
     (state === 'verified' || state === 'publishable') &&
     geometryIsStructurallyValid(polygon.geometry) &&
-    sourcesAreUsable
+    sourcesAreUsable &&
+    settlementLicenceAllowsPublicUse(polygon)
   );
+}
+
+function publicUrl(value?: string): string | undefined {
+  if (!value) return undefined;
+  try {
+    const url = new URL(value);
+    return (url.protocol === 'https:' || url.protocol === 'http:') && !url.username && !url.password
+      ? url.href
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function publicTileUrl(value?: string): string | undefined {
+  if (!value) return undefined;
+  if (value.startsWith('/') && !value.startsWith('//') && !value.includes('\\')) return value;
+  return publicUrl(value);
+}
+
+function publicPosition(position: Position): Position {
+  return position.slice(0, 3).map(Number);
+}
+
+/** Reconstructs GeoJSON coordinate data without retaining arbitrary object properties. */
+export function publicGeometry(geometry: Geometry): Geometry {
+  switch (geometry.type) {
+    case 'Point':
+      return { type: 'Point', coordinates: publicPosition(geometry.coordinates) };
+    case 'MultiPoint':
+      return { type: 'MultiPoint', coordinates: geometry.coordinates.map(publicPosition) };
+    case 'LineString':
+      return { type: 'LineString', coordinates: geometry.coordinates.map(publicPosition) };
+    case 'MultiLineString':
+      return {
+        type: 'MultiLineString',
+        coordinates: geometry.coordinates.map((line) => line.map(publicPosition)),
+      };
+    case 'Polygon':
+      return {
+        type: 'Polygon',
+        coordinates: geometry.coordinates.map((ring) => ring.map(publicPosition)),
+      };
+    case 'MultiPolygon':
+      return {
+        type: 'MultiPolygon',
+        coordinates: geometry.coordinates.map((polygon) =>
+          polygon.map((ring) => ring.map(publicPosition)),
+        ),
+      };
+    case 'GeometryCollection':
+      return {
+        type: 'GeometryCollection',
+        geometries: geometry.geometries.map(publicGeometry),
+      };
+  }
+}
+
+function publicPoint(point: Point): Point {
+  return { type: 'Point', coordinates: publicPosition(point.coordinates) };
 }
 
 const publicPresentationTags = new Set([
@@ -270,10 +332,11 @@ const publicPresentationTags = new Set([
 ]);
 
 function publicSourceRecord(source: SourceRecord): PublicSourceRecord {
+  const sourceUrl = publicUrl(source.sourceUrl);
   return {
     sourceName: source.sourceName,
     sourceOrganisation: source.sourceOrganisation,
-    ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}),
+    ...(sourceUrl ? { sourceUrl } : {}),
     accessedAt: source.accessedAt,
     ...(source.licence ? { licence: source.licence } : {}),
     reliability: source.reliability,
@@ -306,12 +369,13 @@ function publicFeature(feature: HeritageFeature): PublicFeature {
       : {}),
     ...(claimSafe.significance ? { significance: claimSafe.significance } : {}),
     ...(claimSafe.statutoryStatus ? { statutoryStatus: claimSafe.statutoryStatus } : {}),
-    ...(claimSafe.geometry !== undefined ? { geometry: claimSafe.geometry } : {}),
+    ...(claimSafe.geometry !== undefined
+      ? { geometry: claimSafe.geometry ? publicGeometry(claimSafe.geometry) : null }
+      : {}),
     ...(claimSafe.additionalPointLocations
-      ? { additionalPointLocations: [...claimSafe.additionalPointLocations] }
+      ? { additionalPointLocations: claimSafe.additionalPointLocations.map(publicPoint) }
       : {}),
     locationType: claimSafe.locationType,
-    ...(claimSafe.documentedDateText ? { documentedDateText: claimSafe.documentedDateText } : {}),
     ...(claimSafe.earliestPossibleYear !== undefined
       ? { earliestPossibleYear: claimSafe.earliestPossibleYear }
       : {}),
@@ -353,18 +417,18 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
       title: map.title,
       displayDate: map.displayDate,
       sourceInstitution: map.sourceInstitution,
-      ...(map.sourceUrl ? { sourceUrl: map.sourceUrl } : {}),
+      ...(publicUrl(map.sourceUrl) ? { sourceUrl: publicUrl(map.sourceUrl) } : {}),
       ...(map.licence ? { licence: map.licence } : {}),
       attribution: map.attribution,
       layerType: map.layerType,
-      ...(map.tileUrl ? { tileUrl: map.tileUrl } : {}),
+      ...(publicTileUrl(map.tileUrl) ? { tileUrl: publicTileUrl(map.tileUrl) } : {}),
       opacity: map.opacity,
     }));
   const settlementPolygons = pkg.settlementPolygons
     .filter((polygon) => settlementPolygonCanPublish(pkg, polygon))
     .map((polygon) => ({
       id: polygon.id,
-      geometry: polygon.geometry,
+      geometry: publicGeometry(polygon.geometry) as Polygon | MultiPolygon,
       ...(polygon.earliestEvidenceYear !== undefined
         ? { earliestEvidenceYear: polygon.earliestEvidenceYear }
         : {}),
@@ -376,13 +440,19 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
       sourceRecords: polygon.sourceRecords.map(publicSourceRecord),
     }));
   const existingComponents = (pkg.licensingMetadata?.components ?? []).filter((component) =>
-    licenceTextIsResolved(component.licence),
+    componentLicenceAllowsPublicUse(component),
   );
   const osmComponent: DataLicenceComponent = {
     id: 'openstreetmap-current-place-data',
     name: 'OpenStreetMap-derived current-place data',
     source: 'OpenStreetMap',
     licence: 'Open Data Commons Open Database Licence (ODbL) 1.0',
+    licenceDecision: {
+      state: 'approved',
+      scope: 'public_metadata',
+      reviewedAt: '2026-09-05',
+      evidenceText: 'Open Data Commons Open Database Licence (ODbL) 1.0',
+    },
     licenceUrl: 'https://opendatacommons.org/licenses/odbl/1-0/',
     attribution: '© OpenStreetMap contributors',
     scope: 'OSM-derived present-day map objects and retained mapped-context fields.',
@@ -390,16 +460,19 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
   const containsOsmData = features.some((feature) =>
     feature.sourceRecords.some((source) => /openstreetmap/i.test(source.sourceName)),
   );
-  const hesSources = features.flatMap((feature) =>
-    feature.sourceRecords.filter((source) => {
-      const identity = `${source.sourceName} ${source.sourceOrganisation} ${source.sourceUrl ?? ''}`;
-      return (
-        /(?:historic environment scotland|\bhes\b|canmore|trove\.scot)/i.test(identity) &&
-        /(?:open government licen[cs]e|\bogl\b)/i.test(source.licence ?? '') &&
-        historicLayerLicenceTextIsResolved(source.licence)
-      );
-    }),
-  );
+  const publishedFeatureIds = new Set(features.map((feature) => feature.id));
+  const hesSources = pkg.features
+    .filter((feature) => publishedFeatureIds.has(feature.id))
+    .flatMap((feature) =>
+      feature.sourceRecords.filter((source) => {
+        const identity = `${source.sourceName} ${source.sourceOrganisation} ${source.sourceUrl ?? ''}`;
+        return (
+          /(?:historic environment scotland|\bhes\b|canmore|trove\.scot)/i.test(identity) &&
+          /(?:open government licen[cs]e|\bogl\b)/i.test(source.licence ?? '') &&
+          licenceDecisionAllowsPublicUse(source.licenceDecision, source.licence)
+        );
+      }),
+    );
   const hesYears = hesSources
     .map((source) => new Date(source.accessedAt).getUTCFullYear())
     .filter((year) => Number.isInteger(year));
@@ -410,6 +483,12 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
         name: 'Historic Environment Scotland spatial data',
         source: 'Historic Environment Scotland and Ordnance Survey',
         licence: 'Open Government Licence v3.0',
+        licenceDecision: {
+          state: 'approved',
+          scope: 'public_metadata',
+          reviewedAt: '2026-09-05',
+          evidenceText: 'Open Government Licence v3.0',
+        },
         licenceUrl: 'https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/',
         attribution: `Contains Historic Environment Scotland and OS data © Historic Environment Scotland and Crown Copyright and database right ${hesYear}, licensed under the Open Government Licence v3.0.`,
         scope:
@@ -433,11 +512,11 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
       country: pkg.project.country,
       ...(pkg.project.region ? { region: pkg.project.region } : {}),
       locality: pkg.project.locality,
-      centre: pkg.project.centre,
+      centre: [pkg.project.centre[0], pkg.project.centre[1]],
       boundary: {
         type: 'Feature',
         properties: {},
-        geometry: pkg.project.boundary.geometry,
+        geometry: publicGeometry(pkg.project.boundary.geometry) as Polygon | MultiPolygon,
       },
       ...(pkg.project.timelineStart !== undefined
         ? { timelineStart: pkg.project.timelineStart }
@@ -479,15 +558,13 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
     },
     features,
     sources: pkg.sources
-      .filter((source) => licenceTextIsResolved(source.licence))
+      .filter((source) => licenceDecisionAllowsPublicUse(source.licenceDecision, source.licence))
       .map((source) => ({
         id: source.id,
         name: source.name,
         organisation: source.organisation,
-        coverage: source.coverage,
-        accessMethod: source.accessMethod,
         ...(source.licence ? { licence: source.licence } : {}),
-        ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}),
+        ...(publicUrl(source.sourceUrl) ? { sourceUrl: publicUrl(source.sourceUrl) } : {}),
         reliability: source.reliability,
       })),
     historicMaps,
@@ -500,7 +577,9 @@ export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage 
               name: component.name,
               source: component.source,
               licence: component.licence,
-              ...(component.licenceUrl ? { licenceUrl: component.licenceUrl } : {}),
+              ...(publicUrl(component.licenceUrl)
+                ? { licenceUrl: publicUrl(component.licenceUrl) }
+                : {}),
               attribution: component.attribution,
               scope: component.scope,
             })),

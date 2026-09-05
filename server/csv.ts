@@ -1,3 +1,5 @@
+import type { PublicFeature, PublicProjectPackage } from '../src/domain/publicDto';
+
 function parseCsv(value: string): string[][] {
   const rows: string[][] = [];
   let row: string[] = [];
@@ -79,4 +81,84 @@ export function publicCsvByRecordIds(
   ]
     .map((row) => row.map(csvCell).join(','))
     .join('\r\n')}\r\n`;
+}
+
+export function csvRecordIds(value: string, idColumn: string): Set<string> {
+  const rows = parseCsv(value.startsWith('\uFEFF') ? value.slice(1) : value);
+  const header = rows[0] ?? [];
+  const idIndex = header.indexOf(idColumn);
+  if (idIndex === -1) throw new Error(`CSV export is missing the ${idColumn} column.`);
+  return new Set(
+    rows
+      .slice(1)
+      .map((row) => row[idIndex])
+      .filter(Boolean),
+  );
+}
+
+function publicDate(feature: PublicFeature): string {
+  if (feature.earliestPossibleYear === undefined) return '';
+  if (
+    feature.latestPossibleYear === undefined ||
+    feature.latestPossibleYear === feature.earliestPossibleYear
+  )
+    return String(feature.earliestPossibleYear);
+  return `${feature.earliestPossibleYear}–${feature.latestPossibleYear}`;
+}
+
+/** Builds CSV values only from the already claim-safe public DTO. */
+export function publicListedBuildingsCsv(
+  pkg: PublicProjectPackage,
+  listedBuildingIds: ReadonlySet<string>,
+): string {
+  const header = [
+    'project_id',
+    'town',
+    'selection_class',
+    'hes_designation_reference',
+    'feature_id',
+    'listed_building_title',
+    'statutory_title',
+    'category',
+    'designation_type',
+    'statutory_status',
+    'longitude',
+    'latitude',
+    'location_precision',
+    'documented_date',
+    'date_basis',
+    'date_confidence',
+    'source_url',
+    'source_accessed_at',
+    'source_attribution',
+  ];
+  const rows = pkg.features
+    .filter((feature) => listedBuildingIds.has(feature.id))
+    .map((feature) => {
+      const source =
+        feature.sourceRecords.find((entry) => entry.sourceUrl) ?? feature.sourceRecords[0];
+      const point = feature.geometry?.type === 'Point' ? feature.geometry.coordinates : undefined;
+      return [
+        pkg.project.id,
+        pkg.project.locality,
+        '',
+        feature.id.match(/LB\d+/)?.[0] ?? '',
+        feature.id,
+        feature.name,
+        feature.name,
+        feature.designationCategory ?? '',
+        feature.designationType ?? '',
+        feature.statutoryStatus ?? '',
+        point ? String(point[0]) : '',
+        point ? String(point[1]) : '',
+        feature.locationType,
+        publicDate(feature),
+        feature.dateBasis,
+        feature.dateConfidence,
+        source?.sourceUrl ?? '',
+        source?.accessedAt ?? '',
+        source ? `${source.sourceName} — ${source.sourceOrganisation}` : '',
+      ];
+    });
+  return `${[header, ...rows].map((row) => row.map(csvCell).join(',')).join('\r\n')}\r\n`;
 }

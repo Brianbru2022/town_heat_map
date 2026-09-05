@@ -30,6 +30,17 @@ export type GeographicRelationship =
   | 'ambiguous'
   | 'out_of_scope';
 export type PublicationState = 'provisional' | 'verified' | 'publishable' | 'withheld';
+export type LicenceDecisionState =
+  'approved' | 'unresolved' | 'denied' | 'restricted' | 'inherited';
+export type LicenceUseScope = 'public_metadata' | 'public_redistribution' | 'internal_only';
+export interface LicenceDecision {
+  state: LicenceDecisionState;
+  scope: LicenceUseScope;
+  reviewedAt: string;
+  /** Exact evidence snapshot reviewed when this decision was recorded. */
+  evidenceText?: string;
+  inheritedFrom?: 'source_records';
+}
 export type EvidenceTier = 'mapped_context' | 'corroborated_facility' | 'operational' | 'editorial';
 export type PublicationProfile = 'mapped_context' | 'verified_facility' | 'editorial';
 export type ClaimType =
@@ -144,6 +155,7 @@ export interface SourceRecord {
   sourceUrl?: string;
   accessedAt: string;
   licence?: string;
+  licenceDecision?: LicenceDecision;
   quotedDateText?: string;
   notes?: string;
   reliability: Reliability;
@@ -192,6 +204,7 @@ export interface HeritageFeature {
   fullDescription?: string;
   sourceRecords: SourceRecord[];
   licence?: string;
+  licenceDecision?: LicenceDecision;
   tags: string[];
   createdAt: string;
   updatedAt: string;
@@ -216,6 +229,7 @@ export interface HistoricMapLayer {
   sourceInstitution: string;
   sourceUrl?: string;
   licence?: string;
+  licenceDecision?: LicenceDecision;
   attribution: string;
   notes?: string;
   layerType: 'xyz' | 'wmts' | 'wms' | 'georeferenced_raster_tiles' | 'cog' | 'four_corner_image';
@@ -253,6 +267,7 @@ export interface SettlementAgePolygon {
   confidence: Exclude<Confidence, 'unknown'>;
   digitisationMethod: string;
   sourceRecords: SourceRecord[];
+  licenceDecision?: LicenceDecision;
   reviewed: boolean;
   publication?: PublicationDeclaration;
 }
@@ -264,6 +279,7 @@ export interface DataSourceDefinition {
   coverage: string;
   accessMethod: string;
   licence?: string;
+  licenceDecision?: LicenceDecision;
   sourceUrl?: string;
   reliability: Reliability;
   limitations?: string;
@@ -348,6 +364,7 @@ export interface DataLicenceComponent {
   name: string;
   source: string;
   licence: string;
+  licenceDecision?: LicenceDecision;
   licenceUrl?: string;
   attribution: string;
   scope: string;
@@ -367,6 +384,7 @@ export interface ProjectPackage {
   validation: ValidationResult[];
   curationMetadata?: { importedPacks: ImportedPackMetadata[] };
   publication?: PublicationDeclaration;
+  licenceDecision?: LicenceDecision;
   /** Computed for delivery/audit responses; not a source-data declaration. */
   publicationSummary?: PublicationSummary;
   /** Computed component-level licensing information for a public delivery. */

@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { alloaPackage } from '../data/alloa';
-import type { HeritageFeature, HistoricMapLayer, ProjectPackage, PublicationState } from './models';
+import type {
+  HeritageFeature,
+  HistoricMapLayer,
+  LicenceDecision,
+  LicenceDecisionState,
+  ProjectPackage,
+  PublicationState,
+} from './models';
 import {
   assessFeaturePublication,
   assessProjectPackage,
@@ -11,6 +18,18 @@ import {
 const sourceFeature = alloaPackage.features.find(
   (feature) => feature.id === 'hes-listed-building:LB20953',
 )!;
+
+function licenceDecision(
+  evidenceText?: string,
+  state: LicenceDecisionState = 'approved',
+): LicenceDecision {
+  return {
+    state,
+    scope: 'public_metadata',
+    reviewedAt: '2026-09-05T00:00:00.000Z',
+    ...(evidenceText ? { evidenceText } : {}),
+  };
+}
 
 function feature(overrides: Partial<HeritageFeature> = {}): HeritageFeature {
   return {
@@ -36,6 +55,7 @@ function historicMap(
   id: string,
   state: PublicationState,
   licence: string | undefined = 'Open Government Licence v3.0',
+  decisionState: LicenceDecisionState = 'approved',
 ): HistoricMapLayer {
   return {
     id,
@@ -44,6 +64,7 @@ function historicMap(
     displayDate: '1900',
     sourceInstitution: 'Historic Environment Scotland',
     licence,
+    licenceDecision: licenceDecision(licence, decisionState),
     attribution:
       'Contains Historic Environment Scotland and OS data © Historic Environment Scotland and Crown Copyright and database right 2026, licensed under the Open Government Licence v3.0.',
     layerType: 'georeferenced_raster_tiles',
@@ -87,6 +108,10 @@ describe('publication assessment', () => {
   it('blocks unresolved licence terms', () => {
     const record = feature({
       licence: 'Not stated in service metadata; redistribution must be reviewed.',
+      licenceDecision: licenceDecision(
+        'Not stated in service metadata; redistribution must be reviewed.',
+        'unresolved',
+      ),
     });
     const assessment = assessFeaturePublication(projectPackage([record]), record);
 
@@ -108,44 +133,92 @@ describe('publication assessment', () => {
     expect(assessFeaturePublication(projectPackage([record]), record).canPublish).toBe(false);
   });
 
+  it('publishes unfamiliar affirmative text only through a matching explicit decision', () => {
+    const licence = 'Provider authorises this metadata snapshot for public reuse.';
+    const undecided = feature({ licence, licenceDecision: undefined });
+    const approved = feature({ licence, licenceDecision: licenceDecision(licence) });
+
+    expect(assessFeaturePublication(projectPackage([undecided]), undecided).canPublish).toBe(false);
+    expect(assessFeaturePublication(projectPackage([approved]), approved).canPublish).toBe(true);
+  });
+
+  it('invalidates an approval when its recorded evidence text changes', () => {
+    const record = feature({
+      licence: `${sourceFeature.licence}; pending a new condition`,
+      licenceDecision: sourceFeature.licenceDecision,
+    });
+    const assessment = assessFeaturePublication(projectPackage([record]), record);
+
+    expect(assessment.canPublish).toBe(false);
+    expect(assessment.blockers).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: 'licence.decision_stale' })]),
+    );
+  });
+
   it('resolves delegated feature licensing only when every retained source licence is resolved', () => {
     const resolved = feature({
       licence: 'See individual source records.',
+      licenceDecision: {
+        ...licenceDecision('See individual source records.', 'inherited'),
+        inheritedFrom: 'source_records',
+      },
       sourceRecords: [
-        { ...sourceFeature.sourceRecords[0], licence: 'Open Database Licence (ODbL) v1.0' },
+        {
+          ...sourceFeature.sourceRecords[0],
+          licence: 'Open Database Licence (ODbL) v1.0',
+          licenceDecision: licenceDecision('Open Database Licence (ODbL) v1.0'),
+        },
       ],
     });
     const unresolved = feature({
       id: 'publication:delegated-unresolved',
       licence: 'See individual source records.',
-      sourceRecords: [{ ...sourceFeature.sourceRecords[0], licence: 'Awaiting confirmation' }],
+      licenceDecision: {
+        ...licenceDecision('See individual source records.', 'inherited'),
+        inheritedFrom: 'source_records',
+      },
+      sourceRecords: [
+        {
+          ...sourceFeature.sourceRecords[0],
+          licence: 'Awaiting confirmation',
+          licenceDecision: licenceDecision('Awaiting confirmation', 'unresolved'),
+        },
+      ],
     });
 
     expect(assessFeaturePublication(projectPackage([resolved]), resolved).canPublish).toBe(true);
     expect(assessFeaturePublication(projectPackage([unresolved]), unresolved).blockers).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ code: 'licence.delegated_unresolved' }),
-        expect.objectContaining({ code: 'licence.source_unresolved' }),
+        expect.objectContaining({ code: 'licence.source_not_approved' }),
       ]),
     );
   });
 
   it('blocks a feature whose source-record licence is missing or unresolved', () => {
     const missing = feature({
-      sourceRecords: [{ ...sourceFeature.sourceRecords[0], licence: undefined }],
+      sourceRecords: [
+        { ...sourceFeature.sourceRecords[0], licence: undefined, licenceDecision: undefined },
+      ],
     });
     const unresolved = feature({
       id: 'publication:source-unresolved',
       sourceRecords: [
-        { ...sourceFeature.sourceRecords[0], licence: 'Open licence pending confirmation' },
+        {
+          ...sourceFeature.sourceRecords[0],
+          licence: 'Open licence pending confirmation',
+          licenceDecision: licenceDecision('Open licence pending confirmation', 'unresolved'),
+        },
       ],
     });
 
     expect(assessFeaturePublication(projectPackage([missing]), missing).blockers).toEqual(
-      expect.arrayContaining([expect.objectContaining({ code: 'licence.source_missing' })]),
+      expect.arrayContaining([
+        expect.objectContaining({ code: 'licence.source_decision_missing' }),
+      ]),
     );
     expect(assessFeaturePublication(projectPackage([unresolved]), unresolved).blockers).toEqual(
-      expect.arrayContaining([expect.objectContaining({ code: 'licence.source_unresolved' })]),
+      expect.arrayContaining([expect.objectContaining({ code: 'licence.source_not_approved' })]),
     );
   });
 
@@ -215,6 +288,7 @@ describe('publication assessment', () => {
 
   it('projects internal narrative out of the public package without changing source data', () => {
     const record = feature({
+      documentedDateText: 'Open daily; dogs welcome; wheelchair access; toilets; £5 family price.',
       reviewNotes: 'Internal feature research.',
       publication: { state: 'publishable', notes: 'Internal publication decision.' },
       sourceRecords: [
@@ -222,6 +296,7 @@ describe('publication assessment', () => {
           ...sourceFeature.sourceRecords[0],
           quotedDateText: 'Unsupported nested narrative.',
           notes: 'Internal source analysis.',
+          sourceUrl: 'file:///C:/Users/curator/private-source.html',
         },
       ],
       claimEvidence: [
@@ -234,6 +309,15 @@ describe('publication assessment', () => {
         },
       ],
     });
+    (record.geometry as unknown as Record<string, unknown>).privateGeometry =
+      'NESTED_GEOMETRY_SENTINEL';
+    record.additionalPointLocations = [
+      {
+        type: 'Point',
+        coordinates: [-3.79, 56.11],
+        privatePoint: 'NESTED_POINT_SENTINEL',
+      } as never,
+    ];
     const source = {
       ...projectPackage([record]),
       project: {
@@ -245,6 +329,10 @@ describe('publication assessment', () => {
             ...alloaPackage.project.boundary.properties,
             reviewNotes: 'Internal boundary review.',
           },
+          geometry: {
+            ...alloaPackage.project.boundary.geometry,
+            privateBoundary: 'NESTED_BOUNDARY_SENTINEL',
+          },
         },
         methodology: {
           ...alloaPackage.project.methodology,
@@ -255,7 +343,14 @@ describe('publication assessment', () => {
         },
       },
       sources: alloaPackage.sources.map((entry, index) =>
-        index === 0 ? { ...entry, limitations: 'Internal limitations analysis.' } : entry,
+        index === 0
+          ? {
+              ...entry,
+              limitations: 'Internal limitations analysis.',
+              coverage: 'Dogs, toilets, opening hours, prices and family recommendation.',
+              sourceUrl: 'file:///C:/Users/curator/private-catalogue.csv',
+            }
+          : entry,
       ),
       curationMetadata: {
         importedPacks: [
@@ -285,8 +380,15 @@ describe('publication assessment', () => {
       'quotedDateText',
       'reviewNotes',
       'internalWeight',
+      'documentedDateText',
+      'privateGeometry',
+      'privatePoint',
+      'privateBoundary',
     ])
       expect(publicText).not.toContain(`"${field}"`);
+    expect(publicText).not.toContain('file:///');
+    expect(publicText).not.toContain('dogs welcome');
+    expect(publicText).not.toContain('family recommendation');
     expect(delivered.project.boundary.properties).toEqual({});
   });
 
@@ -296,21 +398,43 @@ describe('publication assessment', () => {
     if (!resolvedPolygon) throw new Error('Expected a settlement polygon fixture.');
     resolvedPolygon.id = 'resolved-polygon';
     resolvedPolygon.publication = { state: 'publishable' };
+    resolvedPolygon.licenceDecision = {
+      ...licenceDecision(undefined, 'inherited'),
+      inheritedFrom: 'source_records',
+    };
     resolvedPolygon.sourceRecords = [
-      { ...sourceFeature.sourceRecords[0], licence: 'Creative Commons Attribution 4.0' },
+      {
+        ...sourceFeature.sourceRecords[0],
+        licence: 'Creative Commons Attribution 4.0',
+        licenceDecision: licenceDecision('Creative Commons Attribution 4.0'),
+      },
     ];
     const unresolvedPolygon = structuredClone(resolvedPolygon);
     unresolvedPolygon.id = 'unresolved-polygon';
     unresolvedPolygon.sourceRecords[0].licence = 'Permission denied';
+    unresolvedPolygon.sourceRecords[0].licenceDecision = licenceDecision(
+      'Permission denied',
+      'denied',
+    );
     const pkg = {
       ...projectPackage([record]),
       sources: [
-        { ...alloaPackage.sources[0], id: 'resolved-source', licence: 'CC0' },
-        { ...alloaPackage.sources[0], id: 'unresolved-source', licence: 'Pending review' },
+        {
+          ...alloaPackage.sources[0],
+          id: 'resolved-source',
+          licence: 'CC0',
+          licenceDecision: licenceDecision('CC0'),
+        },
+        {
+          ...alloaPackage.sources[0],
+          id: 'unresolved-source',
+          licence: 'Pending review',
+          licenceDecision: licenceDecision('Pending review', 'unresolved'),
+        },
       ],
       historicMaps: [
         historicMap('resolved-map', 'publishable', 'Open Government Licence v3.0'),
-        historicMap('denied-map', 'publishable', 'Permission not granted'),
+        historicMap('denied-map', 'publishable', 'Permission not granted', 'denied'),
       ],
       settlementPolygons: [resolvedPolygon, unresolvedPolygon],
       licensingMetadata: {
@@ -322,6 +446,7 @@ describe('publication assessment', () => {
             licence: 'CC BY 4.0',
             attribution: 'Example',
             scope: 'Example data',
+            licenceDecision: licenceDecision('CC BY 4.0'),
           },
           {
             id: 'unresolved-component',
@@ -330,6 +455,7 @@ describe('publication assessment', () => {
             licence: 'Confirmation required',
             attribution: 'Example',
             scope: 'Example data',
+            licenceDecision: licenceDecision('Confirmation required', 'unresolved'),
           },
         ],
       },
@@ -368,14 +494,21 @@ describe('publication assessment', () => {
           'confirmation-required',
           'publishable',
           'Live service; confirm current reproduction terms before export or redistribution.',
+          'unresolved',
         ),
         historicMap(
           'conditional-rights',
           'publishable',
           'Public display remains conditional on confirmation from the provider.',
+          'restricted',
         ),
-        historicMap('placeholder-rights', 'publishable', 'Licence placeholder — TBC.'),
-        historicMap('empty-rights', 'publishable', ''),
+        historicMap(
+          'placeholder-rights',
+          'publishable',
+          'Licence placeholder — TBC.',
+          'unresolved',
+        ),
+        historicMap('empty-rights', 'publishable', '', 'unresolved'),
       ],
     };
 

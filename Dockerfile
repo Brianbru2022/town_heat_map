@@ -5,6 +5,7 @@ RUN corepack enable && pnpm install --frozen-lockfile
 
 FROM dependencies AS web-build
 COPY index.html vite.config.ts .env.production ./
+COPY data/licensing ./data/licensing
 COPY public ./public
 COPY src ./src
 RUN pnpm build:client
@@ -21,6 +22,7 @@ COPY server ./server
 COPY src ./src
 COPY schemas ./schemas
 COPY data/projects ./data/projects
+COPY data/licensing ./data/licensing
 COPY data/exports/*-listed-buildings.csv ./data/exports/
 USER node
 EXPOSE 3001

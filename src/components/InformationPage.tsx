@@ -50,12 +50,9 @@ export function InformationPage() {
             <article className="card" key={source.id}>
               <h2>{source.name}</h2>
               <p>
-                <strong>{source.organisation}</strong> · {source.coverage}
+                <strong>{source.organisation}</strong>
               </p>
-              <p>
-                Access: {source.accessMethod} · Reliability:{' '}
-                {source.reliability.replaceAll('_', ' ')}
-              </p>
+              <p>Reliability: {source.reliability.replaceAll('_', ' ')}</p>
               {source.sourceUrl && (
                 <a href={source.sourceUrl} target="_blank" rel="noreferrer">
                   Open source

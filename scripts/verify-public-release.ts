@@ -1,7 +1,14 @@
 import { publishedProjectPackages } from '../src/data/publishedProjects';
 import { validateProjectPackageSchema } from '../src/domain/packageSchema';
 import { assessProjectPackage, publicProjectPackage } from '../src/domain/publication';
-import { licenceTextIsResolved } from '../src/domain/validation';
+import {
+  componentLicenceAllowsPublicUse,
+  featureLicenceAllowsPublicUse,
+  licenceDecisionAllowsPublicUse,
+  mapLicenceAllowsPublicUse,
+  packageLicenceAllowsPublicUse,
+  settlementLicenceAllowsPublicUse,
+} from '../src/domain/licensing';
 
 const errors: string[] = [];
 let publicFeatureCount = 0;
@@ -14,6 +21,8 @@ for (const sourcePackage of publishedProjectPackages) {
   }
 
   const assessment = assessProjectPackage(sourcePackage);
+  if (!packageLicenceAllowsPublicUse(sourcePackage))
+    errors.push(`${sourcePackage.project.id}: package licence decision is not approved`);
   if (!assessment.canPublishPackage) {
     errors.push(`${sourcePackage.project.id}: catalogue package is not explicitly publishable`);
     continue;
@@ -37,30 +46,37 @@ for (const sourcePackage of publishedProjectPackages) {
   }
 
   for (const feature of publicPackage.features) {
-    if (
-      !licenceTextIsResolved(
-        feature.licence,
-        feature.sourceRecords.map((source) => source.licence),
-      )
-    )
-      errors.push(`${sourcePackage.project.id}/${feature.id}: unresolved feature licence`);
-    for (const source of feature.sourceRecords)
-      if (!licenceTextIsResolved(source.licence))
-        errors.push(`${sourcePackage.project.id}/${feature.id}: unresolved source-record licence`);
+    const retained = sourcePackage.features.find((candidate) => candidate.id === feature.id);
+    if (!retained || !featureLicenceAllowsPublicUse(retained))
+      errors.push(`${sourcePackage.project.id}/${feature.id}: licence decision is not approved`);
   }
-  for (const source of publicPackage.sources)
-    if (!licenceTextIsResolved(source.licence))
-      errors.push(`${sourcePackage.project.id}/${source.id}: unresolved source-definition licence`);
-  for (const map of publicPackage.historicMaps)
-    if (!licenceTextIsResolved(map.licence))
-      errors.push(`${sourcePackage.project.id}/${map.id}: unresolved map licence`);
-  for (const polygon of publicPackage.settlementPolygons)
-    for (const source of polygon.sourceRecords)
-      if (!licenceTextIsResolved(source.licence))
-        errors.push(`${sourcePackage.project.id}/${polygon.id}: unresolved polygon source licence`);
-  for (const component of publicPackage.licensingMetadata?.components ?? [])
-    if (!licenceTextIsResolved(component.licence))
-      errors.push(`${sourcePackage.project.id}/${component.id}: unresolved licence component`);
+  for (const source of publicPackage.sources) {
+    const retained = sourcePackage.sources.find((candidate) => candidate.id === source.id);
+    if (!retained || !licenceDecisionAllowsPublicUse(retained.licenceDecision, retained.licence))
+      errors.push(`${sourcePackage.project.id}/${source.id}: source decision is not approved`);
+  }
+  for (const map of publicPackage.historicMaps) {
+    const retained = sourcePackage.historicMaps.find((candidate) => candidate.id === map.id);
+    if (!retained || !mapLicenceAllowsPublicUse(retained))
+      errors.push(`${sourcePackage.project.id}/${map.id}: map decision is not approved`);
+  }
+  for (const polygon of publicPackage.settlementPolygons) {
+    const retained = sourcePackage.settlementPolygons.find(
+      (candidate) => candidate.id === polygon.id,
+    );
+    if (!retained || !settlementLicenceAllowsPublicUse(retained))
+      errors.push(`${sourcePackage.project.id}/${polygon.id}: polygon decision is not approved`);
+  }
+  for (const component of sourcePackage.licensingMetadata?.components ?? [])
+    if (
+      publicPackage.licensingMetadata?.components.some(
+        (candidate) => candidate.id === component.id,
+      ) &&
+      !componentLicenceAllowsPublicUse(component)
+    )
+      errors.push(
+        `${sourcePackage.project.id}/${component.id}: component decision is not approved`,
+      );
 
   for (const record of assessment.records) {
     if (record.canPublish || record.effectiveState === 'withheld') continue;

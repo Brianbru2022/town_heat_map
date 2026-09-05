@@ -9,47 +9,11 @@ import {
   sourceReference,
   tierSatisfiesClaim,
 } from './claims';
-
-const unresolvedLicencePatterns = [
-  /\b(?:not stated|unknown|unresolved|pending|placeholder|tbc|tbd|to be confirmed)\b/i,
-  /\b(?:await(?:ing)?|requires?|needs?|must)\b.{0,80}\b(?:review(?:ed)?|confirmation|permission|clearance|approval)\b/i,
-  /\b(?:conditional(?:ly)?|subject to)\b.{0,80}\b(?:confirm(?:ation)?|permission|clearance|approval|review)\b/i,
-  /\b(?:confirm|verify|review|clear|obtain|check)\b.{0,100}\b(?:terms?|rights?|licen[cs]e|permission|clearance|approval|reuse|redistribut)/i,
-  /\b(?:confirm|review|clear|obtain)\b.{0,100}\bbefore\b.{0,60}\b(?:publish|publication|public display|display|reuse|redistribut|export)\w*/i,
-  /\b(?:rights?|licen[cs]e|permission|consent|approval)\b.{0,80}\b(?:not final|not confirmed|not cleared|not granted|denied|refused|ungranted)\b/i,
-  /\b(?:permission|consent|approval)\s+(?:has\s+)?(?:not\s+been\s+)?(?:granted|obtained)|\b(?:permission|consent|approval)\s+(?:denied|refused)\b/i,
-];
-const delegatedLicencePattern = /\b(?:see|refer to)\b.*\b(?:source|dataset|metadata|licen[cs]e)/i;
-const restrictedUsePattern = /\b(?:citation only|link only|do not redistribute|no reuse)\b/i;
-const resolvedLicencePatterns = [
-  /\b(?:open government licen[cs]e|ogl)\b/i,
-  /\b(?:open data commons open database licen[cs]e|odbl)\b/i,
-  /\b(?:cc0|cc\s*by(?:-sa|-nc|-nd)?(?:\s*\d(?:\.\d)?)?|creative commons attribution|public domain)\b/i,
-  /\blicen[cs]ed under\b/i,
-  /\b(?:citation|link|metadata|record metadata)\b.{0,80}\bonly\b/i,
-  /\b(?:consulted|cited|source link)\b.{0,160}\b(?:do not|no)\s+(?:redistribut|reuse|reproduc)/i,
-  /\b(?:do not|no)\s+(?:redistribut|reuse|reproduc)\w*\b.{0,160}\b(?:citation|cited|link|metadata)\b/i,
-  /\b(?:permission|consent|approval)\s+(?:has\s+been\s+|is\s+)?granted\b/i,
-];
-
-export function licenceTextIsResolved(
-  value: string | undefined,
-  inheritedLicences: readonly (string | undefined)[] = [],
-): boolean {
-  const licence = value?.trim();
-  if (!licence || unresolvedLicencePatterns.some((pattern) => pattern.test(licence))) return false;
-  if (resolvedLicencePatterns.some((pattern) => pattern.test(licence))) return true;
-  if (delegatedLicencePattern.test(licence))
-    return (
-      inheritedLicences.length > 0 &&
-      inheritedLicences.every((inherited) => licenceTextIsResolved(inherited))
-    );
-  return false;
-}
-
-export function historicLayerLicenceTextIsResolved(value: string | undefined): boolean {
-  return licenceTextIsResolved(value);
-}
+import {
+  featureLicenceAllowsPublicUse,
+  licenceDecisionMatchesEvidence,
+  sourceRecordLicenceAllowsPublicUse,
+} from './licensing';
 
 function result(
   recordId: string,
@@ -123,47 +87,42 @@ export function geometryIsStructurallyValid(geometry: Geometry): boolean {
 }
 
 function licenceResults(feature: HeritageFeature): ValidationResult[] {
-  const licence = feature.licence?.trim();
-  if (!licence)
+  const decision = feature.licenceDecision;
+  if (!decision)
     return [
       result(
         feature.id,
         'warning',
         'blocker',
-        'licence.missing',
-        'Licence is not recorded; redistribution must be prevented.',
-        'licence',
+        'licence.decision_missing',
+        'No explicit licence decision is recorded for the relevant public use.',
+        'licenceDecision',
       ),
     ];
-  if (
-    !licenceTextIsResolved(
-      licence,
-      feature.sourceRecords.map((source) => source.licence),
-    )
-  )
+  if (!licenceDecisionMatchesEvidence(decision, feature.licence))
     return [
       result(
         feature.id,
         'warning',
         'blocker',
-        delegatedLicencePattern.test(licence)
+        'licence.decision_stale',
+        'The recorded licence decision does not match the retained licence evidence.',
+        'licenceDecision.evidenceText',
+      ),
+    ];
+  if (!featureLicenceAllowsPublicUse(feature))
+    return [
+      result(
+        feature.id,
+        'warning',
+        'blocker',
+        decision.state === 'inherited'
           ? 'licence.delegated_unresolved'
-          : 'licence.unresolved',
-        delegatedLicencePattern.test(licence)
-          ? 'Feature licence delegates to source metadata that is missing or unresolved.'
-          : 'Licence terms are missing, ambiguous, conditional, pending or not granted.',
-        'licence',
-      ),
-    ];
-  if (restrictedUsePattern.test(licence))
-    return [
-      result(
-        feature.id,
-        'warning',
-        'advisory',
-        'licence.citation_only',
-        'Source use is citation-only; source media and text must not be redistributed.',
-        'licence',
+          : `licence.${decision.state}`,
+        decision.state === 'inherited'
+          ? 'The inherited feature licence depends on source-record decisions that are not all approved.'
+          : 'The explicit licence decision does not approve this public use.',
+        'licenceDecision',
       ),
     ];
   return [];
@@ -171,16 +130,18 @@ function licenceResults(feature: HeritageFeature): ValidationResult[] {
 
 function sourceRecordLicenceResults(feature: HeritageFeature): ValidationResult[] {
   return feature.sourceRecords.flatMap((source, index) =>
-    licenceTextIsResolved(source.licence)
+    sourceRecordLicenceAllowsPublicUse(source)
       ? []
       : [
           result(
             feature.id,
             'warning',
             'blocker',
-            source.licence?.trim() ? 'licence.source_unresolved' : 'licence.source_missing',
-            'A source record has a missing, ambiguous, conditional, pending or denied licence.',
-            `sourceRecords[${index}].licence`,
+            source.licenceDecision
+              ? 'licence.source_not_approved'
+              : 'licence.source_decision_missing',
+            'A source record lacks an applicable explicit decision approving this public use.',
+            `sourceRecords[${index}].licenceDecision`,
           ),
         ],
   );
@@ -357,6 +318,9 @@ export function validateFeatures(
           'date',
         ),
       );
+    const geometryIsValid = feature.geometry
+      ? geometryIsStructurallyValid(feature.geometry)
+      : false;
     if (!feature.geometry) {
       const pendingGeometry =
         /geometry|polygon|digitis|alignment|street|change_area|historic_site|location_to_verify/i.test(
@@ -374,7 +338,7 @@ export function validateFeatures(
           'geometry',
         ),
       );
-    } else if (!geometryIsStructurallyValid(feature.geometry))
+    } else if (!geometryIsValid)
       results.push(
         result(
           feature.id,
@@ -409,6 +373,7 @@ export function validateFeatures(
     seen.set(spatialIdentity, new Set([...(priorSourceIds ?? []), ...currentSourceIds]));
     if (
       feature.geometry?.type === 'Point' &&
+      geometryIsValid &&
       feature.evidenceScope !== 'related_context' &&
       feature.evidenceScope !== 'out_of_scope' &&
       !booleanPointInPolygon(point(feature.geometry.coordinates), project.boundary)

@@ -13,12 +13,12 @@ import {
 import type { ScoringMethodology } from '../domain/models';
 import type { PublicFeature, PublicSettlementPolygon } from '../domain/publicDto';
 import type { LineString, MultiPolygon, Point, Polygon } from 'geojson';
+import { validateBasemapTileUrl } from '../config/basemap';
 
-const developmentBasemapTileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-const configuredBasemapTileUrl = import.meta.env.VITE_BASEMAP_TILE_URL?.trim();
-if (import.meta.env.PROD && !configuredBasemapTileUrl)
-  throw new Error('VITE_BASEMAP_TILE_URL must be configured for a production build.');
-const basemapTileUrl = configuredBasemapTileUrl || developmentBasemapTileUrl;
+const basemapTileUrl = validateBasemapTileUrl(
+  import.meta.env.VITE_BASEMAP_TILE_URL,
+  import.meta.env.PROD,
+);
 const openStreetMapBasemapStyle = {
   version: 8,
   sources: {

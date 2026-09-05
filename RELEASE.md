@@ -58,15 +58,17 @@ with a lifecycle script therefore fails the frozen install until it is independe
 documented here and explicitly approved in the tracked policy.
 
 The CI workflow repeats these gates on pull requests, `main`, `release/**`, and manual runs with a
-frozen dependency install. It requires no production secret.
+frozen dependency install. It also starts the built Compose images and runs the production-stack
+Playwright suite through nginx. It requires no production secret.
 
 ## Publication and formatting policy
 
-The public release gate rejects a catalogue package unless it is explicitly publishable and its
-public projection exactly matches the records that pass fail-closed publication assessment. Schema
-errors, validation errors, unknown publication states, unsupported narrative/claims and public DTO
-contract leaks fail CI. Deliberately withheld, provisional or review-blocked records remain in the
-retained source package but cannot make it into public delivery, so they do not fail a candidate.
+The public release gate rejects a catalogue package unless it is explicitly publishable, has a
+matching public-use licence decision, and its public projection exactly matches the records that
+pass fail-closed publication assessment. Schema errors, validation errors, missing or stale licence
+decisions, unknown publication states, unsupported narrative/claims and public DTO contract leaks
+fail CI. Deliberately withheld, provisional or review-blocked records remain in the retained source
+package but cannot make it into public delivery, so they do not fail a candidate.
 
 `pnpm format:check` is the required maintained-code gate. `pnpm format:check:all` is an
 informational audit for imported, research and generated artefacts; it is deliberately not a

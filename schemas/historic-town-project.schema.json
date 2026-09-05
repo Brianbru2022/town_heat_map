@@ -15,6 +15,7 @@
   "properties": {
     "$schema": { "type": "string" },
     "publication": { "$ref": "#/$defs/publicationDeclaration" },
+    "licenceDecision": { "$ref": "#/$defs/licenceDecision" },
     "project": {
       "type": "object",
       "required": [
@@ -66,14 +67,20 @@
     },
     "sources": {
       "type": "array",
-      "items": { "type": "object" }
+      "items": {
+        "type": "object",
+        "properties": {
+          "licenceDecision": { "$ref": "#/$defs/licenceDecision" }
+        }
+      }
     },
     "historicMaps": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "publication": { "$ref": "#/$defs/publicationDeclaration" }
+          "publication": { "$ref": "#/$defs/publicationDeclaration" },
+          "licenceDecision": { "$ref": "#/$defs/licenceDecision" }
         }
       }
     },
@@ -82,7 +89,8 @@
       "items": {
         "type": "object",
         "properties": {
-          "publication": { "$ref": "#/$defs/publicationDeclaration" }
+          "publication": { "$ref": "#/$defs/publicationDeclaration" },
+          "licenceDecision": { "$ref": "#/$defs/licenceDecision" }
         }
       }
     },
@@ -118,6 +126,22 @@
         },
         "reviewedAt": { "$ref": "#/$defs/dateStamp" },
         "notes": { "type": "string", "minLength": 1 }
+      }
+    },
+    "licenceDecision": {
+      "type": "object",
+      "required": ["state", "scope", "reviewedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "enum": ["approved", "unresolved", "denied", "restricted", "inherited"]
+        },
+        "scope": {
+          "enum": ["public_metadata", "public_redistribution", "internal_only"]
+        },
+        "reviewedAt": { "$ref": "#/$defs/dateStamp" },
+        "evidenceText": { "type": "string", "minLength": 1 },
+        "inheritedFrom": { "const": "source_records" }
       }
     },
     "claimEvidence": {
@@ -180,6 +204,7 @@
         "name": { "type": "string", "minLength": 1 },
         "source": { "type": "string", "minLength": 1 },
         "licence": { "type": "string", "minLength": 1 },
+        "licenceDecision": { "$ref": "#/$defs/licenceDecision" },
         "licenceUrl": { "type": "string", "format": "uri" },
         "attribution": { "type": "string", "minLength": 1 },
         "scope": { "type": "string", "minLength": 1 },
@@ -198,6 +223,7 @@
         "sourceUrl": { "type": "string", "format": "uri" },
         "accessedAt": { "$ref": "#/$defs/dateStamp" },
         "licence": { "type": "string" },
+        "licenceDecision": { "$ref": "#/$defs/licenceDecision" },
         "quotedDateText": { "type": "string" },
         "notes": { "type": "string" },
         "reliability": {
@@ -261,6 +287,7 @@
           "items": { "$ref": "#/$defs/sourceRecord" }
         },
         "licence": { "type": "string" },
+        "licenceDecision": { "$ref": "#/$defs/licenceDecision" },
         "geometry": {
           "anyOf": [{ "type": "object" }, { "type": "null" }]
         },

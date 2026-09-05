@@ -43,7 +43,6 @@ export interface PublicFeature {
   geometry?: Geometry | null;
   additionalPointLocations?: Point[];
   locationType: string;
-  documentedDateText?: string;
   earliestPossibleYear?: number;
   latestPossibleYear?: number;
   datePrecision?: string;
@@ -104,14 +103,7 @@ export interface PublicSettlementPolygon {
 
 export type PublicDataSource = Pick<
   DataSourceDefinition,
-  | 'id'
-  | 'name'
-  | 'organisation'
-  | 'coverage'
-  | 'accessMethod'
-  | 'licence'
-  | 'sourceUrl'
-  | 'reliability'
+  'id' | 'name' | 'organisation' | 'licence' | 'sourceUrl' | 'reliability'
 >;
 
 export interface PublicLicenceComponent {

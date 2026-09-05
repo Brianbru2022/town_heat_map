@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import { validateBasemapTileUrl } from './src/config/basemap';
 
 const apiPort = process.env.TOWNSCAPE_API_PORT ?? '3001';
 
@@ -23,29 +24,36 @@ function hesTileExportPath(path: string): string {
   }).toString()}`;
 }
 
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 5173,
-    proxy: {
-      '/api/hes-designations': {
-        target: 'https://inspire.hes.scot',
-        changeOrigin: true,
-        rewrite: hesTileExportPath,
-        configure: (proxy) => {
-          proxy.on('proxyReq', (proxyRequest) => {
-            proxyRequest.setHeader('Accept', 'image/png');
-          });
+export default defineConfig(({ mode }) => {
+  const fileEnvironment = loadEnv(mode, process.cwd(), '');
+  validateBasemapTileUrl(
+    process.env.VITE_BASEMAP_TILE_URL ?? fileEnvironment.VITE_BASEMAP_TILE_URL,
+    mode === 'production',
+  );
+  return {
+    plugins: [react()],
+    server: {
+      port: 5173,
+      proxy: {
+        '/api/hes-designations': {
+          target: 'https://inspire.hes.scot',
+          changeOrigin: true,
+          rewrite: hesTileExportPath,
+          configure: (proxy) => {
+            proxy.on('proxyReq', (proxyRequest) => {
+              proxyRequest.setHeader('Accept', 'image/png');
+            });
+          },
+        },
+        '/api/local-historic-maps': {
+          target: `http://127.0.0.1:${apiPort}`,
+          changeOrigin: true,
+        },
+        '/api/projects': {
+          target: `http://127.0.0.1:${apiPort}`,
+          changeOrigin: true,
         },
       },
-      '/api/local-historic-maps': {
-        target: `http://127.0.0.1:${apiPort}`,
-        changeOrigin: true,
-      },
-      '/api/projects': {
-        target: `http://127.0.0.1:${apiPort}`,
-        changeOrigin: true,
-      },
     },
-  },
+  };
 });
