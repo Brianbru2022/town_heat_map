@@ -43,6 +43,20 @@ production build and Playwright. On a new machine, install the Playwright browse
 pnpm exec playwright install chromium
 ```
 
+## Dependency build-script policy
+
+pnpm 11 keeps `strictDepBuilds` enabled. The tracked `pnpm-workspace.yaml` explicitly approves
+only `esbuild`. Its reviewed `postinstall` runs `node install.js` to provide esbuild's
+platform-specific executable; Vite/Vitest use it for client builds and tests, and `tsx` uses it
+for the server-side TypeScript commands. Both lockfile versions of that same package name are
+covered by this one approval.
+
+`scripts/verify-pnpm-build-policy.mjs` runs before CI installs dependencies and inside
+`pnpm verify:release`. It rejects blanket build approval, disabled strict build checks,
+placeholders, malformed entries and any newly approved package. A newly introduced dependency
+with a lifecycle script therefore fails the frozen install until it is independently reviewed,
+documented here and explicitly approved in the tracked policy.
+
 The CI workflow repeats these gates on pull requests, `main`, `release/**`, and manual runs with a
 frozen dependency install. It requires no production secret.
 

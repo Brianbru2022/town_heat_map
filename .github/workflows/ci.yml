@@ -31,6 +31,9 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Verify pnpm build-script policy
+        run: node scripts/verify-pnpm-build-policy.mjs
+
       - name: Install the locked dependency graph
         run: pnpm install --frozen-lockfile
 
