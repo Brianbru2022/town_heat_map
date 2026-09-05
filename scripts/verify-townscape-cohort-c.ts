@@ -559,16 +559,12 @@ for (const pkg of packages) {
     if (decision.outcome === 'withheld' && delivered)
       throw new Error(`${feature.id}: withheld record reached public delivery.`);
     if (decision.outcome === 'operating') {
-      if (
-        !delivered?.claimEvidence?.some(
-          (evidence) => evidence.claim === 'current_operation' && evidence.tier === 'operational',
-        )
-      )
+      if (delivered?.publication?.profile !== 'verified_facility')
         throw new Error(`${feature.id}: Tier O claim was not delivered.`);
     }
     if (
       decision.outcome === 'mapped_context' &&
-      delivered?.claimEvidence?.some((evidence) => evidence.tier !== 'mapped_context')
+      delivered?.publication?.profile !== 'mapped_context'
     )
       throw new Error(`${feature.id}: mapped-context record exposed a stronger claim.`);
   }

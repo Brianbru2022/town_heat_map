@@ -250,7 +250,8 @@ for (let index = 0; index < packages.length; index += 1) {
   )
     throw new Error(`${pkg.project.id}: public OSM attribution/licensing component missing.`);
   const projectedFailures = delivered.flatMap((feature) => {
-    const details = publicDetails(feature);
+    const sourceFeature = pkg.features.find((candidate) => candidate.id === feature.id)!;
+    const details = publicDetails(sourceFeature);
     return details
       .filter((detail) => forbiddenPublicKeys.has(detail.key))
       .map((detail) => `${feature.id}:${detail.key}`);
@@ -258,10 +259,12 @@ for (let index = 0; index < packages.length; index += 1) {
   if (projectedFailures.length)
     throw new Error(`${pkg.project.id}: prohibited public claims: ${projectedFailures.join(', ')}`);
   const privateParkingFailures = delivered.flatMap((feature) => {
-    const rawAccess = feature.sourceRecords
+    const sourceFeature = pkg.features.find((candidate) => candidate.id === feature.id)!;
+    const rawAccess = sourceFeature.sourceRecords
       .flatMap((source) => parseCurrentPlaceDetails(source.notes))
       .filter((detail) => detail.key === 'access' && /^(?:private|customers)$/i.test(detail.value));
-    return rawAccess.length && publicDetails(feature).some((detail) => detail.key === 'access')
+    return rawAccess.length &&
+      publicDetails(sourceFeature).some((detail) => detail.key === 'access')
       ? [feature.id]
       : [];
   });

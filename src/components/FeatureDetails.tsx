@@ -1,10 +1,6 @@
 import { dateWording } from '../domain/timeline';
 import { useExplorerStore } from '../app/store';
-import {
-  publicationProfile,
-  publicCurrentPlaceDetails,
-  type CurrentPlaceDetail,
-} from '../domain/claims';
+import type { PublicCurrentPlaceDetail } from '../domain/publicDto';
 
 const osmLabels: Record<string, string> = {
   description: 'Description',
@@ -33,7 +29,7 @@ function safeExternalUrl(value?: string): string | undefined {
   }
 }
 
-function currentPlaceType(osmDetails: CurrentPlaceDetail[], tags: string[]): string {
+function currentPlaceType(osmDetails: PublicCurrentPlaceDetail[], tags: string[]): string {
   const tag = (key: string) => osmDetails.find((detail) => detail.key === key)?.value;
   const amenity = tag('amenity');
   if (amenity === 'cafe') return 'Café';
@@ -58,24 +54,17 @@ export function FeatureDetails() {
   const select = useExplorerStore((state) => state.selectFeature);
   if (!feature)
     return (
-      <aside className="details empty">
-        <h2>Feature details</h2>
+      <aside className="details empty" aria-labelledby="feature-details-heading">
+        <h2 id="feature-details-heading">Feature details</h2>
         <p>Select a mapped historic feature to inspect its source-backed record.</p>
       </aside>
     );
+  const selectedFeatureId = feature.id;
   const osmSource = feature.sourceRecords.find((source) =>
     /openstreetmap/i.test(`${source.sourceName} ${source.sourceOrganisation}`),
   );
-  const curatedPlaceSource = feature.sourceRecords.find(
-    (source) =>
-      source !== osmSource &&
-      (source.sourceRecordId?.startsWith('current-place-curation:') ||
-        source.notes?.startsWith('Current-place curation') ||
-        source.notes?.startsWith('Public claim details')),
-  );
-  const currentPlaceSource = curatedPlaceSource ?? osmSource;
-  const currentDetails = publicCurrentPlaceDetails(feature, currentPlaceSource);
-  const currentOsmDetails = publicCurrentPlaceDetails(feature, osmSource);
+  const currentDetails = feature.currentPlaceDetails ?? [];
+  const currentOsmDetails = currentDetails;
   const currentDetail = (key: string) => currentDetails.find((detail) => detail.key === key)?.value;
   const osmWebsite = safeExternalUrl(
     currentDetail('website') ?? currentOsmDetails.find((detail) => detail.key === 'website')?.value,
@@ -86,15 +75,23 @@ export function FeatureDetails() {
       !(detail.key === 'description' && detail.value === feature.shortDescription),
   );
   const isCurrentPlace = Boolean(osmSource);
-  const profile = publicationProfile(feature);
-  const checkedAt = feature.osmElement?.checkedAt ?? osmSource?.accessedAt;
+  const profile = feature.publication?.profile;
+  const checkedAt = feature.osmCheckedAt ?? osmSource?.accessedAt;
+  function closeDetails() {
+    select(undefined);
+    window.requestAnimationFrame(() =>
+      Array.from(document.querySelectorAll<HTMLButtonElement>('[data-feature-id]'))
+        .find((button) => button.dataset.featureId === selectedFeatureId)
+        ?.focus(),
+    );
+  }
   return (
-    <aside className="details">
-      <button className="icon" onClick={() => select(undefined)} aria-label="Close details">
+    <aside className="details" aria-labelledby="feature-details-heading">
+      <button className="icon" type="button" onClick={closeDetails} aria-label="Close details">
         ×
       </button>
       <p className="eyebrow">{isCurrentPlace ? 'Current place' : feature.featureType}</p>
-      <h2>{feature.name}</h2>
+      <h2 id="feature-details-heading">{feature.name}</h2>
       {feature.evidenceScope === 'related_context' && (
         <p className="notice">
           Related context — excluded from parish statistics and heat scoring.
@@ -152,30 +149,23 @@ export function FeatureDetails() {
               {feature.locationType.replaceAll('_', ' ')} ({feature.locationConfidence})
             </dd>
             <dt>Review status</dt>
-            <dd>{feature.reviewed ? 'Reviewed' : 'Unreviewed'}</dd>
+            <dd>Published record</dd>
           </dl>
         </>
       )}
       {feature.shortDescription && <p>{feature.shortDescription}</p>}
-      {currentPlaceSource && (
+      {isCurrentPlace && (
         <section className="osm-details">
           <h3>
             {profile === 'mapped_context'
               ? 'Mapped context details'
-              : curatedPlaceSource
-                ? 'Verified current-place details'
-                : 'Current OSM details'}
+              : 'Verified current-place details'}
           </h3>
           <p>
             {profile === 'mapped_context'
               ? 'Mapped present-day context only. It does not confirm public access, availability, accessibility, fees, opening hours or current operation. '
               : 'Only fields supported by claim-specific evidence are shown. '}
-            {curatedPlaceSource?.sourceUrl ? (
-              <a href={curatedPlaceSource.sourceUrl} target="_blank" rel="noreferrer">
-                View the reviewed source
-              </a>
-            ) : null}
-            {!curatedPlaceSource && osmSource?.sourceUrl && (
+            {osmSource?.sourceUrl && (
               <a href={osmSource.sourceUrl} target="_blank" rel="noreferrer">
                 View this place in OpenStreetMap
               </a>
@@ -207,7 +197,7 @@ export function FeatureDetails() {
       )}
       <h3>Sources</h3>
       {feature.sourceRecords.map((source) => (
-        <div className="source" key={`${source.sourceName}-${source.sourceRecordId ?? ''}`}>
+        <div className="source" key={`${source.sourceName}-${source.sourceUrl ?? ''}`}>
           <strong>{source.sourceOrganisation}</strong>
           <br />
           {source.sourceUrl ? (
@@ -222,13 +212,6 @@ export function FeatureDetails() {
             {source.reliability.replaceAll('_', ' ')} · accessed{' '}
             {new Date(source.accessedAt).toLocaleDateString()}
           </small>
-          {source.notes &&
-            !source.notes.startsWith('Current OSM') &&
-            !source.notes.startsWith('Current-place curation') &&
-            !source.notes.startsWith('Public claim details') &&
-            !source.notes.startsWith('Mapped-context source record') && (
-              <p className="source-notes">{source.notes}</p>
-            )}
         </div>
       ))}
     </aside>

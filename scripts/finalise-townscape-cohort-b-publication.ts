@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { HeritageFeature, ProjectPackage } from '../src/domain/models';
-import { projectPublicClaims, parseCurrentPlaceDetails } from '../src/domain/claims';
+import { publicCurrentPlaceDetails } from '../src/domain/claims';
 import { assessFeaturePublication, publicProjectPackage } from '../src/domain/publication';
 import { validateFeatures } from '../src/domain/validation';
 
@@ -92,9 +92,9 @@ for (let index = 0; index < packages.length; index += 1) {
   const delivered = delivery.features.filter((feature) => idSet.has(feature.id));
   if (delivered.length !== batch.length)
     throw new Error(`${pkg.project.id}: not every approved record is delivered.`);
-  const forbidden = delivered.flatMap((feature) =>
-    projectPublicClaims(feature).sourceRecords.flatMap((source) =>
-      parseCurrentPlaceDetails(source.notes)
+  const forbidden = batch.flatMap((feature) =>
+    feature.sourceRecords.flatMap((source) =>
+      publicCurrentPlaceDetails(feature, source)
         .filter((detail) =>
           /^(?:access|opening_hours?|charge|fee|operator|capacity|wheelchair|website|phone|description|network|operational_status)$/i.test(
             detail.key,

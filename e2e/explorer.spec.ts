@@ -73,16 +73,7 @@ test('opens the published explorer and information pages', async ({ page }) => {
   await expect(
     page.getByRole('link', { name: /Download Alloa listed buildings/i }),
   ).toHaveAttribute('href', '/api/projects/alloa-scotland/exports/listed-buildings.csv');
-  await page.getByRole('button', { name: 'Data review' }).click();
-  await expect(page.getByRole('heading', { name: 'Curator review' })).toBeVisible();
-  await expect(page).toHaveURL(/view=data-review/);
-  await expect(page.getByRole('link', { name: 'Download undated heritage CSV' })).toHaveAttribute(
-    'href',
-    '/api/projects/alloa-scotland/exports/undated-heritage-review.csv',
-  );
-  await page.getByLabel('Review queue').selectOption('date');
-  await expect(page.getByRole('heading', { name: /record\(s\) to review/i })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Save research note' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Data review' })).toHaveCount(0);
   const alloaLoads = projectLoads.filter((path) => path === '/api/projects/alloa-scotland').length;
   expect(alloaLoads).toBeGreaterThanOrEqual(1);
   expect(alloaLoads).toBeLessThanOrEqual(2);
@@ -103,4 +94,65 @@ test('opens direct town and information-page links and honours browser history',
   await page.goBack();
   await expect(page.getByRole('heading', { name: 'Sources & licences' })).toBeVisible();
   await expect(page).toHaveURL(/town=killin-scotland&view=sources/);
+});
+
+test('provides keyboard discovery and manages settings focus as a modal', async ({ page }) => {
+  await page.goto('/');
+
+  await expect(page.getByRole('heading', { level: 1, name: 'Explore town guides' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Places in Alloa/ })).toBeVisible();
+
+  const firstPlace = page.locator('[data-feature-id]').first();
+  await firstPlace.focus();
+  await firstPlace.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Feature details' })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Close details' })).toBeVisible();
+  await page.getByRole('button', { name: 'Close details' }).press('Enter');
+  await expect(firstPlace).toBeFocused();
+
+  const settings = page.getByRole('button', { name: 'Open settings' });
+  await settings.focus();
+  await settings.press('Enter');
+  const dialog = page.getByRole('dialog', { name: 'Explorer settings' });
+  await expect(dialog).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Close settings' })).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  expect(
+    await page.locator(':focus').evaluate((element) => Boolean(element.closest('[role="dialog"]'))),
+  ).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(settings).toBeFocused();
+});
+
+test('keeps feature details available on a narrow touch viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.goto('/');
+
+  const firstPlace = page.locator('[data-feature-id]').first();
+  await expect(firstPlace).toBeVisible();
+  await firstPlace.click();
+  await expect(page.getByRole('button', { name: 'Close details' })).toBeVisible();
+  await expect(page.locator('.details h2')).toContainText(/./);
+  const widths = await page.locator('body').evaluate((body) => ({
+    client: body.clientWidth,
+    scroll: body.scrollWidth,
+  }));
+  expect(widths.scroll).toBeLessThanOrEqual(widths.client + 1);
+});
+
+test('keeps controls and the non-map route usable at phone and tablet widths', async ({ page }) => {
+  for (const width of [390, 768]) {
+    await page.setViewportSize({ width, height: 820 });
+    await page.goto('/');
+    const firstPlace = page.locator('[data-feature-id]').first();
+    await expect(page.getByLabel('Town', { exact: true })).toBeVisible();
+    await expect(firstPlace).toBeVisible();
+    await expect(firstPlace).toHaveCSS('min-height', '44px');
+    const widths = await page.locator('body').evaluate((body) => ({
+      client: body.clientWidth,
+      scroll: body.scrollWidth,
+    }));
+    expect(widths.scroll).toBeLessThanOrEqual(widths.client + 1);
+  }
 });

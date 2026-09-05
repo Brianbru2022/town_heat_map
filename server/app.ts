@@ -1,7 +1,7 @@
 import cors from '@fastify/cors';
 import compress from '@fastify/compress';
 import rateLimit from '@fastify/rate-limit';
-import Fastify, { type FastifyReply, type FastifyRequest } from 'fastify';
+import Fastify, { LogController, type FastifyReply, type FastifyRequest } from 'fastify';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -9,7 +9,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { publicProjectPackage, publishedLocalMapPackageIds } from '../src/domain/publication';
 import { featureTimelineState } from '../src/domain/timeline';
 import { sortPublishedProjects } from '../src/domain/projects';
-import { filterCsvByRecordIds } from './csv';
+import { publicCsvByRecordIds } from './csv';
 import { createProjectRepository, type ProjectRepository } from './repository';
 
 const hesDesignationsExportUrl =
@@ -28,6 +28,27 @@ const localMapPackages = new Set([
 ]);
 const localMapDatabases = new Map<string, DatabaseSync>();
 const HES_CACHE_CONTROL = 'public, max-age=3600, s-maxage=86400, stale-if-error=86400';
+const publicListedBuildingColumns = [
+  'project_id',
+  'town',
+  'selection_class',
+  'hes_designation_reference',
+  'feature_id',
+  'listed_building_title',
+  'statutory_title',
+  'category',
+  'designation_type',
+  'statutory_status',
+  'longitude',
+  'latitude',
+  'location_precision',
+  'documented_date',
+  'date_basis',
+  'date_confidence',
+  'source_url',
+  'source_accessed_at',
+  'source_attribution',
+] as const;
 
 interface HesImageCacheEntry {
   body: Buffer;
@@ -38,6 +59,7 @@ interface HesImageCacheEntry {
 
 interface SecuritySettings {
   corsOrigins: string[];
+  trustedProxyCidrs: string[];
   requestTimeoutMs: number;
   cacheTtlMs: number;
   cacheStaleTtlMs: number;
@@ -70,6 +92,21 @@ function parseCorsOrigins(value: string | undefined): string[] {
   });
 }
 
+function parseTrustedProxyCidrs(value: string | undefined): string[] {
+  if (!value?.trim()) return [];
+  return value.split(',').map((candidate) => {
+    const cidr = candidate.trim();
+    if (
+      !['loopback', 'linklocal', 'uniquelocal'].includes(cidr) &&
+      !/^[0-9a-fA-F:.]+(?:\/\d{1,3})?$/.test(cidr)
+    )
+      throw new Error(
+        'TRUST_PROXY_CIDRS must contain comma-separated IP ranges or proxy-addr aliases.',
+      );
+    return cidr;
+  });
+}
+
 function defaultSecuritySettings(): SecuritySettings {
   const configuredOrigins = parseCorsOrigins(process.env.CORS_ORIGINS);
   return {
@@ -78,6 +115,9 @@ function defaultSecuritySettings(): SecuritySettings {
       configuredOrigins.length > 0 || process.env.NODE_ENV === 'production'
         ? configuredOrigins
         : ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    // Direct listeners do not trust forwarded headers. Production Compose supplies
+    // the private reverse-proxy range explicitly because the API has no host port.
+    trustedProxyCidrs: parseTrustedProxyCidrs(process.env.TRUST_PROXY_CIDRS),
     requestTimeoutMs: positiveInteger(process.env.HES_REQUEST_TIMEOUT_MS, 10_000, 30_000),
     cacheTtlMs: positiveInteger(process.env.HES_CACHE_TTL_MS, 3_600_000, 86_400_000),
     cacheStaleTtlMs: positiveInteger(process.env.HES_CACHE_STALE_TTL_MS, 86_400_000, 604_800_000),
@@ -133,7 +173,18 @@ function isAbortError(error: unknown): boolean {
 
 export async function buildApp(options: BuildAppOptions = {}) {
   const settings = { ...defaultSecuritySettings(), ...options.settings };
-  const app = Fastify({ logger: true, bodyLimit: 1_048_576 });
+  const app = Fastify({
+    logger: {
+      level: process.env.LOG_LEVEL ?? 'info',
+      redact: {
+        paths: ['req.headers.authorization', 'req.headers.cookie', 'res.headers.set-cookie'],
+        censor: '[REDACTED]',
+      },
+    },
+    logController: new LogController({ disableRequestLogging: true }),
+    trustProxy: settings.trustedProxyCidrs.length > 0 ? settings.trustedProxyCidrs : false,
+    bodyLimit: 1_048_576,
+  });
   const repository = options.repository ?? (await createProjectRepository());
   const fetchImplementation = options.fetchImplementation ?? globalThis.fetch;
   const now = options.now ?? Date.now;
@@ -169,6 +220,26 @@ export async function buildApp(options: BuildAppOptions = {}) {
       statusCode: 429,
       message: 'Too many requests. Please try again shortly.',
     }),
+  });
+  app.addHook('onSend', async (_request, reply, payload) => {
+    // The nginx policy protects the browser shell. Keep direct API responses safe too.
+    reply
+      .header(
+        'Content-Security-Policy',
+        "default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+      )
+      .header('X-Content-Type-Options', 'nosniff')
+      .header('Referrer-Policy', 'strict-origin-when-cross-origin')
+      .header('Permissions-Policy', 'geolocation=(), camera=(), microphone=(), payment=()')
+      .header('X-Frame-Options', 'DENY');
+    return payload;
+  });
+  app.addHook('onResponse', (request, reply, done) => {
+    request.log.info(
+      { route: request.routeOptions.url, statusCode: reply.statusCode },
+      'API request completed',
+    );
+    done();
   });
 
   async function hesDesignationImage(bbox: string, request: FastifyRequest, reply: FastifyReply) {
@@ -228,7 +299,10 @@ export async function buildApp(options: BuildAppOptions = {}) {
         return reply
           .code(504)
           .send({ message: 'Historic Environment Scotland map service timed out.' });
-      request.log.error({ err: error }, 'HES map service request failed');
+      request.log.error(
+        { errorName: error instanceof Error ? error.name : 'unknown' },
+        'HES map service request failed',
+      );
       return reply
         .code(502)
         .send({ message: 'Historic Environment Scotland map service is unavailable.' });
@@ -238,7 +312,16 @@ export async function buildApp(options: BuildAppOptions = {}) {
   }
 
   app.setErrorHandler((error, request, reply) => {
-    request.log.error({ err: error }, 'Unhandled API request error');
+    request.log.error(
+      {
+        errorName: error instanceof Error ? error.name : 'unknown',
+        statusCode:
+          typeof error === 'object' && error !== null && 'statusCode' in error
+            ? error.statusCode
+            : undefined,
+      },
+      'Unhandled API request error',
+    );
     if (reply.sent) return reply;
     const requestedStatusCode =
       typeof error === 'object' &&
@@ -343,7 +426,6 @@ export async function buildApp(options: BuildAppOptions = {}) {
         locality,
         centre,
         featureCount: projectPackage.features.length,
-        publicationSummary: projectPackage.publicationSummary,
       };
     });
   });
@@ -360,30 +442,11 @@ export async function buildApp(options: BuildAppOptions = {}) {
     reply.header('Content-Type', 'text/csv; charset=utf-8');
     reply.header('Content-Disposition', `attachment; filename="${id}-listed-buildings.csv"`);
     reply.header('Cache-Control', 'no-cache');
-    const csv = filterCsvByRecordIds(
+    const csv = publicCsvByRecordIds(
       await readFile(filename, 'utf8'),
       'feature_id',
       new Set(publicProject.features.map((feature) => feature.id)),
-    );
-    return reply.send(csv);
-  });
-  app.get('/api/projects/:id/exports/undated-heritage-review.csv', async (request, reply) => {
-    const id = (request.params as { id: string }).id;
-    const project = await repository.get(id);
-    const publicProject = project ? publicProjectPackage(project) : undefined;
-    if (!publicProject) return reply.code(404).send({ message: 'Published project not found.' });
-    const filename = resolve('data/exports', `${id}-undated-heritage-review.csv`);
-    if (!existsSync(filename))
-      return reply
-        .code(404)
-        .send({ message: 'Undated heritage-review export has not been generated yet.' });
-    reply.header('Content-Type', 'text/csv; charset=utf-8');
-    reply.header('Content-Disposition', `attachment; filename="${id}-undated-heritage-review.csv"`);
-    reply.header('Cache-Control', 'no-cache');
-    const csv = filterCsvByRecordIds(
-      await readFile(filename, 'utf8'),
-      'feature_id',
-      new Set(publicProject.features.map((feature) => feature.id)),
+      publicListedBuildingColumns,
     );
     return reply.send(csv);
   });

@@ -27,7 +27,7 @@ export function ExplorerView() {
   }
 
   return (
-    <main className="explorer">
+    <main className="explorer" id="main-content" aria-labelledby="explorer-heading">
       <Sidebar />
       <MapCanvas />
       <FeatureDetails />

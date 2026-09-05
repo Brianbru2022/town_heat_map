@@ -1,4 +1,5 @@
-import type { HeritageFeature, ScoringMethodology } from './models';
+import type { ScoringMethodology } from './models';
+import type { PublicFeature } from './publicDto';
 
 export const defaultMethodology: ScoringMethodology = {
   age: {
@@ -42,7 +43,7 @@ export function ageBand(year?: number): string {
 }
 
 export function historicCharacterScore(
-  feature: HeritageFeature,
+  feature: PublicFeature,
   method = defaultMethodology,
 ): number {
   if (

@@ -37,6 +37,31 @@ describe('public API safeguards', () => {
 
     expect(allowed.headers['access-control-allow-origin']).toBe('https://guides.example.test');
     expect(denied.headers['access-control-allow-origin']).toBeUndefined();
+
+    const sameOrigin = await app.inject({ method: 'GET', url: '/health' });
+    const preflight = await app.inject({
+      method: 'OPTIONS',
+      url: '/api/projects',
+      headers: {
+        origin: 'https://guides.example.test',
+        'access-control-request-method': 'GET',
+      },
+    });
+    expect(sameOrigin.statusCode).toBe(200);
+    expect(sameOrigin.headers['access-control-allow-origin']).toBeUndefined();
+    expect(preflight.headers['access-control-allow-origin']).toBe('https://guides.example.test');
+  });
+
+  it('sets defensive headers on direct API responses', async () => {
+    const app = await createTestApp();
+    const response = await app.inject('/health');
+
+    expect(response.headers['content-security-policy']).toContain("default-src 'none'");
+    expect(response.headers['content-security-policy']).toContain("frame-ancestors 'none'");
+    expect(response.headers['x-content-type-options']).toBe('nosniff');
+    expect(response.headers['referrer-policy']).toBe('strict-origin-when-cross-origin');
+    expect(response.headers['permissions-policy']).toContain('geolocation=()');
+    expect(response.headers['x-frame-options']).toBe('DENY');
   });
 
   it('caches successful HES images and sends shared-cache directives', async () => {
@@ -99,6 +124,60 @@ describe('public API safeguards', () => {
 
     expect(limited.statusCode).toBe(429);
     expect(limited.json()).toEqual({ message: 'Too many requests. Please try again shortly.' });
+  });
+
+  it('does not accept spoofed forwarded client addresses from an untrusted listener', async () => {
+    const app = await createTestApp({ settings: { rateLimitMax: 1, trustedProxyCidrs: [] } });
+
+    await app.inject({
+      url: '/health',
+      remoteAddress: '203.0.113.8',
+      headers: { 'x-forwarded-for': '198.51.100.1' },
+    });
+    const limited = await app.inject({
+      url: '/health',
+      remoteAddress: '203.0.113.8',
+      headers: { 'x-forwarded-for': '198.51.100.2' },
+    });
+
+    expect(limited.statusCode).toBe(429);
+  });
+
+  it('uses forwarded client addresses only from configured private proxies', async () => {
+    const app = await createTestApp({
+      settings: { rateLimitMax: 1, trustedProxyCidrs: ['127.0.0.1'] },
+    });
+
+    await app.inject({
+      url: '/health',
+      remoteAddress: '127.0.0.1',
+      headers: { 'x-forwarded-for': '198.51.100.1' },
+    });
+    const sameClient = await app.inject({
+      url: '/health',
+      remoteAddress: '127.0.0.1',
+      headers: { 'x-forwarded-for': '198.51.100.1' },
+    });
+    const anotherClient = await app.inject({
+      url: '/health',
+      remoteAddress: '127.0.0.1',
+      headers: { 'x-forwarded-for': '198.51.100.2' },
+    });
+
+    expect(sameClient.statusCode).toBe(429);
+    expect(anotherClient.statusCode).toBe(200);
+  });
+
+  it('does not serve raw repository paths from the API', async () => {
+    const app = await createTestApp();
+
+    for (const path of [
+      '/data/projects/alloa.json',
+      '/data/review/alloa-review.json',
+      '/scripts/seed-db.ts',
+      '/.env',
+    ])
+      expect((await app.inject(path)).statusCode).toBe(404);
   });
 
   it('rejects malformed proxy requests before calling HES', async () => {

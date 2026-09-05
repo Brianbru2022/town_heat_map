@@ -1,6 +1,6 @@
 # Published Towns — Publication and Provenance Audit
 
-Generated: 2026-09-04T01:32:32.068Z
+Generated: 2026-09-05T11:05:26.721Z
 
 Read-only publication audit. Source records remain in their packages; public delivery includes only records whose effective state is publishable.
 

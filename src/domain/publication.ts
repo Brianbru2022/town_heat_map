@@ -2,16 +2,22 @@ import type {
   DataLicenceComponent,
   HeritageFeature,
   HistoricMapLayer,
-  PublicationDeclaration,
   ProjectPackage,
   PublicationState,
   PublicationSummary,
   SettlementAgePolygon,
+  SourceRecord,
   ValidationResult,
 } from './models';
-import { hasOsmDataSource, projectPublicClaims } from './claims';
+import { projectPublicClaims, publicCurrentPlaceDetails } from './claims';
 import { validateProjectPackageSchema } from './packageSchema';
 import { geometryIsStructurallyValid, validateFeatures } from './validation';
+import type {
+  PublicCurrentPlaceDetail,
+  PublicFeature,
+  PublicProjectPackage,
+  PublicSourceRecord,
+} from './publicDto';
 
 export type EffectivePublicationState = PublicationState | 'requires_review';
 
@@ -197,17 +203,6 @@ export function assessProjectPackage(pkg: ProjectPackage): PackagePublicationAss
   };
 }
 
-function publicPublicationDeclaration(
-  declaration?: PublicationDeclaration,
-): PublicationDeclaration | undefined {
-  if (!declaration) return undefined;
-  return {
-    state: declaration.state,
-    ...(declaration.profile ? { profile: declaration.profile } : {}),
-    ...(declaration.reviewedAt ? { reviewedAt: declaration.reviewedAt } : {}),
-  };
-}
-
 function historicMapCanPublish(pkg: ProjectPackage, map: HistoricMapLayer): boolean {
   const configured =
     Boolean(map.tileUrl) &&
@@ -242,8 +237,99 @@ function settlementPolygonCanPublish(pkg: ProjectPackage, polygon: SettlementAge
   );
 }
 
-/** Public/API/export projection. The source package is never mutated. */
-export function publicProjectPackage(pkg: ProjectPackage): ProjectPackage | undefined {
+const publicPresentationTags = new Set([
+  'map-hidden',
+  'catalogue-general-view',
+  'archaeology-evidence',
+  'scheduled_monument',
+  'inventory-presence-date',
+  'current-context',
+  'public-art',
+  'plaque',
+  'community-memorial',
+  'osm-community-place',
+  'osm-community-food',
+  'osm-community-picnic',
+  'osm-community-art',
+  'osm-community-memorial',
+  'osm-community-historic',
+  'osm-community-leisure',
+  'osm-community-visitor',
+  'osm-community-amenities',
+  'osm-community-parking',
+  'osm-community-nature',
+]);
+
+function publicSourceRecord(source: SourceRecord): PublicSourceRecord {
+  return {
+    sourceName: source.sourceName,
+    sourceOrganisation: source.sourceOrganisation,
+    ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}),
+    accessedAt: source.accessedAt,
+    ...(source.licence ? { licence: source.licence } : {}),
+    ...(source.quotedDateText ? { quotedDateText: source.quotedDateText } : {}),
+    reliability: source.reliability,
+  };
+}
+
+function publicCurrentPlaceDetailsFor(feature: HeritageFeature): PublicCurrentPlaceDetail[] {
+  const details = feature.sourceRecords.flatMap((source) =>
+    publicCurrentPlaceDetails(feature, source),
+  );
+  return details.filter(
+    (detail, index) =>
+      details.findIndex(
+        (candidate) => candidate.key === detail.key && candidate.value === detail.value,
+      ) === index,
+  );
+}
+
+function publicFeature(feature: HeritageFeature): PublicFeature {
+  const claimSafe = projectPublicClaims(feature);
+  const currentPlaceDetails = publicCurrentPlaceDetailsFor(feature);
+  return {
+    id: claimSafe.id,
+    name: claimSafe.name,
+    alternativeNames: [...claimSafe.alternativeNames],
+    featureType: claimSafe.featureType,
+    ...(claimSafe.designationType ? { designationType: claimSafe.designationType } : {}),
+    ...(claimSafe.designationCategory
+      ? { designationCategory: claimSafe.designationCategory }
+      : {}),
+    ...(claimSafe.significance ? { significance: claimSafe.significance } : {}),
+    ...(claimSafe.statutoryStatus ? { statutoryStatus: claimSafe.statutoryStatus } : {}),
+    ...(claimSafe.geometry !== undefined ? { geometry: claimSafe.geometry } : {}),
+    ...(claimSafe.additionalPointLocations
+      ? { additionalPointLocations: [...claimSafe.additionalPointLocations] }
+      : {}),
+    locationType: claimSafe.locationType,
+    ...(claimSafe.documentedDateText ? { documentedDateText: claimSafe.documentedDateText } : {}),
+    ...(claimSafe.earliestPossibleYear !== undefined
+      ? { earliestPossibleYear: claimSafe.earliestPossibleYear }
+      : {}),
+    ...(claimSafe.latestPossibleYear !== undefined
+      ? { latestPossibleYear: claimSafe.latestPossibleYear }
+      : {}),
+    ...(claimSafe.datePrecision ? { datePrecision: claimSafe.datePrecision } : {}),
+    dateBasis: claimSafe.dateBasis,
+    dateConfidence: claimSafe.dateConfidence,
+    locationConfidence: claimSafe.locationConfidence,
+    ...(claimSafe.survival ? { survival: claimSafe.survival } : {}),
+    ...(claimSafe.shortDescription ? { shortDescription: claimSafe.shortDescription } : {}),
+    ...(claimSafe.licence ? { licence: claimSafe.licence } : {}),
+    tags: claimSafe.tags.filter((tag) => publicPresentationTags.has(tag)),
+    ...(claimSafe.evidenceScope ? { evidenceScope: claimSafe.evidenceScope } : {}),
+    ...(claimSafe.publication?.profile
+      ? { publication: { profile: claimSafe.publication.profile } }
+      : {}),
+    ...(currentPlaceDetails.length > 0 ? { currentPlaceDetails } : {}),
+    ...(claimSafe.osmElement?.checkedAt ? { osmCheckedAt: claimSafe.osmElement.checkedAt } : {}),
+    sourceRecords: claimSafe.sourceRecords.map(publicSourceRecord),
+  };
+}
+
+/** Explicit visitor DTO. The retained research package is never mutated or spread into it. */
+export function publicProjectPackage(pkg: ProjectPackage): PublicProjectPackage | undefined {
   const assessment = assessProjectPackage(pkg);
   if (!assessment.canPublishPackage) return undefined;
   const publishableIds = new Set(
@@ -251,24 +337,35 @@ export function publicProjectPackage(pkg: ProjectPackage): ProjectPackage | unde
   );
   const features = pkg.features
     .filter((feature) => publishableIds.has(feature.id))
-    .map((feature) => projectPublicClaims(feature));
+    .map(publicFeature);
   const historicMaps = pkg.historicMaps
     .filter((map) => historicMapCanPublish(pkg, map))
     .map((map) => ({
-      ...map,
-      notes: undefined,
-      publication: publicPublicationDeclaration(map.publication),
+      id: map.id,
+      title: map.title,
+      displayDate: map.displayDate,
+      sourceInstitution: map.sourceInstitution,
+      ...(map.sourceUrl ? { sourceUrl: map.sourceUrl } : {}),
+      ...(map.licence ? { licence: map.licence } : {}),
+      attribution: map.attribution,
+      layerType: map.layerType,
+      ...(map.tileUrl ? { tileUrl: map.tileUrl } : {}),
+      opacity: map.opacity,
     }));
   const settlementPolygons = pkg.settlementPolygons
     .filter((polygon) => settlementPolygonCanPublish(pkg, polygon))
     .map((polygon) => ({
-      ...polygon,
-      sourceRecords: polygon.sourceRecords.map((source) => {
-        const projected = { ...source };
-        delete projected.notes;
-        return projected;
-      }),
-      publication: publicPublicationDeclaration(polygon.publication),
+      id: polygon.id,
+      geometry: polygon.geometry,
+      ...(polygon.earliestEvidenceYear !== undefined
+        ? { earliestEvidenceYear: polygon.earliestEvidenceYear }
+        : {}),
+      ...(polygon.latestEvidenceYear !== undefined
+        ? { latestEvidenceYear: polygon.latestEvidenceYear }
+        : {}),
+      category: polygon.category,
+      confidence: polygon.confidence,
+      sourceRecords: polygon.sourceRecords.map(publicSourceRecord),
     }));
   const existingComponents = pkg.licensingMetadata?.components ?? [];
   const osmComponent: DataLicenceComponent = {
@@ -279,35 +376,57 @@ export function publicProjectPackage(pkg: ProjectPackage): ProjectPackage | unde
     licenceUrl: 'https://opendatacommons.org/licenses/odbl/1-0/',
     attribution: '© OpenStreetMap contributors',
     scope: 'OSM-derived present-day map objects and retained mapped-context fields.',
-    legalReviewNote:
-      'Component status is recorded here; the legal character of the combined Townscape delivery remains a matter for legal review.',
   };
-  const containsOsmData = features.some(hasOsmDataSource);
+  const containsOsmData = features.some((feature) =>
+    feature.sourceRecords.some((source) => /openstreetmap/i.test(source.sourceName)),
+  );
   const components = containsOsmData
     ? [...existingComponents.filter((component) => component.id !== osmComponent.id), osmComponent]
     : existingComponents;
   return {
-    ...pkg,
     project: {
-      ...pkg.project,
-      researchNotes: undefined,
-      townStudyArea: undefined,
+      id: pkg.project.id,
+      name: pkg.project.name,
+      countryCode: pkg.project.countryCode,
+      country: pkg.project.country,
+      ...(pkg.project.region ? { region: pkg.project.region } : {}),
+      locality: pkg.project.locality,
+      centre: pkg.project.centre,
+      boundary: pkg.project.boundary,
+      ...(pkg.project.timelineStart !== undefined
+        ? { timelineStart: pkg.project.timelineStart }
+        : {}),
+      ...(pkg.project.timelineEnd !== undefined ? { timelineEnd: pkg.project.timelineEnd } : {}),
+      methodology: pkg.project.methodology,
     },
     features,
-    sources: pkg.sources.map((source) => {
-      const projected = { ...source };
-      delete projected.limitations;
-      return projected;
-    }),
+    sources: pkg.sources.map((source) => ({
+      id: source.id,
+      name: source.name,
+      organisation: source.organisation,
+      coverage: source.coverage,
+      accessMethod: source.accessMethod,
+      ...(source.licence ? { licence: source.licence } : {}),
+      ...(source.sourceUrl ? { sourceUrl: source.sourceUrl } : {}),
+      reliability: source.reliability,
+    })),
     historicMaps,
     settlementPolygons,
-    validation: validateFeatures(pkg.project, pkg.features).filter((item) =>
-      publishableIds.has(item.recordId),
-    ),
-    curationMetadata: undefined,
-    publication: publicPublicationDeclaration(pkg.publication),
-    publicationSummary: assessment.summary,
-    ...(components.length > 0 ? { licensingMetadata: { components } } : {}),
+    ...(components.length > 0
+      ? {
+          licensingMetadata: {
+            components: components.map((component) => ({
+              id: component.id,
+              name: component.name,
+              source: component.source,
+              licence: component.licence,
+              ...(component.licenceUrl ? { licenceUrl: component.licenceUrl } : {}),
+              attribution: component.attribution,
+              scope: component.scope,
+            })),
+          },
+        }
+      : {}),
   };
 }
 

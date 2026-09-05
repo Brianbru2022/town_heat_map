@@ -1,47 +1,61 @@
 services:
+  # The only host-published service. Keep it loopback-bound unless a TLS
+  # reverse proxy/CDN is the public entry point and has been configured.
   web:
-    build: .
-    ports: ['8080:80']
-    depends_on: [api]
+    build:
+      context: .
+      target: web
+      args:
+        APP_VERSION: ${APP_VERSION:-0.1.0}
+    ports: ['${WEB_BIND_ADDRESS:-127.0.0.1}:${WEB_PORT:-8080}:8080']
+    depends_on:
+      api:
+        condition: service_started
+    networks: [edge, api]
+    security_opt: ['no-new-privileges:true']
+
+  # No host port: Fastify is reachable only through nginx on the private network.
   api:
-    image: node:22-alpine
-    working_dir: /app
-    command: sh -c "npm ci && npm run seed-db && npm run api"
-    volumes: ['.:/app']
+    build:
+      context: .
+      target: api
+      args:
+        APP_VERSION: ${APP_VERSION:-0.1.0}
     environment:
       PORT: 3001
+      API_BIND_ADDRESS: 0.0.0.0
       NODE_ENV: production
       CORS_ORIGINS: ${CORS_ORIGINS:-}
-      DATABASE_URL: postgres://historic:historic@postgis:5432/historic_towns
-    ports: ['3001:3001']
-    depends_on:
-      postgis:
-        condition: service_healthy
-  postgis:
-    image: postgis/postgis:16-3.4
-    environment:
-      POSTGRES_DB: historic_towns
-      POSTGRES_USER: historic
-      POSTGRES_PASSWORD: historic
-    volumes:
-      [
-        'postgis-data:/var/lib/postgresql/data',
-        './docker/init-db.sql:/docker-entrypoint-initdb.d/10-init.sql:ro',
-      ]
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U historic -d historic_towns']
-      interval: 5s
-      timeout: 5s
-      retries: 10
+      # This range is trusted only because the API has no host-published port
+      # and this network contains the nginx service. Override for another proxy.
+      TRUST_PROXY_CIDRS: ${TRUST_PROXY_CIDRS:-uniquelocal}
+      DATABASE_URL: ${DATABASE_URL:-}
+    expose: ['3001']
+    networks: [api]
+    volumes: ['./data/runtime/tiles:/app/data/runtime/tiles:ro']
+    read_only: true
+    tmpfs: ['/tmp:rw,noexec,nosuid,size=64m']
+    cap_drop: ['ALL']
+    security_opt: ['no-new-privileges:true']
+
+  # Optional operator-managed services stay private. They are not public
+  # endpoints and are not required by the default Townscape deployment.
   tiles:
     image: maptiler/tileserver-gl:latest
     profiles: ['tiles']
     volumes: ['./data/runtime/tiles:/data:ro']
-    ports: ['8081:8080']
+    expose: ['8080']
+    networks: [api]
+    security_opt: ['no-new-privileges:true']
   geocoder:
     image: ghcr.io/komoot/photon:latest
     profiles: ['geocoder']
-    volumes: ['./data/runtime/photon:/photon/photon_data']
-    ports: ['2322:2322']
-volumes:
-  postgis-data:
+    volumes: ['./data/runtime/photon:/photon/photon_data:ro']
+    expose: ['2322']
+    networks: [api]
+    security_opt: ['no-new-privileges:true']
+
+networks:
+  edge: {}
+  api:
+    internal: true

@@ -121,7 +121,7 @@ describe('publication assessment', () => {
     expect(assessProjectPackage(legacyPackage).canPublishPackage).toBe(false);
   });
 
-  it('honours explicit withholding and exposes counts without discarding source data', () => {
+  it('honours explicit withholding without discarding retained source data', () => {
     const published = feature({ id: 'publication:published' });
     const withheld = feature({
       id: 'publication:withheld',
@@ -136,11 +136,7 @@ describe('publication assessment', () => {
 
     expect(source.features).toHaveLength(3);
     expect(delivered?.features.map((record) => record.id)).toEqual(['publication:published']);
-    expect(delivered?.publicationSummary).toMatchObject({
-      totalRecords: 3,
-      publishable: 1,
-      withheld: 2,
-    });
+    expect(JSON.stringify(delivered)).not.toContain('publicationSummary');
   });
 
   it('projects internal narrative out of the public package without changing source data', () => {
@@ -187,14 +183,18 @@ describe('publication assessment', () => {
 
     expect(source.project.researchNotes).toBe('Internal project research.');
     expect(source.features[0].sourceRecords[0].notes).toBe('Internal source analysis.');
-    expect(delivered.project.researchNotes).toBeUndefined();
-    expect(delivered.curationMetadata).toBeUndefined();
-    expect(delivered.publication?.notes).toBeUndefined();
-    expect(delivered.sources[0].limitations).toBeUndefined();
-    expect(delivered.features[0].reviewNotes).toBeUndefined();
-    expect(delivered.features[0].publication?.notes).toBeUndefined();
-    expect(delivered.features[0].sourceRecords[0].notes).toBeUndefined();
-    expect(delivered.features[0].claimEvidence?.[0].notes).toBeUndefined();
+    const publicText = JSON.stringify(delivered);
+    for (const field of [
+      'researchNotes',
+      'curationMetadata',
+      'publicationSummary',
+      'reviewNotes',
+      'claimEvidence',
+      'sourceRecordRefs',
+      'limitations',
+      'notes',
+    ])
+      expect(publicText).not.toContain(`"${field}"`);
   });
 
   it('exposes direct local tiles only for map layers that pass publication projection', () => {

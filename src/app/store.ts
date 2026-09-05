@@ -1,18 +1,21 @@
 import { create } from 'zustand';
-import type { HeritageFeature, HistoricMapLayer, ProjectPackage } from '../domain/models';
+import type {
+  PublicFeature,
+  PublicHistoricMapLayer,
+  PublicProjectPackage,
+} from '../domain/publicDto';
 import {
   loadProjectCatalogue,
   loadProjectPackage,
   type PublishedProjectSummary,
 } from '../data/projectClient';
-import { withLocalMapReviews } from '../data/localMapReviews';
 import { hasHistoricTimelineDate } from '../domain/timeline';
 
-export type AppMode = 'explore' | 'sources' | 'methodology' | 'data-review';
+export type AppMode = 'explore' | 'sources' | 'methodology';
 type LoadStatus = 'idle' | 'loading' | 'ready' | 'error';
 type HistoryMode = 'none' | 'push' | 'replace';
 
-const appModes = new Set<AppMode>(['explore', 'sources', 'methodology', 'data-review']);
+const appModes = new Set<AppMode>(['explore', 'sources', 'methodology']);
 let packageLoadSequence = 0;
 
 function locationState(): { mode: AppMode; townId?: string } {
@@ -45,13 +48,13 @@ function loadErrorMessage(error: unknown): string {
 }
 
 interface ExplorerState {
-  package?: ProjectPackage;
+  package?: PublicProjectPackage;
   publishedProjects: PublishedProjectSummary[];
   loadStatus: LoadStatus;
   loadError?: string;
   requestedProjectId?: string;
   mode: AppMode;
-  selectedFeature?: HeritageFeature;
+  selectedFeature?: PublicFeature;
   selectedYear: number;
   query: string;
   visibleTypes: string[];
@@ -60,7 +63,7 @@ interface ExplorerState {
   showAreaPolygons: boolean;
   excludeUndated: boolean;
   demolished: boolean;
-  activeMap?: HistoricMapLayer;
+  activeMap?: PublicHistoricMapLayer;
   showHesDesignations: boolean;
   showPublicArt: boolean;
   showPlaquesAndMemorials: boolean;
@@ -85,7 +88,7 @@ interface ExplorerState {
   syncLocation(): void;
   setMode(mode: AppMode): void;
   setYear(year: number): void;
-  selectFeature(feature?: HeritageFeature): void;
+  selectFeature(feature?: PublicFeature): void;
   setQuery(query: string): void;
   toggleType(type: string): void;
   setPossible(value: boolean): void;
@@ -93,7 +96,7 @@ interface ExplorerState {
   setShowAreaPolygons(value: boolean): void;
   setExcludeUndated(value: boolean): void;
   setDemolished(value: boolean): void;
-  setActiveMap(map?: HistoricMapLayer): void;
+  setActiveMap(map?: PublicHistoricMapLayer): void;
   setShowHesDesignations(value: boolean): void;
   setShowPublicArt(value: boolean): void;
   setShowPlaquesAndMemorials(value: boolean): void;
@@ -167,7 +170,7 @@ export const useExplorerStore = create<ExplorerState>((set) => ({
     const sequence = ++packageLoadSequence;
     set({ loadStatus: 'loading', loadError: undefined, requestedProjectId: id });
     try {
-      const packageWithReviews = withLocalMapReviews(await loadProjectPackage(id));
+      const packageWithReviews = await loadProjectPackage(id);
       if (sequence !== packageLoadSequence) return;
       set({
         package: packageWithReviews,
@@ -290,7 +293,7 @@ export const useExplorerStore = create<ExplorerState>((set) => ({
     ),
 }));
 
-export function useLoadedProjectPackage(): ProjectPackage {
+export function useLoadedProjectPackage(): PublicProjectPackage {
   const projectPackage = useExplorerStore((state) => state.package);
   if (!projectPackage)
     throw new Error('A town guide must be loaded before rendering the explorer.');

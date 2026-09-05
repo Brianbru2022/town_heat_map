@@ -2,7 +2,6 @@ import { publishedProjectPackages } from '../src/data/publishedProjects';
 import {
   claimForCurrentPlaceKey,
   claimIsSupported,
-  parseCurrentPlaceDetails,
   publicationProfile,
   publicCurrentPlaceDetails,
 } from '../src/domain/claims';
@@ -23,47 +22,30 @@ for (const sourcePackage of publishedProjectPackages) {
     continue;
   }
 
-  reject(
-    publicPackage.project.researchNotes,
-    `${sourcePackage.project.id}: project research notes`,
-  );
-  reject(
-    publicPackage.project.townStudyArea,
-    `${sourcePackage.project.id}: town-study working notes`,
-  );
-  reject(publicPackage.curationMetadata, `${sourcePackage.project.id}: curation metadata`);
-  reject(
-    publicPackage.publication?.notes,
-    `${sourcePackage.project.id}: package publication notes`,
-  );
-  reject(
-    publicPackage.sources.some((source) => source.limitations),
-    `${sourcePackage.project.id}: source limitation notes`,
-  );
-  reject(
-    publicPackage.historicMaps.some((map) => map.notes || map.publication?.notes),
-    `${sourcePackage.project.id}: historic-map internal notes`,
-  );
-  reject(
-    publicPackage.settlementPolygons.some(
-      (polygon) =>
-        polygon.publication?.notes || polygon.sourceRecords.some((source) => source.notes),
-    ),
-    `${sourcePackage.project.id}: settlement-polygon internal notes`,
-  );
+  const publicText = JSON.stringify(publicPackage);
+  for (const field of [
+    'researchNotes',
+    'townStudyArea',
+    'curationMetadata',
+    'reviewNotes',
+    'claimEvidence',
+    'sourceRecordRefs',
+    'sourceRecordId',
+    'createdAt',
+    'updatedAt',
+    'importedAt',
+    'localPath',
+    'legalReviewNote',
+    'geographicScope',
+    'osmElement',
+    'changesetId',
+    'publicationSummary',
+    'validation',
+  ])
+    reject(publicText.includes(`"${field}"`), `${sourcePackage.project.id}: ${field}`);
 
   for (const feature of publicPackage.features) {
     publicFeatureCount += 1;
-    reject(feature.reviewNotes, `${sourcePackage.project.id}/${feature.id}: review notes`);
-    reject(
-      feature.publication?.notes,
-      `${sourcePackage.project.id}/${feature.id}: publication notes`,
-    );
-    reject(
-      feature.claimEvidence?.some((evidence) => evidence.notes),
-      `${sourcePackage.project.id}/${feature.id}: claim-evidence notes`,
-    );
-
     const sourceFeature = sourcePackage.features.find((candidate) => candidate.id === feature.id)!;
     const profile = publicationProfile(sourceFeature);
     const editorial = claimIsSupported(sourceFeature, 'editorial_recommendation');
@@ -74,31 +56,31 @@ for (const sourcePackage of publishedProjectPackages) {
         `${sourcePackage.project.id}/${feature.id}: non-editorial narrative`,
       );
       reject(
-        feature.fullDescription,
-        `${sourcePackage.project.id}/${feature.id}: full description`,
+        publicText.includes(`"fullDescription"`),
+        `${sourcePackage.project.id}: full description`,
       );
     }
-
-    for (const source of feature.sourceRecords) {
+    const expectedDetails = sourceFeature.sourceRecords.flatMap((source) =>
+      publicCurrentPlaceDetails(sourceFeature, source),
+    );
+    const projected = feature.currentPlaceDetails ?? [];
+    for (const detail of projected) {
+      projectedDetailCount += 1;
+      const claim = claimForCurrentPlaceKey(detail.key);
       reject(
-        source.notes && !source.notes.startsWith('Public claim details:'),
-        `${sourcePackage.project.id}/${feature.id}/${source.sourceName}: arbitrary source notes`,
+        !claim || !claimIsSupported(sourceFeature, claim),
+        `${sourcePackage.project.id}/${feature.id}: unsupported ${detail.key}`,
       );
-      const parsed = parseCurrentPlaceDetails(source.notes);
-      const projected = publicCurrentPlaceDetails(feature, source);
-      reject(
-        JSON.stringify(parsed) !== JSON.stringify(projected),
-        `${sourcePackage.project.id}/${feature.id}/${source.sourceName}: unprojected details`,
-      );
-      for (const detail of projected) {
-        projectedDetailCount += 1;
-        const claim = claimForCurrentPlaceKey(detail.key);
-        reject(
-          !claim || !claimIsSupported(feature, claim),
-          `${sourcePackage.project.id}/${feature.id}/${source.sourceName}: unsupported ${detail.key}`,
-        );
-      }
     }
+    reject(
+      projected.some(
+        (detail) =>
+          !expectedDetails.some(
+            (candidate) => candidate.key === detail.key && candidate.value === detail.value,
+          ),
+      ),
+      `${sourcePackage.project.id}/${feature.id}: unsupported projected current-place detail`,
+    );
   }
 }
 

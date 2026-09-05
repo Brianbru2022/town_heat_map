@@ -515,12 +515,12 @@ for (const pkg of packages) {
     const decision = decisions.find((d) => d.id === result.recordId)!;
     if (
       decision.outcome === 'mapped_context' &&
-      delivered.claimEvidence?.some((e) => e.tier !== 'mapped_context')
+      delivered.publication?.profile !== 'mapped_context'
     )
       throw new Error(`${result.recordId}: stronger claim leaked from mapped context.`);
     if (
       decision.outcome === 'verified_access' &&
-      !delivered.claimEvidence?.some((e) => e.claim === decision.claim)
+      delivered.publication?.profile !== 'verified_facility'
     )
       throw new Error(`${result.recordId}: access claim missing from projection.`);
   }

@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
-import { publicProjectPackage } from '../src/domain/publication';
+import { assessProjectPackage } from '../src/domain/publication';
 
 const projectPaths = process.argv.slice(2);
 const defaultProjects = [
@@ -112,13 +112,18 @@ const packages = await Promise.all(
 await mkdir(outputDirectory, { recursive: true });
 const combinedRows: string[][] = [];
 for (const pkg of packages) {
-  const publicPackage = publicProjectPackage(pkg);
-  if (!publicPackage) {
+  const assessment = assessProjectPackage(pkg);
+  if (!assessment.canPublishPackage) {
     console.log(`Withheld listed-building export for ${pkg.project.locality}.`);
     continue;
   }
+  const publishableIds = new Set(
+    assessment.records.filter((record) => record.canPublish).map((record) => record.recordId),
+  );
   const uniqueByReference = new Map<string, HeritageFeature>();
-  for (const feature of publicPackage.features.filter(listedBuilding)) {
+  for (const feature of pkg.features.filter(
+    (feature) => publishableIds.has(feature.id) && listedBuilding(feature),
+  )) {
     const reference = hesSource(feature)?.sourceRecordId;
     if (reference)
       uniqueByReference.set(
@@ -132,10 +137,10 @@ for (const pkg of packages) {
       const rightSource = hesSource(right)?.sourceRecordId ?? right.id;
       return leftSource.localeCompare(rightSource, 'en', { numeric: true });
     })
-    .map((feature) => row(publicPackage, feature));
+    .map((feature) => row(pkg, feature));
   combinedRows.push(...rows);
   await writeFile(
-    resolve(outputDirectory, `${publicPackage.project.id}-listed-buildings.csv`),
+    resolve(outputDirectory, `${pkg.project.id}-listed-buildings.csv`),
     csv(rows),
     'utf8',
   );

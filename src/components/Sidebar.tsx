@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useExplorerStore } from '../app/store';
 import { sortPublishedProjects } from '../domain/projects';
+import { FeatureList } from './FeatureList';
 
 const hesDesignationsLayerId = 'hes-listed-buildings-by-category';
 const unspecifiedCounty = 'Unspecified county';
@@ -8,6 +9,9 @@ const unspecifiedCounty = 'Unspecified county';
 export function Sidebar() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [townSearch, setTownSearch] = useState('');
+  const settingsTriggerRef = useRef<HTMLButtonElement>(null);
+  const settingsCloseRef = useRef<HTMLButtonElement>(null);
+  const settingsDialogRef = useRef<HTMLElement>(null);
   const pkg = useExplorerStore((state) => state.package);
   const query = useExplorerStore((state) => state.query);
   const setQuery = useExplorerStore((state) => state.setQuery);
@@ -65,13 +69,44 @@ export function Sidebar() {
   const loadPackage = useExplorerStore((state) => state.loadPackage);
   const retryLoad = useExplorerStore((state) => state.retryLoad);
 
-  useEffect(() => {
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setSettingsOpen(false);
-    };
-    window.addEventListener('keydown', closeOnEscape);
-    return () => window.removeEventListener('keydown', closeOnEscape);
+  const closeSettings = useCallback(() => {
+    setSettingsOpen(false);
+    window.requestAnimationFrame(() => settingsTriggerRef.current?.focus());
   }, []);
+
+  useEffect(() => {
+    if (!settingsOpen) return;
+    const focusCloseControl = window.requestAnimationFrame(() => settingsCloseRef.current?.focus());
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeSettings();
+        return;
+      }
+      if (event.key !== 'Tab' || !settingsDialogRef.current) return;
+      const focusable = Array.from(
+        settingsDialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href]',
+        ),
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (!first || !last) return;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener('keydown', trapFocus);
+    return () => {
+      window.cancelAnimationFrame(focusCloseControl);
+      window.removeEventListener('keydown', trapFocus);
+    };
+  }, [closeSettings, settingsOpen]);
 
   if (!pkg) return null;
   const hasHesDesignations = pkg.historicMaps.some((map) => map.id === hesDesignationsLayerId);
@@ -100,19 +135,21 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" aria-label="Town guide controls">
       <div className="sidebar-heading">
         <div className="brand">
           <span>HISTORIC</span>
           <strong>TOWN EXPLORER</strong>
+          <h1 id="explorer-heading">Explore town guides</h1>
         </div>
         <button
+          ref={settingsTriggerRef}
           className="settings-button"
           type="button"
           aria-label="Open settings"
           aria-expanded={settingsOpen}
           title="Explorer settings"
-          onClick={() => setSettingsOpen((open) => !open)}
+          onClick={() => (settingsOpen ? closeSettings() : setSettingsOpen(true))}
         >
           <span aria-hidden="true">⚙</span>
         </button>
@@ -216,35 +253,37 @@ export function Sidebar() {
           placeholder="Name, type, street…"
         />
       </label>
+      <FeatureList />
       <p className="map-key">
         Historic dot colour shows the earliest evidence century: purple is oldest, then red, orange
         and amber; blue means no usable historic date.
       </p>
       {settingsOpen && (
         <>
-          <button
-            type="button"
-            className="settings-backdrop"
-            aria-label="Close explorer settings"
-            onClick={() => setSettingsOpen(false)}
-          />
+          <div className="settings-backdrop" aria-hidden="true" onMouseDown={closeSettings} />
           <section
+            ref={settingsDialogRef}
             className="settings-popover"
-            aria-label="Explorer settings"
+            aria-labelledby="settings-title"
+            aria-describedby="settings-description"
             role="dialog"
             aria-modal="true"
           >
             <div className="settings-popover-heading">
-              <h2>Explorer settings</h2>
+              <h2 id="settings-title">Explorer settings</h2>
               <button
+                ref={settingsCloseRef}
                 type="button"
                 className="icon"
                 aria-label="Close settings"
-                onClick={() => setSettingsOpen(false)}
+                onClick={closeSettings}
               >
                 ×
               </button>
             </div>
+            <p className="visually-hidden" id="settings-description">
+              Settings open in a modal window. Press Escape to close it.
+            </p>
             <fieldset>
               <legend>Timeline visibility</legend>
               <label className="check">

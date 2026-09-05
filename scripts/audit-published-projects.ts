@@ -17,6 +17,7 @@ const projectPaths = [
 const jsonReportPath = resolve('data/review/published-project-final-audit.json');
 const markdownReportPath = resolve('data/review/published-project-final-audit.md');
 const hesCrossCheckLayerId = 'hes-listed-buildings-by-category';
+const checkOnly = process.argv.includes('--check');
 
 function inPublicScope(feature: HeritageFeature): boolean {
   return feature.evidenceScope !== 'out_of_scope';
@@ -233,9 +234,11 @@ const markdown = [
   '',
 ].join('\n');
 
-await mkdir(dirname(jsonReportPath), { recursive: true });
-await writeFile(jsonReportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
-await writeFile(markdownReportPath, markdown, 'utf8');
+if (!checkOnly) {
+  await mkdir(dirname(jsonReportPath), { recursive: true });
+  await writeFile(jsonReportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+  await writeFile(markdownReportPath, markdown, 'utf8');
+}
 console.log(
-  `Audited ${projects.length} town package(s): ${totals.publishable} publishable, ${totals.provisional} provisional, ${totals.requiresReview} requiring review and ${totals.withheld} withheld.`,
+  `${checkOnly ? 'Checked' : 'Audited'} ${projects.length} town package(s): ${totals.publishable} publishable, ${totals.provisional} provisional, ${totals.requiresReview} requiring review and ${totals.withheld} withheld.`,
 );

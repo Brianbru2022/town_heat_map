@@ -300,11 +300,7 @@ for (const id of ['osm-community:node-10550529710', 'osm-community:way-989738553
   const delivered = publicProjectPackage(holder.pkg)?.features.find(
     (candidate) => candidate.id === id,
   );
-  if (
-    !delivered?.claimEvidence?.some(
-      (evidence) => evidence.claim === 'current_operation' && evidence.tier === 'operational',
-    )
-  )
+  if (delivered?.publication?.profile !== 'verified_facility')
     throw new Error(`${id}: current-operation claim not projected.`);
   await writeFile(
     resolve(`data/projects/${holder.file}.json`),

@@ -1,4 +1,5 @@
-import type { ProjectPackage, PublicationSummary, TownProject } from '../domain/models';
+import type { TownProject } from '../domain/models';
+import type { PublicProjectPackage } from '../domain/publicDto';
 import { sortPublishedProjects } from '../domain/projects';
 
 export type PublishedProjectSummary = Pick<
@@ -6,11 +7,10 @@ export type PublishedProjectSummary = Pick<
   'id' | 'name' | 'countryCode' | 'country' | 'region' | 'locality' | 'centre'
 > & {
   featureCount?: number;
-  publicationSummary?: PublicationSummary;
 };
 
 let catalogueRequest: Promise<PublishedProjectSummary[]> | undefined;
-const projectRequests = new Map<string, Promise<ProjectPackage>>();
+const projectRequests = new Map<string, Promise<PublicProjectPackage>>();
 
 async function getJson<T>(url: string, description: string): Promise<T> {
   const response = await fetch(url, { headers: { Accept: 'application/json' } });
@@ -28,11 +28,11 @@ export function loadProjectCatalogue(): Promise<PublishedProjectSummary[]> {
   return catalogueRequest;
 }
 
-export function loadProjectPackage(id: string): Promise<ProjectPackage> {
+export function loadProjectPackage(id: string): Promise<PublicProjectPackage> {
   const cached = projectRequests.get(id);
   if (cached) return cached;
 
-  const request = getJson<ProjectPackage>(
+  const request = getJson<PublicProjectPackage>(
     `/api/projects/${encodeURIComponent(id)}`,
     'The selected town guide',
   ).catch((error: unknown) => {

@@ -1,9 +1,9 @@
-import type { HeritageFeature } from './models';
+import type { PublicFeature } from './publicDto';
 
 export type TimelineState = 'hidden' | 'possible' | 'definite';
 
 /** A curator has supplied a historical date or date range for this feature. */
-export function hasEstablishedDate(feature: HeritageFeature): boolean {
+export function hasEstablishedDate(feature: PublicFeature): boolean {
   return (
     feature.earliestPossibleYear !== undefined ||
     feature.latestPossibleYear !== undefined ||
@@ -12,7 +12,7 @@ export function hasEstablishedDate(feature: HeritageFeature): boolean {
 }
 
 /** Inventory-only presence records are provenance, not historic timeline evidence. */
-export function hasHistoricTimelineDate(feature: HeritageFeature): boolean {
+export function hasHistoricTimelineDate(feature: PublicFeature): boolean {
   return (
     feature.dateBasis !== 'unknown' &&
     (feature.earliestPossibleYear !== undefined || Boolean(feature.documentedDateText)) &&
@@ -22,7 +22,7 @@ export function hasHistoricTimelineDate(feature: HeritageFeature): boolean {
   );
 }
 
-export function featureTimelineState(feature: HeritageFeature, year: number): TimelineState {
+export function featureTimelineState(feature: PublicFeature, year: number): TimelineState {
   const earliest = feature.earliestPossibleYear;
   const latest = feature.latestPossibleYear ?? earliest;
   if (earliest === undefined && latest === undefined) return 'possible';
@@ -31,14 +31,14 @@ export function featureTimelineState(feature: HeritageFeature, year: number): Ti
   return 'definite';
 }
 
-export function dateWording(feature: HeritageFeature): string {
+export function dateWording(feature: PublicFeature): string {
   const earliest = feature.earliestPossibleYear;
   const latest = feature.latestPossibleYear;
   if (feature.documentedDateText) return feature.documentedDateText;
   if (earliest === undefined) return 'Date not established';
   const range =
     latest !== undefined && latest !== earliest ? `${earliest}–${latest}` : `${earliest}`;
-  const labels: Record<HeritageFeature['dateBasis'], string> = {
+  const labels: Record<PublicFeature['dateBasis'], string> = {
     documented_construction: 'Documented construction',
     documented_date_range: 'Documented date range',
     present_by: 'Present by',

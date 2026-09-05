@@ -56,7 +56,10 @@ export async function createProjectRepository(): Promise<ProjectRepository> {
     await client.connect();
     return new PostgisProjectRepository(client);
   } catch (error) {
-    console.warn('PostGIS unavailable; using local starter data.', error);
+    console.warn(
+      'PostGIS unavailable; using static published package data.',
+      error instanceof Error ? error.name : 'unknown error',
+    );
     await client.end().catch(() => undefined);
     return new StaticProjectRepository();
   }

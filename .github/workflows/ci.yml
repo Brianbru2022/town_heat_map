@@ -1,0 +1,86 @@
+name: Release gates
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'release/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-gates-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Reproducible release verification
+    runs-on: ubuntu-latest
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install the locked dependency graph
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript
+        run: pnpm typecheck
+
+      - name: ESLint
+        run: pnpm lint
+
+      - name: Maintained-code formatting
+        run: pnpm format:check
+
+      - name: Unit and API tests
+        run: pnpm test
+
+      - name: Runtime package schema validation
+        run: pnpm validate-schema
+
+      - name: Data and publication validation
+        run: pnpm validate-data
+
+      - name: Public delivery release gate
+        run: pnpm verify:public-release
+
+      - name: Public narrative audit
+        run: pnpm audit-public-narrative
+
+      - name: Public DTO and exposure contracts
+        run: pnpm test:public-contracts
+
+      - name: Publication audit report check
+        run: pnpm audit-published-projects:check
+
+      - name: Deployment and security regression tests
+        run: pnpm test:deployment-security
+
+      - name: Production dependency audit
+        run: pnpm audit:production-dependencies
+
+      - name: Production build
+        run: pnpm build
+
+      - name: Install Chromium for browser tests
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Playwright browser tests
+        run: pnpm test:e2e
+
+      - name: Compose configuration validation
+        run: docker compose config
+
+      - name: Build production images
+        run: docker compose build

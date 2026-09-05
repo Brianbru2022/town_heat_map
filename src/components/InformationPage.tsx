@@ -1,9 +1,4 @@
-import { lazy, Suspense } from 'react';
 import { useExplorerStore } from '../app/store';
-
-const CurationReview = lazy(() =>
-  import('./CurationReview').then((module) => ({ default: module.CurationReview })),
-);
 
 export function InformationPage() {
   const mode = useExplorerStore((state) => state.mode);
@@ -27,25 +22,12 @@ export function InformationPage() {
       </main>
     );
   }
-  if (mode === 'data-review') {
-    return (
-      <Suspense
-        fallback={
-          <main className="info" aria-live="polite">
-            Loading curator review…
-          </main>
-        }
-      >
-        <CurationReview />
-      </Suspense>
-    );
-  }
   const title =
     mode === 'sources'
       ? 'Sources & licences'
       : mode === 'methodology'
         ? 'Methodology'
-        : 'Data review';
+        : 'Town guide';
   return (
     <main className="info">
       <h1>{title}</h1>
@@ -79,7 +61,22 @@ export function InformationPage() {
                   Open source
                 </a>
               )}
-              <p>{source.limitations}</p>
+              {source.licence && <p>Licence: {source.licence}</p>}
+            </article>
+          ))}
+          {pkg.licensingMetadata?.components.map((component) => (
+            <article className="card" key={component.id}>
+              <h2>{component.name}</h2>
+              <p>
+                {component.attribution} · {component.scope}
+              </p>
+              {component.licenceUrl ? (
+                <a href={component.licenceUrl} target="_blank" rel="noreferrer">
+                  {component.licence}
+                </a>
+              ) : (
+                <p>Licence: {component.licence}</p>
+              )}
             </article>
           ))}
         </>

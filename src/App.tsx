@@ -3,7 +3,6 @@ import { useExplorerStore, type AppMode } from './app/store';
 
 const loadExplorerView = () => import('./components/ExplorerView');
 const loadInformationPage = () => import('./components/InformationPage');
-const loadCurationReview = () => import('./components/CurationReview');
 const ExplorerView = lazy(() =>
   loadExplorerView().then((module) => ({ default: module.ExplorerView })),
 );
@@ -15,15 +14,11 @@ const nav: { id: AppMode; label: string }[] = [
   { id: 'explore', label: 'Explore' },
   { id: 'sources', label: 'Sources & licences' },
   { id: 'methodology', label: 'Methodology' },
-  { id: 'data-review', label: 'Data review' },
 ];
 
 function preloadMode(mode: AppMode): void {
   if (mode === 'explore') void loadExplorerView();
-  else {
-    void loadInformationPage();
-    if (mode === 'data-review') void loadCurationReview();
-  }
+  else void loadInformationPage();
 }
 
 export default function App() {
@@ -41,10 +36,13 @@ export default function App() {
   return (
     <div className="app">
       <header>
-        <button className="skip" onClick={() => setMode('explore')}>
+        <a className="skip-link" href="#main-content">
+          Skip to town guide
+        </a>
+        <button className="brand-home" onClick={() => setMode('explore')}>
           Historic Town Explorer
         </button>
-        <nav>
+        <nav aria-label="Primary navigation">
           {nav.map((item) => (
             <button
               className={mode === item.id ? 'active' : ''}
@@ -52,6 +50,7 @@ export default function App() {
               onMouseEnter={() => preloadMode(item.id)}
               onFocus={() => preloadMode(item.id)}
               onClick={() => setMode(item.id)}
+              aria-current={mode === item.id ? 'page' : undefined}
             >
               {item.label}
             </button>

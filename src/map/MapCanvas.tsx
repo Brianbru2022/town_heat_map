@@ -10,7 +10,8 @@ import {
   isMapCatalogueRecord,
   isPublicTownFeature,
 } from '../domain/presentation';
-import type { HeritageFeature, ScoringMethodology, SettlementAgePolygon } from '../domain/models';
+import type { ScoringMethodology } from '../domain/models';
+import type { PublicFeature, PublicSettlementPolygon } from '../domain/publicDto';
 import type { LineString, MultiPolygon, Point, Polygon } from 'geojson';
 
 const openStreetMapFallbackStyle = {
@@ -31,7 +32,7 @@ const hesDesignationsLayerId = 'hes-listed-buildings-by-category';
 // from both the dated-century palette and the OSM raster's dark POI symbols.
 const historicUndatedDotColour = '#4f9bb5';
 
-function historicDotColour(feature: HeritageFeature): string {
+function historicDotColour(feature: PublicFeature): string {
   const century = historicEvidenceCentury(feature);
   if (century === undefined) return historicUndatedDotColour;
   if (century < 1000) return '#5d3f7f';
@@ -59,7 +60,7 @@ interface OsmCommunityMarker {
   colour: string;
 }
 
-function osmCommunityCategory(feature: HeritageFeature): OsmCommunityCategory | undefined {
+function osmCommunityCategory(feature: PublicFeature): OsmCommunityCategory | undefined {
   // A current OSM feature can be merged into an authoritative historic record
   // (for example Alloa War Memorial into HES LB20989). Keep one data record,
   // but still allow its verified OSM category icon to be displayed.
@@ -133,17 +134,17 @@ function osmCommunityCategory(feature: HeritageFeature): OsmCommunityCategory | 
   return undefined;
 }
 
-function isOsmCommunityPlace(feature: HeritageFeature): boolean {
+function isOsmCommunityPlace(feature: PublicFeature): boolean {
   return feature.tags.includes('osm-community-place');
 }
 
-function hasOsmCommunitySource(feature: HeritageFeature): boolean {
+function hasOsmCommunitySource(feature: PublicFeature): boolean {
   return feature.sourceRecords.some(
     (source) => source.sourceName === 'OpenStreetMap current community places',
   );
 }
 
-function historicEvidenceCentury(feature: HeritageFeature): number | undefined {
+function historicEvidenceCentury(feature: PublicFeature): number | undefined {
   // `present_by` records commonly carry only a latest possible year. That is
   // still a dated historic-evidence point and must not fall into the
   // undated/grey class.
@@ -151,19 +152,11 @@ function historicEvidenceCentury(feature: HeritageFeature): number | undefined {
   return evidenceYear === undefined ? undefined : Math.floor(evidenceYear / 100) * 100;
 }
 
-function osmTagValue(feature: HeritageFeature, key: string): string | undefined {
-  const notes = feature.sourceRecords.find(
-    (source) => source.sourceName === 'OpenStreetMap current community places',
-  )?.notes;
-  // Source notes end with a sentence full stop. Trim that formatting marker so
-  // a final tag such as `tourism=artwork.` still selects its OSM category.
-  return new RegExp(`(?:^|[:;]\\s*)${key}=([^;]+)`)
-    .exec(notes ?? '')?.[1]
-    .trim()
-    .replace(/\.$/, '');
+function osmTagValue(feature: PublicFeature, key: string): string | undefined {
+  return feature.currentPlaceDetails?.find((detail) => detail.key === key)?.value;
 }
 
-function osmCommunityMarker(feature: HeritageFeature): OsmCommunityMarker | undefined {
+function osmCommunityMarker(feature: PublicFeature): OsmCommunityMarker | undefined {
   const category = osmCommunityCategory(feature);
   if (!category) return undefined;
   const amenity = osmTagValue(feature, 'amenity');
@@ -462,20 +455,20 @@ function communityMarkerImage(
   return context.getImageData(0, 0, size, size);
 }
 
-function isCuratedHesDesignation(feature: HeritageFeature): boolean {
+function isCuratedHesDesignation(feature: PublicFeature): boolean {
   return feature.id.startsWith('hes-');
 }
 
-function matchesFeatureQuery(feature: HeritageFeature, query: string): boolean {
+function matchesFeatureQuery(feature: PublicFeature, query: string): boolean {
   const searchable = `${feature.name} ${feature.alternativeNames.join(' ')} ${feature.featureType} ${feature.tags.join(' ')}`;
   return searchable.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
 }
 
-function isPublicArtFeature(feature: HeritageFeature): boolean {
+function isPublicArtFeature(feature: PublicFeature): boolean {
   return feature.tags.includes('public-art') || /public.?art/i.test(feature.featureType);
 }
 
-function isPlaqueOrMemorialFeature(feature: HeritageFeature): boolean {
+function isPlaqueOrMemorialFeature(feature: PublicFeature): boolean {
   return (
     feature.tags.includes('plaque') ||
     feature.tags.includes('community-memorial') ||
@@ -486,12 +479,12 @@ function isPlaqueOrMemorialFeature(feature: HeritageFeature): boolean {
   );
 }
 
-function isCurrentContextFeature(feature: HeritageFeature): boolean {
+function isCurrentContextFeature(feature: PublicFeature): boolean {
   return feature.tags.includes('current-context');
 }
 
 function matchesCommunityLayers(
-  feature: HeritageFeature,
+  feature: PublicFeature,
   showPublicArt: boolean,
   showPlaquesAndMemorials: boolean,
 ): boolean {
@@ -501,7 +494,7 @@ function matchesCommunityLayers(
 }
 
 function isVisibleFeature(
-  feature: HeritageFeature,
+  feature: PublicFeature,
   year: number,
   includePossible: boolean,
   excludeUndated: boolean,
@@ -538,7 +531,7 @@ function isVisibleFeature(
 }
 
 function mapOsmCommunityPlaces(
-  features: HeritageFeature[],
+  features: PublicFeature[],
   showFood: boolean,
   showPicnic: boolean,
   showArt: boolean,
@@ -565,7 +558,7 @@ function mapOsmCommunityPlaces(
   return {
     type: 'FeatureCollection' as const,
     features: features
-      .filter((feature): feature is HeritageFeature & { geometry: Point } => {
+      .filter((feature): feature is PublicFeature & { geometry: Point } => {
         const category = osmCommunityCategory(feature);
         return (
           feature.geometry?.type === 'Point' &&
@@ -588,7 +581,7 @@ function mapOsmCommunityPlaces(
 }
 
 function mapFeatures(
-  features: HeritageFeature[],
+  features: PublicFeature[],
   year: number,
   includePossible: boolean,
   excludeUndated: boolean,
@@ -605,7 +598,7 @@ function mapFeatures(
   return {
     type: 'FeatureCollection' as const,
     features: features
-      .filter((feature): feature is HeritageFeature & { geometry: Point } => {
+      .filter((feature): feature is PublicFeature & { geometry: Point } => {
         return (
           feature.geometry?.type === 'Point' &&
           isVisibleFeature(
@@ -646,7 +639,7 @@ function mapFeatures(
 }
 
 function mapPolygons(
-  features: HeritageFeature[],
+  features: PublicFeature[],
   year: number,
   includePossible: boolean,
   excludeUndated: boolean,
@@ -662,7 +655,7 @@ function mapPolygons(
   return {
     type: 'FeatureCollection' as const,
     features: features
-      .filter((feature): feature is HeritageFeature & { geometry: Polygon | MultiPolygon } => {
+      .filter((feature): feature is PublicFeature & { geometry: Polygon | MultiPolygon } => {
         return (
           (feature.geometry?.type === 'Polygon' || feature.geometry?.type === 'MultiPolygon') &&
           isVisibleFeature(
@@ -695,7 +688,7 @@ function mapPolygons(
 }
 
 function mapLines(
-  features: HeritageFeature[],
+  features: PublicFeature[],
   year: number,
   includePossible: boolean,
   excludeUndated: boolean,
@@ -711,7 +704,7 @@ function mapLines(
   return {
     type: 'FeatureCollection' as const,
     features: features
-      .filter((feature): feature is HeritageFeature & { geometry: LineString } => {
+      .filter((feature): feature is PublicFeature & { geometry: LineString } => {
         return (
           feature.geometry?.type === 'LineString' &&
           isVisibleFeature(
@@ -742,7 +735,7 @@ function mapLines(
   };
 }
 
-function mapSettlementAge(polygons: SettlementAgePolygon[], year: number) {
+function mapSettlementAge(polygons: PublicSettlementPolygon[], year: number) {
   return {
     type: 'FeatureCollection' as const,
     features: polygons
@@ -1114,7 +1107,9 @@ export function MapCanvas() {
     const boundarySource = map.getSource('project-boundary') as
       maplibregl.GeoJSONSource | undefined;
     boundarySource?.setData(pkg.project.boundary);
-    map.flyTo({ center: pkg.project.centre, zoom: 13, essential: true });
+    const target = { center: pkg.project.centre, zoom: 13 };
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) map.jumpTo(target);
+    else map.flyTo(target);
   }, [pkg.project.id, pkg.project.centre, pkg.project.boundary, mapReady]);
   useEffect(() => {
     const map = mapRef.current;
@@ -1187,8 +1182,14 @@ export function MapCanvas() {
   }, [pkg.historicMaps, showHesDesignations, communityLayersOnly, mapReady]);
   const attribution = mapAttribution(import.meta.env.VITE_MAP_ATTRIBUTION);
   return (
-    <div className="map-wrap">
-      <div ref={container} className="map" aria-label="Historic map" />
+    <section className="map-wrap" aria-labelledby="map-heading">
+      <h2 className="visually-hidden" id="map-heading">
+        Historic map
+      </h2>
+      <p className="visually-hidden" id="map-alternative">
+        The map is optional. Browse places and open their details from the Places list.
+      </p>
+      <div ref={container} className="map" aria-describedby="map-alternative" />
       <div className="attribution">
         {attribution.provider && <span>{attribution.provider} · </span>}
         <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
@@ -1326,6 +1327,6 @@ export function MapCanvas() {
           {overlayError}
         </p>
       )}
-    </div>
+    </section>
   );
 }

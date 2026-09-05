@@ -51,3 +51,32 @@ export function filterCsvByRecordIds(
     .map((row) => row.map(csvCell).join(','))
     .join('\r\n')}\r\n`;
 }
+
+/**
+ * Projects a generated CSV through an explicit visitor-column allowlist after
+ * its rows have passed the publication gate. New internal columns therefore
+ * remain local until deliberately added to this contract.
+ */
+export function publicCsvByRecordIds(
+  value: string,
+  idColumn: string,
+  publishableIds: ReadonlySet<string>,
+  publicColumns: readonly string[],
+): string {
+  const hasByteOrderMark = value.startsWith('\uFEFF');
+  const rows = parseCsv(hasByteOrderMark ? value.slice(1) : value);
+  const header = rows[0] ?? [];
+  const idIndex = header.indexOf(idColumn);
+  if (idIndex === -1) throw new Error(`CSV export is missing the ${idColumn} column.`);
+  const indexes = publicColumns.map((column) => header.indexOf(column));
+  const missing = publicColumns.filter((_column, index) => indexes[index] === -1);
+  if (missing.length)
+    throw new Error(`CSV export is missing public columns: ${missing.join(', ')}.`);
+  const filtered = rows.slice(1).filter((row) => publishableIds.has(row[idIndex]));
+  return `${hasByteOrderMark ? '\uFEFF' : ''}${[
+    publicColumns,
+    ...filtered.map((row) => indexes.map((index) => row[index] ?? '')),
+  ]
+    .map((row) => row.map(csvCell).join(','))
+    .join('\r\n')}\r\n`;
+}

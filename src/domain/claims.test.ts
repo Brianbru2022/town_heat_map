@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { alloaPackage } from '../data/alloa';
 import { publishedProjectPackages } from '../data/publishedProjects';
 import type { ClaimEvidence, HeritageFeature, ProjectPackage } from './models';
-import { claimIsSupported, publicCurrentPlaceDetails } from './claims';
+import { claimIsSupported } from './claims';
 import { assessFeaturePublication, publicProjectPackage } from './publication';
 
 const hesFeature = alloaPackage.features.find(
@@ -85,14 +85,14 @@ describe('claim-relative public projection', () => {
   it('allows an OSM-only Tier M identity/location claim and suppresses stronger fields', () => {
     const feature = osmFeature();
     const delivered = publicProjectPackage(packageWith(feature))?.features[0];
-    const details = publicCurrentPlaceDetails(delivered!, delivered?.sourceRecords[0]);
+    const details = delivered?.currentPlaceDetails;
 
     expect(details).toEqual([
       { key: 'amenity', value: 'parking' },
       { key: 'name', value: 'Test car park' },
     ]);
     expect(delivered?.shortDescription).toContain('Mapped present-day context');
-    expect(delivered?.fullDescription).toBeUndefined();
+    expect(JSON.stringify(delivered)).not.toContain('fullDescription');
   });
 
   it('removes arbitrary Tier F/O/E narrative variants while retaining supported structured fields', () => {
@@ -121,7 +121,7 @@ describe('claim-relative public projection', () => {
     expect(publicText).not.toContain('£5 admission');
     expect(publicText).not.toContain('Internal approval note');
     expect(publicText).not.toContain('high-quality recommendation');
-    expect(publicCurrentPlaceDetails(delivered!, delivered?.sourceRecords[0])).toEqual([
+    expect(delivered?.currentPlaceDetails).toEqual([
       { key: 'amenity', value: 'parking' },
       { key: 'name', value: 'Test car park' },
     ]);
@@ -154,7 +154,7 @@ describe('claim-relative public projection', () => {
 
       expect(internalSource.notes).toMatch(/operator/i);
       expect(claimIsSupported(sourceFeature, 'operator')).toBe(false);
-      expect(publicSource?.notes).toBeUndefined();
+      expect(JSON.stringify(publicSource)).not.toContain('notes');
       expect(JSON.stringify(delivered)).not.toContain(internalSource.notes);
     },
   );
@@ -171,7 +171,7 @@ describe('claim-relative public projection', () => {
         ],
       });
       const delivered = publicProjectPackage(packageWith(feature))?.features[0];
-      const details = publicCurrentPlaceDetails(delivered!, delivered?.sourceRecords[0]);
+      const details = delivered?.currentPlaceDetails;
 
       expect(details).toEqual([{ key: 'amenity', value: 'parking' }]);
       expect(details).not.toContainEqual({ key: 'access', value: access });
@@ -181,9 +181,9 @@ describe('claim-relative public projection', () => {
   it('does not let legacy reviewed=true bypass claim filtering', () => {
     const feature = osmFeature({ publication: undefined, claimEvidence: undefined });
     const delivered = publicProjectPackage(packageWith(feature))?.features[0];
-    const details = publicCurrentPlaceDetails(delivered!, delivered?.sourceRecords[0]);
+    const details = delivered?.currentPlaceDetails ?? [];
 
-    expect(delivered?.publication).toMatchObject({ state: 'verified', profile: 'mapped_context' });
+    expect(delivered?.publication).toMatchObject({ profile: 'mapped_context' });
     expect(details.some(({ key }) => key === 'opening_hours' || key === 'operator')).toBe(false);
   });
 
@@ -199,9 +199,11 @@ describe('claim-relative public projection', () => {
       ],
     });
     const delivered = publicProjectPackage(packageWith(feature))?.features[0];
-    const details = publicCurrentPlaceDetails(delivered!, delivered?.sourceRecords[1]);
+    const details = delivered?.currentPlaceDetails ?? [];
 
     expect(details.map(({ key }) => key)).toEqual([
+      'amenity',
+      'name',
       'access',
       'opening_hours',
       'fee',
@@ -238,11 +240,11 @@ describe('claim-relative public projection', () => {
     });
 
     expect(claimIsSupported(wrongProfile, 'editorial_recommendation')).toBe(false);
-    expect(
-      publicProjectPackage(packageWith(wrongProfile))?.features[0].fullDescription,
-    ).toBeUndefined();
-    expect(publicProjectPackage(packageWith(editorial))?.features[0].fullDescription).toBe(
-      editorial.fullDescription,
+    expect(JSON.stringify(publicProjectPackage(packageWith(wrongProfile)))).not.toContain(
+      'fullDescription',
+    );
+    expect(JSON.stringify(publicProjectPackage(packageWith(editorial)))).not.toContain(
+      'fullDescription',
     );
   });
 
@@ -300,7 +302,6 @@ describe('claim-relative public projection', () => {
           id: 'openstreetmap-current-place-data',
           licence: expect.stringContaining('ODbL'),
           attribution: '© OpenStreetMap contributors',
-          legalReviewNote: expect.stringContaining('legal review'),
         }),
       ]),
     );
@@ -316,8 +317,8 @@ describe('claim-relative public projection', () => {
       geometry: nrheFeature.geometry,
       shortDescription: nrheFeature.shortDescription,
     });
-    expect(hesDelivery.features[0].reviewNotes).toBeUndefined();
-    expect(hesDelivery.features[0].sourceRecords.every((source) => !source.notes)).toBe(true);
+    expect(JSON.stringify(hesDelivery.features[0])).not.toContain('reviewNotes');
+    expect(JSON.stringify(hesDelivery.features[0])).not.toContain('notes');
     expect(hesDelivery.licensingMetadata).toBeUndefined();
     expect(nrheDelivery.licensingMetadata).toBeUndefined();
   });
