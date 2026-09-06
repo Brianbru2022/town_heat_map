@@ -7,6 +7,8 @@ export interface PublicUrlOptions {
 
 const canonicalBase = 'https://townscape.invalid';
 const windowsPath = /^(?:[a-z]:[\\/]|\\\\)/i;
+const currentPlaceUrlKey =
+  /^(?:website(?::[a-z0-9_-]+)?|url|contact:(?:website|url|web|homepage|facebook|instagram|linkedin|mastodon|twitter|x|youtube))$/i;
 
 function hasUnsafeRawCharacters(value: string): boolean {
   return [...value].some((character) => {
@@ -34,13 +36,24 @@ function restoreTemplateTokens(value: string, tokens: ReadonlyMap<string, string
   return restored;
 }
 
-function decodedPathIsSafe(pathname: string): boolean {
+function decodedComponentIsSafe(value: string, rejectBackslashes = false): boolean {
   try {
-    const decoded = decodeURIComponent(pathname);
-    return !hasUnsafeRawCharacters(decoded) && !decoded.includes('\\') && !decoded.startsWith('//');
+    const decoded = decodeURIComponent(value);
+    return (
+      !hasUnsafeRawCharacters(decoded) &&
+      (!rejectBackslashes || (!decoded.includes('\\') && !decoded.startsWith('//')))
+    );
   } catch {
     return false;
   }
+}
+
+function parsedComponentsAreSafe(parsed: URL): boolean {
+  return (
+    decodedComponentIsSafe(parsed.pathname, true) &&
+    decodedComponentIsSafe(parsed.search) &&
+    decodedComponentIsSafe(parsed.hash)
+  );
 }
 
 /**
@@ -53,7 +66,8 @@ export function canonicalPublicUrl(
   options: PublicUrlOptions = {},
 ): string | undefined {
   if (typeof value !== 'string' || !value || value !== value.trim()) return undefined;
-  if (hasUnsafeRawCharacters(value) || windowsPath.test(value)) return undefined;
+  if (hasUnsafeRawCharacters(value) || windowsPath.test(value) || value.includes('\\'))
+    return undefined;
   const hidden = options.allowTemplateTokens
     ? hideTemplateTokens(value)
     : { value, tokens: new Map() };
@@ -68,7 +82,7 @@ export function canonicalPublicUrl(
         parsed.origin !== canonicalBase ||
         parsed.username ||
         parsed.password ||
-        !decodedPathIsSafe(parsed.pathname)
+        !parsedComponentsAreSafe(parsed)
       )
         return undefined;
       return restoreTemplateTokens(
@@ -93,7 +107,7 @@ export function canonicalPublicUrl(
     parsed.username ||
     parsed.password ||
     parsed.origin === 'null' ||
-    !decodedPathIsSafe(parsed.pathname)
+    !parsedComponentsAreSafe(parsed)
   )
     return undefined;
   if (options.allowedOrigins) {
@@ -113,4 +127,10 @@ export function canonicalPublicUrl(
 
 export function canonicalPublicTileUrl(value: unknown): string | undefined {
   return canonicalPublicUrl(value, { allowSameOrigin: true, allowTemplateTokens: true });
+}
+
+export function canonicalCurrentPlaceUrl(key: unknown, value: unknown): string | undefined {
+  return typeof key === 'string' && currentPlaceUrlKey.test(key)
+    ? canonicalPublicUrl(value)
+    : undefined;
 }

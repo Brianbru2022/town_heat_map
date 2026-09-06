@@ -24,9 +24,39 @@ export interface PublicSourceRecord {
 }
 
 export interface PublicCurrentPlaceDetail {
-  key: string;
+  key:
+    | 'amenity'
+    | 'board_type'
+    | 'historic'
+    | 'highway'
+    | 'information'
+    | 'landuse'
+    | 'leisure'
+    | 'man_made'
+    | 'memorial'
+    | 'name'
+    | 'natural'
+    | 'parking'
+    | 'playground'
+    | 'railway'
+    | 'route'
+    | 'shop'
+    | 'tourism'
+    | 'waterway'
+    | `playground:${string}`;
   value: string;
 }
+
+export type PublicCurrentPlaceClaim =
+  | { kind: 'website'; url: string }
+  | { kind: 'opening_hours'; schedule: string }
+  | { kind: 'accessibility'; wheelchair: 'yes' | 'no' | 'limited' | 'designated' }
+  | { kind: 'fees'; fee: 'yes' | 'no' | 'donation' }
+  | {
+      kind: 'public_access';
+      access: 'yes' | 'permissive' | 'customers' | 'private' | 'destination' | 'no' | 'designated';
+    }
+  | { kind: 'capacity'; spaces: number };
 
 export interface PublicNarrativeComponent {
   kind: 'recommendation';
@@ -70,6 +100,8 @@ export interface PublicFeature {
   publication?: { profile?: PublicationProfile };
   /** Claim-safe fields which the visitor client may render for a current place. */
   currentPlaceDetails?: PublicCurrentPlaceDetail[];
+  /** Stronger current-place facts reconstructed as bounded, claim-specific values. */
+  currentPlaceClaims?: PublicCurrentPlaceClaim[];
   /** Date of the current OSM context check, where applicable. */
   osmCheckedAt?: string;
   sourceRecords: PublicSourceRecord[];

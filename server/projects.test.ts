@@ -137,7 +137,8 @@ describe('project delivery', () => {
     target.createdAt = '2026-09-05T09:00:00.000Z';
     target.documentedDateText =
       'Open daily; dogs welcome; wheelchair access; toilets; family tickets cost £5.';
-    target.sourceRecords[0].notes = 'Internal workflow batch 42.';
+    target.sourceRecords[0].notes =
+      'Public claim details: description=Recommended, dogs welcome, wheelchair access, toilets, £5 admission, open daily and booking required; operator=Example Council, dogs welcome; contact:website=javascript:alert(1).';
     target.sourceRecords[0].quotedDateText = 'Unsupported nested source narrative.';
     target.sourceRecords[0].sourceUrl = 'file:///C:/Users/curator/private-source.html';
     (target.geometry as unknown as Record<string, unknown>).privateGeometry =
@@ -161,13 +162,33 @@ describe('project delivery', () => {
     pkg.sources[0].coverage =
       'Opening hours, prices, toilets, dogs, wheelchair access and family recommendations.';
     pkg.sources[0].sourceUrl = 'file:///C:/Users/curator/private-catalogue.csv';
+    const sourceRef =
+      target.sourceRecords[0].sourceRecordId ??
+      target.sourceRecords[0].sourceUrl ??
+      target.sourceRecords[0].sourceName;
+    target.publication = { state: 'publishable', profile: 'editorial' };
     target.claimEvidence = [
       {
-        claim: 'mapped_identity',
-        tier: 'mapped_context',
-        sourceRecordRefs: [target.sourceRecords[0].sourceName],
+        claim: 'editorial_recommendation',
+        tier: 'editorial',
+        sourceRecordRefs: [sourceRef],
         reviewedAt: '2026-09-05T09:00:00.000Z',
+        expiresAt: '2099-01-01T00:00:00.000Z',
         notes: 'Internal evidence mechanics.',
+      },
+      {
+        claim: 'operator',
+        tier: 'corroborated_facility',
+        sourceRecordRefs: [sourceRef],
+        reviewedAt: '2026-09-05T09:00:00.000Z',
+        expiresAt: '2099-01-01T00:00:00.000Z',
+      },
+      {
+        claim: 'current_operation',
+        tier: 'operational',
+        sourceRecordRefs: [sourceRef],
+        reviewedAt: '2026-09-05T09:00:00.000Z',
+        expiresAt: '2099-01-01T00:00:00.000Z',
       },
     ];
     const repository: ProjectRepository = {
@@ -233,6 +254,7 @@ describe('project delivery', () => {
       'evidenceScope',
       'publication',
       'currentPlaceDetails',
+      'currentPlaceClaims',
       'osmCheckedAt',
       'sourceRecords',
     ]);
@@ -276,6 +298,8 @@ describe('project delivery', () => {
       'file:///',
       'dogs welcome',
       'family recommendations',
+      'booking required',
+      'javascript:',
     ])
       for (const output of [publicText, geoJson.body, csv.body])
         expect(output).not.toContain(sentinel);

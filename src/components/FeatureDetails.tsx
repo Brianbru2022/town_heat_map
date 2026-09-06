@@ -1,28 +1,30 @@
 import { useEffect, useRef } from 'react';
 import { dateWording } from '../domain/timeline';
 import { useExplorerStore } from '../app/store';
-import type { PublicCurrentPlaceDetail } from '../domain/publicDto';
+import type { PublicCurrentPlaceClaim, PublicCurrentPlaceDetail } from '../domain/publicDto';
 import { canonicalPublicUrl } from '../domain/publicUrl';
-
-const osmLabels: Record<string, string> = {
-  description: 'Description',
-  opening_hours: 'Opening hours',
-  'opening_hours:description': 'Opening-hours note',
-  operator: 'Operator',
-  fee: 'Fees',
-  charge: 'Charge',
-  access: 'Access',
-  capacity: 'Capacity',
-  wheelchair: 'Accessibility',
-  toilets: 'Toilets',
-  cuisine: 'Cuisine',
-  rating: 'Rating',
-  rating_count: 'Rating count',
-  rating_provider: 'Rating source',
-};
 
 function safeExternalUrl(value?: string): string | undefined {
   return canonicalPublicUrl(value);
+}
+
+function currentPlaceClaimPresentation(
+  claim: PublicCurrentPlaceClaim,
+): [string, string] | undefined {
+  switch (claim.kind) {
+    case 'website':
+      return undefined;
+    case 'opening_hours':
+      return ['Opening hours', claim.schedule];
+    case 'accessibility':
+      return ['Wheelchair access', claim.wheelchair];
+    case 'fees':
+      return ['Fees apply', claim.fee];
+    case 'public_access':
+      return ['Public access', claim.access];
+    case 'capacity':
+      return ['Capacity', String(claim.spaces)];
+  }
 }
 
 function currentPlaceType(osmDetails: PublicCurrentPlaceDetail[], tags: string[]): string {
@@ -70,15 +72,13 @@ export function FeatureDetails() {
   );
   const currentDetails = feature.currentPlaceDetails ?? [];
   const currentOsmDetails = currentDetails;
-  const currentDetail = (key: string) => currentDetails.find((detail) => detail.key === key)?.value;
-  const osmWebsite = safeExternalUrl(
-    currentDetail('website') ?? currentOsmDetails.find((detail) => detail.key === 'website')?.value,
-  );
-  const shownCurrentDetails = currentDetails.filter(
-    (detail) =>
-      detail.key in osmLabels &&
-      !(detail.key === 'description' && detail.value === feature.shortDescription),
-  );
+  const currentClaims = feature.currentPlaceClaims ?? [];
+  const osmWebsite = safeExternalUrl(currentClaims.find((claim) => claim.kind === 'website')?.url);
+  const osmSourceUrl = safeExternalUrl(osmSource?.sourceUrl);
+  const shownCurrentClaims = currentClaims.flatMap((claim) => {
+    const presentation = currentPlaceClaimPresentation(claim);
+    return presentation ? [presentation] : [];
+  });
   const isCurrentPlace = Boolean(osmSource);
   const profile = feature.publication?.profile;
   const checkedAt = feature.osmCheckedAt ?? osmSource?.accessedAt;
@@ -178,18 +178,18 @@ export function FeatureDetails() {
             {profile === 'mapped_context'
               ? 'Mapped present-day context only. It does not confirm public access, availability, accessibility, fees, opening hours or current operation. '
               : 'Only fields supported by claim-specific evidence are shown. '}
-            {safeExternalUrl(osmSource?.sourceUrl) && (
-              <a href={safeExternalUrl(osmSource?.sourceUrl)} target="_blank" rel="noreferrer">
+            {osmSourceUrl && (
+              <a href={osmSourceUrl} target="_blank" rel="noreferrer">
                 View this place in OpenStreetMap
               </a>
             )}
           </p>
-          {shownCurrentDetails.length > 0 && (
+          {shownCurrentClaims.length > 0 && (
             <dl className="osm-detail-list">
-              {shownCurrentDetails.map((detail) => (
-                <div key={detail.key}>
-                  <dt>{osmLabels[detail.key]}</dt>
-                  <dd>{detail.value}</dd>
+              {shownCurrentClaims.map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
                 </div>
               ))}
             </dl>
@@ -201,7 +201,7 @@ export function FeatureDetails() {
               </a>
             </p>
           )}
-          {currentDetails.length === 0 && (
+          {currentDetails.length === 0 && currentClaims.length === 0 && (
             <p className="source-notes">
               No additional claim-supported visitor details are available.
             </p>
@@ -209,24 +209,27 @@ export function FeatureDetails() {
         </section>
       )}
       <h3>Sources</h3>
-      {feature.sourceRecords.map((source) => (
-        <div className="source" key={`${source.sourceName}-${source.sourceUrl ?? ''}`}>
-          <strong>{source.sourceOrganisation}</strong>
-          <br />
-          {safeExternalUrl(source.sourceUrl) ? (
-            <a href={safeExternalUrl(source.sourceUrl)} target="_blank" rel="noreferrer">
-              {source.sourceName}
-            </a>
-          ) : (
-            source.sourceName
-          )}
-          <br />
-          <small>
-            {source.reliability.replaceAll('_', ' ')} · accessed{' '}
-            {new Date(source.accessedAt).toLocaleDateString()}
-          </small>
-        </div>
-      ))}
+      {feature.sourceRecords.map((source) => {
+        const sourceUrl = safeExternalUrl(source.sourceUrl);
+        return (
+          <div className="source" key={`${source.sourceName}-${source.sourceUrl ?? ''}`}>
+            <strong>{source.sourceOrganisation}</strong>
+            <br />
+            {sourceUrl ? (
+              <a href={sourceUrl} target="_blank" rel="noreferrer">
+                {source.sourceName}
+              </a>
+            ) : (
+              source.sourceName
+            )}
+            <br />
+            <small>
+              {source.reliability.replaceAll('_', ' ')} · accessed{' '}
+              {new Date(source.accessedAt).toLocaleDateString()}
+            </small>
+          </div>
+        );
+      })}
     </aside>
   );
 }

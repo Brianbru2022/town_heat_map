@@ -5,7 +5,12 @@ import type {
   PublicationProfile,
   SourceRecord,
 } from './models';
-import type { PublicNarrativeComponent } from './publicDto';
+import type {
+  PublicCurrentPlaceClaim,
+  PublicCurrentPlaceDetail,
+  PublicNarrativeComponent,
+} from './publicDto';
+import { canonicalCurrentPlaceUrl } from './publicUrl';
 
 const tierRank: Record<EvidenceTier, number> = {
   mapped_context: 0,
@@ -86,6 +91,7 @@ const exactClaimByKey: Partial<Record<string, ClaimType>> = {
   operator: 'operator',
   wheelchair: 'accessibility',
   website: 'current_operation',
+  url: 'current_operation',
 };
 
 export function isOsmDerivedFeature(feature: HeritageFeature): boolean {
@@ -225,6 +231,7 @@ export function claimForCurrentPlaceKey(key: string): ClaimType | undefined {
   if (key.startsWith('capacity:'))
     return key === 'capacity:disabled' ? 'accessibility' : 'capacity';
   if (key.startsWith('payment:')) return 'fees';
+  if (key.startsWith('website:')) return 'current_operation';
   if (key.startsWith('contact:')) return 'current_operation';
   if (
     key.startsWith('socket:') ||
@@ -271,7 +278,7 @@ export function parseCurrentPlaceDetails(notes?: string): CurrentPlaceDetail[] {
     .filter((entry): entry is CurrentPlaceDetail => Boolean(entry?.key && entry.value));
 }
 
-export function publicCurrentPlaceDetails(
+function supportedCurrentPlaceDetails(
   feature: HeritageFeature,
   source?: SourceRecord,
   now: Date = new Date(),
@@ -281,6 +288,72 @@ export function publicCurrentPlaceDetails(
     const claim = claimForCurrentPlaceKey(detail.key);
     if (claim === undefined || !claimIsSupported(feature, claim, now)) return false;
     return claim === 'mapped_identity' || evidenceIsUsable(feature, claim, now, source);
+  });
+}
+
+function isPublicMappedDetail(detail: CurrentPlaceDetail): detail is PublicCurrentPlaceDetail {
+  return claimForCurrentPlaceKey(detail.key) === 'mapped_identity';
+}
+
+/** Mapped identity remains a narrow typed key/value surface, never an authority for visitor claims. */
+export function publicCurrentPlaceDetails(
+  feature: HeritageFeature,
+  source?: SourceRecord,
+  now: Date = new Date(),
+): PublicCurrentPlaceDetail[] {
+  return supportedCurrentPlaceDetails(feature, source, now).filter(isPublicMappedDetail);
+}
+
+const accessValues = new Set<string>([
+  'yes',
+  'permissive',
+  'customers',
+  'private',
+  'destination',
+  'no',
+  'designated',
+]);
+const wheelchairValues = new Set<string>(['yes', 'no', 'limited', 'designated']);
+const feeValues = new Set<string>(['yes', 'no', 'donation']);
+const day = '(?:Mo|Tu|We|Th|Fr|Sa|Su)';
+const time = '(?:[01]\\d|2[0-3]):[0-5]\\d';
+const openingHours = new RegExp(
+  `^(?:24/7|(?:${day}(?:-${day})?(?:,${day})*\\s+)?${time}-${time})$`,
+);
+
+function typedCurrentPlaceClaim(detail: CurrentPlaceDetail): PublicCurrentPlaceClaim | undefined {
+  const key = detail.key.toLowerCase();
+  const canonicalUrl = canonicalCurrentPlaceUrl(key, detail.value);
+  if (canonicalUrl) return { kind: 'website', url: canonicalUrl };
+  if (key === 'opening_hours' && openingHours.test(detail.value))
+    return { kind: 'opening_hours', schedule: detail.value };
+  if (key === 'wheelchair' && wheelchairValues.has(detail.value))
+    return {
+      kind: 'accessibility',
+      wheelchair: detail.value as 'yes' | 'no' | 'limited' | 'designated',
+    };
+  if (key === 'fee' && feeValues.has(detail.value))
+    return { kind: 'fees', fee: detail.value as 'yes' | 'no' | 'donation' };
+  if (key === 'access' && accessValues.has(detail.value))
+    return {
+      kind: 'public_access',
+      access: detail.value as
+        'yes' | 'permissive' | 'customers' | 'private' | 'destination' | 'no' | 'designated',
+    };
+  if (key === 'capacity' && /^[1-9]\d{0,5}$/.test(detail.value))
+    return { kind: 'capacity', spaces: Number(detail.value) };
+  return undefined;
+}
+
+/** Stronger claims are reconstructed from bounded values; arbitrary detail prose is withheld. */
+export function publicCurrentPlaceClaims(
+  feature: HeritageFeature,
+  source?: SourceRecord,
+  now: Date = new Date(),
+): PublicCurrentPlaceClaim[] {
+  return supportedCurrentPlaceDetails(feature, source, now).flatMap((detail) => {
+    const claim = typedCurrentPlaceClaim(detail);
+    return claim ? [claim] : [];
   });
 }
 

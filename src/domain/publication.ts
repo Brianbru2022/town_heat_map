@@ -12,6 +12,7 @@ import type {
 import type { Geometry, Point, Position } from 'geojson';
 import {
   projectPublicClaims,
+  publicCurrentPlaceClaims,
   publicCurrentPlaceDetails,
   publicNarrativeComponents,
 } from './claims';
@@ -27,6 +28,7 @@ import {
 } from './licensing';
 import type {
   PublicCurrentPlaceDetail,
+  PublicCurrentPlaceClaim,
   PublicFeature,
   PublicHistoricMapLayer,
   PublicLicenceComponent,
@@ -270,6 +272,11 @@ function publicFiniteNumber(value: unknown): number | undefined {
   return typeof value === 'number' && Number.isFinite(value) ? value : undefined;
 }
 
+function publicMethodologyWeight(value: unknown): number | undefined {
+  const weight = publicFiniteNumber(value);
+  return weight !== undefined && weight >= 0 && weight <= 1 ? weight : undefined;
+}
+
 function publicInteger(value: unknown): number | undefined {
   return typeof value === 'number' && Number.isSafeInteger(value) ? value : undefined;
 }
@@ -418,17 +425,27 @@ function publicCurrentPlaceDetailsFor(feature: HeritageFeature): PublicCurrentPl
     publicCurrentPlaceDetails(feature, source),
   );
   const projected = details.flatMap((detail) => {
-    const key = publicString(detail.key);
+    const key = detail.key;
     const rawValue = publicString(detail.value);
     if (!key || !rawValue) return [];
-    const value = key === 'website' ? canonicalPublicUrl(rawValue) : rawValue;
-    return value ? [{ key, value }] : [];
+    return [{ key, value: rawValue }];
   });
   return projected.filter(
     (detail, index) =>
       projected.findIndex(
         (candidate) => candidate.key === detail.key && candidate.value === detail.value,
       ) === index,
+  );
+}
+
+function publicCurrentPlaceClaimsFor(feature: HeritageFeature): PublicCurrentPlaceClaim[] {
+  const claims = feature.sourceRecords.flatMap((source) =>
+    publicCurrentPlaceClaims(feature, source),
+  );
+  return claims.filter(
+    (claim, index) =>
+      claims.findIndex((candidate) => JSON.stringify(candidate) === JSON.stringify(claim)) ===
+      index,
   );
 }
 
@@ -459,6 +476,7 @@ function publicFeature(feature: HeritageFeature): PublicFeature | undefined {
   )
     return undefined;
   const currentPlaceDetails = publicCurrentPlaceDetailsFor(feature);
+  const currentPlaceClaims = publicCurrentPlaceClaimsFor(feature);
   const narrative = publicNarrativeComponents(feature);
   const geometry = claimSafe.geometry === null ? null : publicGeometry(claimSafe.geometry);
   if (claimSafe.geometry !== undefined && claimSafe.geometry !== null && !geometry)
@@ -510,6 +528,7 @@ function publicFeature(feature: HeritageFeature): PublicFeature | undefined {
     ...(evidenceScope ? { evidenceScope } : {}),
     ...(profile ? { publication: { profile } } : {}),
     ...(currentPlaceDetails.length > 0 ? { currentPlaceDetails } : {}),
+    ...(currentPlaceClaims.length > 0 ? { currentPlaceClaims } : {}),
     ...(osmCheckedAt ? { osmCheckedAt } : {}),
     sourceRecords: sourceRecords as PublicSourceRecord[],
   };
@@ -524,7 +543,7 @@ function publicScoringMethodology(value: unknown): PublicScoringMethodology | un
     const source = candidate as Record<string, unknown>;
     const result: Record<string, number> = {};
     for (const key of keys) {
-      const score = publicFiniteNumber(source[key]);
+      const score = publicMethodologyWeight(source[key]);
       if (score === undefined) return undefined;
       result[key] = score;
     }
@@ -713,10 +732,26 @@ function buildPublicProjectPackage(pkg: ProjectPackage): PublicProjectPackage | 
     .filter((polygon) => settlementPolygonCanPublish(pkg, polygon))
     .map(publicSettlementPolygon)
     .filter((polygon): polygon is PublicSettlementPolygon => Boolean(polygon));
-  const existingComponents = (pkg.licensingMetadata?.components ?? [])
-    .filter((component) => componentLicenceAllowsPublicUse(component))
+  const sourceComponents = pkg.licensingMetadata?.components ?? [];
+  const explicitlyBlockedComponentIds = new Set(
+    sourceComponents
+      .filter((component) => !componentLicenceAllowsPublicUse(component))
+      .map((component) => publicString(component.id))
+      .filter((id): id is string => Boolean(id)),
+  );
+  const existingComponents = sourceComponents
+    .filter(
+      (component) =>
+        componentLicenceAllowsPublicUse(component) &&
+        !explicitlyBlockedComponentIds.has(component.id),
+    )
     .map(publicLicenceComponent)
     .filter((component): component is PublicLicenceComponent => Boolean(component));
+  const explicitComponentIds = new Set(
+    sourceComponents
+      .map((component) => publicString(component.id))
+      .filter((id): id is string => Boolean(id)),
+  );
   const osmComponent: DataLicenceComponent = {
     id: 'openstreetmap-current-place-data',
     name: 'OpenStreetMap-derived current-place data',
@@ -775,12 +810,11 @@ function buildPublicProjectPackage(pkg: ProjectPackage): PublicProjectPackage | 
     ...(containsOsmData ? [osmComponent] : []),
   ]
     .map(publicLicenceComponent)
-    .filter((component): component is PublicLicenceComponent => Boolean(component));
-  const computedComponentIds = new Set(computedComponents.map((component) => component.id));
-  const components: PublicLicenceComponent[] = [
-    ...existingComponents.filter((component) => !computedComponentIds.has(component.id)),
-    ...computedComponents,
-  ];
+    .filter(
+      (component): component is PublicLicenceComponent =>
+        Boolean(component) && !explicitComponentIds.has(component?.id ?? ''),
+    );
+  const components: PublicLicenceComponent[] = [...existingComponents, ...computedComponents];
   return {
     project: {
       id: projectId,

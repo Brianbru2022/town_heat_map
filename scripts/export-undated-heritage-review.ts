@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
 import { hasHistoricTimelineDate } from '../src/domain/timeline';
+import { spreadsheetSafeCsvCell } from '../server/csv';
 
 const projectPaths = process.argv.slice(2);
 const defaultProjects = [
@@ -44,11 +45,6 @@ const headers = [
   'review_action',
 ];
 
-function escapeCsv(value: unknown): string {
-  const text = value === undefined || value === null ? '' : String(value);
-  return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
-}
-
 function primarySource(feature: HeritageFeature): SourceRecord | undefined {
   return (
     feature.sourceRecords.find((source) => source.reliability === 'official_statutory') ??
@@ -90,11 +86,13 @@ function row(pkg: ProjectPackage, feature: HeritageFeature): string[] {
       .join(' | '),
     feature.reviewNotes,
     'Check the linked source for an explicit date or supported date range; do not infer a construction date from a current map or generic classification.',
-  ].map(escapeCsv);
+  ].map((value) => spreadsheetSafeCsvCell(value));
 }
 
 function csv(rows: string[][]): string {
-  return `\uFEFF${[headers, ...rows].map((values) => values.join(',')).join('\r\n')}\r\n`;
+  return `\uFEFF${[headers.map((value) => spreadsheetSafeCsvCell(value, false)), ...rows]
+    .map((values) => values.join(','))
+    .join('\r\n')}\r\n`;
 }
 
 const packages = await Promise.all(

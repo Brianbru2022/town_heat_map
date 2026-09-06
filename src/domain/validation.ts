@@ -43,22 +43,26 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
+function isDenseArray(value: unknown): value is unknown[] {
+  if (!Array.isArray(value)) return false;
+  for (let index = 0; index < value.length; index += 1)
+    if (!Object.hasOwn(value, index)) return false;
+  return true;
+}
+
 export function positionIsValid(position: unknown): position is number[] {
-  return (
-    Array.isArray(position) &&
-    position.length >= 2 &&
-    position.every((coordinate) => typeof coordinate === 'number' && Number.isFinite(coordinate)) &&
-    Number.isFinite(position[0]) &&
-    Number.isFinite(position[1]) &&
-    position[0] >= -180 &&
-    position[0] <= 180 &&
-    position[1] >= -90 &&
-    position[1] <= 90
-  );
+  if (
+    !isDenseArray(position) ||
+    position.length < 2 ||
+    !position.every((coordinate) => typeof coordinate === 'number' && Number.isFinite(coordinate))
+  )
+    return false;
+  const [longitude, latitude] = position as number[];
+  return longitude >= -180 && longitude <= 180 && latitude >= -90 && latitude <= 90;
 }
 
 function lineIsValid(line: unknown, minimumPositions: number): line is number[][] {
-  return Array.isArray(line) && line.length >= minimumPositions && line.every(positionIsValid);
+  return isDenseArray(line) && line.length >= minimumPositions && line.every(positionIsValid);
 }
 
 function ringIsValid(ring: unknown): ring is number[][] {
@@ -73,48 +77,69 @@ function ringIsValid(ring: unknown): ring is number[][] {
   );
 }
 
+export const MAX_GEOMETRY_NESTING_DEPTH = 32;
+
 export function geometryIsStructurallyValid(geometry: unknown): geometry is Geometry {
-  if (!isRecord(geometry) || typeof geometry.type !== 'string') return false;
-  switch (geometry.type) {
-    case 'Point':
-      return positionIsValid(geometry.coordinates);
-    case 'MultiPoint':
-      return (
-        Array.isArray(geometry.coordinates) &&
-        geometry.coordinates.length > 0 &&
-        geometry.coordinates.every(positionIsValid)
-      );
-    case 'LineString':
-      return lineIsValid(geometry.coordinates, 2);
-    case 'MultiLineString':
-      return (
-        Array.isArray(geometry.coordinates) &&
-        geometry.coordinates.length > 0 &&
-        geometry.coordinates.every((line) => lineIsValid(line, 2))
-      );
-    case 'Polygon':
-      return (
-        Array.isArray(geometry.coordinates) &&
-        geometry.coordinates.length > 0 &&
-        geometry.coordinates.every(ringIsValid)
-      );
-    case 'MultiPolygon':
-      return (
-        Array.isArray(geometry.coordinates) &&
-        geometry.coordinates.length > 0 &&
-        geometry.coordinates.every(
-          (polygon) => Array.isArray(polygon) && polygon.length > 0 && polygon.every(ringIsValid),
+  const pending: Array<{ value: unknown; depth: number }> = [{ value: geometry, depth: 0 }];
+  while (pending.length > 0) {
+    const current = pending.pop()!;
+    if (!isRecord(current.value) || typeof current.value.type !== 'string') return false;
+    switch (current.value.type) {
+      case 'Point':
+        if (!positionIsValid(current.value.coordinates)) return false;
+        break;
+      case 'MultiPoint':
+        if (
+          !isDenseArray(current.value.coordinates) ||
+          current.value.coordinates.length === 0 ||
+          !current.value.coordinates.every(positionIsValid)
         )
-      );
-    case 'GeometryCollection':
-      return (
-        Array.isArray(geometry.geometries) &&
-        geometry.geometries.length > 0 &&
-        geometry.geometries.every(geometryIsStructurallyValid)
-      );
-    default:
-      return false;
+          return false;
+        break;
+      case 'LineString':
+        if (!lineIsValid(current.value.coordinates, 2)) return false;
+        break;
+      case 'MultiLineString':
+        if (
+          !isDenseArray(current.value.coordinates) ||
+          current.value.coordinates.length === 0 ||
+          !current.value.coordinates.every((line) => lineIsValid(line, 2))
+        )
+          return false;
+        break;
+      case 'Polygon':
+        if (
+          !isDenseArray(current.value.coordinates) ||
+          current.value.coordinates.length === 0 ||
+          !current.value.coordinates.every(ringIsValid)
+        )
+          return false;
+        break;
+      case 'MultiPolygon':
+        if (
+          !isDenseArray(current.value.coordinates) ||
+          current.value.coordinates.length === 0 ||
+          !current.value.coordinates.every(
+            (polygon) => isDenseArray(polygon) && polygon.length > 0 && polygon.every(ringIsValid),
+          )
+        )
+          return false;
+        break;
+      case 'GeometryCollection':
+        if (
+          current.depth >= MAX_GEOMETRY_NESTING_DEPTH ||
+          !isDenseArray(current.value.geometries) ||
+          current.value.geometries.length === 0
+        )
+          return false;
+        for (const child of current.value.geometries)
+          pending.push({ value: child, depth: current.depth + 1 });
+        break;
+      default:
+        return false;
+    }
   }
+  return true;
 }
 
 function licenceResults(feature: HeritageFeature): ValidationResult[] {
@@ -380,28 +405,30 @@ export function validateFeatures(
           'geometry',
         ),
       );
-    const spatialIdentity = `${feature.name}|${JSON.stringify(feature.geometry)}`;
-    const currentSourceIds = new Set(
-      feature.sourceRecords.flatMap((source) =>
-        source.sourceRecordId ? [source.sourceRecordId] : [],
-      ),
-    );
-    const priorSourceIds = seen.get(spatialIdentity);
-    const hasDistinctAuthoritativeRecords =
-      priorSourceIds &&
-      currentSourceIds.size > 0 &&
-      ![...currentSourceIds].some((id) => priorSourceIds.has(id));
-    if (priorSourceIds && !hasDistinctAuthoritativeRecords)
-      results.push(
-        result(
-          feature.id,
-          'warning',
-          'advisory',
-          'record.possible_duplicate',
-          'Possible duplicate record.',
+    if (geometryIsValid) {
+      const spatialIdentity = `${feature.name}|${JSON.stringify(feature.geometry)}`;
+      const currentSourceIds = new Set(
+        feature.sourceRecords.flatMap((source) =>
+          source.sourceRecordId ? [source.sourceRecordId] : [],
         ),
       );
-    seen.set(spatialIdentity, new Set([...(priorSourceIds ?? []), ...currentSourceIds]));
+      const priorSourceIds = seen.get(spatialIdentity);
+      const hasDistinctAuthoritativeRecords =
+        priorSourceIds &&
+        currentSourceIds.size > 0 &&
+        ![...currentSourceIds].some((id) => priorSourceIds.has(id));
+      if (priorSourceIds && !hasDistinctAuthoritativeRecords)
+        results.push(
+          result(
+            feature.id,
+            'warning',
+            'advisory',
+            'record.possible_duplicate',
+            'Possible duplicate record.',
+          ),
+        );
+      seen.set(spatialIdentity, new Set([...(priorSourceIds ?? []), ...currentSourceIds]));
+    }
     if (
       feature.geometry?.type === 'Point' &&
       geometryIsValid &&

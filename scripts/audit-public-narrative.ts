@@ -3,6 +3,7 @@ import {
   claimForCurrentPlaceKey,
   claimIsSupported,
   publicationProfile,
+  publicCurrentPlaceClaims,
   publicCurrentPlaceDetails,
 } from '../src/domain/claims';
 import { publicProjectPackage } from '../src/domain/publication';
@@ -10,6 +11,7 @@ import { publicProjectPackage } from '../src/domain/publication';
 const errors: string[] = [];
 let publicFeatureCount = 0;
 let projectedDetailCount = 0;
+let projectedClaimCount = 0;
 
 function reject(condition: unknown, message: string): void {
   if (condition) errors.push(message);
@@ -77,6 +79,9 @@ for (const sourcePackage of publishedProjectPackages) {
     const expectedDetails = sourceFeature.sourceRecords.flatMap((source) =>
       publicCurrentPlaceDetails(sourceFeature, source),
     );
+    const expectedClaims = sourceFeature.sourceRecords.flatMap((source) =>
+      publicCurrentPlaceClaims(sourceFeature, source),
+    );
     const projected = feature.currentPlaceDetails ?? [];
     for (const detail of projected) {
       projectedDetailCount += 1;
@@ -95,6 +100,15 @@ for (const sourcePackage of publishedProjectPackages) {
       ),
       `${sourcePackage.project.id}/${feature.id}: unsupported projected current-place detail`,
     );
+    const projectedClaims = feature.currentPlaceClaims ?? [];
+    projectedClaimCount += projectedClaims.length;
+    reject(
+      projectedClaims.some(
+        (claim) =>
+          !expectedClaims.some((candidate) => JSON.stringify(candidate) === JSON.stringify(claim)),
+      ),
+      `${sourcePackage.project.id}/${feature.id}: unsupported typed current-place claim`,
+    );
   }
 }
 
@@ -103,5 +117,5 @@ if (errors.length > 0) {
 }
 
 console.log(
-  `Public narrative audit passed: ${publishedProjectPackages.length} packages, ${publicFeatureCount} public features, ${projectedDetailCount} allowlisted current-place details, zero arbitrary internal narrative paths.`,
+  `Public narrative audit passed: ${publishedProjectPackages.length} packages, ${publicFeatureCount} public features, ${projectedDetailCount} mapped identity details and ${projectedClaimCount} typed current-place claims, zero arbitrary internal narrative paths.`,
 );

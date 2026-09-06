@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { alloaPackage } from '../data/alloa';
 import { publicGeometry, publicProjectPackage } from './publication';
-import { geometryIsStructurallyValid } from './validation';
+import { geometryIsStructurallyValid, MAX_GEOMETRY_NESTING_DEPTH } from './validation';
 
 const validGeometries = [
   { type: 'Point', coordinates: [-3.79, 56.11] },
@@ -52,6 +52,14 @@ const validGeometries = [
   },
 ] as const;
 
+const sparsePosition = [-3.79, 56.11, 0];
+delete sparsePosition[2];
+const sparsePositions: unknown[] = [
+  [-3.79, 56.11],
+  [-3.78, 56.12],
+];
+delete sparsePositions[1];
+
 describe('total public geometry boundary', () => {
   it.each(validGeometries)('accepts and reconstructs valid $type geometry', (geometry) => {
     const withSentinel = { ...structuredClone(geometry), privateNote: 'GEOMETRY-SENTINEL' };
@@ -72,6 +80,8 @@ describe('total public geometry boundary', () => {
     { type: 'Point', coordinates: [181, 0] },
     { type: 'Point', coordinates: [0, 91] },
     { type: 'Point', coordinates: [0, Number.NaN] },
+    { type: 'Point', coordinates: sparsePosition },
+    { type: 'MultiPoint', coordinates: sparsePositions },
     { type: 'LineString', coordinates: [[0, 0]] },
     {
       type: 'Polygon',
@@ -91,6 +101,17 @@ describe('total public geometry boundary', () => {
     expect(() => geometryIsStructurallyValid(geometry)).not.toThrow();
     expect(geometryIsStructurallyValid(geometry)).toBe(false);
     expect(publicGeometry(geometry)).toBeUndefined();
+  });
+
+  it('enforces the documented GeometryCollection nesting limit without recursion overflow', () => {
+    let accepted: unknown = { type: 'Point', coordinates: [-3.79, 56.11] };
+    for (let index = 0; index < MAX_GEOMETRY_NESTING_DEPTH; index += 1)
+      accepted = { type: 'GeometryCollection', geometries: [accepted] };
+    expect(geometryIsStructurallyValid(accepted)).toBe(true);
+
+    const rejected = { type: 'GeometryCollection', geometries: [accepted] };
+    expect(() => geometryIsStructurallyValid(rejected)).not.toThrow();
+    expect(geometryIsStructurallyValid(rejected)).toBe(false);
   });
 
   it('fails malformed boundary, settlement and additional locations closed', () => {

@@ -1,6 +1,20 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 const tileOrigin = 'https://tile.openstreetmap.org';
+
+async function openLoadedExplorer(page: Page) {
+  const projectIndex = page.waitForResponse((response) => {
+    const url = new URL(response.url());
+    return url.pathname === '/api/projects' && response.status() === 200;
+  });
+  const selectedProject = page.waitForResponse((response) => {
+    const url = new URL(response.url());
+    return url.pathname.startsWith('/api/projects/') && response.status() === 200;
+  });
+  const response = await page.goto('/');
+  await Promise.all([projectIndex, selectedProject]);
+  return response;
+}
 
 test('renders the permitted production basemap without CSP violations', async ({ page }) => {
   const tileResponses: Array<{ status: number; contentType: string | undefined }> = [];
@@ -17,7 +31,7 @@ test('renders the permitted production basemap without CSP violations', async ({
       cspViolations.push(message.text());
   });
 
-  const response = await page.goto('/');
+  const response = await openLoadedExplorer(page);
   expect(response?.status()).toBe(200);
   const csp = response?.headers()['content-security-policy'] ?? '';
   expect(csp).toContain("connect-src 'self' https://tile.openstreetmap.org");
@@ -36,7 +50,7 @@ test('renders the permitted production basemap without CSP violations', async ({
 });
 
 test('blocks an unrelated external connection', async ({ page }) => {
-  const response = await page.goto('/');
+  const response = await openLoadedExplorer(page);
   const csp = response?.headers()['content-security-policy'] ?? '';
   expect(csp).not.toContain('example.com');
 
@@ -51,11 +65,18 @@ test('blocks an unrelated external connection', async ({ page }) => {
   expect(blocked).toBe(true);
 });
 
+test('routes HES input validation through the production Fastify stack', async ({ request }) => {
+  const response = await request.get('/api/hes-designations?bbox=%2C1%2C2%2C3');
+
+  expect(response.status()).toBe(400);
+  expect(await response.json()).toEqual({ message: 'A valid Web Mercator bbox is required.' });
+});
+
 test('compresses production JavaScript and CSS with their correct content types', async ({
   page,
   request,
 }) => {
-  await page.goto('/');
+  await openLoadedExplorer(page);
   const assets = await page
     .locator('script[src], link[rel="stylesheet"]')
     .evaluateAll((elements) =>

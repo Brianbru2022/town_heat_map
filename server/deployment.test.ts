@@ -31,6 +31,7 @@ describe('production deployment boundary', () => {
     expect(dockerfile).toContain('COPY data/exports/*-listed-buildings.csv');
     expect(dockerfile).toContain('USER node');
     expect(dockerfile).toContain("fetch('http://127.0.0.1:3001/health')");
+    expect(dockerfile).toContain('await response.arrayBuffer()');
     expect(dockerfile).not.toContain('COPY . .');
     expect(ignored).toContain('data/review/');
     expect(ignored).toContain('scripts/');
@@ -84,11 +85,13 @@ describe('production deployment boundary', () => {
     const nginx = await deploymentFile('docker/nginx.conf');
     const productionEnvironment = await deploymentFile('.env.production');
     const dockerfile = await deploymentFile('Dockerfile');
+    const viteConfig = await deploymentFile('vite.config.ts');
 
     expect(productionEnvironment).toContain(
       'VITE_BASEMAP_TILE_URL=https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     );
     expect(dockerfile).toContain('COPY index.html vite.config.ts .env.production ./');
+    expect(viteConfig).toContain('validateMapStyleUrl');
     expect(nginx).toContain("connect-src 'self' https://tile.openstreetmap.org");
     expect(nginx).not.toMatch(/connect-src[^;"]+\*/);
     expect(nginx).toContain('gzip on;');

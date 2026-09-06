@@ -49,7 +49,11 @@ function expectPublicPackage(pkg: PublicProjectPackage): void {
   if (project.timelineStart !== undefined) expectFinite(project.timelineStart);
   if (project.timelineEnd !== undefined) expectFinite(project.timelineEnd);
   for (const group of Object.values(project.methodology))
-    for (const score of Object.values(group)) expectFinite(score);
+    for (const score of Object.values(group)) {
+      expectFinite(score);
+      expect(score).toBeGreaterThanOrEqual(0);
+      expect(score).toBeLessThanOrEqual(1);
+    }
 
   for (const feature of pkg.features) {
     for (const value of [feature.id, feature.name, feature.featureType, feature.locationType])
@@ -77,7 +81,14 @@ function expectPublicPackage(pkg: PublicProjectPackage): void {
       expect(Object.keys(detail).sort()).toEqual(['key', 'value']);
       expectString(detail.key);
       expectString(detail.value);
-      if (detail.key === 'website') expect(canonicalPublicUrl(detail.value)).toBe(detail.value);
+    });
+    feature.currentPlaceClaims?.forEach((claim) => {
+      expectString(claim.kind);
+      if (claim.kind === 'website') expect(canonicalPublicUrl(claim.url)).toBe(claim.url);
+      if (claim.kind === 'capacity') {
+        expectFinite(claim.spaces);
+        expect(Number.isSafeInteger(claim.spaces)).toBe(true);
+      }
     });
     feature.narrative?.forEach((component) => {
       expect(Object.keys(component).sort()).toEqual(['kind', 'text']);

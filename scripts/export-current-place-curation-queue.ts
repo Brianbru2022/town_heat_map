@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 import type { HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
-import { spreadsheetSafeText } from '../server/csv';
+import { spreadsheetSafeCsvCell } from '../server/csv';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
 
@@ -19,8 +19,7 @@ function osmValue(source: SourceRecord | undefined, key: string): string {
 }
 
 function csvCell(value: string | undefined): string {
-  const text = spreadsheetSafeText(value ?? '');
-  return /[",\n\r]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+  return spreadsheetSafeCsvCell(value);
 }
 
 const pkg = JSON.parse(await readFile(projectPath, 'utf8')) as ProjectPackage;
@@ -72,7 +71,9 @@ const header = [
   'rating_source_url',
   'rating_accessed_at',
   'review_status',
-].join(',');
+]
+  .map((value) => spreadsheetSafeCsvCell(value, false))
+  .join(',');
 const outputDirectory = resolve('data/review');
 const outputPath = resolve(outputDirectory, `${pkg.project.id}-current-place-curation.csv`);
 await mkdir(outputDirectory, { recursive: true });

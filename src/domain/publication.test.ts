@@ -392,6 +392,16 @@ describe('publication assessment', () => {
     expect(delivered.project.boundary.properties).toEqual({});
   });
 
+  it.each([-0.01, 1.01, Number.POSITIVE_INFINITY])(
+    'rejects a nonsensical public methodology weight: %s',
+    (weight) => {
+      const pkg = structuredClone(projectPackage([feature()]));
+      pkg.project.methodology.age.before_1700 = weight;
+
+      expect(publicProjectPackage(pkg)).toBeUndefined();
+    },
+  );
+
   it('omits unresolved source definitions, maps, polygons and licence components', () => {
     const record = feature();
     const resolvedPolygon = structuredClone(alloaPackage.settlementPolygons[0]);

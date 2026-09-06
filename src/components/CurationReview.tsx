@@ -108,6 +108,10 @@ export function CurationReview() {
     selectFeature(selected.feature);
     setMode('explore');
   };
+  const undatedReviewUrl = canonicalPublicUrl(
+    `/api/projects/${encodeURIComponent(pkg.project.id)}/exports/undated-heritage-review.csv`,
+    { allowSameOrigin: true },
+  );
 
   return (
     <main className="info curation-review">
@@ -150,12 +154,11 @@ export function CurationReview() {
         <button type="button" onClick={download} disabled={!Object.keys(decisions).length}>
           Download local decisions
         </button>
-        <a
-          href={`/api/projects/${encodeURIComponent(pkg.project.id)}/exports/undated-heritage-review.csv`}
-          download
-        >
-          Download undated heritage CSV
-        </a>
+        {undatedReviewUrl && (
+          <a href={undatedReviewUrl} download>
+            Download undated heritage CSV
+          </a>
+        )}
       </article>
       <div className="review-workspace">
         <article className="card review-queue" aria-label="Review records">

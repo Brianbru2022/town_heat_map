@@ -120,9 +120,10 @@ function localMapDatabase(packageId: string): DatabaseSync | undefined {
 
 function isWebMercatorBbox(value: string): boolean {
   if (value.length > 128) return false;
-  const parts = value.split(',').map(Number);
+  const rawParts = value.split(',');
+  if (rawParts.length !== 4 || rawParts.some((part) => !part.trim())) return false;
+  const parts = rawParts.map(Number);
   return (
-    parts.length === 4 &&
     parts.every(Number.isFinite) &&
     parts.every((coordinate) => Math.abs(coordinate) <= 20037509) &&
     parts[0] < parts[2] &&

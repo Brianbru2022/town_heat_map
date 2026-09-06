@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import type { HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
 import { assessProjectPackage } from '../src/domain/publication';
+import { spreadsheetSafeCsvCell } from '../server/csv';
 
 const projectPaths = process.argv.slice(2);
 const defaultProjects = [
@@ -37,10 +38,6 @@ const headers = [
   'source_attribution',
 ];
 
-function escapeCsv(value: unknown): string {
-  const text = value === undefined || value === null ? '' : String(value);
-  return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
-}
 function selectionClass(feature: HeritageFeature): string {
   if (feature.tags.includes('town-selection-inside-locality')) return 'inside_locality';
   if (feature.tags.includes('town-selection-heritage-buffer')) return 'heritage_buffer';
@@ -98,10 +95,12 @@ function row(pkg: ProjectPackage, feature: HeritageFeature): string[] {
     source?.sourceUrl,
     source?.accessedAt,
     source?.sourceOrganisation,
-  ].map(escapeCsv);
+  ].map((value) => spreadsheetSafeCsvCell(value));
 }
 function csv(rows: string[][]): string {
-  return `\uFEFF${[headers, ...rows].map((values) => values.join(',')).join('\r\n')}\r\n`;
+  return `\uFEFF${[headers.map((value) => spreadsheetSafeCsvCell(value, false)), ...rows]
+    .map((values) => values.join(','))
+    .join('\r\n')}\r\n`;
 }
 
 const packages = await Promise.all(

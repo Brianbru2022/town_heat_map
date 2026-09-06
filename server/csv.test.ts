@@ -52,21 +52,45 @@ describe('publication-aware CSV delivery', () => {
     expect(csv).not.toContain('notes');
   });
 
-  it.each(['=2+2', '+SUM(A1:A2)', '-cmd|calc', '@IMPORTXML(A1)', '  =HYPERLINK(A1)', '\t=1'])(
-    'neutralises spreadsheet formula text: %s',
-    (value) => {
-      expect(spreadsheetSafeText(value)).toBe(`'${value}`);
-      const csv = publicCsvByRecordIds(
-        `feature_id,name\r\nrecord-1,"${value}"\r\n`,
-        'feature_id',
-        new Set(['record-1']),
-        ['feature_id', 'name'],
-      );
-      expect(csv).toContain(`'${value}`);
-    },
-  );
+  it.each([
+    '=2+2',
+    '+SUM(A1:A2)',
+    '-cmd|calc',
+    '@IMPORTXML(A1)',
+    '  =HYPERLINK(A1)',
+    '\t=1',
+    '\r\n +1',
+    '\u0000=1+1',
+    '\u0000\t @IMPORTXML(A1)',
+  ])('neutralises spreadsheet formula text: %s', (value) => {
+    const normalised = [...value]
+      .filter((character) => {
+        const code = character.charCodeAt(0);
+        return code === 9 || code === 10 || code === 13 || (code >= 32 && code !== 127);
+      })
+      .join('');
+    expect(spreadsheetSafeText(value)).toBe(`'${normalised}`);
+    const csv = publicCsvByRecordIds(
+      `feature_id,name\r\nrecord-1,"${value}"\r\n`,
+      'feature_id',
+      new Set(['record-1']),
+      ['feature_id', 'name'],
+    );
+    expect(csv).toContain(`'${normalised}`);
+  });
 
-  it.each(['Town Hall', 'Café + bakery', 'email@example.test', '1919-1945'])(
+  it('strips non-text C0 controls before neutralising the parsed export cell', () => {
+    const csv = publicCsvByRecordIds(
+      'feature_id,name\r\nrecord-1,"\u0000\u0001=1+1"\r\n',
+      'feature_id',
+      new Set(['record-1']),
+      ['feature_id', 'name'],
+    );
+
+    expect(csv).toBe("feature_id,name\r\nrecord-1,'=1+1\r\n");
+  });
+
+  it.each(['Town Hall', '  Town Hall', 'Café + bakery', 'email@example.test', '1919-1945'])(
     'preserves ordinary text: %s',
     (value) => expect(spreadsheetSafeText(value)).toBe(value),
   );

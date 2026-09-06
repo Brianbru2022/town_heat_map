@@ -29,6 +29,10 @@ export function InformationPage() {
       : mode === 'methodology'
         ? 'Methodology'
         : 'Town guide';
+  const listedBuildingsUrl = canonicalPublicUrl(
+    `/api/projects/${encodeURIComponent(pkg.project.id)}/exports/listed-buildings.csv`,
+    { allowSameOrigin: true },
+  );
   return (
     <main className="info" id="main-content">
       <h1>{title}</h1>
@@ -40,43 +44,48 @@ export function InformationPage() {
               Download the current HES statutory listed-building extract for the NRS town locality
               and its clearly labelled heritage-buffer review candidates.
             </p>
-            <a
-              href={`/api/projects/${encodeURIComponent(pkg.project.id)}/exports/listed-buildings.csv`}
-              download
-            >
-              Download {pkg.project.locality} listed buildings (CSV)
-            </a>
+            {listedBuildingsUrl && (
+              <a href={listedBuildingsUrl} download>
+                Download {pkg.project.locality} listed buildings (CSV)
+              </a>
+            )}
           </article>
-          {pkg.sources.map((source) => (
-            <article className="card" key={source.id}>
-              <h2>{source.name}</h2>
-              <p>
-                <strong>{source.organisation}</strong>
-              </p>
-              <p>Reliability: {source.reliability.replaceAll('_', ' ')}</p>
-              {canonicalPublicUrl(source.sourceUrl) && (
-                <a href={canonicalPublicUrl(source.sourceUrl)} target="_blank" rel="noreferrer">
-                  Open source
-                </a>
-              )}
-              {source.licence && <p>Licence: {source.licence}</p>}
-            </article>
-          ))}
-          {pkg.licensingMetadata?.components.map((component) => (
-            <article className="card" key={component.id}>
-              <h2>{component.name}</h2>
-              <p>
-                {component.attribution} · {component.scope}
-              </p>
-              {canonicalPublicUrl(component.licenceUrl) ? (
-                <a href={canonicalPublicUrl(component.licenceUrl)} target="_blank" rel="noreferrer">
-                  {component.licence}
-                </a>
-              ) : (
-                <p>Licence: {component.licence}</p>
-              )}
-            </article>
-          ))}
+          {pkg.sources.map((source) => {
+            const sourceUrl = canonicalPublicUrl(source.sourceUrl);
+            return (
+              <article className="card" key={source.id}>
+                <h2>{source.name}</h2>
+                <p>
+                  <strong>{source.organisation}</strong>
+                </p>
+                <p>Reliability: {source.reliability.replaceAll('_', ' ')}</p>
+                {sourceUrl && (
+                  <a href={sourceUrl} target="_blank" rel="noreferrer">
+                    Open source
+                  </a>
+                )}
+                {source.licence && <p>Licence: {source.licence}</p>}
+              </article>
+            );
+          })}
+          {pkg.licensingMetadata?.components.map((component) => {
+            const licenceUrl = canonicalPublicUrl(component.licenceUrl);
+            return (
+              <article className="card" key={component.id}>
+                <h2>{component.name}</h2>
+                <p>
+                  {component.attribution} · {component.scope}
+                </p>
+                {licenceUrl ? (
+                  <a href={licenceUrl} target="_blank" rel="noreferrer">
+                    {component.licence}
+                  </a>
+                ) : (
+                  <p>Licence: {component.licence}</p>
+                )}
+              </article>
+            );
+          })}
         </>
       )}
       {mode === 'methodology' && (

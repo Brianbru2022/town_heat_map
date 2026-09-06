@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { validateBasemapTileUrl } from './src/config/basemap';
+import { validateMapStyleUrl } from './src/config/mapStyle';
 
 const apiPort = process.env.TOWNSCAPE_API_PORT ?? '3001';
 
@@ -30,6 +31,7 @@ export default defineConfig(({ mode }) => {
     process.env.VITE_BASEMAP_TILE_URL ?? fileEnvironment.VITE_BASEMAP_TILE_URL,
     mode === 'production',
   );
+  validateMapStyleUrl(process.env.VITE_MAP_STYLE_URL ?? fileEnvironment.VITE_MAP_STYLE_URL);
   return {
     plugins: [react()],
     server: {

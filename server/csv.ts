@@ -34,11 +34,20 @@ function parseCsv(value: string): string[][] {
 }
 
 export function spreadsheetSafeText(value: string): string {
-  return /^[\t\r\n ]*[=+\-@]/.test(value) || /^[\t\r]/.test(value) ? `'${value}` : value;
+  const normalised = [...value]
+    .filter((character) => {
+      const code = character.charCodeAt(0);
+      return code === 9 || code === 10 || code === 13 || (code >= 32 && code !== 127);
+    })
+    .join('');
+  return /^[\t\r\n ]*[=+\-@]/.test(normalised) || /^[\t\r\n]/.test(normalised)
+    ? `'${normalised}`
+    : normalised;
 }
 
-function csvCell(value: string, protectFormula = false): string {
-  const safe = protectFormula ? spreadsheetSafeText(value) : value;
+export function spreadsheetSafeCsvCell(value: unknown, protectFormula = true): string {
+  const text = value === undefined || value === null ? '' : String(value);
+  const safe = protectFormula ? spreadsheetSafeText(text) : text;
   return /[",\r\n]/.test(safe) ? `"${safe.replaceAll('"', '""')}"` : safe;
 }
 
@@ -55,7 +64,7 @@ export function filterCsvByRecordIds(
   if (idIndex === -1) throw new Error(`CSV export is missing the ${idColumn} column.`);
   const filtered = [header, ...rows.slice(1).filter((row) => publishableIds.has(row[idIndex]))];
   return `${hasByteOrderMark ? '\uFEFF' : ''}${filtered
-    .map((row, index) => row.map((cell) => csvCell(cell, index > 0)).join(','))
+    .map((row, index) => row.map((cell) => spreadsheetSafeCsvCell(cell, index > 0)).join(','))
     .join('\r\n')}\r\n`;
 }
 
@@ -84,7 +93,7 @@ export function publicCsvByRecordIds(
     publicColumns,
     ...filtered.map((row) => indexes.map((index) => row[index] ?? '')),
   ]
-    .map((row, index) => row.map((cell) => csvCell(cell, index > 0)).join(','))
+    .map((row, index) => row.map((cell) => spreadsheetSafeCsvCell(cell, index > 0)).join(','))
     .join('\r\n')}\r\n`;
 }
 
@@ -168,6 +177,6 @@ export function publicListedBuildingsCsv(
       ];
     });
   return `${[header, ...rows]
-    .map((row, index) => row.map((cell) => csvCell(cell, index > 0)).join(','))
+    .map((row, index) => row.map((cell) => spreadsheetSafeCsvCell(cell, index > 0)).join(','))
     .join('\r\n')}\r\n`;
 }

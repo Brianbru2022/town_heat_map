@@ -114,9 +114,32 @@ describe('claim-relative public projection', () => {
 
     const delivered = publicProjectPackage(packageWith(feature))?.features[0];
 
-    expect(delivered?.currentPlaceDetails?.some((detail) => detail.key === 'website')).toBe(false);
+    expect(Boolean(delivered?.currentPlaceClaims?.some((claim) => claim.kind === 'website'))).toBe(
+      false,
+    );
     expect(JSON.stringify(delivered)).not.toContain(website);
   });
+
+  it.each(['website', 'contact:website', 'url', 'contact:url'])(
+    'emits a valid %s alias only as a canonical typed website claim',
+    (key) => {
+      const feature = osmFeature({
+        publication: { state: 'verified', profile: 'verified_facility' },
+        claimEvidence: [evidence('current_operation', 'operational')],
+      });
+      feature.sourceRecords[1].notes = `Current-place curation: ${key}=HTTPS://EXAMPLE.TEST:443/a/../facility.`;
+
+      const delivered = publicProjectPackage(packageWith(feature))?.features[0];
+
+      expect(delivered?.currentPlaceClaims).toEqual([
+        { kind: 'website', url: 'https://example.test/facility' },
+      ]);
+      expect(delivered?.currentPlaceDetails).toEqual([
+        { key: 'amenity', value: 'parking' },
+        { key: 'name', value: 'Test car park' },
+      ]);
+    },
+  );
 
   it('allows an OSM-only Tier M identity/location claim and suppresses stronger fields', () => {
     const feature = osmFeature();
@@ -220,7 +243,11 @@ describe('claim-relative public projection', () => {
     const details = delivered?.currentPlaceDetails ?? [];
 
     expect(delivered?.publication).toMatchObject({ profile: 'mapped_context' });
-    expect(details.some(({ key }) => key === 'opening_hours' || key === 'operator')).toBe(false);
+    expect(details).toEqual([
+      { key: 'amenity', value: 'parking' },
+      { key: 'name', value: 'Test car park' },
+    ]);
+    expect(delivered?.currentPlaceClaims).toBeUndefined();
   });
 
   it('shows Tier F fields only when corroborating claim evidence identifies a retained source', () => {
@@ -237,16 +264,15 @@ describe('claim-relative public projection', () => {
     const delivered = publicProjectPackage(packageWith(feature))?.features[0];
     const details = delivered?.currentPlaceDetails ?? [];
 
-    expect(details.map(({ key }) => key)).toEqual([
-      'amenity',
-      'name',
-      'access',
-      'opening_hours',
-      'fee',
-      'operator',
-      'capacity',
+    expect(details.map(({ key }) => key)).toEqual(['amenity', 'name']);
+    expect(delivered?.currentPlaceClaims).toEqual([
+      { kind: 'public_access', access: 'yes' },
+      { kind: 'opening_hours', schedule: '09:00-17:00' },
+      { kind: 'fees', fee: 'no' },
+      { kind: 'capacity', spaces: 18 },
     ]);
-    expect(details.some(({ key }) => key === 'wheelchair' || key === 'website')).toBe(false);
+    expect(JSON.stringify(delivered)).not.toContain('"kind":"operator"');
+    expect(JSON.stringify(delivered)).not.toContain('"value":"Example Council"');
   });
 
   it('requires current Tier O evidence for accessibility, operation, EV and route/access claims', () => {

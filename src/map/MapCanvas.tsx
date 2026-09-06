@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import maplibregl, { type Map } from 'maplibre-gl';
+import maplibregl, { type Map, type StyleSpecification } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useExplorerStore, useLoadedProjectPackage } from '../app/store';
 import { historicCharacterScore } from '../domain/scoring';
@@ -14,13 +14,16 @@ import type { ScoringMethodology } from '../domain/models';
 import type { PublicFeature, PublicSettlementPolygon } from '../domain/publicDto';
 import type { LineString, MultiPolygon, Point, Polygon } from 'geojson';
 import { validateBasemapTileUrl } from '../config/basemap';
-import { canonicalPublicTileUrl } from '../domain/publicUrl';
+import { validateMapStyleUrl } from '../config/mapStyle';
+import { canonicalPublicTileUrl, canonicalPublicUrl } from '../domain/publicUrl';
 
 const basemapTileUrl = validateBasemapTileUrl(
   import.meta.env.VITE_BASEMAP_TILE_URL,
   import.meta.env.PROD,
 );
-const openStreetMapBasemapStyle = {
+const mapStyleUrl = validateMapStyleUrl(import.meta.env.VITE_MAP_STYLE_URL);
+const openStreetMapCopyrightUrl = canonicalPublicUrl('https://www.openstreetmap.org/copyright')!;
+const openStreetMapBasemapStyle: StyleSpecification = {
   version: 8,
   sources: {
     openstreetmap: {
@@ -875,7 +878,7 @@ export function MapCanvas() {
     if (!container.current || mapRef.current) return;
     const map = new maplibregl.Map({
       container: container.current,
-      style: import.meta.env.VITE_MAP_STYLE_URL || openStreetMapBasemapStyle,
+      style: mapStyleUrl || openStreetMapBasemapStyle,
       center: pkg.project.centre,
       zoom: 13,
       attributionControl: false,
@@ -1207,7 +1210,7 @@ export function MapCanvas() {
       <div ref={container} className="map" aria-describedby="map-alternative" />
       <div className="attribution">
         {attribution.provider && <span>{attribution.provider} · </span>}
-        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
+        <a href={openStreetMapCopyrightUrl} target="_blank" rel="noreferrer">
           {attribution.openStreetMap}
         </a>
         {attribution.additional?.map((item) => (

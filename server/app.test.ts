@@ -203,4 +203,19 @@ describe('public API safeguards', () => {
     expect(queryResponse.json()).toEqual({ message: 'A single search query is required.' });
     expect(fetchImplementation).not.toHaveBeenCalled();
   });
+
+  it.each([',1,2,3', '1,,2,3', '1,2,,3', '1,2,3,'])(
+    'rejects an empty HES bbox component: %s',
+    async (bboxValue) => {
+      const app = await buildApp();
+      apps.push(app);
+
+      const response = await app.inject(
+        `/api/hes-designations?bbox=${encodeURIComponent(bboxValue)}`,
+      );
+
+      expect(response.statusCode).toBe(400);
+      expect(response.json()).toEqual({ message: 'A valid Web Mercator bbox is required.' });
+    },
+  );
 });
