@@ -77,7 +77,13 @@ test('compresses production JavaScript and CSS with their correct content types'
 });
 
 test('rejects repository-looking paths instead of using the SPA fallback', async ({ request }) => {
-  for (const path of ['/.git/config', '/.env.production', '/src/App.tsx']) {
+  for (const path of [
+    '/.git/config',
+    '/.env.production',
+    '/src/App.tsx',
+    '/package.json',
+    '/Dockerfile',
+  ]) {
     const response = await request.get(path);
     expect(response.status()).toBe(404);
     expect(await response.text()).not.toContain('<div id="root">');

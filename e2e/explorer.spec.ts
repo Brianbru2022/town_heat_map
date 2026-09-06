@@ -8,6 +8,14 @@ test('opens the published explorer and information pages', async ({ page }) => {
   });
   await page.goto('/');
   await expect(page.getByRole('button', { name: 'Historic Town Explorer' })).toBeVisible();
+  const mapControls = page.locator('.maplibregl-ctrl-group button');
+  await expect(mapControls.first()).toBeVisible();
+  for (const box of await mapControls.evaluateAll((controls) =>
+    controls.map((control) => control.getBoundingClientRect().toJSON()),
+  )) {
+    expect(box.width).toBeGreaterThanOrEqual(44);
+    expect(box.height).toBeGreaterThanOrEqual(44);
+  }
   await expect(page.getByLabel('Country')).toHaveValue('Scotland');
   await expect(page.getByLabel('County')).toHaveValue('Clackmannanshire');
   await expect(page.getByLabel('Town', { exact: true })).toHaveValue('alloa-scotland');

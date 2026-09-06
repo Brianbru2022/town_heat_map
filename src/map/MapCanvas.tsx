@@ -14,6 +14,7 @@ import type { ScoringMethodology } from '../domain/models';
 import type { PublicFeature, PublicSettlementPolygon } from '../domain/publicDto';
 import type { LineString, MultiPolygon, Point, Polygon } from 'geojson';
 import { validateBasemapTileUrl } from '../config/basemap';
+import { canonicalPublicTileUrl } from '../domain/publicUrl';
 
 const basemapTileUrl = validateBasemapTileUrl(
   import.meta.env.VITE_BASEMAP_TILE_URL,
@@ -756,7 +757,9 @@ function mapSettlementAge(polygons: PublicSettlementPolygon[], year: number) {
 function resolvedTileUrl(tileUrl: string): string | undefined {
   const localTileServer = import.meta.env.VITE_HISTORIC_TILE_SERVER_URL;
   if (tileUrl.includes('{VITE_HISTORIC_TILE_SERVER_URL}') && !localTileServer) return undefined;
-  return tileUrl.replace('{VITE_HISTORIC_TILE_SERVER_URL}', localTileServer ?? '');
+  return canonicalPublicTileUrl(
+    tileUrl.replace('{VITE_HISTORIC_TILE_SERVER_URL}', localTileServer ?? ''),
+  );
 }
 
 export function MapCanvas() {

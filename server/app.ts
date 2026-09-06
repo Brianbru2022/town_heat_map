@@ -441,16 +441,32 @@ export async function buildApp(options: BuildAppOptions = {}) {
     const project = await repository.get((request.params as { id: string }).id);
     const publicProject = project ? publicProjectPackage(project) : undefined;
     if (!publicProject) return reply.code(404).send({ message: 'Published project not found.' });
-    const { year, includePossible = 'true' } = request.query as {
-      year?: string;
-      includePossible?: string;
+    const { year: rawYear, includePossible: rawIncludePossible } = request.query as {
+      year?: unknown;
+      includePossible?: unknown;
     };
-    const features = year
-      ? publicProject.features.filter((feature) => {
-          const state = featureTimelineState(feature, Number(year));
-          return state === 'definite' || (includePossible === 'true' && state === 'possible');
-        })
-      : publicProject.features;
+    const yearText = rawYear === undefined ? undefined : singleQueryString(rawYear);
+    const includePossibleText =
+      rawIncludePossible === undefined ? 'true' : singleQueryString(rawIncludePossible);
+    if (
+      (rawYear !== undefined &&
+        (yearText === undefined ||
+          !/^-?\d{1,6}$/.test(yearText) ||
+          !Number.isSafeInteger(Number(yearText)))) ||
+      (rawIncludePossible !== undefined &&
+        (includePossibleText === undefined || !['true', 'false'].includes(includePossibleText)))
+    )
+      return reply
+        .code(400)
+        .send({ message: 'Year must be one integer and includePossible must be true or false.' });
+    const year = yearText === undefined ? undefined : Number(yearText);
+    const features =
+      year !== undefined
+        ? publicProject.features.filter((feature) => {
+            const state = featureTimelineState(feature, year);
+            return state === 'definite' || (includePossibleText === 'true' && state === 'possible');
+          })
+        : publicProject.features;
     return {
       type: 'FeatureCollection',
       features: features.map((feature) => ({
@@ -469,16 +485,11 @@ export async function buildApp(options: BuildAppOptions = {}) {
     const search = q.trim().toLocaleLowerCase();
     const projects = sortPublishedProjects(await repository.list());
     const packages = await Promise.all(projects.map((project) => repository.get(project.id)));
-    const publishableProjectIds = new Set(
-      packages
-        .filter((projectPackage): projectPackage is NonNullable<typeof projectPackage> =>
-          Boolean(projectPackage),
-        )
-        .filter((projectPackage) => publicProjectPackage(projectPackage))
-        .map((projectPackage) => projectPackage.project.id),
-    );
-    return projects
-      .filter((project) => publishableProjectIds.has(project.id))
+    const publicProjects = packages.flatMap((projectPackage) => {
+      const delivery = publicProjectPackage(projectPackage);
+      return delivery ? [delivery.project] : [];
+    });
+    return publicProjects
       .filter(
         (project) =>
           project.name.toLocaleLowerCase().includes(search) ||

@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { alloaPackage } from '../src/data/alloa';
 import { publicProjectPackage } from '../src/domain/publication';
-import { filterCsvByRecordIds, publicCsvByRecordIds, publicListedBuildingsCsv } from './csv';
+import {
+  filterCsvByRecordIds,
+  publicCsvByRecordIds,
+  publicListedBuildingsCsv,
+  spreadsheetSafeText,
+} from './csv';
 
 describe('publication-aware CSV delivery', () => {
   it('retains the header and publishable rows while excluding blocked records', () => {
@@ -39,11 +44,30 @@ describe('publication-aware CSV delivery', () => {
     const csv = publicListedBuildingsCsv(publicPackage, new Set([feature.id]));
 
     expect(csv.split('\r\n')[0]).toBe(
-      'project_id,town,selection_class,hes_designation_reference,feature_id,listed_building_title,statutory_title,category,designation_type,statutory_status,longitude,latitude,location_precision,documented_date,date_basis,date_confidence,source_url,source_accessed_at,source_attribution',
+      'project_id,town,selection_class,hes_designation_reference,feature_id,listed_building_title,statutory_title,category,designation_type,statutory_status,longitude,latitude,location_precision,documented_date,date_basis,date_confidence,source_url,source_accessed_at,source_attribution,visitor_narrative',
     );
     expect(csv).toContain(feature.id);
     expect(csv).not.toContain('documentedDateText');
     expect(csv).not.toContain('shortDescription');
     expect(csv).not.toContain('notes');
   });
+
+  it.each(['=2+2', '+SUM(A1:A2)', '-cmd|calc', '@IMPORTXML(A1)', '  =HYPERLINK(A1)', '\t=1'])(
+    'neutralises spreadsheet formula text: %s',
+    (value) => {
+      expect(spreadsheetSafeText(value)).toBe(`'${value}`);
+      const csv = publicCsvByRecordIds(
+        `feature_id,name\r\nrecord-1,"${value}"\r\n`,
+        'feature_id',
+        new Set(['record-1']),
+        ['feature_id', 'name'],
+      );
+      expect(csv).toContain(`'${value}`);
+    },
+  );
+
+  it.each(['Town Hall', 'Café + bakery', 'email@example.test', '1919-1945'])(
+    'preserves ordinary text: %s',
+    (value) => expect(spreadsheetSafeText(value)).toBe(value),
+  );
 });

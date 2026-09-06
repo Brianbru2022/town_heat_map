@@ -1,4 +1,5 @@
 import { useExplorerStore } from '../app/store';
+import { canonicalPublicUrl } from '../domain/publicUrl';
 
 export function InformationPage() {
   const mode = useExplorerStore((state) => state.mode);
@@ -53,8 +54,8 @@ export function InformationPage() {
                 <strong>{source.organisation}</strong>
               </p>
               <p>Reliability: {source.reliability.replaceAll('_', ' ')}</p>
-              {source.sourceUrl && (
-                <a href={source.sourceUrl} target="_blank" rel="noreferrer">
+              {canonicalPublicUrl(source.sourceUrl) && (
+                <a href={canonicalPublicUrl(source.sourceUrl)} target="_blank" rel="noreferrer">
                   Open source
                 </a>
               )}
@@ -67,8 +68,8 @@ export function InformationPage() {
               <p>
                 {component.attribution} · {component.scope}
               </p>
-              {component.licenceUrl ? (
-                <a href={component.licenceUrl} target="_blank" rel="noreferrer">
+              {canonicalPublicUrl(component.licenceUrl) ? (
+                <a href={canonicalPublicUrl(component.licenceUrl)} target="_blank" rel="noreferrer">
                   {component.licence}
                 </a>
               ) : (

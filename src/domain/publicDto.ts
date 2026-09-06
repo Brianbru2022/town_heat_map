@@ -1,13 +1,11 @@
 import type { Feature, Geometry, MultiPolygon, Point, Polygon } from 'geojson';
 import type {
   Confidence,
-  DataSourceDefinition,
   DateBasis,
   EvidenceScope,
   FeatureType,
   PublicationProfile,
   Reliability,
-  ScoringMethodology,
   Significance,
 } from './models';
 
@@ -28,6 +26,11 @@ export interface PublicSourceRecord {
 export interface PublicCurrentPlaceDetail {
   key: string;
   value: string;
+}
+
+export interface PublicNarrativeComponent {
+  kind: 'recommendation';
+  text: string;
 }
 
 export interface PublicFeature {
@@ -56,6 +59,8 @@ export interface PublicFeature {
     | 'site_only_or_demolished'
     | 'unknown';
   shortDescription?: string;
+  /** Fixed, claim-specific visitor copy; unrestricted internal prose never crosses the boundary. */
+  narrative?: PublicNarrativeComponent[];
   licence?: string;
   /** Visitor presentation categories only; curator and import tags are excluded. */
   tags: string[];
@@ -101,10 +106,43 @@ export interface PublicSettlementPolygon {
   sourceRecords: PublicSourceRecord[];
 }
 
-export type PublicDataSource = Pick<
-  DataSourceDefinition,
-  'id' | 'name' | 'organisation' | 'licence' | 'sourceUrl' | 'reliability'
->;
+export interface PublicDataSource {
+  id: string;
+  name: string;
+  organisation: string;
+  licence?: string;
+  sourceUrl?: string;
+  reliability: Reliability;
+}
+
+export interface PublicScoringMethodology {
+  age: {
+    before_1700: number;
+    '1700_1799': number;
+    '1800_1849': number;
+    '1850_1899': number;
+    '1900_1918': number;
+    '1919_1945': number;
+    '1946_1960': number;
+    after_1960: number;
+    unknown: number;
+  };
+  significance: {
+    highest_national: number;
+    national: number;
+    regional: number;
+    local: number;
+    recognised: number;
+  };
+  confidence: { high: number; medium: number; low: number; unknown: number };
+  survival: {
+    substantially_intact: number;
+    altered_recognisable: number;
+    heavily_altered: number;
+    site_only_or_demolished: number;
+    unknown: number;
+  };
+}
 
 export interface PublicLicenceComponent {
   id: string;
@@ -128,7 +166,7 @@ export interface PublicProjectPackage {
     boundary: Feature<Polygon | MultiPolygon>;
     timelineStart?: number;
     timelineEnd?: number;
-    methodology: ScoringMethodology;
+    methodology: PublicScoringMethodology;
   };
   features: PublicFeature[];
   sources: PublicDataSource[];

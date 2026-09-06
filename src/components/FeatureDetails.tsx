@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { dateWording } from '../domain/timeline';
 import { useExplorerStore } from '../app/store';
 import type { PublicCurrentPlaceDetail } from '../domain/publicDto';
+import { canonicalPublicUrl } from '../domain/publicUrl';
 
 const osmLabels: Record<string, string> = {
   description: 'Description',
@@ -21,13 +22,7 @@ const osmLabels: Record<string, string> = {
 };
 
 function safeExternalUrl(value?: string): string | undefined {
-  if (!value) return undefined;
-  try {
-    const url = new URL(value);
-    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : undefined;
-  } catch {
-    return undefined;
-  }
+  return canonicalPublicUrl(value);
 }
 
 function currentPlaceType(osmDetails: PublicCurrentPlaceDetail[], tags: string[]): string {
@@ -169,6 +164,9 @@ export function FeatureDetails() {
         </>
       )}
       {feature.shortDescription && <p>{feature.shortDescription}</p>}
+      {feature.narrative?.map((component) => (
+        <p key={component.kind}>{component.text}</p>
+      ))}
       {isCurrentPlace && (
         <section className="osm-details">
           <h3>
@@ -180,8 +178,8 @@ export function FeatureDetails() {
             {profile === 'mapped_context'
               ? 'Mapped present-day context only. It does not confirm public access, availability, accessibility, fees, opening hours or current operation. '
               : 'Only fields supported by claim-specific evidence are shown. '}
-            {osmSource?.sourceUrl && (
-              <a href={osmSource.sourceUrl} target="_blank" rel="noreferrer">
+            {safeExternalUrl(osmSource?.sourceUrl) && (
+              <a href={safeExternalUrl(osmSource?.sourceUrl)} target="_blank" rel="noreferrer">
                 View this place in OpenStreetMap
               </a>
             )}
@@ -215,8 +213,8 @@ export function FeatureDetails() {
         <div className="source" key={`${source.sourceName}-${source.sourceUrl ?? ''}`}>
           <strong>{source.sourceOrganisation}</strong>
           <br />
-          {source.sourceUrl ? (
-            <a href={source.sourceUrl} target="_blank" rel="noreferrer">
+          {safeExternalUrl(source.sourceUrl) ? (
+            <a href={safeExternalUrl(source.sourceUrl)} target="_blank" rel="noreferrer">
               {source.sourceName}
             </a>
           ) : (

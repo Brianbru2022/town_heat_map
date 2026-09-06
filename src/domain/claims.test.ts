@@ -97,6 +97,27 @@ function packageWith(feature: HeritageFeature): ProjectPackage {
 }
 
 describe('claim-relative public projection', () => {
+  it.each([
+    'file:///C:/private.txt',
+    'C:\\private\\site.html',
+    'javascript:alert(1)',
+    'data:text/html,unsafe',
+    'not-a-url',
+    'https://user:password@example.test/private',
+    '//example.test/protocol-relative',
+  ])('suppresses an authorised current-place website with an unsafe URL: %s', (website) => {
+    const feature = osmFeature({
+      publication: { state: 'verified', profile: 'verified_facility' },
+      claimEvidence: [evidence('current_operation', 'operational')],
+    });
+    feature.sourceRecords[1].notes = `Current-place curation: website=${website}.`;
+
+    const delivered = publicProjectPackage(packageWith(feature))?.features[0];
+
+    expect(delivered?.currentPlaceDetails?.some((detail) => detail.key === 'website')).toBe(false);
+    expect(JSON.stringify(delivered)).not.toContain(website);
+  });
+
   it('allows an OSM-only Tier M identity/location claim and suppresses stronger fields', () => {
     const feature = osmFeature();
     const delivered = publicProjectPackage(packageWith(feature))?.features[0];

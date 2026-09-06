@@ -33,8 +33,13 @@ function parseCsv(value: string): string[][] {
   return rows;
 }
 
-function csvCell(value: string): string {
-  return /[",\r\n]/.test(value) ? `"${value.replaceAll('"', '""')}"` : value;
+export function spreadsheetSafeText(value: string): string {
+  return /^[\t\r\n ]*[=+\-@]/.test(value) || /^[\t\r]/.test(value) ? `'${value}` : value;
+}
+
+function csvCell(value: string, protectFormula = false): string {
+  const safe = protectFormula ? spreadsheetSafeText(value) : value;
+  return /[",\r\n]/.test(safe) ? `"${safe.replaceAll('"', '""')}"` : safe;
 }
 
 /** Defensively filters a generated export even when the file predates the current publication audit. */
@@ -50,7 +55,7 @@ export function filterCsvByRecordIds(
   if (idIndex === -1) throw new Error(`CSV export is missing the ${idColumn} column.`);
   const filtered = [header, ...rows.slice(1).filter((row) => publishableIds.has(row[idIndex]))];
   return `${hasByteOrderMark ? '\uFEFF' : ''}${filtered
-    .map((row) => row.map(csvCell).join(','))
+    .map((row, index) => row.map((cell) => csvCell(cell, index > 0)).join(','))
     .join('\r\n')}\r\n`;
 }
 
@@ -79,7 +84,7 @@ export function publicCsvByRecordIds(
     publicColumns,
     ...filtered.map((row) => indexes.map((index) => row[index] ?? '')),
   ]
-    .map((row) => row.map(csvCell).join(','))
+    .map((row, index) => row.map((cell) => csvCell(cell, index > 0)).join(','))
     .join('\r\n')}\r\n`;
 }
 
@@ -131,6 +136,7 @@ export function publicListedBuildingsCsv(
     'source_url',
     'source_accessed_at',
     'source_attribution',
+    'visitor_narrative',
   ];
   const rows = pkg.features
     .filter((feature) => listedBuildingIds.has(feature.id))
@@ -158,7 +164,10 @@ export function publicListedBuildingsCsv(
         source?.sourceUrl ?? '',
         source?.accessedAt ?? '',
         source ? `${source.sourceName} — ${source.sourceOrganisation}` : '',
+        feature.narrative?.map((component) => component.text).join(' ') ?? '',
       ];
     });
-  return `${[header, ...rows].map((row) => row.map(csvCell).join(',')).join('\r\n')}\r\n`;
+  return `${[header, ...rows]
+    .map((row, index) => row.map((cell) => csvCell(cell, index > 0)).join(','))
+    .join('\r\n')}\r\n`;
 }

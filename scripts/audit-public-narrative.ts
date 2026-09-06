@@ -55,6 +55,14 @@ for (const sourcePackage of publishedProjectPackages) {
     const sourceFeature = sourcePackage.features.find((candidate) => candidate.id === feature.id)!;
     const profile = publicationProfile(sourceFeature);
     const editorial = claimIsSupported(sourceFeature, 'editorial_recommendation');
+    const expectedNarrative =
+      profile === 'editorial' && editorial
+        ? [{ kind: 'recommendation', text: 'Recommended as a visitor stop.' }]
+        : [];
+    reject(
+      JSON.stringify(feature.narrative ?? []) !== JSON.stringify(expectedNarrative),
+      `${sourcePackage.project.id}/${feature.id}: narrative components`,
+    );
     if (profile && !editorial) {
       reject(
         feature.shortDescription !==

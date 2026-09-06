@@ -5,6 +5,7 @@ import type {
   PublicationProfile,
   SourceRecord,
 } from './models';
+import type { PublicNarrativeComponent } from './publicDto';
 
 const tierRank: Record<EvidenceTier, number> = {
   mapped_context: 0,
@@ -283,6 +284,24 @@ export function publicCurrentPlaceDetails(
   });
 }
 
+/**
+ * Public prose is assembled from claim-specific components. The retained
+ * editorial descriptions remain internal because one recommendation approval
+ * cannot authorise operational, access, fee, facility or suitability claims
+ * embedded in the same free-text field.
+ */
+export function publicNarrativeComponents(
+  feature: HeritageFeature,
+  now: Date = new Date(),
+): PublicNarrativeComponent[] {
+  if (
+    publicationProfile(feature) === 'editorial' &&
+    claimIsSupported(feature, 'editorial_recommendation', now)
+  )
+    return [{ kind: 'recommendation', text: 'Recommended as a visitor stop.' }];
+  return [];
+}
+
 function publicSourceRecord(
   feature: HeritageFeature,
   source: SourceRecord,
@@ -317,7 +336,6 @@ export function projectPublicClaims(
   const sourceRecords = feature.sourceRecords.map((source) =>
     publicSourceRecord(feature, source, now),
   );
-  const editorial = claimIsSupported(feature, 'editorial_recommendation', now);
   const profile = publicationProfile(feature);
   const publication = feature.publication
     ? {
@@ -336,13 +354,10 @@ export function projectPublicClaims(
       delete projected.notes;
       return projected;
     }),
-    shortDescription:
-      profile === 'editorial' && editorial
-        ? feature.shortDescription
-        : profile
-          ? 'Mapped present-day context; availability and visitor facilities are not implied.'
-          : undefined,
-    fullDescription: profile === 'editorial' && editorial ? feature.fullDescription : undefined,
+    shortDescription: profile
+      ? 'Mapped present-day context; availability and visitor facilities are not implied.'
+      : undefined,
+    fullDescription: undefined,
   };
   if (!isOsmDerivedFeature(feature)) return common;
   return {

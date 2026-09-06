@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 import type { HeritageFeature, ProjectPackage, SourceRecord } from '../src/domain/models';
+import { spreadsheetSafeText } from '../server/csv';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
 
@@ -18,7 +19,7 @@ function osmValue(source: SourceRecord | undefined, key: string): string {
 }
 
 function csvCell(value: string | undefined): string {
-  const text = value ?? '';
+  const text = spreadsheetSafeText(value ?? '');
   return /[",\n\r]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
 }
 

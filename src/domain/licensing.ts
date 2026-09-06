@@ -14,8 +14,17 @@ export function licenceDecisionMatchesEvidence(
   decision: LicenceDecision | undefined,
   licenceText: string | undefined,
 ): boolean {
-  if (!decision) return false;
-  const evidence = licenceText?.trim();
+  if (
+    !decision ||
+    typeof decision !== 'object' ||
+    typeof decision.state !== 'string' ||
+    typeof decision.scope !== 'string' ||
+    typeof decision.reviewedAt !== 'string'
+  )
+    return false;
+  const evidence = typeof licenceText === 'string' ? licenceText.trim() : undefined;
+  if (decision.evidenceText !== undefined && typeof decision.evidenceText !== 'string')
+    return false;
   return evidence ? decision.evidenceText === evidence : decision.evidenceText === undefined;
 }
 

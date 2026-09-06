@@ -227,6 +227,7 @@ describe('project delivery', () => {
       'locationConfidence',
       'survival',
       'shortDescription',
+      'narrative',
       'licence',
       'tags',
       'evidenceScope',
@@ -335,6 +336,24 @@ describe('project delivery', () => {
     expect(geoJson.statusCode).not.toBe(500);
     expect(csv.statusCode).not.toBe(500);
     if (json.statusCode === 200) expect(json.json<PublicProjectPackage>().features).toEqual([]);
+  });
+
+  it.each([
+    'year=not-a-year',
+    'year=1900.5',
+    'year=1900&year=2000',
+    'includePossible=yes',
+    'includePossible=true&includePossible=false',
+  ])('returns a controlled 400 for malformed or repeated timeline filters: %s', async (query) => {
+    const app = await buildApp();
+    apps.push(app);
+
+    const response = await app.inject(`/api/projects/alloa-scotland/features?${query}`);
+
+    expect(response.statusCode).toBe(400);
+    expect(response.json()).toEqual({
+      message: 'Year must be one integer and includePossible must be true or false.',
+    });
   });
 
   it('does not publish the curator-only undated heritage-review export', async () => {

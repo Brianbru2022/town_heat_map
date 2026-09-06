@@ -7,6 +7,7 @@ import {
   type ReviewFilter,
 } from '../domain/review';
 import { dateWording } from '../domain/timeline';
+import { canonicalPublicUrl } from '../domain/publicUrl';
 
 const filters: Array<{ value: ReviewFilter; label: string }> = [
   { value: 'all', label: 'All open review items' },
@@ -219,8 +220,12 @@ export function CurationReview() {
                   <p className="source" key={`${source.sourceName}-${source.sourceRecordId ?? ''}`}>
                     <strong>{source.sourceOrganisation}</strong>
                     <br />
-                    {source.sourceUrl ? (
-                      <a href={source.sourceUrl} target="_blank" rel="noreferrer">
+                    {canonicalPublicUrl(source.sourceUrl) ? (
+                      <a
+                        href={canonicalPublicUrl(source.sourceUrl)}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         {source.sourceName}
                       </a>
                     ) : (

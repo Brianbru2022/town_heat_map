@@ -74,6 +74,8 @@ describe('production deployment boundary', () => {
     expect(nginx).not.toContain('proxy_add_x_forwarded_for');
     expect(nginx).toContain('(?:data|scripts|server|src|docker|schemas|node_modules)');
     expect(nginx).toContain('(?:map|sqlite|mbtiles|log|ya?ml|toml|ini)');
+    expect(nginx).toContain('package(?:-lock)?\\.json');
+    expect(nginx).toContain('dockerfile');
     expect(nginx).toContain('return 404;');
     expect(nginx).toContain('(?:^|/)(?:\\.env(?:[./]|$)|\\.git(?:/|$))');
   });

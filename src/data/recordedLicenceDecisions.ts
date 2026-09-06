@@ -30,11 +30,14 @@ function decisionForEvidence(value?: string): LicenceDecision {
 }
 
 function sourceRecord(record: SourceRecord): SourceRecord {
-  return { ...record, licenceDecision: decisionForEvidence(record.licence) };
+  return {
+    ...record,
+    licenceDecision: record.licenceDecision ?? decisionForEvidence(record.licence),
+  };
 }
 
 function component(value: DataLicenceComponent): DataLicenceComponent {
-  return { ...value, licenceDecision: decisionForEvidence(value.licence) };
+  return { ...value, licenceDecision: value.licenceDecision ?? decisionForEvidence(value.licence) };
 }
 
 /**
@@ -43,27 +46,27 @@ function component(value: DataLicenceComponent): DataLicenceComponent {
  */
 export function withRecordedLicenceDecisions(source: ProjectPackage): ProjectPackage {
   const pkg = structuredClone(source);
-  pkg.licenceDecision = {
+  pkg.licenceDecision ??= {
     state: packageIds.has(pkg.project.id) ? 'approved' : 'unresolved',
     scope: PUBLIC_METADATA_SCOPE,
     reviewedAt: approvedEvidence.reviewedAt,
   };
   pkg.features = pkg.features.map((feature) => ({
     ...feature,
-    licenceDecision: decisionForEvidence(feature.licence),
+    licenceDecision: feature.licenceDecision ?? decisionForEvidence(feature.licence),
     sourceRecords: feature.sourceRecords.map(sourceRecord),
   }));
   pkg.sources = pkg.sources.map((definition) => ({
     ...definition,
-    licenceDecision: decisionForEvidence(definition.licence),
+    licenceDecision: definition.licenceDecision ?? decisionForEvidence(definition.licence),
   }));
   pkg.historicMaps = pkg.historicMaps.map((map) => ({
     ...map,
-    licenceDecision: decisionForEvidence(map.licence),
+    licenceDecision: map.licenceDecision ?? decisionForEvidence(map.licence),
   }));
   pkg.settlementPolygons = pkg.settlementPolygons.map((polygon) => ({
     ...polygon,
-    licenceDecision: {
+    licenceDecision: polygon.licenceDecision ?? {
       state: 'inherited',
       scope: PUBLIC_METADATA_SCOPE,
       reviewedAt: approvedEvidence.reviewedAt,

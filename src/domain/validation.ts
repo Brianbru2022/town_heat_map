@@ -1,5 +1,5 @@
 import { booleanPointInPolygon, point } from '@turf/turf';
-import type { Geometry, Position } from 'geojson';
+import type { Geometry } from 'geojson';
 import type { HeritageFeature, SourceRecord, TownProject, ValidationResult } from './models';
 import {
   minimumTierForClaim,
@@ -28,16 +28,26 @@ function result(
 
 function sourceIsIdentifiable(source: SourceRecord): boolean {
   return Boolean(
-    source.sourceName?.trim() &&
-    source.sourceOrganisation?.trim() &&
-    source.accessedAt?.trim() &&
-    source.reliability?.trim(),
+    typeof source.sourceName === 'string' &&
+    source.sourceName.trim() &&
+    typeof source.sourceOrganisation === 'string' &&
+    source.sourceOrganisation.trim() &&
+    typeof source.accessedAt === 'string' &&
+    source.accessedAt.trim() &&
+    typeof source.reliability === 'string' &&
+    source.reliability.trim(),
   );
 }
 
-function positionIsValid(position: Position): boolean {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+export function positionIsValid(position: unknown): position is number[] {
   return (
+    Array.isArray(position) &&
     position.length >= 2 &&
+    position.every((coordinate) => typeof coordinate === 'number' && Number.isFinite(coordinate)) &&
     Number.isFinite(position[0]) &&
     Number.isFinite(position[1]) &&
     position[0] >= -180 &&
@@ -47,42 +57,63 @@ function positionIsValid(position: Position): boolean {
   );
 }
 
-function lineIsValid(line: Position[], minimumPositions: number): boolean {
-  return line.length >= minimumPositions && line.every(positionIsValid);
+function lineIsValid(line: unknown, minimumPositions: number): line is number[][] {
+  return Array.isArray(line) && line.length >= minimumPositions && line.every(positionIsValid);
 }
 
-function ringIsValid(ring: Position[]): boolean {
+function ringIsValid(ring: unknown): ring is number[][] {
+  if (!lineIsValid(ring, 4)) return false;
+  const first = ring[0];
+  const last = ring.at(-1);
   return (
-    lineIsValid(ring, 4) &&
-    ring[0].length === ring.at(-1)?.length &&
-    ring[0].every((coordinate, index) => coordinate === ring.at(-1)?.[index])
+    Boolean(last) &&
+    ring.every((position) => position.length === first.length) &&
+    first.length === last?.length &&
+    first.every((coordinate, index) => coordinate === last?.[index])
   );
 }
 
-export function geometryIsStructurallyValid(geometry: Geometry): boolean {
+export function geometryIsStructurallyValid(geometry: unknown): geometry is Geometry {
+  if (!isRecord(geometry) || typeof geometry.type !== 'string') return false;
   switch (geometry.type) {
     case 'Point':
       return positionIsValid(geometry.coordinates);
     case 'MultiPoint':
-      return geometry.coordinates.length > 0 && geometry.coordinates.every(positionIsValid);
+      return (
+        Array.isArray(geometry.coordinates) &&
+        geometry.coordinates.length > 0 &&
+        geometry.coordinates.every(positionIsValid)
+      );
     case 'LineString':
       return lineIsValid(geometry.coordinates, 2);
     case 'MultiLineString':
       return (
+        Array.isArray(geometry.coordinates) &&
         geometry.coordinates.length > 0 &&
         geometry.coordinates.every((line) => lineIsValid(line, 2))
       );
     case 'Polygon':
-      return geometry.coordinates.length > 0 && geometry.coordinates.every(ringIsValid);
+      return (
+        Array.isArray(geometry.coordinates) &&
+        geometry.coordinates.length > 0 &&
+        geometry.coordinates.every(ringIsValid)
+      );
     case 'MultiPolygon':
       return (
+        Array.isArray(geometry.coordinates) &&
         geometry.coordinates.length > 0 &&
-        geometry.coordinates.every((polygon) => polygon.length > 0 && polygon.every(ringIsValid))
+        geometry.coordinates.every(
+          (polygon) => Array.isArray(polygon) && polygon.length > 0 && polygon.every(ringIsValid),
+        )
       );
     case 'GeometryCollection':
       return (
-        geometry.geometries.length > 0 && geometry.geometries.every(geometryIsStructurallyValid)
+        Array.isArray(geometry.geometries) &&
+        geometry.geometries.length > 0 &&
+        geometry.geometries.every(geometryIsStructurallyValid)
       );
+    default:
+      return false;
   }
 }
 
@@ -376,6 +407,9 @@ export function validateFeatures(
       geometryIsValid &&
       feature.evidenceScope !== 'related_context' &&
       feature.evidenceScope !== 'out_of_scope' &&
+      geometryIsStructurallyValid(project.boundary?.geometry) &&
+      (project.boundary.geometry.type === 'Polygon' ||
+        project.boundary.geometry.type === 'MultiPolygon') &&
       !booleanPointInPolygon(point(feature.geometry.coordinates), project.boundary)
     )
       results.push(
