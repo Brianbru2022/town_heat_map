@@ -292,7 +292,25 @@ function supportedCurrentPlaceDetails(
 }
 
 function isPublicMappedDetail(detail: CurrentPlaceDetail): detail is PublicCurrentPlaceDetail {
-  return claimForCurrentPlaceKey(detail.key) === 'mapped_identity';
+  return (
+    claimForCurrentPlaceKey(detail.key) === 'mapped_identity' &&
+    mappedIdentityValueIsSafe(detail.key, detail.value)
+  );
+}
+
+const mappedTagToken = /^[a-z0-9][a-z0-9:_-]{0,63}$/i;
+const mappedName = /^[\p{L}\p{N}][\p{L}\p{N} '&().,+/-]{0,119}$/u;
+
+/**
+ * OSM identity tags are identifiers/categories, not an alternate narrative
+ * channel.  Open vocabularies remain usable as tag tokens, while the one
+ * human-readable mapped field (name) is kept short and non-sentence-like.
+ */
+export function mappedIdentityValueIsSafe(key: string, value: string): boolean {
+  if (typeof value !== 'string' || value !== value.trim() || /\p{Cc}/u.test(value)) return false;
+  if (key === 'name')
+    return mappedName.test(value) && value.split(/\s+/).length <= 8 && !/[.!?;:]/.test(value);
+  return mappedTagToken.test(value);
 }
 
 /** Mapped identity remains a narrow typed key/value surface, never an authority for visitor claims. */

@@ -28,6 +28,30 @@ export function licenceDecisionMatchesEvidence(
   return evidence ? decision.evidenceText === evidence : decision.evidenceText === undefined;
 }
 
+function sourceEvidenceSnapshot(
+  source: SourceRecord,
+): NonNullable<LicenceDecision['evidenceSnapshot']> {
+  return {
+    ...(source.licence ? { licence: source.licence.trim() } : {}),
+    ...(source.sourceRecordId ? { sourceRecordId: source.sourceRecordId.trim() } : {}),
+    ...(source.sourceUrl ? { sourceUrl: source.sourceUrl.trim() } : {}),
+    sourceName: source.sourceName.trim(),
+    sourceOrganisation: source.sourceOrganisation.trim(),
+  };
+}
+
+export function sourceRecordLicenceDecisionMatchesEvidence(source: SourceRecord): boolean {
+  const decision = source.licenceDecision;
+  if (!licenceDecisionMatchesEvidence(decision, source.licence)) return false;
+  if (!decision?.evidenceSnapshot) return true;
+  const expected = decision.evidenceSnapshot;
+  if (Object.keys(expected).length === 0) return false;
+  const actual = sourceEvidenceSnapshot(source);
+  return Object.entries(expected).every(
+    ([key, value]) => actual[key as keyof typeof actual] === value,
+  );
+}
+
 export function licenceDecisionAllowsPublicUse(
   decision: LicenceDecision | undefined,
   licenceText?: string,
@@ -46,7 +70,10 @@ export function licenceDecisionAllowsPublicUse(
 }
 
 export function sourceRecordLicenceAllowsPublicUse(source: SourceRecord): boolean {
-  return licenceDecisionAllowsPublicUse(source.licenceDecision, source.licence);
+  return (
+    sourceRecordLicenceDecisionMatchesEvidence(source) &&
+    licenceDecisionAllowsPublicUse(source.licenceDecision, source.licence)
+  );
 }
 
 export function featureLicenceAllowsPublicUse(feature: HeritageFeature): boolean {

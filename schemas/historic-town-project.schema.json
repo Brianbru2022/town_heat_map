@@ -141,6 +141,17 @@
         },
         "reviewedAt": { "$ref": "#/$defs/dateStamp" },
         "evidenceText": { "type": "string", "minLength": 1 },
+        "evidenceSnapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "licence": { "type": "string" },
+            "sourceRecordId": { "type": "string" },
+            "sourceUrl": { "type": "string", "format": "uri" },
+            "sourceName": { "type": "string" },
+            "sourceOrganisation": { "type": "string" }
+          }
+        },
         "inheritedFrom": { "const": "source_records" }
       }
     },

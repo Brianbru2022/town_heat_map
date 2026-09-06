@@ -9,6 +9,7 @@ import type {
   SourceRecord,
 } from '../src/domain/models';
 import { validateFeatures } from '../src/domain/validation';
+import { replaceImportedSourceRecord } from '../src/domain/osmImport';
 
 const projectPath = resolve(process.argv[2] ?? 'data/projects/alloa.json');
 const overpassUrls = [
@@ -360,10 +361,7 @@ for (const element of elements) {
     feature.sourceRecords.some((record) => record.sourceRecordId === sourceId),
   );
   if (existingBySource) {
-    existingBySource.sourceRecords = [
-      ...existingBySource.sourceRecords.filter((record) => record.sourceRecordId !== sourceId),
-      source,
-    ];
+    replaceImportedSourceRecord(existingBySource, source);
     existingBySource.updatedAt = accessedAt;
     if (existingBySource.tags.includes('osm-community-place')) {
       existingBySource.tags = [

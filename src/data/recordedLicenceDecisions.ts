@@ -29,15 +29,35 @@ function decisionForEvidence(value?: string): LicenceDecision {
   };
 }
 
-function sourceRecord(record: SourceRecord): SourceRecord {
+function decisionForSourceRecord(record: SourceRecord): LicenceDecision {
   return {
-    ...record,
-    licenceDecision: record.licenceDecision ?? decisionForEvidence(record.licence),
+    ...decisionForEvidence(record.licence),
+    evidenceSnapshot: {
+      ...(record.licence ? { licence: record.licence.trim() } : {}),
+      ...(record.sourceRecordId ? { sourceRecordId: record.sourceRecordId.trim() } : {}),
+      ...(record.sourceUrl ? { sourceUrl: record.sourceUrl.trim() } : {}),
+      sourceName: record.sourceName.trim(),
+      sourceOrganisation: record.sourceOrganisation.trim(),
+    },
   };
 }
 
-function component(value: DataLicenceComponent): DataLicenceComponent {
-  return { ...value, licenceDecision: value.licenceDecision ?? decisionForEvidence(value.licence) };
+function sourceRecord(record: SourceRecord, inRecordedScope: boolean): SourceRecord {
+  return {
+    ...record,
+    ...(record.licenceDecision || !inRecordedScope
+      ? {}
+      : { licenceDecision: decisionForSourceRecord(record) }),
+  };
+}
+
+function component(value: DataLicenceComponent, inRecordedScope: boolean): DataLicenceComponent {
+  return {
+    ...value,
+    ...(value.licenceDecision || !inRecordedScope
+      ? {}
+      : { licenceDecision: decisionForEvidence(value.licence) }),
+  };
 }
 
 /**
@@ -46,37 +66,51 @@ function component(value: DataLicenceComponent): DataLicenceComponent {
  */
 export function withRecordedLicenceDecisions(source: ProjectPackage): ProjectPackage {
   const pkg = structuredClone(source);
-  pkg.licenceDecision ??= {
-    state: packageIds.has(pkg.project.id) ? 'approved' : 'unresolved',
-    scope: PUBLIC_METADATA_SCOPE,
-    reviewedAt: approvedEvidence.reviewedAt,
-  };
+  const inRecordedScope = packageIds.has(pkg.project.id);
+  if (inRecordedScope && !pkg.licenceDecision)
+    pkg.licenceDecision = {
+      state: 'approved',
+      scope: PUBLIC_METADATA_SCOPE,
+      reviewedAt: approvedEvidence.reviewedAt,
+    };
   pkg.features = pkg.features.map((feature) => ({
     ...feature,
-    licenceDecision: feature.licenceDecision ?? decisionForEvidence(feature.licence),
-    sourceRecords: feature.sourceRecords.map(sourceRecord),
+    ...(feature.licenceDecision || !inRecordedScope
+      ? {}
+      : { licenceDecision: decisionForEvidence(feature.licence) }),
+    sourceRecords: feature.sourceRecords.map((record) => sourceRecord(record, inRecordedScope)),
   }));
   pkg.sources = pkg.sources.map((definition) => ({
     ...definition,
-    licenceDecision: definition.licenceDecision ?? decisionForEvidence(definition.licence),
+    ...(definition.licenceDecision || !inRecordedScope
+      ? {}
+      : { licenceDecision: decisionForEvidence(definition.licence) }),
   }));
   pkg.historicMaps = pkg.historicMaps.map((map) => ({
     ...map,
-    licenceDecision: map.licenceDecision ?? decisionForEvidence(map.licence),
+    ...(map.licenceDecision || !inRecordedScope
+      ? {}
+      : { licenceDecision: decisionForEvidence(map.licence) }),
   }));
   pkg.settlementPolygons = pkg.settlementPolygons.map((polygon) => ({
     ...polygon,
-    licenceDecision: polygon.licenceDecision ?? {
-      state: 'inherited',
-      scope: PUBLIC_METADATA_SCOPE,
-      reviewedAt: approvedEvidence.reviewedAt,
-      inheritedFrom: 'source_records',
-    },
-    sourceRecords: polygon.sourceRecords.map(sourceRecord),
+    ...(polygon.licenceDecision || !inRecordedScope
+      ? {}
+      : {
+          licenceDecision: {
+            state: 'inherited',
+            scope: PUBLIC_METADATA_SCOPE,
+            reviewedAt: approvedEvidence.reviewedAt,
+            inheritedFrom: 'source_records',
+          },
+        }),
+    sourceRecords: polygon.sourceRecords.map((record) => sourceRecord(record, inRecordedScope)),
   }));
   if (pkg.licensingMetadata)
     pkg.licensingMetadata = {
-      components: pkg.licensingMetadata.components.map(component),
+      components: pkg.licensingMetadata.components.map((value) =>
+        component(value, inRecordedScope),
+      ),
     };
   return pkg;
 }

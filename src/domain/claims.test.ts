@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { alloaPackage } from '../data/alloa';
 import { publishedProjectPackages } from '../data/publishedProjects';
 import type { ClaimEvidence, HeritageFeature, LicenceDecision, ProjectPackage } from './models';
-import { claimIsSupported } from './claims';
+import { claimIsSupported, mappedIdentityValueIsSafe } from './claims';
 import { assessFeaturePublication, publicProjectPackage } from './publication';
 
 const hesFeature = alloaPackage.features.find(
@@ -97,6 +97,45 @@ function packageWith(feature: HeritageFeature): ProjectPackage {
 }
 
 describe('claim-relative public projection', () => {
+  it.each([
+    ['shop', 'coffee', true],
+    ['amenity', 'charging_station', true],
+    ['tourism', 'information', true],
+    ['historic', 'memorial', true],
+    ['name', 'Men of Clackmannan Memorial', true],
+    ['shop', 'A brilliant family visitor stop with toilets and daily tours', false],
+    ['amenity', 'parking\nBook ahead for access', false],
+    ['tourism', 'visitor advice; dogs welcome', false],
+    ['historic', 'memorial\u0000unsafe', false],
+    ['name', 'An excellent family attraction with facilities and opening advice', false],
+  ])('bounds mapped identity values for %s', (key, value, expected) => {
+    expect(mappedIdentityValueIsSafe(key, value)).toBe(expected);
+  });
+
+  it('keeps reasonable open OSM values as mapped data while rejecting prose from public details', () => {
+    const feature = osmFeature({
+      sourceRecords: [
+        {
+          ...osmFeature().sourceRecords[0],
+          notes:
+            'Current OSM details: shop=coffee; amenity=charging_station; tourism=information; historic=memorial; name=Town Coffee; shop=A brilliant visitor stop with daily tours.',
+        },
+      ],
+    });
+    const delivered = publicProjectPackage(packageWith(feature))?.features[0];
+
+    expect(delivered?.currentPlaceDetails).toEqual(
+      expect.arrayContaining([
+        { key: 'shop', value: 'coffee' },
+        { key: 'amenity', value: 'charging_station' },
+        { key: 'tourism', value: 'information' },
+        { key: 'historic', value: 'memorial' },
+        { key: 'name', value: 'Town Coffee' },
+      ]),
+    );
+    expect(JSON.stringify(delivered)).not.toContain('A brilliant visitor stop');
+  });
+
   it.each([
     'file:///C:/private.txt',
     'C:\\private\\site.html',

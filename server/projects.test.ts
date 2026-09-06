@@ -140,7 +140,12 @@ describe('project delivery', () => {
     target.sourceRecords[0].notes =
       'Public claim details: description=Recommended, dogs welcome, wheelchair access, toilets, £5 admission, open daily and booking required; operator=Example Council, dogs welcome; contact:website=javascript:alert(1).';
     target.sourceRecords[0].quotedDateText = 'Unsupported nested source narrative.';
-    target.sourceRecords[0].sourceUrl = 'file:///C:/Users/curator/private-source.html';
+    target.sourceRecords[0].sourceUrl = 'file:///private-source.html';
+    // This fixture models a newly reviewed source snapshot; the assertion below
+    // remains about public URL filtering rather than stale licence evidence.
+    if (target.sourceRecords[0].licenceDecision?.evidenceSnapshot)
+      target.sourceRecords[0].licenceDecision.evidenceSnapshot.sourceUrl =
+        target.sourceRecords[0].sourceUrl;
     (target.geometry as unknown as Record<string, unknown>).privateGeometry =
       'ROUTE_GEOMETRY_SENTINEL';
     target.additionalPointLocations = [

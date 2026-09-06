@@ -33,12 +33,21 @@ export type PublicationState = 'provisional' | 'verified' | 'publishable' | 'wit
 export type LicenceDecisionState =
   'approved' | 'unresolved' | 'denied' | 'restricted' | 'inherited';
 export type LicenceUseScope = 'public_metadata' | 'public_redistribution' | 'internal_only';
+export interface LicenceEvidenceSnapshot {
+  licence?: string;
+  sourceRecordId?: string;
+  sourceUrl?: string;
+  sourceName?: string;
+  sourceOrganisation?: string;
+}
 export interface LicenceDecision {
   state: LicenceDecisionState;
   scope: LicenceUseScope;
   reviewedAt: string;
   /** Exact evidence snapshot reviewed when this decision was recorded. */
   evidenceText?: string;
+  /** Source-level evidence identity captured for an import decision. */
+  evidenceSnapshot?: LicenceEvidenceSnapshot;
   inheritedFrom?: 'source_records';
 }
 export type EvidenceTier = 'mapped_context' | 'corroborated_facility' | 'operational' | 'editorial';
